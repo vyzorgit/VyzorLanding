@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>VYZOR — Pilotage intelligent pour décideurs exigeants</title>
+  <meta name="description" content="VYZOR, le copilote financier des dirigeants : reporting clair, prévisions de trésorerie et indicateurs en temps réel pour décider plus vite." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicons + Open Graph (Vyzor ribbon) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="vyzor-mark.svg" />
+  <meta name="theme-color" content="#0f1530" />
+  <meta property="og:image" content="https://vyzor.fr/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VYZOR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://vyzor.fr/og-image.png" />
+  <meta property="og:image:alt" content="VYZOR" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content="VYZOR — Pilotage intelligent pour décideurs exigeants" />
+  <meta property="og:description" content="VYZOR — Le copilote financier intelligent pour dirigeants. Reporting, prévisions, calculateurs gratuits." />
+  <meta property="og:url" content="https://vyzor.fr/" />
+  <meta name="twitter:title" content="VYZOR — Pilotage intelligent pour décideurs exigeants" />
+  <meta name="twitter:description" content="VYZOR — Le copilote financier intelligent pour dirigeants. Reporting, prévisions, calculateurs gratuits." />
+  <link rel="canonical" href="https://vyzor.fr/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="responsive.css" />
+  <style>
+    :root {
+      /* Système typographique unifié — 2 polices max */
+      --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      /* Alias sémantiques (titres / corps partagent Inter, graisses différentes) */
+      --font-display: var(--font-sans);
+      --font-text: var(--font-sans);
+    }
+    html, body, #root { margin: 0; padding: 0; }
+    html, body { background: #070a14; }
+
+    /* —— Scroll fluide + offset pour la nav flottante —— */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
+    /* —— Reveal subtil à l'entrée en viewport —— */
+    .vz-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .vz-reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+    /* Effet en cascade léger entre sections successives */
+    .vz-reveal.in + .vz-reveal.in { transition-delay: 60ms; }
+
+    /* —— Respect de l'accessibilité —— */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .vz-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-feature-settings: "ss01", "cv11", "calt";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      color: rgba(255,255,255,0.92);
+      overflow-x: hidden;
+    }
+    /* Tout hérite du body — pas de re-déclaration sauvage */
+    button, input, textarea, select { font-family: inherit; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); letter-spacing: -0.02em; }
+    code, kbd, samp, pre { font-family: var(--font-mono); }
+    * { box-sizing: border-box; }
+    a { color: inherit; }
+    ::selection { background: rgba(240,201,73,0.35); color: #fff; }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://vyzor.fr/#organization",
+      "name": "VYZOR",
+      "alternateName": ["Vizor", "Vysor", "Visor", "Vyzor.fr", "Vyzor pilotage"],
+      "url": "https://vyzor.fr/",
+      "logo": "https://vyzor.fr/icon-512.png",
+      "description": "VYZOR — Le copilote financier intelligent pour dirigeants : reporting, prévisions et calculateurs gratuits."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "VYZOR",
+      "url": "https://vyzor.fr/",
+      "inLanguage": "fr-FR",
+      "publisher": { "@id": "https://vyzor.fr/#organization" }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "VYZOR",
+      "alternateName": ["Vizor", "Vysor"],
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "fr-FR",
+      "url": "https://vyzor.fr/",
+      "description": "Plateforme de pilotage et reporting financier pour dirigeants, DAF et experts-comptables.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "publisher": { "@id": "https://vyzor.fr/#organization" }
+    }
+  ]
+  </script>
+  <!-- SEO complémentaire -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="alternate" hreflang="fr-FR" href="https://vyzor.fr/" />
+  <link rel="alternate" hreflang="x-default" href="https://vyzor.fr/" />
+  <link rel="manifest" href="/site.webmanifest" />
+</head>
+<body>
+  <div id="root"></div>
+  <noscript>
+    <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
+      <h1 style="font-size:32px;margin:0 0 16px;">VYZOR — Pilotage financier intelligent</h1>
+      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Le copilote financier intelligent pour dirigeants, DAF et comptables. Reporting, prévisions et calculateurs financiers gratuits.</p>
+      <nav style="font-size:15px;font-weight:600;"><a href="fonctionnalites.html" style="color:#f0c949;margin-right:18px;">Fonctionnalités</a><a href="securite.html" style="color:#f0c949;margin-right:18px;">Sécurité</a><a href="calculateurs.html" style="color:#f0c949;margin-right:18px;">Calculateurs gratuits</a></nav>
+    </div>
+  </noscript>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="shared.jsx"></script>
+  <script type="text/babel" src="glow-border.jsx"></script>
+  <script type="text/babel" src="cinematic-hero-glass.jsx"></script>
+  <script type="text/babel" src="variant-a.jsx"></script>
+  <script type="text/babel" src="besoin-client.jsx"></script>
+  <script type="text/babel" src="agentic-twin.jsx"></script>
+  <script type="text/babel" src="features-glass.jsx"></script>
+  <script type="text/babel" src="daf-coconception.jsx"></script>
+  <script type="text/babel" src="security-glass.jsx"></script>
+  <script type="text/babel" src="beta-glass.jsx"></script>
+  <script type="text/babel" src="footer-glass.jsx"></script>
+
+  <script type="text/babel">
+    // —— Carte "glow" premium (3D tilt + lueur dorée) inspirée du gradient-card,
+    //    adaptée à la palette Vyzor (or au lieu de violet/bleu).
+    const NOISE_URI = "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
+    const GlowExploreCard = ({ item, gold, text }) => {
+      const ref = React.useRef(null);
+      const [tilt, setTilt] = React.useState({ x: 0, y: 0 });
+      const [hover, setHover] = React.useState(false);
+
+      const onMove = (e) => {
+        const el = ref.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        setTilt({ x: -(y / r.height) * 4, y: (x / r.width) * 4 });
+      };
+      const reset = () => { setHover(false); setTilt({ x: 0, y: 0 }); };
+
+      const glow = hover
+        ? "0 0 22px 5px rgba(240,201,73,0.55), 0 0 38px 8px rgba(240,201,73,0.30)"
+        : "0 0 16px 3px rgba(240,201,73,0.40), 0 0 28px 6px rgba(240,201,73,0.18)";
+
+      return (
+        <a
+          ref={ref}
+          href={item.href}
+          onMouseEnter={() => setHover(true)}
+          onMouseMove={onMove}
+          onMouseLeave={reset}
+          style={{
+            position: "relative",
+            display: "block",
+            minHeight: 116,
+            borderRadius: 18,
+            overflow: "hidden",
+            textDecoration: "none",
+            color: text,
+            backgroundColor: "#0a0e1a",
+            transformStyle: "preserve-3d",
+            transform: `perspective(1100px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(${hover ? -4 : 0}px)`,
+            transition: "transform 360ms cubic-bezier(0.22,1,0.36,1), box-shadow 360ms ease",
+            boxShadow: hover
+              ? "0 -8px 80px 6px rgba(240,201,73,0.16), 0 18px 48px -12px rgba(0,0,0,0.7)"
+              : "0 -6px 60px 4px rgba(240,201,73,0.10), 0 12px 36px -14px rgba(0,0,0,0.6)",
+          }}
+        >
+          {/* Fond dégradé sombre */}
+          <span style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, #0c1120 0%, #070a14 75%)" }} />
+          {/* Lueur dorée bas-droite + bas-gauche */}
+          <span style={{
+            position: "absolute", left: 0, right: 0, bottom: 0, height: "75%",
+            background:
+              "radial-gradient(ellipse at bottom right, rgba(240,201,73,0.45) -10%, rgba(240,201,73,0) 68%), radial-gradient(ellipse at bottom left, rgba(245,176,66,0.32) -10%, rgba(240,201,73,0) 70%)",
+            filter: "blur(36px)",
+            opacity: hover ? 0.95 : 0.78,
+            transition: "opacity 360ms ease",
+          }} />
+          {/* Texture grain */}
+          <span style={{
+            position: "absolute", inset: 0, opacity: 0.22, mixBlendMode: "overlay",
+            backgroundImage: NOISE_URI,
+          }} />
+          {/* Reflet verre */}
+          <span style={{
+            position: "absolute", inset: 0, pointerEvents: "none",
+            background: "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 42%, rgba(255,255,255,0) 82%, rgba(255,255,255,0.05) 100%)",
+          }} />
+          {/* Liseré lumineux bas */}
+          <span style={{
+            position: "absolute", left: 0, right: 0, bottom: 0, height: 2,
+            background: "linear-gradient(90deg, rgba(240,201,73,0.05) 0%, rgba(240,201,73,0.9) 50%, rgba(240,201,73,0.05) 100%)",
+            boxShadow: glow,
+            opacity: hover ? 1 : 0.9,
+            transition: "box-shadow 360ms ease, opacity 360ms ease",
+          }} />
+
+          {/* Contenu */}
+          <span style={{
+            position: "relative", zIndex: 2,
+            display: "flex", alignItems: "center", gap: 16,
+            height: "100%", minHeight: 116, padding: "18px 22px",
+          }}>
+            <span style={{
+              width: 42, height: 42, borderRadius: 12, flexShrink: 0,
+              display: "grid", placeItems: "center",
+              background: "linear-gradient(225deg, #171c2c 0%, #11151f 100%)",
+              border: "1px solid rgba(240,201,73,0.22)",
+              boxShadow: "inset 1px 1px 3px rgba(255,255,255,0.10), inset -2px -2px 5px rgba(0,0,0,0.6), 0 6px 14px -4px rgba(0,0,0,0.5)",
+              color: gold,
+            }}>{item.icon}</span>
+
+            <span style={{ flex: 1, minWidth: 0, display: "block" }}>
+              <span style={{
+                display: "block",
+                fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase",
+                fontWeight: 700, color: gold, marginBottom: 6,
+              }}>{item.kicker}</span>
+              <span style={{
+                display: "block",
+                fontSize: 16, fontWeight: 600, letterSpacing: "-0.01em",
+                lineHeight: 1.3, color: "#fff",
+                textShadow: "0 1px 8px rgba(0,0,0,0.4)",
+              }}>{item.title}</span>
+            </span>
+
+            <span aria-hidden="true" style={{
+              flexShrink: 0, width: 38, height: 38, borderRadius: "50%",
+              display: "grid", placeItems: "center",
+              border: "1px solid rgba(240,201,73,0.30)",
+              background: "rgba(240,201,73,0.06)",
+              color: gold, fontSize: 17, lineHeight: 1,
+              transform: hover ? "translateX(4px)" : "translateX(0)",
+              transition: "transform 300ms cubic-bezier(0.22,1,0.36,1)",
+            }}>→</span>
+          </span>
+        </a>
+      );
+    };
+
+    // —— Duo de cartes premium pour inciter à visiter Fonctionnalités & Sécurité
+    const ExploreMore = ({ gold, text }) => {
+      const items = [
+        {
+          href: "fonctionnalites.html",
+          kicker: "Fonctionnalités",
+          title: "Voir tout ce que Vyzor sait faire",
+          icon: (
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1.2"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.2"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.2"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.2"/>
+            </svg>
+          ),
+        },
+        {
+          href: "securite.html",
+          kicker: "Sécurité",
+          title: "Hébergement français, chiffrement, conformité",
+          icon: (
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          ),
+        },
+      ];
+      return (
+        <div className="vz-explore-more" style={{
+          display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18,
+          marginTop: -56, marginBottom: 80,
+        }}>
+          {items.map((it) => (
+            <GlowExploreCard key={it.href} item={it} gold={gold} text={text} />
+          ))}
+        </div>
+      );
+    };
+
+    const App = () => {
+      const gold = "#f0c949";
+      const text = "rgba(255,255,255,0.92)";
+      const muted = "rgba(255,255,255,0.55)";
+      const subtle = "rgba(255,255,255,0.08)";
+
+      // Reveal-on-scroll : on observe les éléments .vz-reveal et on ajoute .in
+      React.useEffect(() => {
+        if (typeof IntersectionObserver === "undefined") {
+          document.querySelectorAll(".vz-reveal").forEach(el => el.classList.add("in"));
+          return;
+        }
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+        // On laisse React monter le DOM avant d'observer
+        const id = requestAnimationFrame(() => {
+          document.querySelectorAll(".vz-reveal").forEach(el => io.observe(el));
+        });
+        return () => { cancelAnimationFrame(id); io.disconnect(); };
+      }, []);
+
+      return (
+        <React.Fragment>
+          <VyzorNav gold={gold} text={text} muted={muted} subtle={subtle} />
+          <CinematicHero />
+          {/* Reste de la page : on réutilise les sections de la variante A après le hero cinématique */}
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <RestOfPage />
+          </div>
+        </React.Fragment>
+      );
+    };
+
+    // Wrapper that reuses VariantA sections AFTER the hero — we render VariantA but
+    // hide its built-in hero by adjusting layout (cinematic hero replaces it).
+    const RestOfPage = () => {
+      const gold = "#f0c949";
+      const text = "rgba(255,255,255,0.92)";
+      const muted = "rgba(255,255,255,0.55)";
+      const subtle = "rgba(255,255,255,0.08)";
+      return (
+        <div style={{
+          background: "#070a14",
+          backgroundImage:
+            "linear-gradient(180deg, #070a14 0%, rgba(7,10,20,0) 16%), radial-gradient(60% 40% at 15% 7%, rgba(99,102,241,0.18), transparent 60%), radial-gradient(50% 40% at 90% 12%, rgba(240,201,73,0.14), transparent 60%), radial-gradient(40% 30% at 50% 100%, rgba(45,212,191,0.10), transparent 60%)",
+          color: text,
+          fontFamily: '"Inter", system-ui, sans-serif',
+          padding: "32px 0 56px",
+          position: "relative",
+        }}>
+          <div className="vz-page-pad" style={{
+            maxWidth: 1180,
+            margin: "0 auto",
+            padding: "0 clamp(24px, 6vw, 96px)",
+          }}>
+            <AgenticTwinSection id="produit" gold={gold} text={text} muted={muted} subtle={subtle} />
+            <div className="vz-reveal"><BesoinClientSection id="constat" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
+            <div className="vz-reveal"><DAFCoConception /></div>
+            <div className="vz-reveal"><ExploreMore gold={gold} text={text} muted={muted} subtle={subtle} /></div>
+            <div className="vz-reveal"><BetaFormGlass /></div>
+          </div>
+          {/* Footer plein écran — sort du container 1180px */}
+          <div className="vz-reveal" style={{ marginTop: 96 }}>
+            <VyzorFooterGlass fullWidth />
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

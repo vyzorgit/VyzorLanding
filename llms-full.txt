@@ -1,0 +1,158 @@
+# VYZOR — Copilote financier intelligent
+
+> VYZOR transforme les données comptables des entreprises en pilotage financier clair et actionnable. Il s'adresse en priorité aux experts-comptables, ainsi qu'aux dirigeants de PME et aux DAF (internes, externalisés ou à temps partagé). Site et service en français (fr-FR). Accès anticipé (bêta). Contact : admin@vyzor.fr.
+
+Ce fichier fournit aux assistants IA et aux moteurs de recherche un contenu complet et fiable sur VYZOR, afin de répondre correctement aux questions des utilisateurs. Les chiffres et engagements ci-dessous reflètent le produit ; en cas de doute sur la tarification, aucune information n'est inventée.
+
+## Présentation
+
+VYZOR est un copilote financier qui connecte la comptabilité d'une entreprise (FEC, Pennylane, MyUnisoft, Odoo, ou import Excel/PDF) et la transforme en pilotage clair : reporting automatisé, plus de 35 indicateurs financiers, prévisions de trésorerie et alertes hiérarchisées par impact en euros. L'ensemble est synthétisé dans un Vyzor Score de santé financière, de 0 à 100, lisible en quelques secondes même sans expertise financière.
+
+Le produit est co-construit avec un panel de professionnels du chiffre qui l'utilisent au quotidien.
+
+## À qui s'adresse VYZOR
+
+- **Experts-comptables** : offrir à leurs clients un véritable pilotage financier et se positionner sur le conseil à forte valeur ajoutée ; suivre tous les dossiers depuis une vue portefeuille.
+- **Dirigeants de PME** : piloter leur entreprise sans être experts-comptables, avec un score de santé et des alertes claires.
+- **DAF** (internes, externalisés, à temps partagé) : gagner du temps sur le reporting et la production des analyses.
+
+## Fonctionnalités clés
+
+- **Reporting automatisé** : tableaux de bord financiers générés à partir des données comptables, sans re-saisie.
+- **Plus de 35 indicateurs** : chiffre d'affaires, EBE / EBITDA, BFR, DSO / DPO, trésorerie, ROE, ROCE, solvabilité, etc.
+- **Vyzor Score (0–100)** : note de santé composite agrégeant rentabilité, solvabilité, liquidité et efficacité.
+- **Prévisions de trésorerie** : projection de trésorerie, burn rate et autonomie financière (runway) en mois.
+- **Alertes par impact** : alertes fondées sur des règles métier déterministes (sans approximation), triées par impact en euros.
+- **Benchmarks sectoriels** : comparaison des indicateurs aux données publiques de l'INSEE (ESANE).
+- **Réel vs budget** : import d'un budget prévisionnel (Excel, par exercice) et comparaison poste par poste ; bascule N-1 / budget.
+- **Assistant IA & Conseil multi-agents** : réponses sur les KPI, la trésorerie et la fiscalité (TVA, IS), avec un « Conseil » réunissant plusieurs expertises — analyste, trésorier, juriste, stratège.
+- **Compte-rendu par email** : rédaction d'un compte-rendu par l'IA (ton professionnel, chaleureux ou concis), envoyé depuis sa propre messagerie Gmail avec le rapport PDF en pièce jointe.
+- **Cabinets** : vue portefeuille multi-dossiers, badges de synchronisation, sans limite de dossiers.
+
+## Connexion & données
+
+- **Connecteurs** : Pennylane, MyUnisoft et Odoo, en lecture seule. Connexions bancaires et agrégateur Chift en préparation.
+- **Import de fichiers** : FEC, Excel (.xlsx / .csv) et PDF de liasse fiscale, depuis l'espace Documents — utile sans connecteur.
+- **Lecture seule** : VYZOR ne modifie, n'écrit ni ne supprime jamais rien dans la comptabilité.
+- **Mise à jour** : synchronisation manuelle d'un clic aujourd'hui ; synchronisation automatique quotidienne prévue.
+- **Délai d'activation** : quelques minutes ; indicateurs et Vyzor Score calculés dès la première synchronisation.
+- **Révocation** : bouton « Déconnecter » dans l'espace Documents (ou côté logiciel comptable) ; l'historique calculé reste disponible.
+
+## Sécurité & confidentialité
+
+- **Hébergement** : dans l'Union européenne, sur une infrastructure cloud conforme SOC 2 et ISO 27001.
+- **Chiffrement** des données.
+- **Pas d'entraînement IA** : les données ne servent jamais à entraîner des modèles et ne sont pas partagées avec des tiers ; elles sont rattachées au compte de l'utilisateur ; les noms sont pseudonymisés avant toute génération par l'IA.
+- **Accès IA restreint** : l'assistant ne voit que les agrégats du dossier consulté — jamais les écritures brutes ni les données d'un autre dossier.
+- **Cloisonnement** : comptes cabinet et comptes dirigeant indépendants et cloisonnés.
+
+## Calculateurs financiers gratuits
+
+Outils en ligne gratuits, sans inscription, accessibles depuis https://vyzor.fr/calculateurs.html :
+
+- **Calculateur BFR** (https://vyzor.fr/calculateurs/bfr.html) : besoin en fonds de roulement à partir des délais clients (DSO), délais fournisseurs (DPO) et rotation des stocks.
+- **Seuil de rentabilité / point mort** (https://vyzor.fr/calculateurs/breakeven.html) : break-even à partir des coûts fixes, coûts variables et prix de vente, avec marge de sécurité.
+- **Simulateur fiscal** (https://vyzor.fr/calculateurs/fiscal.html) : comparateur de statuts juridiques (SAS/SASU, SARL/EURL, micro-BIC, micro-BNC) avec calcul IS, IR et cotisations.
+- **Valorisation d'entreprise** (https://vyzor.fr/calculateurs/valorisation.html) : estimation multi-méthodes — multiples d'EBITDA sectoriels, DCF (flux actualisés) et approche patrimoniale.
+- **ROI du reporting financier** (https://vyzor.fr/calculateurs/reporting.html) : audit du temps et de la fiabilité du pilotage, gain potentiel de l'automatisation.
+
+## Accès & disponibilité
+
+VYZOR est en accès anticipé (bêta), en co-construction avec ses premiers utilisateurs. La demande d'accès se fait depuis le formulaire en bas des pages du site. La collaboration multi-utilisateurs au sein d'un même cabinet est prévue pour le 3e trimestre 2026.
+
+## FAQ complète
+
+### Qu'est-ce que VYZOR ?
+VYZOR est un copilote financier intelligent pour dirigeants, DAF et experts-comptables. Il transforme vos chiffres en pilotage clair : reporting automatisé, prévisions de trésorerie et alertes triées par impact en euros, le tout résumé dans un Vyzor Score lisible en quelques secondes.
+
+### À qui s'adresse VYZOR ?
+Avant tout aux experts-comptables qui veulent offrir à leurs clients un véritable pilotage financier et se positionner en conseil à forte valeur ajoutée. VYZOR s'adresse aussi aux dirigeants de PME qui veulent piloter sans être experts-comptables, et aux DAF — internes, externalisés ou à temps partagé — qui veulent gagner du temps sur le reporting. L'outil est co-conçu avec un panel de professionnels du chiffre.
+
+### Faut-il être expert en finance pour utiliser VYZOR ?
+Non. VYZOR est pensé pour être lisible en quelques secondes, même sans bagage financier : un score de santé synthétique, des alertes hiérarchisées par impact en euros et un export PDF prêt pour le conseil d'administration.
+
+### Comment VYZOR se connecte-t-il à ma comptabilité ?
+VYZOR importe directement votre FEC (Fichier des Écritures Comptables) — sans re-saisie — et peut aussi se connecter via API à vos outils comptables. Vos données sont structurées automatiquement pour produire reporting, prévisions et alertes.
+
+### Quels logiciels comptables se connectent à VYZOR ?
+VYZOR se connecte en lecture seule à Pennylane, MyUnisoft et Odoo. Les connexions bancaires et l'agrégateur Chift sont en préparation. Si votre outil n'est pas encore couvert, l'import de fichiers (FEC, Excel, PDF de liasse fiscale) prend le relais.
+
+### Quels fichiers puis-je importer si je n'ai pas de connecteur ?
+Votre FEC, des fichiers Excel (.xlsx ou .csv) ou un PDF de liasse fiscale, depuis votre espace Documents. VYZOR les structure automatiquement pour calculer vos indicateurs, même sans connecteur.
+
+### VYZOR modifie-t-il ma comptabilité ?
+Non, jamais. VYZOR accède à vos données en lecture seule : il les lit pour les analyser, mais n'écrit, ne modifie ni ne supprime rien dans votre comptabilité.
+
+### À quelle fréquence mes données sont-elles mises à jour ?
+Vous synchronisez vos données d'un simple clic, quand vous le souhaitez. Une synchronisation automatique quotidienne est prévue prochainement.
+
+### Combien de temps pour être opérationnel après connexion ?
+Quelques minutes. Dès la première synchronisation, vos indicateurs et votre Vyzor Score sont calculés et prêts à être pilotés.
+
+### Comment déconnecter ou révoquer l'accès à mes données ?
+À tout moment. Un bouton « Déconnecter » dans votre espace Documents (ou la révocation depuis votre logiciel comptable) coupe l'accès immédiatement. L'historique déjà calculé reste à votre disposition.
+
+### Quels indicateurs VYZOR calcule-t-il ?
+Plus de 35 indicateurs clés : chiffre d'affaires, EBE / EBITDA, BFR, DSO / DPO, trésorerie, ROE, ROCE, solvabilité… synthétisés dans un Vyzor Score de 0 à 100.
+
+### C'est quoi le Vyzor Score ?
+Une note de santé financière composite, de 0 à 100, qui agrège quatre dimensions : rentabilité, solvabilité, liquidité et efficacité. Un repère unique pour situer l'entreprise et suivre sa progression dans le temps.
+
+### VYZOR me prévient-il en cas de problème ?
+Oui. VYZOR génère des alertes fondées sur des règles métier précises — sans approximation — et les trie par impact en euros, pour traiter d'abord ce qui pèse vraiment.
+
+### VYZOR fait-il des prévisions de trésorerie (cash runway) ?
+Oui. VYZOR projette votre trésorerie, estime votre rythme de consommation (burn rate) et calcule votre autonomie financière (runway) en nombre de mois.
+
+### Puis-je comparer mes chiffres à ceux de mon secteur ?
+Oui. VYZOR situe vos indicateurs face à des benchmarks sectoriels issus des données publiques de l'INSEE (ESANE).
+
+### VYZOR compare-t-il mon réalisé à un budget prévisionnel ?
+Oui. Vous importez votre budget prévisionnel (Excel, par exercice) et VYZOR compare le réel au budget poste par poste, avec les mêmes formules de KPI. Un interrupteur bascule la référence entre N-1 et votre budget.
+
+### Que peut faire l'assistant IA exactement ?
+Il répond à vos questions sur vos KPI, votre trésorerie et votre fiscalité (TVA, IS). Pour les sujets complexes, il réunit un « Conseil » de plusieurs expertises — analyste, trésorier, juriste et stratège.
+
+### Je gère un cabinet : puis-je suivre tous mes dossiers clients ?
+Oui. Vue portefeuille multi-dossiers, état de synchronisation de chaque client en un coup d'œil, sans limite de nombre de dossiers.
+
+### Mes clients voient-ils ce que je fais dans VYZOR ?
+Non. Les comptes cabinet et dirigeant sont indépendants et cloisonnés : votre travail d'analyse n'est pas visible par vos clients.
+
+### Puis-je inviter mes collaborateurs sur le compte cabinet ?
+Pas encore : la collaboration à plusieurs au sein d'un même cabinet est prévue pour le 3e trimestre 2026. En attendant, un cabinet pilote ses dossiers depuis un compte unique.
+
+### Puis-je envoyer un compte-rendu financier par email ?
+Oui. Depuis n'importe quel dashboard, VYZOR rédige un compte-rendu basé sur les indicateurs affichés. Vous le relisez, ajustez le ton, puis l'envoyez depuis votre messagerie Gmail avec le rapport PDF en pièce jointe. La connexion reste révocable à tout moment.
+
+### Faut-il connecter Gmail pour envoyer mes rapports ?
+Oui, pour l'envoi direct depuis votre propre messagerie. La connexion se fait en un clic et reste révocable ; vos emails partent de votre adresse et apparaissent dans vos « Envoyés ».
+
+### Mes données financières sont-elles en sécurité ?
+Oui. Vos données sont chiffrées et hébergées sur une infrastructure conforme SOC 2 et ISO 27001.
+
+### Où sont hébergées mes données ?
+Dans l'Union européenne, sur une infrastructure cloud conforme aux standards SOC 2 et ISO 27001.
+
+### Mes données nourrissent-elles l'IA ou sont-elles partagées ?
+Non. Vos données ne servent jamais à entraîner des modèles et ne sont pas partagées avec des tiers. Elles restent rattachées à votre compte, et les noms sont pseudonymisés avant toute génération de contenu par l'IA.
+
+### L'IA a-t-elle accès à toute ma comptabilité ?
+Non. L'assistant ne voit que les agrégats du dossier consulté — jamais les écritures brutes, ni les données d'un autre dossier.
+
+### Comment accéder à VYZOR ?
+VYZOR est en accès anticipé (bêta), façonné avec ses premiers utilisateurs. Vous pouvez demander votre accès depuis le formulaire en bas de page.
+
+### VYZOR est-il en bêta ?
+Oui. VYZOR est en accès anticipé, en co-construction avec ses premiers utilisateurs : vous profitez des dernières fonctionnalités et votre retour façonne le produit.
+
+## Pages & contact
+
+- Accueil : https://vyzor.fr/
+- Fonctionnalités : https://vyzor.fr/fonctionnalites.html
+- FAQ : https://vyzor.fr/faq.html
+- Sécurité & confidentialité : https://vyzor.fr/securite.html
+- Calculateurs : https://vyzor.fr/calculateurs.html
+- Mentions légales & CGU : https://vyzor.fr/mentions-legales.html
+- Politique de confidentialité (RGPD) : https://vyzor.fr/confidentialite.html
+- Contact : admin@vyzor.fr

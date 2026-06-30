@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>VYZOR — Calculateurs</title>
+  <meta name="description" content="Calculateurs financiers gratuits VYZOR : BFR, seuil de rentabilité, valorisation d'entreprise, simulateur fiscal et ROI reporting." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicons + Open Graph (Vyzor ribbon) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="vyzor-mark.svg" />
+  <meta name="theme-color" content="#0f1530" />
+  <meta property="og:image" content="https://vyzor.fr/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VYZOR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://vyzor.fr/og-image.png" />
+  <meta property="og:image:alt" content="VYZOR" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content="VYZOR — Calculateurs financiers gratuits" />
+  <meta property="og:description" content="Calculateurs financiers gratuits VYZOR : BFR, seuil de rentabilité, valorisation d'entreprise, simulateur fiscal et ROI reporting." />
+  <meta property="og:url" content="https://vyzor.fr/calculateurs.html" />
+  <meta name="twitter:title" content="VYZOR — Calculateurs financiers gratuits" />
+  <meta name="twitter:description" content="Calculateurs financiers gratuits VYZOR : BFR, seuil de rentabilité, valorisation d'entreprise, simulateur fiscal et ROI reporting." />
+  <link rel="canonical" href="https://vyzor.fr/calculateurs.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="responsive.css" />
+  <style>
+    /* ── Vyzor Design Tokens ── */
+    :root {
+      --font-sans: 'Inter', system-ui, sans-serif;
+      /* Numbers & metrics use Inter Bold (700) — kept under font-mono for back-compat */
+      --font-mono: 'Inter', system-ui, sans-serif;
+
+      --bg-base: #09090b;
+      --bg-surface: #0f0f12;
+      --bg-elevated: #18181b;
+
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-strong: rgba(255, 255, 255, 0.12);
+      --border-solid: #27272a;
+
+      --brand-gold: #C5A059;
+      --brand-gold-dark: #a38243;
+      --brand-gold-soft: rgba(197, 160, 89, 0.18);
+
+      --text-primary: #ffffff;
+      --text-secondary: #e4e4e7;
+      --text-muted: #8b8b93;
+
+      --status-success: #10B981;
+      --status-error: #f43f5e;
+      --status-warning: #C5A059;
+    }
+
+    html, body { margin: 0; padding: 0; background: var(--bg-base); }
+    body {
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      color: var(--text-secondary);
+      background: var(--bg-base);
+      overflow-x: hidden;
+    }
+    * { box-sizing: border-box; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: rgba(197, 160, 89, 0.35); color: #fff; }
+
+    /* ── Liquid Glass ambient lights (very large, very soft) ── */
+    .ambient {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .ambient::before, .ambient::after {
+      content: ""; position: absolute; border-radius: 50%;
+      filter: blur(120px); opacity: 0.55;
+    }
+    .ambient::before {
+      width: 720px; height: 720px;
+      top: -200px; left: -200px;
+      background: radial-gradient(circle, rgba(197, 160, 89, 0.22), transparent 70%);
+    }
+    .ambient::after {
+      width: 640px; height: 640px;
+      top: 40%; right: -160px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.18), transparent 70%);
+    }
+    .ambient .blob3 {
+      position: absolute; bottom: -180px; left: 30%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(45, 212, 191, 0.10), transparent 70%);
+      filter: blur(120px);
+    }
+
+    /* Subtle noise/grain layer */
+    .grain {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      opacity: 0.035; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>");
+    }
+
+    /* ── Floating top nav — Liquid Glass ── */
+    .nav {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+      z-index: 60;
+      display: flex; align-items: center; gap: 18px;
+      padding: 8px 8px 8px 18px;
+      border-radius: 999px;
+      background: rgba(15,15,18,0.55);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 16px 48px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        inset 0 -1px 0 rgba(0,0,0,0.3);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; padding: 0 4px 0 2px; }
+    .nav-mark {
+      width: 26px; height: 26px; display: block; flex-shrink: 0;
+    }
+    .nav-name { font-size: 11px; letter-spacing: 0.32em; font-weight: 700; color: #fff; }
+    .nav-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.10); }
+    .nav-link {
+      padding: 8px 14px; font-size: 12.5px; font-weight: 500; color: rgba(255,255,255,0.6);
+      border-radius: 999px; border: 1px solid transparent; transition: color 220ms;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link.active {
+      color: #f3dca5;
+      background: rgba(197, 160, 89, 0.10);
+      border-color: rgba(197, 160, 89, 0.28);
+    }
+    .nav-cta {
+      padding: 8px 14px; font-size: 12.5px; font-weight: 600; color: #000;
+      background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold-dark) 100%);
+      border-radius: 999px;
+      box-shadow:
+        0 4px 18px rgba(197, 160, 89, 0.32),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+
+    .shell {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto; padding: 140px 56px 80px;
+    }
+
+    .crumb {
+      font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .crumb b { color: var(--brand-gold); font-weight: 500; }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: 0.32em;
+      color: var(--brand-gold); text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.02; letter-spacing: -0.03em;
+      font-weight: 600; margin: 0 0 24px; max-width: 900px;
+      color: var(--text-primary);
+    }
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #f3dca5 0%, var(--brand-gold) 50%, var(--brand-gold-dark) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lede {
+      font-size: 18px; line-height: 1.6;
+      color: rgba(255,255,255,0.6);
+      max-width: 640px; margin: 0 0 64px;
+    }
+
+    /* ── Calculator cards — Liquid Glass slabs ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 30%, rgba(0,0,0,0.20) 100%),
+        rgba(15, 15, 18, 0.55);
+      backdrop-filter: blur(24px) saturate(170%);
+      -webkit-backdrop-filter: blur(24px) saturate(170%);
+      box-shadow:
+        0 18px 56px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        inset 0 -1px 0 rgba(0,0,0,0.3);
+      transition:
+        transform 360ms cubic-bezier(0.22,1,0.36,1),
+        border-color 280ms,
+        box-shadow 360ms;
+      min-height: 280px;
+      overflow: hidden;
+    }
+    /* specular top highlight (Apple-style sheen) */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 60%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, transparent 100%);
+      opacity: 0.5;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+    /* gold cursor follow glow */
+    .card::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(
+        320px circle at var(--mx, 50%) var(--my, 0%),
+        rgba(197, 160, 89, 0.18),
+        transparent 60%
+      );
+      opacity: 0;
+      transition: opacity 360ms;
+      pointer-events: none;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(197, 160, 89, 0.32);
+      box-shadow:
+        0 28px 72px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(197, 160, 89, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.14),
+        inset 0 -1px 0 rgba(0,0,0,0.3);
+    }
+    .card:hover::after { opacity: 1; }
+
+    .card-head {
+      display: flex; justify-content: flex-end; align-items: center;
+      min-height: 22px;
+      margin-bottom: 18px;
+      position: relative; z-index: 1;
+    }
+    .card-head:empty { display: none; margin: 0; }
+    .card-num {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.28em;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+    }
+    .card-tag {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px;
+      border: 1px solid rgba(197, 160, 89, 0.28);
+      background: rgba(197, 160, 89, 0.10);
+      color: var(--brand-gold);
+      backdrop-filter: blur(8px);
+    }
+    .card-icon-wrap {
+      position: relative; z-index: 1;
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 22px;
+      color: var(--brand-gold);
+      background:
+        linear-gradient(135deg, rgba(197,160,89,0.14) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(197,160,89,0.22);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.18),
+        inset 0 -1px 0 rgba(0,0,0,0.2),
+        0 8px 24px rgba(197,160,89,0.10);
+      transition: transform 360ms cubic-bezier(0.22,1,0.36,1), border-color 280ms;
+    }
+    .card:hover .card-icon-wrap {
+      transform: translateY(-2px) rotate(-2deg);
+      border-color: rgba(197,160,89,0.45);
+    }
+    .card-icon-wrap svg {
+      width: 28px; height: 28px;
+      stroke: var(--brand-gold);
+      stroke-width: 1.6;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .card-title {
+      font-size: 24px; font-weight: 600; letter-spacing: -0.01em;
+      color: #fff; margin: 0 0 10px;
+      position: relative; z-index: 1;
+    }
+    .card-desc {
+      font-size: 14px; line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      margin: 0 0 24px;
+      flex: 1;
+      position: relative; z-index: 1;
+    }
+    .card-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.01em;
+      color: var(--brand-gold);
+      transition: gap 220ms;
+      position: relative; z-index: 1;
+    }
+    .card:hover .card-cta { gap: 12px; }
+    .card-cta::after {
+      content: "→";
+      transition: transform 220ms;
+    }
+    .card:hover .card-cta::after { transform: translateX(2px); }
+
+    .footer {
+      margin-top: 80px; padding-top: 32px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer a { color: rgba(255,255,255,0.55); }
+    .footer a:hover { color: var(--brand-gold); }
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://vyzor.fr/"},{"@type":"ListItem","position":2,"name":"Calculateurs","item":"https://vyzor.fr/calculateurs.html"}]}</script>
+  <!-- SEO complémentaire -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="alternate" hreflang="fr-FR" href="https://vyzor.fr/calculateurs.html" />
+  <link rel="alternate" hreflang="x-default" href="https://vyzor.fr/calculateurs.html" />
+  <link rel="manifest" href="/site.webmanifest" />
+</head>
+<body>
+
+  <div class="ambient"><div class="blob3"></div></div>
+  <div class="grain"></div>
+
+  <!-- ── Top nav ── -->
+  <nav class="nav calc-nav-pill">
+    <a class="nav-brand" href="index.html">
+      <svg class="nav-mark" viewBox="0 0 1024 1024" aria-label="Vyzor">
+        <g transform="translate(0,1024) scale(0.1,-0.1)" fill="var(--brand-gold)" stroke="none">
+          <path d="M4630 7940 c-497 -24 -562 -60 -753 -410 -286 -527 -307 -590 -263 -770 49 -194 90 -265 613 -1035 75 -110 176 -260 225 -332 49 -73 93 -133 98 -133 11 0 30 28 304 458 l206 323 -92 132 c-51 73 -114 164 -140 202 -27 39 -82 117 -123 175 -350 499 -347 493 -279 512 261 74 829 88 1258 33 248 -33 248 -32 173 -153 -56 -91 -384 -596 -416 -642 -10 -14 -52 -79 -93 -145 -41 -66 -131 -205 -200 -310 -402 -613 -872 -1358 -957 -1515 -199 -370 -211 -748 -34 -1092 67 -133 374 -596 466 -705 71 -83 150 -149 167 -138 6 4 -4 23 -24 47 -144 168 -202 494 -134 753 73 278 70 272 716 1295 89 140 179 284 202 320 22 36 76 121 120 190 44 69 121 190 171 270 50 80 141 226 204 325 714 1130 738 1211 502 1657 -30 57 -78 147 -106 200 -228 433 -271 459 -806 488 -203 11 -771 11 -1005 0z"/>
+          <path d="M3130 6838 c-135 -44 -328 -107 -429 -140 -102 -33 -211 -73 -243 -89 -205 -104 -264 -350 -140 -590 22 -41 203 -322 404 -625 201 -302 418 -630 483 -729 65 -99 168 -256 230 -350 61 -93 153 -233 202 -310 144 -222 204 -306 212 -301 4 3 11 56 14 118 12 241 117 534 282 789 24 38 54 87 64 108 l20 39 -196 293 c-108 162 -208 312 -222 334 -14 22 -92 139 -172 260 -363 549 -376 570 -420 694 -68 193 -35 346 106 488 116 117 127 116 -195 11z"/>
+          <path d="M6855 6910 c-3 -5 14 -22 37 -38 111 -76 188 -197 208 -326 29 -185 -56 -383 -385 -891 -68 -105 -652 -1041 -686 -1099 -19 -33 -59 -96 -87 -139 -29 -43 -52 -80 -52 -82 0 -6 -353 -571 -467 -748 -40 -62 -82 -130 -94 -152 -12 -22 -58 -76 -103 -121 -118 -117 -232 -150 -362 -105 -64 23 -57 32 -80 -108 -21 -129 -15 -233 21 -354 163 -560 700 -615 1090 -112 56 72 250 379 414 655 35 58 73 121 86 140 26 40 275 444 409 665 51 83 113 183 139 223 26 40 47 74 47 76 0 4 145 242 260 426 86 139 237 384 348 565 57 94 127 208 156 255 214 345 244 404 267 520 43 217 -77 414 -291 478 -83 25 -472 149 -663 212 -114 37 -209 64 -212 60z"/>
+        </g>
+      </svg>
+      <div class="nav-name">VYZOR</div>
+    </a>
+    <span class="nav-sep calc-nav-links"></span>
+    <a class="nav-link calc-nav-links" href="index.html#produit">Le produit</a>
+    <a class="nav-link calc-nav-links" href="fonctionnalites.html">Fonctionnalités</a>
+    <a class="nav-link calc-nav-links" href="securite.html">Sécurité</a>
+    <a class="nav-link active calc-nav-links" href="calculateurs.html">Calculateurs</a>
+    <span class="nav-sep calc-nav-links"></span>
+    <a class="nav-cta" href="index.html?contact=1#beta" data-contact>Demander une démo</a>
+  </nav>
+
+  <div class="shell calc-shell">
+    <div class="crumb">Outils gratuits · <b>Calculateurs VYZOR</b></div>
+
+    <div class="eyebrow">— Outils interactifs gratuits</div>
+    <h1>Calculateurs <em>VYZOR</em></h1>
+    <p class="lede">
+      Quatre outils interactifs pour piloter votre rentabilité, votre fiscalité et le coût caché
+      de votre reporting. Résultats instantanés, exportables, basés sur les barèmes 2026.
+    </p>
+
+    <div class="grid" id="grid">
+
+      <a class="card" href="calculateurs/breakeven.html">
+        <div class="card-head">
+          <span class="card-tag">★ Populaire</span>
+        </div>
+        <div class="card-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Calculateur de seuil de rentabilité</h3>
+        <p class="card-desc">
+          Trouvez en 30 secondes le nombre de ventes qui couvre vos coûts. Visualisation graphique
+          du croisement CA / coûts totaux, marge de sécurité et zone de profit.
+        </p>
+        <span class="card-cta">Calculer mon breakeven</span>
+      </a>
+
+      <a class="card" href="calculateurs/valorisation.html">
+        <div class="card-head">
+          <span class="card-tag">★ Nouveau</span>
+        </div>
+        <div class="card-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 20 L4 4"/>
+            <path d="M4 20 L20 20"/>
+            <path d="M8 16 L8 12"/>
+            <path d="M12 16 L12 9"/>
+            <path d="M16 16 L16 6"/>
+            <circle cx="16" cy="6" r="1.4" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Valorisation d'entreprise</h3>
+        <p class="card-desc">
+          Estimez la valeur de votre société selon 4 méthodes croisées : multiples de CA,
+          multiples d'EBITDA, DCF actualisé et approche patrimoniale. Fourchette indicative en 30 secondes.
+        </p>
+        <span class="card-cta">Estimer ma valorisation</span>
+      </a>
+
+      <a class="card" href="calculateurs/fiscal.html">
+        <div class="card-head">
+          <span class="card-tag">2026</span>
+        </div>
+        <div class="card-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3 L12 21"/>
+            <path d="M5 8 L19 8"/>
+            <path d="M5 8 L2 14 A3.5 3.5 0 0 0 8 14 Z"/>
+            <path d="M19 8 L16 14 A3.5 3.5 0 0 0 22 14 Z"/>
+            <path d="M8 21 L16 21"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Simulateur fiscal IS, IR & TVA</h3>
+        <p class="card-desc">
+          Comparez votre fiscalité selon votre statut juridique : SAS, SARL, EURL, micro-entreprise.
+          Barèmes 2026, comparatif visuel des 6 statuts, taux de prélèvement global.
+        </p>
+        <span class="card-cta">Comparer les statuts</span>
+      </a>
+
+      <a class="card" href="calculateurs/bfr.html">
+        <div class="card-head">
+          <span class="card-tag">★ Nouveau</span>
+        </div>
+        <div class="card-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7 L12 12 L15.5 14"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Simulateur de BFR</h3>
+        <p class="card-desc">
+          Visualisez votre cycle de conversion cash (DSO, DIO, DPO) et simulez l'impact
+          d'une optimisation des délais sur votre trésorerie. Projection BFR sur 12 mois.
+        </p>
+        <span class="card-cta">Simuler mon BFR</span>
+      </a>
+
+      <a class="card" href="calculateurs/reporting.html">
+        <div class="card-head">
+        </div>
+        <div class="card-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <path d="M8 16 L8 12"/>
+            <path d="M12 16 L12 8"/>
+            <path d="M16 16 L16 14"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Coût de votre reporting manuel</h3>
+        <p class="card-desc">
+          Combien vous coûte vraiment vos tableurs ? Heures perdues, coût annuel, économie potentielle
+          avec un pilotage automatisé. Pour DAF, dirigeants et experts-comptables.
+        </p>
+        <span class="card-cta">Calculer le coût caché</span>
+      </a>
+
+    </div>
+
+    <div class="footer">
+      <div>VYZOR · Calculateurs · 4 outils gratuits</div>
+      <a href="index.html">← Retour landing</a>
+    </div>
+  </div>
+
+  <script>
+    // Cursor-tracking gold glow on cards
+    document.querySelectorAll('.card').forEach((c) => {
+      c.addEventListener('pointermove', (e) => {
+        const r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        c.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    });
+  </script>
+</body>
+</html>

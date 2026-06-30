@@ -1,0 +1,26 @@
+# VYZOR
+
+> VYZOR est un copilote financier intelligent pour dirigeants de PME, DAF et experts-comptables. Il transforme les données comptables (FEC, Pennylane, MyUnisoft, Odoo) en pilotage clair : reporting automatisé, plus de 35 indicateurs (BFR, EBE/EBITDA, trésorerie, ROE, solvabilité…), prévisions de trésorerie et alertes triées par impact en euros, le tout synthétisé dans un Vyzor Score de 0 à 100.
+
+VYZOR est actuellement en accès anticipé (bêta), co-construit avec des professionnels du chiffre. Les données comptables sont importées en lecture seule, hébergées dans l'Union européenne sur une infrastructure conforme SOC 2 et ISO 27001, et ne servent jamais à entraîner de modèles d'IA. Service et contenus en français (fr-FR). Contact : admin@vyzor.fr.
+
+## Pages principales
+
+- [Accueil](https://vyzor.fr/): le copilote financier des dirigeants — reporting clair, prévisions de trésorerie et indicateurs en temps réel pour décider plus vite.
+- [Fonctionnalités](https://vyzor.fr/fonctionnalites.html): reporting automatisé, prévisions de trésorerie, alertes par impact en euros et assistant IA, pour comptables, DAF et dirigeants.
+- [Questions fréquentes (FAQ)](https://vyzor.fr/faq.html): réponses détaillées sur le fonctionnement, la connexion à la comptabilité, les cabinets, la sécurité des données et l'accès à la bêta.
+- [Sécurité & confidentialité](https://vyzor.fr/securite.html): chiffrement, hébergement dans l'UE, conformité SOC 2 / ISO 27001 et engagements RGPD.
+
+## Calculateurs financiers gratuits
+
+- [Calculateurs (sommaire)](https://vyzor.fr/calculateurs.html): tous les simulateurs financiers gratuits VYZOR.
+- [Calculateur BFR](https://vyzor.fr/calculateurs/bfr.html): besoin en fonds de roulement à partir des délais clients (DSO), des délais fournisseurs (DPO) et de la rotation des stocks.
+- [Seuil de rentabilité / point mort](https://vyzor.fr/calculateurs/breakeven.html): break-even à partir des coûts fixes, des coûts variables et du prix de vente, avec marge de sécurité.
+- [Simulateur fiscal](https://vyzor.fr/calculateurs/fiscal.html): comparateur de statuts juridiques (SAS/SASU, SARL/EURL, micro-BIC, micro-BNC) avec calcul de l'IS, de l'IR et des cotisations.
+- [Valorisation d'entreprise](https://vyzor.fr/calculateurs/valorisation.html): estimation multi-méthodes — multiples d'EBITDA sectoriels, DCF (flux actualisés) et approche patrimoniale.
+- [ROI du reporting financier](https://vyzor.fr/calculateurs/reporting.html): audit du temps consacré et de la fiabilité du pilotage, et gain potentiel de l'automatisation.
+
+## Optional
+
+- [Mentions légales & CGU](https://vyzor.fr/mentions-legales.html)
+- [Politique de confidentialité (RGPD)](https://vyzor.fr/confidentialite.html)

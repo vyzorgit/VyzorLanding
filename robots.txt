@@ -1,0 +1,30 @@
+# robots.txt — https://vyzor.fr
+
+User-agent: *
+Allow: /
+Disallow: /scraps/
+Disallow: /uploads/
+Disallow: /*.jsx$
+
+# Crawlers IA / assistants — explicitement bienvenus (mêmes règles)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+Allow: /
+Disallow: /scraps/
+Disallow: /uploads/
+Disallow: /*.jsx$
+
+Sitemap: https://vyzor.fr/sitemap.xml
+
+# Guide de contenu pour les IA / assistants (LLM)
+# https://vyzor.fr/llms.txt  (carte du site)
+# https://vyzor.fr/llms-full.txt  (contenu complet)

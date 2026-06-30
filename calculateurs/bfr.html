@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicons + Open Graph (Vyzor ribbon) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="../vyzor-mark.svg" />
+  <meta name="theme-color" content="#0f1530" />
+  <meta property="og:image" content="https://vyzor.fr/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VYZOR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://vyzor.fr/og-image.png" />
+  <meta property="og:image:alt" content="VYZOR" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content="Calculateur BFR gratuit — VYZOR" />
+  <meta property="og:description" content="Calculez gratuitement votre Besoin en Fonds de Roulement (BFR) en ligne. Simulateur professionnel : DSO, DPO, stocks, trésorerie nette." />
+  <meta property="og:url" content="https://vyzor.fr/calculateurs/bfr.html" />
+  <meta name="twitter:title" content="Calculateur BFR gratuit — VYZOR" />
+  <meta name="twitter:description" content="Calculez gratuitement votre Besoin en Fonds de Roulement (BFR) en ligne. Simulateur professionnel : DSO, DPO, stocks, trésorerie nette." />
+  <link rel="canonical" href="https://vyzor.fr/calculateurs/bfr.html" />
+  <link rel="alternate" hreflang="fr-FR" href="https://vyzor.fr/calculateurs/bfr.html" />
+  <link rel="alternate" hreflang="x-default" href="https://vyzor.fr/calculateurs/bfr.html" />
+
+<title>Calculateur BFR gratuit | Simulateur Besoin en Fonds de Roulement — VYZOR</title>
+<meta name="description" content="Calculez gratuitement votre Besoin en Fonds de Roulement (BFR) en ligne. Simulateur professionnel : DSO, DPO, délais clients, délais fournisseurs, rotation des stocks et trésorerie nette. Outil pour dirigeants, DAF et TPE-PME." />
+<meta name="keywords" content="calculateur BFR, calcul besoin en fonds de roulement, simulateur BFR gratuit, BFR formule, calcul BFR entreprise, besoin fonds de roulement, DSO délai client, DPO délai fournisseur, rotation des stocks, BFR en jours de chiffre d'affaires, trésorerie nette, optimisation BFR, BFR négatif, fonds de roulement, gestion du BFR, BFR TPE PME" />
+<meta name="author" content="VYZOR" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow" />
+<meta name="language" content="French" />
+<meta name="geo.region" content="FR" />
+<meta name="geo.placename" content="France" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #c4a15d;
+    --gold-light: #e8d5a3;
+    --emerald: #10b981;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --purple: #8b5cf6;
+    --orange: #f59e0b;
+    --bg: #0a0a0a;
+    --card: rgba(255,255,255,0.03);
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(196,161,93,0.35);
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: #e8e8e8;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+
+  .glow {
+    position: fixed; width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,161,93,0.07) 0%, transparent 70%);
+    top: -250px; left: 50%; transform: translateX(-50%);
+    pointer-events: none; z-index: 0;
+  }
+  .glow-2 {
+    position: fixed; width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(16,185,129,0.04) 0%, transparent 70%);
+    bottom: -200px; right: -100px;
+    pointer-events: none; z-index: 0;
+  }
+
+  .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* --- Top nav --- */
+  .topnav {
+    position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+    z-index: 60; display: flex; align-items: center; gap: 14px;
+    padding: 8px 14px;
+    background: rgba(15,15,18,0.55);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 999px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .topnav a {
+    color: rgba(255,255,255,0.78); text-decoration: none;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+    padding: 8px 14px; border-radius: 999px;
+    transition: all 220ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .topnav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+  .topnav a.brand {
+    display: flex; align-items: center; gap: 10px; padding-right: 6px;
+  }
+  .topnav a.brand:hover { background: transparent; }
+  .topnav a.brand .mark {
+    width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .topnav a.brand .mark svg { display: block; width: 26px; height: 26px; }
+  .topnav a.brand .name {
+    font-weight: 700; font-size: 14px; color: #fff; letter-spacing: 0.04em;
+  }
+  .topnav .sep {
+    width: 1px; height: 18px; background: rgba(255,255,255,0.10);
+  }
+  .topnav a.active { color: var(--gold); }
+  .topnav a.cta {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    color: #000; font-weight: 700;
+    box-shadow: 0 6px 20px rgba(196,161,93,0.32);
+  }
+  .topnav a.cta:hover {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+    color: #000;
+  }
+  @media (max-width: 640px) {
+    .topnav a.nav-link { display: none; }
+    .topnav .sep { display: none; }
+  }
+
+  /* --- Hero --- */
+  .hero { text-align: center; padding: 72px 0 44px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(196,161,93,0.1); border: 1px solid rgba(196,161,93,0.25);
+    border-radius: 100px; padding: 8px 20px; font-size: 13px;
+    font-weight: 500; color: var(--gold); margin-bottom: 28px; letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 5vw, 60px); font-weight: 800;
+    line-height: 1.1; margin-bottom: 18px; letter-spacing: -1.5px;
+  }
+  .gold { background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero p { font-size: 17px; color: #777; max-width: 640px; margin: 0 auto; line-height: 1.6; }
+  .hero p strong { color: #bbb; font-weight: 600; }
+
+  /* --- Cards --- */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 24px; padding: 44px; margin-bottom: 28px;
+    backdrop-filter: blur(20px);
+  }
+  .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .card-header .icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: rgba(196,161,93,0.12); display: flex;
+    align-items: center; justify-content: center; font-size: 20px;
+  }
+  .card-header h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.5px; }
+  .card-desc { color: #555; font-size: 14px; margin-bottom: 32px; padding-left: 56px; }
+
+  /* --- Form --- */
+  .form-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px; margin-bottom: 32px;
+  }
+  .field label {
+    display: block; font-size: 12.5px; font-weight: 500;
+    color: #666; margin-bottom: 9px; letter-spacing: 0.3px;
+  }
+  .label-icon { margin-right: 5px; opacity: 0.6; }
+  .input-wrap {
+    display: flex; align-items: center;
+    background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; overflow: hidden; transition: border-color 0.3s;
+  }
+  .input-wrap:focus-within { border-color: rgba(196,161,93,0.4); }
+  .input-wrap input {
+    flex: 1; background: transparent; border: none;
+    padding: 15px 16px; font-size: 17px; font-weight: 600;
+    color: #fff; font-family: inherit; outline: none; min-width: 0;
+  }
+  .input-wrap input::placeholder { color: #3a3a3a; }
+  .suffix { padding: 0 16px 0 0; font-size: 13px; color: #4a4a4a; white-space: nowrap; font-weight: 500; }
+
+  /* --- KPI Row --- */
+  .kpi-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px; margin-bottom: 32px;
+  }
+  .kpi {
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    border-radius: 16px; padding: 22px; text-align: center;
+    transition: all 0.3s;
+  }
+  .kpi:hover { border-color: rgba(255,255,255,0.12); }
+  .kpi .kpi-label {
+    font-size: 11px; font-weight: 600; color: #555;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+  }
+  .kpi .kpi-value { font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+  .kpi .kpi-sub { font-size: 12px; color: #555; margin-top: 6px; }
+  .kpi.gold-kpi .kpi-value { color: var(--gold); }
+  .kpi.green-kpi .kpi-value { color: var(--emerald); }
+  .kpi.red-kpi .kpi-value { color: var(--red); }
+  .kpi.blue-kpi .kpi-value { color: var(--blue); }
+
+  /* --- Cycle visual --- */
+  .cycle-section { margin: 40px 0; }
+  .cycle-section h3 { font-size: 18px; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.3px; }
+
+  .cycle-track {
+    position: relative;
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px 28px; overflow: hidden;
+  }
+  .cycle-bar-bg {
+    height: 48px; background: rgba(255,255,255,0.03);
+    border-radius: 10px; position: relative; overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .cycle-seg {
+    position: absolute; top: 0; height: 100%; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff;
+    transition: all 0.8s cubic-bezier(0.22,1,0.36,1);
+    border-radius: 10px;
+  }
+  .cycle-seg.dio { background: linear-gradient(90deg, rgba(139,92,246,0.5), rgba(139,92,246,0.7)); left: 0; }
+  .cycle-seg.dso { background: linear-gradient(90deg, rgba(59,130,246,0.5), rgba(59,130,246,0.7)); }
+  .cycle-seg.dpo { background: linear-gradient(90deg, rgba(16,185,129,0.4), rgba(16,185,129,0.65)); }
+
+  .cycle-legend {
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #888; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+  .legend-dot.purple { background: rgba(139,92,246,0.7); }
+  .legend-dot.blue { background: rgba(59,130,246,0.7); }
+  .legend-dot.green { background: rgba(16,185,129,0.65); }
+
+  .cycle-formula {
+    margin-top: 20px; padding: 16px 20px;
+    background: rgba(196,161,93,0.06); border: 1px solid rgba(196,161,93,0.15);
+    border-radius: 12px; font-size: 14px; color: #aaa;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .cycle-formula .op { color: #666; font-weight: 400; }
+  .cycle-formula .val { font-weight: 800; }
+  .cycle-formula .val.purple { color: var(--purple); }
+  .cycle-formula .val.blue { color: var(--blue); }
+  .cycle-formula .val.green { color: var(--emerald); }
+  .cycle-formula .val.gold { color: var(--gold); }
+
+  /* --- Scenario compare --- */
+  .scenario-grid {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 0;
+    align-items: stretch; margin-top: 12px;
+  }
+  .scenario-col {
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px 28px;
+  }
+  .scenario-col.current { }
+  .scenario-col.optimized { border-color: rgba(16,185,129,0.2); }
+  .scenario-divider {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 20px; font-size: 28px; color: #333;
+  }
+  .scenario-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.5px; margin-bottom: 24px;
+  }
+  .scenario-title.current-t { color: #666; }
+  .scenario-title.opt-t { color: var(--emerald); }
+
+  .scenario-line {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .scenario-line:last-child { border-bottom: none; }
+  .scenario-line .s-label { font-size: 13px; color: #777; }
+  .scenario-line .s-value { font-size: 16px; font-weight: 700; }
+
+  .scenario-total {
+    margin-top: 20px; padding: 18px; text-align: center;
+    border-radius: 14px;
+  }
+  .scenario-total.current-bg { background: rgba(255,255,255,0.03); }
+  .scenario-total.opt-bg { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.15); }
+  .scenario-total .st-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 8px; }
+  .scenario-total .st-value { font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+
+  /* --- Savings banner --- */
+  .savings-banner {
+    margin-top: 28px; padding: 28px 32px;
+    background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.03));
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .savings-left .savings-title { font-size: 15px; color: #888; margin-bottom: 6px; }
+  .savings-left .savings-amount {
+    font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--emerald);
+  }
+  .savings-right {
+    display: flex; gap: 28px; flex-wrap: wrap;
+  }
+  .savings-stat { text-align: center; }
+  .savings-stat .ss-val { font-size: 22px; font-weight: 800; color: var(--emerald); }
+  .savings-stat .ss-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px; }
+
+  /* --- Monthly evolution chart --- */
+  .evo-chart {
+    margin-top: 40px; padding: 32px;
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+  .evo-chart h4 {
+    font-size: 14px; font-weight: 600; color: #555;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 28px;
+  }
+  .chart-area {
+    position: relative; height: 220px;
+    border-left: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .chart-area .y-label {
+    position: absolute; left: -8px; transform: translateX(-100%);
+    font-size: 11px; color: #444; white-space: nowrap;
+  }
+  .chart-area .x-labels {
+    position: absolute; bottom: -24px; left: 0; right: 0;
+    display: flex; justify-content: space-between;
+    font-size: 10px; color: #444;
+  }
+  .chart-bars {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end;
+    gap: 6px; padding: 0 4px;
+  }
+  .chart-col {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-end; gap: 2px;
+  }
+  .chart-bar-inner {
+    width: 100%; border-radius: 6px 6px 2px 2px;
+    transition: height 0.6s cubic-bezier(0.22,1,0.36,1);
+    position: relative; min-height: 2px;
+  }
+  .chart-bar-inner.current-bar { background: linear-gradient(180deg, rgba(196,161,93,0.6), rgba(196,161,93,0.3)); }
+  .chart-bar-inner.opt-bar { background: linear-gradient(180deg, rgba(16,185,129,0.6), rgba(16,185,129,0.3)); }
+  .chart-bar-inner .bar-tip {
+    position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
+    font-size: 9px; font-weight: 700; white-space: nowrap;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .chart-col:hover .bar-tip { opacity: 1; }
+
+  .chart-legend-row {
+    display: flex; gap: 24px; margin-top: 36px; justify-content: center;
+  }
+  .chart-legend-row .legend-item { font-size: 12px; }
+
+  /* --- Slider --- */
+  .slider-group { margin-top: 8px; }
+  .slider-row {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 14px;
+  }
+  .slider-row label {
+    width: 180px; font-size: 13px; color: #777; flex-shrink: 0;
+  }
+  .slider-row input[type=range] {
+    flex: 1; -webkit-appearance: none; appearance: none;
+    height: 6px; background: rgba(255,255,255,0.08);
+    border-radius: 3px; outline: none;
+  }
+  .slider-row input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 20px; height: 20px;
+    border-radius: 50%; background: var(--gold);
+    cursor: pointer; border: 3px solid var(--bg);
+    box-shadow: 0 0 10px rgba(196,161,93,0.3);
+  }
+  .slider-val {
+    width: 70px; text-align: right; font-size: 15px;
+    font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+
+  /* --- Info tip --- */
+  .info-tip {
+    display: inline-flex; align-items: flex-start; gap: 8px;
+    background: rgba(196,161,93,0.06); border-radius: 10px;
+    padding: 12px 16px; font-size: 12.5px; color: rgba(196,161,93,0.8);
+    margin-top: 16px; line-height: 1.5;
+  }
+
+  .footer {
+    text-align: center; padding: 56px 0 36px;
+    color: #3a3a3a; font-size: 12px;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 900px) {
+    .scenario-grid { grid-template-columns: 1fr; gap: 16px; }
+    .scenario-divider { padding: 8px 0; font-size: 20px; }
+    .savings-banner { flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .card { padding: 24px 18px; }
+    .kpi .kpi-value { font-size: 22px; }
+    .cycle-legend { gap: 14px; }
+    .slider-row { flex-wrap: wrap; gap: 8px 12px; }
+    .slider-row label { width: 100%; margin-bottom: 2px; }
+    .slider-row input[type=range] { flex: 1 1 auto; min-width: 0; }
+    .slider-val { width: auto; min-width: 48px; }
+  }
+</style>
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Calculateur BFR — Besoin en Fonds de Roulement VYZOR","url":"https://vyzor.fr/calculateurs/bfr.html","description":"Simulateur en ligne gratuit pour calculer le Besoin en Fonds de Roulement (BFR) d'une entreprise : délais clients (DSO), délais fournisseurs (DPO), rotation des stocks, BFR en jours de chiffre d'affaires et trésorerie nette.","applicationCategory":"FinanceApplication","operatingSystem":"All","inLanguage":"fr-FR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"featureList":["Calcul du BFR en euros","BFR exprimé en jours de chiffre d'affaires","Délai de paiement clients (DSO)","Délai de paiement fournisseurs (DPO)","Rotation des stocks","Impact sur la trésorerie nette"],"provider":{"@type":"Organization","name":"VYZOR","url":"https://vyzor.fr"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://vyzor.fr/"},{"@type":"ListItem","position":2,"name":"Calculateurs financiers","item":"https://vyzor.fr/calculateurs.html"},{"@type":"ListItem","position":3,"name":"Calculateur BFR","item":"https://vyzor.fr/calculateurs/bfr.html"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qu'est-ce que le BFR (Besoin en Fonds de Roulement) ?","acceptedAnswer":{"@type":"Answer","text":"Le Besoin en Fonds de Roulement (BFR) correspond à la somme d'argent dont une entreprise a besoin pour financer son cycle d'exploitation, c'est-à-dire le décalage entre les encaissements clients et les décaissements fournisseurs et stocks. Un BFR positif mobilise de la trésorerie."}},{"@type":"Question","name":"Comment calculer le BFR ?","acceptedAnswer":{"@type":"Answer","text":"La formule du BFR est : Stocks + Créances clients − Dettes fournisseurs. On peut aussi l'exprimer en jours de chiffre d'affaires pour comparer dans le temps ou avec les standards du secteur."}},{"@type":"Question","name":"Qu'est-ce qu'un bon BFR ?","acceptedAnswer":{"@type":"Answer","text":"Plus le BFR est faible, voire négatif, mieux c'est pour la trésorerie : l'entreprise encaisse avant de payer. Réduire les délais clients (DSO), allonger les délais fournisseurs (DPO) et accélérer la rotation des stocks permettent d'optimiser le BFR."}},{"@type":"Question","name":"Le calculateur BFR VYZOR est-il gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui, le simulateur de Besoin en Fonds de Roulement VYZOR est entièrement gratuit et utilisable en ligne sans inscription."}}]}]</script>
+  <!-- SEO complémentaire -->
+  <link rel="manifest" href="/site.webmanifest" />
+</head>
+<body>
+
+<div class="glow"></div>
+<div class="glow-2"></div>
+
+<nav class="topnav">
+  <a class="brand" href="../index.html">
+    <span class="mark">
+      <svg width="22" height="22" viewBox="0 0 1024 1024" aria-hidden="true">
+        <g transform="translate(0,1024) scale(0.1,-0.1)" fill="#C5A059" stroke="none">
+          <path d="M4630 7940 c-497 -24 -562 -60 -753 -410 -286 -527 -307 -590 -263 -770 49 -194 90 -265 613 -1035 75 -110 176 -260 225 -332 49 -73 93 -133 98 -133 11 0 30 28 304 458 l206 323 -92 132 c-51 73 -114 164 -140 202 -27 39 -82 117 -123 175 -350 499 -347 493 -279 512 261 74 829 88 1258 33 248 -33 248 -32 173 -153 -56 -91 -384 -596 -416 -642 -10 -14 -52 -79 -93 -145 -41 -66 -131 -205 -200 -310 -402 -613 -872 -1358 -957 -1515 -199 -370 -211 -748 -34 -1092 67 -133 374 -596 466 -705 71 -83 150 -149 167 -138 6 4 -4 23 -24 47 -144 168 -202 494 -134 753 73 278 70 272 716 1295 89 140 179 284 202 320 22 36 76 121 120 190 44 69 121 190 171 270 50 80 141 226 204 325 714 1130 738 1211 502 1657 -30 57 -78 147 -106 200 -228 433 -271 459 -806 488 -203 11 -771 11 -1005 0z"/>
+          <path d="M3130 6838 c-135 -44 -328 -107 -429 -140 -102 -33 -211 -73 -243 -89 -205 -104 -264 -350 -140 -590 22 -41 203 -322 404 -625 201 -302 418 -630 483 -729 65 -99 168 -256 230 -350 61 -93 153 -233 202 -310 144 -222 204 -306 212 -301 4 3 11 56 14 118 12 241 117 534 282 789 24 38 54 87 64 108 l20 39 -196 293 c-108 162 -208 312 -222 334 -14 22 -92 139 -172 260 -363 549 -376 570 -420 694 -68 193 -35 346 106 488 116 117 127 116 -195 11z"/>
+          <path d="M6855 6910 c-3 -5 14 -22 37 -38 111 -76 188 -197 208 -326 29 -185 -56 -383 -385 -891 -68 -105 -652 -1041 -686 -1099 -19 -33 -59 -96 -87 -139 -29 -43 -52 -80 -52 -82 0 -6 -353 -571 -467 -748 -40 -62 -82 -130 -94 -152 -12 -22 -58 -76 -103 -121 -118 -117 -232 -150 -362 -105 -64 23 -57 32 -80 -108 -21 -129 -15 -233 21 -354 163 -560 700 -615 1090 -112 56 72 250 379 414 655 35 58 73 121 86 140 26 40 275 444 409 665 51 83 113 183 139 223 26 40 47 74 47 76 0 4 145 242 260 426 86 139 237 384 348 565 57 94 127 208 156 255 214 345 244 404 267 520 43 217 -77 414 -291 478 -83 25 -472 149 -663 212 -114 37 -209 64 -212 60z"/>
+        </g>
+      </svg>
+    </span>
+    <span class="name">VYZOR</span>
+  </a>
+  <span class="sep"></span>
+  <a class="nav-link" href="../index.html#produit">Le produit</a>
+  <a class="nav-link active" href="../calculateurs.html">Calculateurs</a>
+  <span class="sep"></span>
+  <a class="cta" href="../index.html?contact=1#beta">Demander une démo</a>
+</nav>
+
+<div class="container" style="padding-top: 80px;">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge">🔄 SIMULATEUR INTERACTIF</div>
+    <h1>Maîtrisez votre <span class="gold">BFR</span><br>en temps réel</h1>
+    <p>Visualisez votre <strong>cycle de conversion cash</strong>, identifiez les leviers d'optimisation et simulez l'impact sur votre trésorerie.</p>
+  </section>
+
+  <!-- ===== SECTION 1 : DONNÉES D'ENTRÉE ===== -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon">⚙️</div>
+      <h2>Vos données financières</h2>
+    </div>
+    <p class="card-desc">Saisissez vos chiffres — tout se recalcule instantanément</p>
+
+    <div class="form-grid">
+      <div class="field">
+        <label><span class="label-icon">💶</span>Chiffre d'affaires annuel HT</label>
+        <div class="input-wrap">
+          <input type="number" id="in-ca" value="2000000" oninput="recalc()">
+          <span class="suffix">€ / an</span>
+        </div>
+      </div>
+      <div class="field">
+        <label><span class="label-icon">🛒</span>Achats annuels HT</label>
+        <div class="input-wrap">
+          <input type="number" id="in-achats" value="800000" oninput="recalc()">
+          <span class="suffix">€ / an</span>
+        </div>
+      </div>
+      <div class="field">
+        <label><span class="label-icon">📦</span>Stock moyen</label>
+        <div class="input-wrap">
+          <input type="number" id="in-stock" value="120000" oninput="recalc()">
+          <span class="suffix">€</span>
+        </div>
+      </div>
+      <div class="field">
+        <label><span class="label-icon">📄</span>Créances clients</label>
+        <div class="input-wrap">
+          <input type="number" id="in-creances" value="280000" oninput="recalc()">
+          <span class="suffix">€</span>
+        </div>
+      </div>
+      <div class="field">
+        <label><span class="label-icon">🏦</span>Dettes fournisseurs</label>
+        <div class="input-wrap">
+          <input type="number" id="in-dettes" value="110000" oninput="recalc()">
+          <span class="suffix">€</span>
+        </div>
+      </div>
+      <div class="field">
+        <label><span class="label-icon">📈</span>Croissance CA prévue</label>
+        <div class="input-wrap">
+          <input type="number" id="in-growth" value="15" oninput="recalc()">
+          <span class="suffix">% / an</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 2 : KPIs ===== -->
+  <div class="kpi-row" id="kpi-row">
+    <div class="kpi gold-kpi">
+      <div class="kpi-label">BFR</div>
+      <div class="kpi-value" id="kpi-bfr">290 000 €</div>
+      <div class="kpi-sub" id="kpi-bfr-pct">14,5% du CA</div>
+    </div>
+    <div class="kpi blue-kpi">
+      <div class="kpi-label">DSO — Délai clients</div>
+      <div class="kpi-value" id="kpi-dso">51 j</div>
+      <div class="kpi-sub">Créances / CA × 365</div>
+    </div>
+    <div class="kpi" style="border-color: rgba(139,92,246,0.2);">
+      <div class="kpi-label">DIO — Rotation stock</div>
+      <div class="kpi-value" id="kpi-dio" style="color: var(--purple);">55 j</div>
+      <div class="kpi-sub">Stock / Achats × 365</div>
+    </div>
+    <div class="kpi green-kpi">
+      <div class="kpi-label">DPO — Délai fournisseurs</div>
+      <div class="kpi-value" id="kpi-dpo">50 j</div>
+      <div class="kpi-sub">Dettes / Achats × 365</div>
+    </div>
+    <div class="kpi red-kpi">
+      <div class="kpi-label">Cycle cash (CCC)</div>
+      <div class="kpi-value" id="kpi-ccc">56 j</div>
+      <div class="kpi-sub">DIO + DSO − DPO</div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 3 : CYCLE VISUEL ===== -->
+  <div class="card">
+    <div class="cycle-section">
+      <h3>🔄 Cycle de Conversion Cash</h3>
+
+      <div class="cycle-track">
+        <div class="cycle-bar-bg">
+          <div class="cycle-seg dio" id="seg-dio">DIO</div>
+          <div class="cycle-seg dso" id="seg-dso">DSO</div>
+          <div class="cycle-seg dpo" id="seg-dpo" style="bottom:0; top: auto;">DPO</div>
+        </div>
+
+        <div class="cycle-legend">
+          <div class="legend-item"><div class="legend-dot purple"></div> Stocks (DIO)</div>
+          <div class="legend-item"><div class="legend-dot blue"></div> Créances clients (DSO)</div>
+          <div class="legend-item"><div class="legend-dot green"></div> Dettes fournisseurs (DPO) — réduit le cycle</div>
+        </div>
+
+        <div class="cycle-formula">
+          <span style="color:#888;">CCC =</span>
+          <span class="val purple" id="f-dio">55j</span>
+          <span class="op">+</span>
+          <span class="val blue" id="f-dso">51j</span>
+          <span class="op">−</span>
+          <span class="val green" id="f-dpo">50j</span>
+          <span class="op">=</span>
+          <span class="val gold" id="f-ccc" style="font-size:18px;">56 jours</span>
+          <span style="color:#555; margin-left:8px;">de cash immobilisé</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 4 : OPTIMISATION ===== -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon" style="background: rgba(16,185,129,0.12);">🎯</div>
+      <h2>Simulez une optimisation</h2>
+    </div>
+    <p class="card-desc">Jouez avec les curseurs pour voir l'impact sur votre trésorerie</p>
+
+    <div class="slider-group">
+      <div class="slider-row">
+        <label>📄 Réduire DSO de</label>
+        <input type="range" id="opt-dso" min="0" max="30" value="10" oninput="recalc()">
+        <div class="slider-val" id="opt-dso-val">−10 j</div>
+      </div>
+      <div class="slider-row">
+        <label>📦 Réduire DIO de</label>
+        <input type="range" id="opt-dio" min="0" max="30" value="5" oninput="recalc()">
+        <div class="slider-val" id="opt-dio-val">−5 j</div>
+      </div>
+      <div class="slider-row">
+        <label>🏦 Augmenter DPO de</label>
+        <input type="range" id="opt-dpo" min="0" max="20" value="5" oninput="recalc()">
+        <div class="slider-val" id="opt-dpo-val">+5 j</div>
+      </div>
+    </div>
+
+    <!-- Scenario comparison -->
+    <div class="scenario-grid">
+      <div class="scenario-col current">
+        <div class="scenario-title current-t">📍 Situation actuelle</div>
+        <div class="scenario-line"><span class="s-label">DSO</span><span class="s-value" id="sc-dso-cur">51 j</span></div>
+        <div class="scenario-line"><span class="s-label">DIO</span><span class="s-value" id="sc-dio-cur">55 j</span></div>
+        <div class="scenario-line"><span class="s-label">DPO</span><span class="s-value" id="sc-dpo-cur">50 j</span></div>
+        <div class="scenario-line"><span class="s-label">CCC</span><span class="s-value" id="sc-ccc-cur">56 j</span></div>
+        <div class="scenario-total current-bg">
+          <div class="st-label">BFR Actuel</div>
+          <div class="st-value" id="sc-bfr-cur" style="color: var(--gold);">290 000 €</div>
+        </div>
+      </div>
+
+      <div class="scenario-divider">→</div>
+
+      <div class="scenario-col optimized">
+        <div class="scenario-title opt-t">🎯 Scénario optimisé</div>
+        <div class="scenario-line"><span class="s-label">DSO</span><span class="s-value" id="sc-dso-opt" style="color:var(--emerald);">41 j</span></div>
+        <div class="scenario-line"><span class="s-label">DIO</span><span class="s-value" id="sc-dio-opt" style="color:var(--emerald);">50 j</span></div>
+        <div class="scenario-line"><span class="s-label">DPO</span><span class="s-value" id="sc-dpo-opt" style="color:var(--emerald);">55 j</span></div>
+        <div class="scenario-line"><span class="s-label">CCC</span><span class="s-value" id="sc-ccc-opt" style="color:var(--emerald);">36 j</span></div>
+        <div class="scenario-total opt-bg">
+          <div class="st-label">BFR Optimisé</div>
+          <div class="st-value" id="sc-bfr-opt" style="color: var(--emerald);">197 000 €</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Savings -->
+    <div class="savings-banner">
+      <div class="savings-left">
+        <div class="savings-title">💰 Trésorerie libérée</div>
+        <div class="savings-amount" id="savings-amount">93 000 €</div>
+      </div>
+      <div class="savings-right">
+        <div class="savings-stat">
+          <div class="ss-val" id="savings-days">−20 j</div>
+          <div class="ss-label">Cycle cash</div>
+        </div>
+        <div class="savings-stat">
+          <div class="ss-val" id="savings-pct">−32%</div>
+          <div class="ss-label">Réduction BFR</div>
+        </div>
+        <div class="savings-stat">
+          <div class="ss-val" id="savings-ca-pct">4,7%</div>
+          <div class="ss-label">du CA libéré</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 5 : PROJECTION 12 MOIS ===== -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon" style="background: rgba(59,130,246,0.12);">📊</div>
+      <h2>Projection BFR sur 12 mois</h2>
+    </div>
+    <p class="card-desc">Évolution du BFR avec et sans optimisation, intégrant votre croissance</p>
+
+    <div class="evo-chart">
+      <h4>BFR Mensuel — Actuel vs Optimisé</h4>
+      <div class="chart-area" id="chart-area">
+        <div class="y-label" id="y-max" style="top: 0;"></div>
+        <div class="y-label" id="y-mid" style="top: 48%;"></div>
+        <div class="y-label" id="y-zero" style="bottom: -4px;">0</div>
+        <div class="chart-bars" id="chart-bars"></div>
+        <div class="x-labels" id="x-labels"></div>
+      </div>
+      <div class="chart-legend-row">
+        <div class="legend-item"><div class="legend-dot" style="background: rgba(196,161,93,0.6);"></div> BFR sans optimisation</div>
+        <div class="legend-item"><div class="legend-dot" style="background: rgba(16,185,129,0.6);"></div> BFR avec optimisation</div>
+      </div>
+    </div>
+
+    <div class="info-tip">
+      💡 La croissance augmente mécaniquement le BFR. Optimiser les délais maintenant limite l'effet boule de neige et préserve votre trésorerie.
+    </div>
+  </div>
+
+  <div class="footer">
+    Simulation indicative — ne constitue pas un conseil financier. Consultez votre expert-comptable pour un diagnostic personnalisé.
+  </div>
+
+</div>
+
+<script>
+  // ---- UTILS ----
+  function fmt(n) {
+    if (isNaN(n) || !isFinite(n)) return '—';
+    return Math.round(n).toLocaleString('fr-FR') + ' €';
+  }
+  function fmtK(n) {
+    if (isNaN(n) || !isFinite(n)) return '—';
+    if (Math.abs(n) >= 1e6) return (n / 1e6).toFixed(1).replace('.', ',') + ' M€';
+    return Math.round(n / 1000) + ' k€';
+  }
+
+  const months = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+
+  function recalc() {
+    const ca = parseFloat(document.getElementById('in-ca').value) || 0;
+    const achats = parseFloat(document.getElementById('in-achats').value) || 0;
+    const stock = parseFloat(document.getElementById('in-stock').value) || 0;
+    const creances = parseFloat(document.getElementById('in-creances').value) || 0;
+    const dettes = parseFloat(document.getElementById('in-dettes').value) || 0;
+    const growth = (parseFloat(document.getElementById('in-growth').value) || 0) / 100;
+
+    // BFR
+    const bfr = stock + creances - dettes;
+    const bfrPct = ca > 0 ? (bfr / ca * 100) : 0;
+
+    // Ratios en jours
+    const dso = ca > 0 ? (creances / ca * 365) : 0;
+    const dio = achats > 0 ? (stock / achats * 365) : 0;
+    const dpo = achats > 0 ? (dettes / achats * 365) : 0;
+    const ccc = dio + dso - dpo;
+
+    // KPIs
+    document.getElementById('kpi-bfr').textContent = fmt(bfr);
+    document.getElementById('kpi-bfr-pct').textContent = bfrPct.toFixed(1) + '% du CA';
+    document.getElementById('kpi-dso').textContent = Math.round(dso) + ' j';
+    document.getElementById('kpi-dio').textContent = Math.round(dio) + ' j';
+    document.getElementById('kpi-dpo').textContent = Math.round(dpo) + ' j';
+    document.getElementById('kpi-ccc').textContent = Math.round(ccc) + ' j';
+
+    // Cycle visual
+    const totalSpan = dio + dso;
+    if (totalSpan > 0) {
+      const dioPct = (dio / totalSpan) * 100;
+      const dsoPct = (dso / totalSpan) * 100;
+      const dpoPct = Math.min((dpo / totalSpan) * 100, 100);
+
+      document.getElementById('seg-dio').style.width = dioPct + '%';
+      document.getElementById('seg-dio').textContent = Math.round(dio) + 'j DIO';
+
+      document.getElementById('seg-dso').style.left = dioPct + '%';
+      document.getElementById('seg-dso').style.width = dsoPct + '%';
+      document.getElementById('seg-dso').textContent = Math.round(dso) + 'j DSO';
+
+      document.getElementById('seg-dpo').style.width = dpoPct + '%';
+      document.getElementById('seg-dpo').textContent = Math.round(dpo) + 'j DPO';
+    }
+
+    // Formula
+    document.getElementById('f-dio').textContent = Math.round(dio) + 'j';
+    document.getElementById('f-dso').textContent = Math.round(dso) + 'j';
+    document.getElementById('f-dpo').textContent = Math.round(dpo) + 'j';
+    document.getElementById('f-ccc').textContent = Math.round(ccc) + ' jours';
+
+    // --- Optimization sliders ---
+    const optDso = parseInt(document.getElementById('opt-dso').value);
+    const optDio = parseInt(document.getElementById('opt-dio').value);
+    const optDpo = parseInt(document.getElementById('opt-dpo').value);
+
+    document.getElementById('opt-dso-val').textContent = '−' + optDso + ' j';
+    document.getElementById('opt-dio-val').textContent = '−' + optDio + ' j';
+    document.getElementById('opt-dpo-val').textContent = '+' + optDpo + ' j';
+
+    const dsoOpt = Math.max(0, dso - optDso);
+    const dioOpt = Math.max(0, dio - optDio);
+    const dpoOpt = dpo + optDpo;
+    const cccOpt = dioOpt + dsoOpt - dpoOpt;
+
+    // Recalc optimized BFR
+    const creancesOpt = ca > 0 ? (dsoOpt / 365) * ca : 0;
+    const stockOpt = achats > 0 ? (dioOpt / 365) * achats : 0;
+    const dettesOpt = achats > 0 ? (dpoOpt / 365) * achats : 0;
+    const bfrOpt = stockOpt + creancesOpt - dettesOpt;
+
+    // Scenario cards
+    document.getElementById('sc-dso-cur').textContent = Math.round(dso) + ' j';
+    document.getElementById('sc-dio-cur').textContent = Math.round(dio) + ' j';
+    document.getElementById('sc-dpo-cur').textContent = Math.round(dpo) + ' j';
+    document.getElementById('sc-ccc-cur').textContent = Math.round(ccc) + ' j';
+    document.getElementById('sc-bfr-cur').textContent = fmt(bfr);
+
+    document.getElementById('sc-dso-opt').textContent = Math.round(dsoOpt) + ' j';
+    document.getElementById('sc-dio-opt').textContent = Math.round(dioOpt) + ' j';
+    document.getElementById('sc-dpo-opt').textContent = Math.round(dpoOpt) + ' j';
+    document.getElementById('sc-ccc-opt').textContent = Math.round(cccOpt) + ' j';
+    document.getElementById('sc-bfr-opt').textContent = fmt(bfrOpt);
+
+    // Savings
+    const saved = bfr - bfrOpt;
+    const savedDays = Math.round(ccc - cccOpt);
+    const savedPct = bfr !== 0 ? ((saved / bfr) * 100) : 0;
+    const savedCaPct = ca > 0 ? (saved / ca * 100) : 0;
+
+    document.getElementById('savings-amount').textContent = fmt(saved);
+    document.getElementById('savings-days').textContent = '−' + savedDays + ' j';
+    document.getElementById('savings-pct').textContent = '−' + Math.round(savedPct) + '%';
+    document.getElementById('savings-ca-pct').textContent = savedCaPct.toFixed(1) + '%';
+
+    // --- 12-month projection ---
+    buildChart(bfr, bfrOpt, growth);
+  }
+
+  function buildChart(bfr, bfrOpt, growth) {
+    const barsContainer = document.getElementById('chart-bars');
+    const xLabels = document.getElementById('x-labels');
+    barsContainer.innerHTML = '';
+    xLabels.innerHTML = '';
+
+    const monthlyGrowth = Math.pow(1 + growth, 1/12);
+    let valsCur = [], valsOpt = [];
+    for (let m = 0; m < 12; m++) {
+      const factor = Math.pow(monthlyGrowth, m);
+      valsCur.push(bfr * factor);
+      valsOpt.push(bfrOpt * factor);
+    }
+
+    const maxVal = Math.max(...valsCur, ...valsOpt, 1);
+
+    document.getElementById('y-max').textContent = fmtK(maxVal);
+    document.getElementById('y-mid').textContent = fmtK(maxVal / 2);
+
+    for (let m = 0; m < 12; m++) {
+      const col = document.createElement('div');
+      col.className = 'chart-col';
+
+      const hCur = (valsCur[m] / maxVal) * 200;
+      const hOpt = (valsOpt[m] / maxVal) * 200;
+
+      col.innerHTML = `
+        <div style="display:flex;gap:3px;align-items:flex-end;width:100%;height:200px;">
+          <div class="chart-bar-inner current-bar" style="height:${hCur}px;">
+            <div class="bar-tip" style="color:var(--gold);">${fmtK(valsCur[m])}</div>
+          </div>
+          <div class="chart-bar-inner opt-bar" style="height:${hOpt}px;">
+            <div class="bar-tip" style="color:var(--emerald);">${fmtK(valsOpt[m])}</div>
+          </div>
+        </div>
+      `;
+      barsContainer.appendChild(col);
+
+      const lbl = document.createElement('span');
+      lbl.textContent = months[m];
+      xLabels.appendChild(lbl);
+    }
+  }
+
+  // --- INIT ---
+  recalc();
+</script>
+</body>
+</html>

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vyzor — Vision Agentic Twin</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231A1A2E'/%3E%3Cpath d='M18 18 L32 47 L46 18' fill='none' stroke='%23f0c949' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070a14; --surface:#0e0e11; --card:#1A1A2E;
+  --gold:#f0c949; --gold-soft:rgba(240,201,73,.12);
+  --txt:#FFFFFF; --txt2:#9CA3AF; --txt3:#6B7280;
+  --line:rgba(255,255,255,.08);
+  --ok:#22C55E; --bad:#EF4444; --warn:#F59E0B;
+  --glass:rgba(15,15,18,.85);
+  --r:16px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(58% 36% at 50% -2%, rgba(240,201,73,.085), transparent 70%),
+    var(--bg);
+  color:var(--txt);
+  font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+  font-size:15px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:rgba(240,201,73,.32)}
+button{font-family:inherit;touch-action:manipulation;cursor:pointer}
+.hidden{display:none!important}
+
+/* ---------- Top bar ---------- */
+.topbar{max-width:960px;margin:0 auto;padding:22px 24px 10px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--card);border:1px solid rgba(240,201,73,.35);display:grid;place-items:center;box-shadow:0 0 24px rgba(240,201,73,.10)}
+.brand .word{font-weight:800;font-size:13px;letter-spacing:.24em}
+.tright{display:flex;align-items:center;gap:8px}
+.pill{font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3);border:1px solid var(--line);border-radius:999px;padding:6px 12px;white-space:nowrap}
+.replay{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--txt2);background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:999px;padding:7px 13px;transition:all .25s}
+.replay:hover{color:var(--gold);border-color:rgba(240,201,73,.5);box-shadow:0 0 18px rgba(240,201,73,.10)}
+
+/* ---------- Stage ---------- */
+.stage{max-width:920px;margin:0 auto;padding:6px 24px 40px}
+.ctx{display:flex;align-items:center;gap:9px;margin:8px 0 18px;font-size:12px;color:var(--txt3);letter-spacing:.01em}
+.ctx .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(34,197,94,.45)}70%{box-shadow:0 0 0 7px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+
+#greet{max-height:130px;overflow:hidden;transition:max-height .6s var(--ease),opacity .5s,margin .5s}
+#greet.gone{max-height:0;opacity:0;margin:0}
+.greet{font-size:27px;font-weight:300;letter-spacing:-.01em;margin-bottom:5px}
+.greet-sub{color:var(--txt2);font-size:14.5px;margin-bottom:24px}
+
+/* ---------- Champ de question (héros) ---------- */
+.ask{position:relative;display:flex;align-items:center;gap:13px;background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--line);border-radius:18px;padding:17px 18px;overflow:hidden;box-shadow:0 0 24px rgba(240,201,73,.06);transition:border-color .35s,box-shadow .35s}
+.ask:focus-within{border-color:rgba(240,201,73,.45);box-shadow:0 0 0 1px rgba(240,201,73,.22),0 0 36px rgba(240,201,73,.10)}
+.ask .aicon{color:var(--gold);display:grid;place-items:center;flex:0 0 auto;animation:breathe 3.2s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+.ask input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:500 19px/1.4 'Hanken Grotesk',sans-serif;caret-color:var(--gold)}
+.ask input::placeholder{color:var(--txt3)}
+.sendbtn{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--txt2);transition:all .25s;flex:0 0 auto}
+.sendbtn:hover{color:var(--gold);border-color:rgba(240,201,73,.5)}
+.beam{position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);background-size:200% 100%;opacity:0;transition:opacity .4s}
+.ask.busy .beam{opacity:.9;animation:beam 1.5s linear infinite}
+@keyframes beam{from{background-position:200% 0}to{background-position:-200% 0}}
+
+/* ---------- Équipe d'agents ---------- */
+.agents{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.agent{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:999px;padding:7px 14px 7px 8px;background:rgba(255,255,255,.02);transition:all .4s var(--ease);opacity:.5;flex:0 0 auto}
+.agent .ic{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.05);color:var(--txt2);transition:all .35s;flex:0 0 auto}
+.agent .tx{display:flex;flex-direction:column}
+.agent .nm{font-size:12.5px;font-weight:600;color:var(--txt2);white-space:nowrap;transition:color .3s}
+.agent .st{font-size:11px;color:var(--txt3);white-space:nowrap;height:0;opacity:0;overflow:hidden;transition:height .3s var(--ease),opacity .3s}
+.agent.lead{opacity:.8}
+.agent.lead .ic{color:var(--gold)}
+.agent.active{opacity:1;border-color:rgba(240,201,73,.5);background:rgba(240,201,73,.06);box-shadow:0 0 20px rgba(240,201,73,.12)}
+.agent.active .ic{background:var(--gold-soft);color:var(--gold);animation:agpulse 1.7s ease-in-out infinite}
+.agent.active .nm{color:#fff}
+.agent.active .st,.agent.done .st{height:15px;opacity:1}
+.agent.done{opacity:.92;border-color:rgba(34,197,94,.3)}
+.agent.done .ic{background:rgba(34,197,94,.09);color:var(--ok);animation:none}
+.agent.done .nm{color:#fff}
+.agent.done .st{color:rgba(34,197,94,.85)}
+@keyframes agpulse{0%,100%{box-shadow:0 0 0 0 rgba(240,201,73,.35)}55%{box-shadow:0 0 0 6px rgba(240,201,73,0)}}
+.routing{font-size:12px;color:var(--txt3);letter-spacing:.01em;margin-top:11px;min-height:15px}
+
+/* ---------- Question posée ---------- */
+.asked{margin:26px 0 14px;display:flex;gap:11px;align-items:flex-start;opacity:0;transform:translateY(6px);transition:all .45s var(--ease)}
+.asked.in{opacity:1;transform:none}
+.asked .qic{color:var(--gold);margin-top:2px;flex:0 0 auto}
+.asked .q{font-size:15.5px;font-weight:500;color:var(--txt2)}
+
+/* ---------- Canvas de blocs ---------- */
+.canvas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.block{grid-column:span 1;background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;opacity:0;transform:translateY(16px) scale(.99);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.block.in{opacity:1;transform:none}
+.block.span2{grid-column:1 / -1}
+.bhead{display:flex;align-items:center;gap:8px;margin-bottom:15px;flex-wrap:wrap}
+.btag{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.bsep{color:var(--txt3);font-size:10px}
+.bagent{font-size:11.5px;font-weight:500;letter-spacing:.01em;color:var(--txt3)}
+.mla{margin-left:auto}
+.bfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:15px;padding-top:12px;border-top:1px solid rgba(255,255,255,.05);flex-wrap:wrap}
+.src{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--txt3)}
+.verif{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--ok)}
+
+/* Simulation */
+.srow{margin-bottom:15px}
+.srow .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12.5px;color:var(--txt2);margin-bottom:7px}
+.delta{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--gold)}
+.delta.warn{color:var(--warn)}
+.delta.bad{color:var(--bad)}
+.brow{display:grid;grid-template-columns:84px 1fr 60px;gap:10px;align-items:center;margin-bottom:6px}
+.brow .k{font-size:10.5px;color:var(--txt3)}
+.brow .v{font-size:12.5px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.brow .v.gold{color:var(--gold)}
+.bar{height:8px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;transition:width 1.1s var(--ease)}
+.bar.gray i{background:rgba(255,255,255,.24)}
+.bar.gold i{background:linear-gradient(90deg,#a8854a,var(--gold))}
+.bar.red i{background:linear-gradient(90deg,rgba(239,68,68,.45),rgba(239,68,68,.85))}
+.hint{font-size:11px;color:var(--txt3);margin-top:2px}
+.inote{display:flex;gap:9px;align-items:flex-start;background:rgba(240,201,73,.07);border:1px solid rgba(240,201,73,.22);border-radius:12px;padding:10px 13px;font-size:12.5px;line-height:1.5;color:var(--txt2);margin-top:12px}
+.inote svg{flex:0 0 auto;margin-top:2px;color:var(--gold)}
+.inote b{color:var(--gold);font-weight:700}
+.inote.ok{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.25)}
+.inote.ok svg{color:var(--ok)}
+.inote.ok b{color:var(--ok)}
+
+/* Graphique trésorerie */
+.legend{display:flex;gap:14px;align-items:center}
+.li{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--txt3);white-space:nowrap}
+.lg{width:16px;height:0;border-top:2px solid var(--gold);border-radius:2px;display:inline-block}
+.lg.d{border-top:2px dashed rgba(255,255,255,.35)}
+.tchart .axis{stroke:rgba(255,255,255,.07)}
+.tchart .zline{stroke:rgba(239,68,68,.35);stroke-dasharray:3 5}
+.tchart .ylab,.tchart .mlab{fill:#6B7280;font:500 9px 'IBM Plex Mono',monospace}
+.tchart .cgold{stroke:var(--gold);stroke-width:2.2;fill:none;filter:drop-shadow(0 0 6px rgba(240,201,73,.35))}
+.tchart .cgray{stroke:rgba(255,255,255,.3);stroke-width:1.5;fill:none;stroke-dasharray:5 6}
+.tchart .area{fill:url(#gf);opacity:0;transition:opacity .9s}
+.tchart .area.in{opacity:.16}
+.lowg{opacity:0;transition:opacity .6s}
+.lowg.in{opacity:1}
+.lowg .dot{fill:var(--gold);stroke:#0b0b0e;stroke-width:1.5}
+.lowg .halo{fill:var(--gold);opacity:0;transform-box:fill-box;transform-origin:center}
+.lowg.in .halo{animation:halo 2.3s ease-out infinite}
+@keyframes halo{0%{transform:scale(.4);opacity:.4}80%{transform:scale(1.7);opacity:0}100%{transform:scale(1.7);opacity:0}}
+.lowg .lmain{fill:var(--gold);font:700 12.5px 'Hanken Grotesk',sans-serif}
+.lowg .lsub{fill:#9CA3AF;font:500 8.5px 'IBM Plex Mono',monospace}
+.lowg .lbad{fill:rgba(239,68,68,.9);font:500 8.5px 'IBM Plex Mono',monospace}
+
+/* Synthèse */
+.answer{font-size:18px;line-height:1.65;color:#E9E9EE;max-width:64ch}
+.answer .w{opacity:0;transition:opacity .35s}
+.answer .w.in{opacity:1}
+.answer .w.b{color:var(--gold);font-weight:700}
+.audit{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(240,201,73,.4);background:rgba(240,201,73,.06);color:var(--gold);border-radius:999px;padding:5px 12px;font-size:10.5px;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.rline{font-size:11px;color:var(--txt3);margin-top:12px}
+
+/* Relances clients */
+.crow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.crow:last-of-type{border-bottom:0}
+.crow .cl .nm{font-size:13.5px;font-weight:600}
+.crow .cl .sub{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--txt3);margin-top:2px}
+.rdot{width:6px;height:6px;border-radius:50%;background:var(--ok);flex:0 0 auto}
+.rdot.w{background:var(--warn)}
+.crow .amt{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.ctotal{display:flex;justify-content:space-between;align-items:center;padding-top:11px;margin-top:3px;border-top:1px solid rgba(255,255,255,.08)}
+.ctotal .k{font-size:12px;color:var(--txt2);font-weight:600}
+.ctotal .amt{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--gold)}
+
+/* Tuiles TVA */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:2px}
+.tile{border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:rgba(255,255,255,.02)}
+.tile .k{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:7px}
+.tile .v{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.tile.gold{border-color:rgba(240,201,73,.35);background:rgba(240,201,73,.05)}
+.tile.gold .v{color:var(--gold)}
+.tile .tsub{display:block;font-size:10.5px;color:var(--txt3);margin-top:4px}
+
+/* Marge */
+.mhead{display:flex;align-items:baseline;gap:11px;margin-bottom:14px;flex-wrap:wrap}
+.mhead .lbl{font-size:12.5px;color:var(--txt2)}
+.mhead .from{font-size:19px;font-weight:600;color:var(--txt3)}
+.mhead .arr{color:var(--txt3)}
+.mhead .to{font-size:19px;font-weight:700;color:#fff}
+
+/* Action card */
+.block.action{border-color:rgba(240,201,73,.35);box-shadow:0 0 30px rgba(240,201,73,.07);display:flex;align-items:center;gap:18px;position:relative}
+.atag{display:block;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:.9;margin-bottom:5px}
+.aic{width:44px;height:44px;border-radius:12px;background:var(--gold-soft);display:grid;place-items:center;color:var(--gold);flex:0 0 auto}
+.acontent{flex:1;min-width:0}
+.atitle{font-size:14.5px;font-weight:700}
+.adesc{font-size:12.5px;color:var(--txt2);margin-top:3px;line-height:1.5}
+.aafter{display:none;align-items:center;gap:6px;font-size:11.5px;color:var(--ok);margin-top:7px}
+.aafter.show{display:flex}
+.abtns{display:flex;gap:8px;flex:0 0 auto}
+.btn{display:inline-flex;align-items:center;gap:7px;border-radius:11px;padding:10px 16px;font-size:13px;font-weight:600;transition:all .25s;border:1px solid transparent}
+.btn.gold{background:var(--gold);color:#0d0d10;font-weight:700}
+.btn.gold:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(240,201,73,.3)}
+.btn.gold:disabled{transform:none;cursor:default}
+.btn.gold.okd{background:rgba(34,197,94,.14);color:var(--ok);border-color:rgba(34,197,94,.4);box-shadow:none}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--txt2)}
+.btn.ghost:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+
+/* Chips d'exploration */
+.chips{margin-top:24px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;opacity:0;transform:translateY(8px);transition:all .5s var(--ease);pointer-events:none}
+.chips.in{opacity:1;transform:none;pointer-events:auto}
+.chiplabel{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3);margin-right:4px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--txt2);border-radius:999px;padding:9px 15px;font-size:12.5px;font-weight:500;transition:all .25s}
+.chip svg{color:var(--gold);opacity:.7}
+.chip:hover{border-color:rgba(240,201,73,.5);color:#fff;background:rgba(240,201,73,.05);box-shadow:0 0 18px rgba(240,201,73,.08)}
+
+/* Toast proactif */
+.toast{position:relative;margin:20px 0 2px;max-width:440px;background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--line);border-left:2px solid var(--gold);border-radius:14px;padding:15px 16px;box-shadow:0 14px 44px rgba(0,0,0,.55),0 0 30px rgba(240,201,73,.06);opacity:0;transform:translateY(18px);transition:all .5s var(--ease);pointer-events:none}
+.toast.in{opacity:1;transform:none;pointer-events:auto}
+.thead{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.thead .tic{color:var(--gold);display:grid;place-items:center}
+.thead .tt{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.tclose{margin-left:auto;background:none;border:0;color:var(--txt3);display:grid;place-items:center;padding:2px}
+.tclose:hover{color:#fff}
+.tbody{font-size:13px;line-height:1.55;color:var(--txt2)}
+.tbody b{color:#fff}
+.tbtns{display:flex;gap:8px;margin-top:11px}
+.tbtn{border-radius:9px;padding:7px 13px;font-size:12px;font-weight:600;border:1px solid transparent;transition:all .25s}
+.tbtn.gold{background:var(--gold);color:#0d0d10;font-weight:700}
+.tbtn.gold:hover{box-shadow:0 4px 16px rgba(240,201,73,.3)}
+.tbtn.ghost{background:transparent;border-color:var(--line);color:var(--txt3)}
+.tbtn.ghost:hover{color:#fff}
+
+/* Footer */
+.foot{max-width:920px;margin:26px auto 36px;padding:0 24px;display:flex;flex-direction:column;gap:7px;align-items:center;text-align:center}
+.sig{font-size:13.5px;color:var(--txt2)}
+.sig b{color:var(--gold);font-weight:700}
+.legal{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.05em;color:var(--txt3)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:760px){
+  .stage{padding:6px 16px 32px}
+  .topbar{padding:18px 16px 8px}
+  .pill{display:none}
+  .canvas{grid-template-columns:1fr}
+  .agents{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+  .agents::-webkit-scrollbar{display:none}
+  .ask input{font-size:17px}
+  .greet{font-size:23px}
+  .answer{font-size:16px}
+  .tiles{grid-template-columns:1fr}
+  .block.action{flex-direction:column;align-items:stretch;gap:13px}
+  .abtns{width:100%}
+  .abtns .btn{flex:1;justify-content:center}
+  .toast{max-width:none}
+  .brow{grid-template-columns:70px 1fr 56px}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="vlogo" width="27" height="27" viewBox="193 200 638 638" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill="#f0c949" stroke="none">
+<path d="M4630 7940 c-497 -24 -562 -60 -753 -410 -286 -527 -307 -590 -263&#xA;-770 49 -194 90 -265 613 -1035 75 -110 176 -260 225 -332 49 -73 93 -133 98&#xA;-133 11 0 30 28 304 458 l206 323 -92 132 c-51 73 -114 164 -140 202 -27 39&#xA;-82 117 -123 175 -350 499 -347 493 -279 512 261 74 829 88 1258 33 248 -33&#xA;248 -32 173 -153 -56 -91 -384 -596 -416 -642 -10 -14 -52 -79 -93 -145 -41&#xA;-66 -131 -205 -200 -310 -402 -613 -872 -1358 -957 -1515 -199 -370 -211 -748&#xA;-34 -1092 67 -133 374 -596 466 -705 71 -83 150 -149 167 -138 6 4 -4 23 -24&#xA;47 -144 168 -202 494 -134 753 73 278 70 272 716 1295 89 140 179 284 202 320&#xA;22 36 76 121 120 190 44 69 121 190 171 270 50 80 141 226 204 325 714 1130&#xA;738 1211 502 1657 -30 57 -78 147 -106 200 -228 433 -271 459 -806 488 -203&#xA;11 -771 11 -1005 0z"></path>
+<path d="M3130 6838 c-135 -44 -328 -107 -429 -140 -102 -33 -211 -73 -243&#xA;-89 -205 -104 -264 -350 -140 -590 22 -41 203 -322 404 -625 201 -302 418&#xA;-630 483 -729 65 -99 168 -256 230 -350 61 -93 153 -233 202 -310 144 -222&#xA;204 -306 212 -301 4 3 11 56 14 118 12 241 117 534 282 789 24 38 54 87 64&#xA;108 l20 39 -196 293 c-108 162 -208 312 -222 334 -14 22 -92 139 -172 260&#xA;-363 549 -376 570 -420 694 -68 193 -35 346 106 488 116 117 127 116 -195 11z"></path>
+<path d="M6855 6910 c-3 -5 14 -22 37 -38 111 -76 188 -197 208 -326 29 -185&#xA;-56 -383 -385 -891 -68 -105 -652 -1041 -686 -1099 -19 -33 -59 -96 -87 -139&#xA;-29 -43 -52 -80 -52 -82 0 -6 -353 -571 -467 -748 -40 -62 -82 -130 -94 -152&#xA;-12 -22 -58 -76 -103 -121 -118 -117 -232 -150 -362 -105 -64 23 -57 32 -80&#xA;-108 -21 -129 -15 -233 21 -354 163 -560 700 -615 1090 -112 56 72 250 379&#xA;414 655 35 58 73 121 86 140 26 40 275 444 409 665 51 83 113 183 139 223 26&#xA;40 47 74 47 76 0 4 145 242 260 426 86 139 237 384 348 565 57 94 127 208 156&#xA;255 214 345 244 404 267 520 43 217 -77 414 -291 478 -83 25 -472 149 -663&#xA;212 -114 37 -209 64 -212 60z"></path>
+</g>
+    </svg>
+    <span class="word">VYZOR</span>
+  </div>
+  <div class="tright">
+    <button class="replay" id="replayBtn" type="button" aria-label="Rejouer la démonstration"></button>
+  </div>
+</header>
+
+<main class="stage">
+  <div class="ctx"><span class="dot"></span><span>Menuiserie Verdier · données synchronisées il y a 2 min</span></div>
+
+  <div id="greet">
+    <h1 class="greet">Bonsoir Claire.</h1>
+    <p class="greet-sub">Ton équipe a passé la nuit sur tes chiffres. Pose ta question.</p>
+  </div>
+
+  <div class="ask" id="askWrap">
+    <span class="aicon" id="askIcon"></span>
+    <input id="askInput" type="text" placeholder="Pose ta question…" autocomplete="off" spellcheck="false" aria-label="Pose ta question">
+    <button class="sendbtn" id="sendBtn" type="button" aria-label="Envoyer"></button>
+    <span class="beam"></span>
+  </div>
+
+  <div class="agents" id="agents"></div>
+  <div class="routing" id="routing" aria-live="polite"></div>
+
+  <section class="asked hidden" id="asked">
+    <span class="qic" id="qic"></span>
+    <p class="q"></p>
+  </section>
+
+  <section class="canvas" id="canvas" aria-live="polite"></section>
+
+  <div class="chips" id="chips"></div>
+
+  <div class="toast hidden" id="toast" role="status">
+    <div class="thead">
+      <span class="tic" id="toastIc"></span>
+      <span class="tt">Trésorier · Signal détecté</span>
+      <button class="tclose" id="tClose" type="button" aria-label="Fermer"></button>
+    </div>
+    <p class="tbody">Ton <b>BFR a dérivé de +6 jours</b> cette semaine — deux clients paient plus lentement. Tu veux que je regarde&nbsp;?</p>
+    <div class="tbtns">
+      <button class="tbtn gold" id="tYes" type="button">Oui, regarde</button>
+      <button class="tbtn ghost" id="tLater" type="button">Plus tard</button>
+    </div>
+  </div>
+</main>
+
+<script>
+/* ============================================================
+   Vyzor — Vision Agentic Twin · mock interactif (vanilla JS)
+   ============================================================ */
+
+const $ = s => document.querySelector(s);
+const canvas = $('#canvas'), input = $('#askInput'), ask = $('#askWrap');
+const asked = $('#asked'), routing = $('#routing'), chips = $('#chips');
+const toast = $('#toast'), greet = $('#greet');
+
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SP = RM ? 0.15 : 1;
+let timers = [];
+const after = (ms, fn) => { const id = setTimeout(fn, ms * SP); timers.push(id); return id; };
+function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+
+/* ---------- Icônes (SVG inline, style Lucide) ---------- */
+const I = {
+  compass: `<circle cx="12" cy="12" r="9"/><path d="M15.4 8.6 13 13l-4.4 2.4L11 11z"/>`,
+  chart: `<path d="M4 5v14h16"/><path d="M7.5 14.5 11 10l3 2.5 4.5-6"/>`,
+  wallet: `<rect x="3.5" y="6.5" width="17" height="12" rx="3"/><path d="M3.5 10h17"/><path d="M16.5 14.5h.01"/>`,
+  percent: `<path d="M18 6 6 18"/><circle cx="8.2" cy="8.2" r="2.1"/><circle cx="15.8" cy="15.8" r="2.1"/>`,
+  shield: `<path d="M12 3.4 19 6v5.1c0 4.4-2.9 7.4-7 9.1-4.1-1.7-7-4.7-7-9.1V6z"/>`,
+  clipboard: `<rect x="6" y="4.8" width="12" height="15.4" rx="2.5"/><path d="M9.3 4.8a2.7 2.7 0 0 1 5.4 0"/><path d="M9 11h6M9 14.8h4"/>`,
+  check: `<path d="M5 12.5l4.6 4.6L19 7.4"/>`,
+  shieldcheck: `<path d="M12 3.4 19 6v5.1c0 4.4-2.9 7.4-7 9.1-4.1-1.7-7-4.7-7-9.1V6z"/><path d="M9.1 12.1l2.1 2.1 3.7-4.2"/>`,
+  rotate: `<path d="M3.8 12a8.2 8.2 0 1 0 2.4-5.8"/><path d="M3.8 4.6v4.2H8"/>`,
+  spark: `<path d="M12 4.5 13.6 9l4.4 1.5-4.4 1.5L12 16.5 10.4 12 6 10.5 10.4 9z"/><path d="M18.6 15.4l.7 1.9 1.9.7-1.9.7-.7 1.9-.7-1.9-1.9-.7 1.9-.7z"/>`,
+  bell: `<path d="M6.6 9.6a5.4 5.4 0 0 1 10.8 0c0 4.8 1.9 5.8 1.9 5.8H4.7s1.9-1 1.9-5.8"/><path d="M10.6 18.8a1.7 1.7 0 0 0 2.8 0"/>`,
+  file: `<path d="M13.8 3.5H7.7A1.7 1.7 0 0 0 6 5.2v13.6a1.7 1.7 0 0 0 1.7 1.7h8.6a1.7 1.7 0 0 0 1.7-1.7V7.7z"/><path d="M13.8 3.5v4.2H18"/><path d="M9.4 12.6h5.2M9.4 16h5.2"/>`,
+  cal: `<rect x="4.5" y="6" width="15" height="14" rx="2.5"/><path d="M4.5 10.5h15M8.3 4v3.6M15.7 4v3.6"/>`,
+  chevron: `<path d="M9.5 6.5 15 12l-5.5 5.5"/>`,
+  send: `<path d="M20 4 10 14"/><path d="M20 4 13.5 20l-3.5-6.5L4 10z"/>`,
+  x: `<path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>`
+};
+const icon = (n, s = 16, w = 1.8) =>
+  `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
+
+$('#askIcon').innerHTML = icon('spark', 19);
+$('#sendBtn').innerHTML = icon('send', 16);
+$('#qic').innerHTML = icon('chevron', 15, 2.2);
+$('#toastIc').innerHTML = icon('bell', 15);
+$('#tClose').innerHTML = icon('x', 14);
+$('#replayBtn').innerHTML = icon('rotate', 14) + '<span>Rejouer</span>';
+
+/* ---------- Équipe d'agents ---------- */
+const AGENTS = [
+  { id:'df',     n:'Directeur Financier',    ic:'compass', lead:true },
+  { id:'strat',  n:'Stratège',               ic:'chart' },
+  { id:'treso',  n:'Trésorier',              ic:'wallet' },
+  { id:'fisc',   n:'Fiscaliste',             ic:'percent' },
+  { id:'risk',   n:'Contrôleur des risques', ic:'shield' },
+  { id:'assist', n:'Assistant de direction', ic:'clipboard' }
+];
+$('#agents').innerHTML = AGENTS.map(a =>
+  `<div class="agent${a.lead ? ' lead' : ''}" id="ag-${a.id}">
+     <span class="ic">${icon(a.ic, 13)}</span>
+     <span class="tx"><span class="nm">${a.n}</span><span class="st"></span></span>
+   </div>`).join('');
+
+function agSet(id, state, txt){
+  const el = $('#ag-' + id);
+  el.classList.remove('active', 'done');
+  if (state) el.classList.add(state);
+  el.querySelector('.st').textContent = txt || '';
+}
+function agReset(){ AGENTS.forEach(a => agSet(a.id, null, '')); }
+
+/* ---------- Helpers d'animation ---------- */
+function typeText(el, txt, speed, done){
+  if (RM){ if ('value' in el) el.value = txt; else el.textContent = txt; done && done(); return; }
+  let i = 0;
+  (function step(){
+    if (i <= txt.length){
+      if ('value' in el && el.tagName === 'INPUT') el.value = txt.slice(0, i); else el.textContent = txt.slice(0, i);
+      i++;
+      timers.push(setTimeout(step, speed));
+    } else done && done();
+  })();
+}
+
+const seg = (t, b) => ({ t, b });
+const answerHTML = segs => segs.map(s =>
+  s.t.split(/\s+/).map(w => `<span class="w${s.b ? ' b' : ''}">${w}</span>`).join(' ')
+).join(' ');
+function revealWords(el){
+  [...el.querySelectorAll('.w')].forEach((w, i) => after(60 + i * 26, () => w.classList.add('in')));
+}
+
+function addBlock(html, opts){
+  opts = opts || {};
+  const d = document.createElement('div');
+  d.className = 'block' + (opts.span ? ' span2' : '') + (opts.cls ? ' ' + opts.cls : '');
+  d.innerHTML = html;
+  canvas.appendChild(d);
+  requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('in')));
+  /* embed: pas d'auto-scroll interne (évite de capturer le scroll de la page hôte) */
+  return d;
+}
+const bhead = (tag, agent, extra) =>
+  `<div class="bhead"><span class="btag">${tag}</span><span class="bsep">·</span><span class="bagent">${agent}</span>${extra || ''}</div>`;
+const bfoot = src =>
+  `<div class="bfoot"><span class="src">${src}</span><span class="verif">${icon('check', 11, 2.2)} vérifié</span></div>`;
+
+/* ---------- Cycle question → réponse ---------- */
+function submitQuestion(q){
+  greet.classList.add('gone');
+  asked.classList.remove('hidden');
+  asked.querySelector('.q').textContent = q;
+  requestAnimationFrame(() => asked.classList.add('in'));
+  input.value = '';
+  input.placeholder = 'Pose une autre question…';
+  ask.classList.add('busy');
+}
+function finishScenario(){
+  ask.classList.remove('busy');
+  routing.textContent = '';
+  chips.classList.add('in');
+}
+function hideToast(){
+  toast.classList.remove('in');
+  setTimeout(() => toast.classList.add('hidden'), 450);
+}
+function showToast(){
+  toast.classList.remove('hidden');
+  requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('in')));
+}
+
+/* ============================================================
+   BLOCS — scénario principal (recrutement)
+   ============================================================ */
+function blockSim(){
+  const html = bhead('Simulation', 'Stratège') + `
+    <div class="srow">
+      <div class="top"><span>Masse salariale annuelle</span><span class="delta">+84 k€ · 2 CDI</span></div>
+      <div class="brow"><span class="k">Aujourd'hui</span><div class="bar gray"><i data-w="50%"></i></div><span class="v">84 k€</span></div>
+      <div class="brow"><span class="k">Avec 2 CDI</span><div class="bar gold"><i data-w="100%"></i></div><span class="v gold">168 k€</span></div>
+    </div>
+    <div class="srow">
+      <div class="top"><span>Résultat net — année 1</span><span class="delta warn">−13 k€</span></div>
+      <div class="brow"><span class="k">Aujourd'hui</span><div class="bar gray"><i data-w="100%"></i></div><span class="v">31 k€</span></div>
+      <div class="brow"><span class="k">Avec 2 CDI</span><div class="bar gold"><i data-w="58%"></i></div><span class="v gold">18 k€</span></div>
+      <div class="hint">Année 2 : retour à ~34 k€ avec la montée en charge commerciale.</div>
+    </div>
+    <div class="inote">${icon('percent', 13)}<span>Le Fiscaliste a repéré <b>8 400 €</b> d'aides à l'embauche (OPCO · réduction générale de cotisations) — déjà déduites du calcul.</span></div>`
+    + bfoot('comptes 64x · 70x — moteur déterministe');
+  const el = addBlock(html);
+  after(220, () => el.querySelectorAll('.bar i').forEach(b => b.style.width = b.dataset.w));
+  return el;
+}
+
+function blockTreso(){
+  const W = 600, H = 238, pl = 38, pr = 14, pt = 18, pb = 30, ymax = 240;
+  const GOLD = [218,210,196,183,168,150,131,110,86,61,38,54];
+  const GRAY = [218,199,178,158,136,113,89,64,38,16,9,26];
+  const MO = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
+  const X = i => pl + i * (W - pl - pr) / 11;
+  const Y = v => pt + (1 - v / ymax) * (H - pt - pb);
+  const P = a => a.map((v, i) => ({ x: X(i), y: Y(v) }));
+  const sm = p => {
+    let d = `M${p[0].x.toFixed(1)},${p[0].y.toFixed(1)}`;
+    for (let i = 0; i < p.length - 1; i++){
+      const a = p[Math.max(0, i - 1)], b = p[i], c = p[i + 1], e = p[Math.min(p.length - 1, i + 2)];
+      d += `C${(b.x + (c.x - a.x) / 6).toFixed(1)},${(b.y + (c.y - a.y) / 6).toFixed(1)} ${(c.x - (e.x - b.x) / 6).toFixed(1)},${(c.y - (e.y - b.y) / 6).toFixed(1)} ${c.x.toFixed(1)},${c.y.toFixed(1)}`;
+    }
+    return d;
+  };
+  const pg = sm(P(GOLD)), pd = sm(P(GRAY));
+  const area = pg + `L${X(11).toFixed(1)},${Y(0).toFixed(1)} L${X(0).toFixed(1)},${Y(0).toFixed(1)} Z`;
+  const grid = [120, 240].map(v =>
+    `<line class="axis" x1="${pl}" y1="${Y(v)}" x2="${W - pr}" y2="${Y(v)}"/>`).join('');
+  const ylabs = [0, 120, 240].map(v =>
+    `<text class="ylab" x="${pl - 7}" y="${Y(v) + 3}" text-anchor="end">${v}</text>`).join('');
+  const zline = `<line class="zline" x1="${pl}" y1="${Y(0)}" x2="${W - pr}" y2="${Y(0)}"/>`;
+  const mons = MO.map((m, i) =>
+    `<text class="mlab" x="${X(i)}" y="${H - 9}" text-anchor="middle">${m}</text>`).join('');
+  const lx = X(10), lyG = Y(38), lyD = Y(9);
+
+  const html = bhead('Trésorerie · 12 mois', 'Trésorier',
+    `<span class="legend mla"><span class="li"><i class="lg"></i>embauche mars</span><span class="li"><i class="lg d"></i>dès janvier</span></span>`) + `
+    <svg class="tchart" viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" role="img" aria-label="Trésorerie prévisionnelle sur 12 mois">
+      <defs><linearGradient id="gf" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f0c949" stop-opacity=".55"/><stop offset="1" stop-color="#f0c949" stop-opacity="0"/>
+      </linearGradient></defs>
+      ${grid}${zline}${ylabs}${mons}
+      <path class="area" d="${area}"/>
+      <path class="cgray" d="${pd}"/>
+      <path class="cgold" d="${pg}"/>
+      <g class="lowg">
+        <circle class="halo" cx="${lx}" cy="${lyG}" r="9"/>
+        <circle class="dot" cx="${lx}" cy="${lyG}" r="4"/>
+        <text class="lmain" x="${lx - 11}" y="${lyG - 16}" text-anchor="end">+38 k€</text>
+        <text class="lsub" x="${lx - 11}" y="${lyG - 5}" text-anchor="end">point bas · novembre</text>
+        <text class="lbad" x="${lx - 11}" y="${lyD + 14}" text-anchor="end">+9 k€ si janvier</text>
+      </g>
+    </svg>` + bfoot('comptes 512 · échéanciers clients & fournisseurs');
+  const el = addBlock(html);
+  after(260, () => {
+    const p = el.querySelector('.cgold');
+    const L = p.getTotalLength();
+    p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+    void p.getBoundingClientRect();
+    p.style.transition = 'stroke-dashoffset 1.9s cubic-bezier(.3,.7,.3,1)';
+    p.style.strokeDashoffset = '0';
+    const g = el.querySelector('.cgray');
+    g.style.opacity = '0';
+    g.style.transition = 'opacity 1s ease .7s';
+    requestAnimationFrame(() => g.style.opacity = '.85');
+    after(1450, () => el.querySelector('.area').classList.add('in'));
+    after(1950, () => el.querySelector('.lowg').classList.add('in'));
+  });
+  return el;
+}
+
+function blockSynth(segs, src){
+  const html = bhead('Synthèse', 'Directeur Financier',
+    `<span class="audit mla">${icon('shieldcheck', 12, 2)} Audité · zéro hallucination</span>`) +
+    `<p class="answer">${answerHTML(segs)}</p>
+     <div class="rline">Chiffres calculés par le moteur déterministe, contrôlés par l'Auditeur (équilibre débit/crédit · PCG), puis seulement verbalisés.</div>`
+    + bfoot(src);
+  const el = addBlock(html, { span: true });
+  after(180, () => revealWords(el.querySelector('.answer')));
+  return el;
+}
+
+function blockAction(o){
+  const html = `
+    <div class="aic">${icon(o.ic, 19)}</div>
+    <div class="acontent">
+      <div class="atag">Action préparée</div>
+      <div class="atitle">${o.t}</div>
+      <div class="adesc">${o.d}</div>
+      <div class="aafter">${icon('check', 11, 2.2)} <span>${o.after}</span></div>
+    </div>
+    <div class="abtns">
+      <button class="btn ghost" type="button">Ajuster</button>
+      <button class="btn gold" type="button">${icon('check', 13, 2.2)} ${o.cta}</button>
+    </div>`;
+  const el = addBlock(html, { span: true, cls: 'action' });
+  const b = el.querySelector('.btn.gold');
+  b.addEventListener('click', () => {
+    b.classList.add('okd');
+    b.innerHTML = icon('check', 13, 2.2) + ' ' + o.done;
+    b.disabled = true;
+    el.querySelector('.aafter').classList.add('show');
+  });
+  return el;
+}
+
+/* ============================================================
+   BLOCS — mini-scénarios
+   ============================================================ */
+function blockClients(){
+  const rows = [
+    { n:'Groupe Madec',    a:'8 400 €', s:'18 j de retard · risque faible',  w:false },
+    { n:'Bâtisseurs SARL', a:'5 200 €', s:'32 j de retard · risque modéré',  w:true  },
+    { n:'Atelier Brunet',  a:'2 150 €', s:'9 j de retard · risque faible',   w:false }
+  ].map(r => `<div class="crow">
+      <div class="cl"><div class="nm">${r.n}</div><div class="sub"><span class="rdot${r.w ? ' w' : ''}"></span>${r.s}</div></div>
+      <span class="amt">${r.a}</span>
+    </div>`).join('');
+  const html = bhead('Relances prioritaires', 'Contrôleur des risques') + rows +
+    `<div class="ctotal"><span class="k">Total à récupérer</span><span class="amt">15 750 €</span></div>`
+    + bfoot('comptes 411 · balance âgée · historique de règlements');
+  return addBlock(html, { span: true });
+}
+
+function blockTVA(){
+  const html = bhead('TVA · CA3 de juin', 'Fiscaliste') + `
+    <div class="tiles">
+      <div class="tile"><div class="k">Collectée</div><div class="v">14 820 €</div></div>
+      <div class="tile"><div class="k">Déductible</div><div class="v">6 240 €</div></div>
+      <div class="tile gold"><div class="k">À payer</div><div class="v">8 580 €</div><span class="tsub">échéance 15 juillet</span></div>
+    </div>
+    <div class="inote ok">${icon('check', 13, 2.2)}<span>Trésorerie prévue au 15/07 : <b>203 k€</b> — l'échéance est couverte ×23.</span></div>`
+    + bfoot('comptes 44571 · 44566 · calendrier fiscal');
+  return addBlock(html, { span: true });
+}
+
+function blockMarge(){
+  const html = bhead('Analyse de marge · T2', 'Stratège') + `
+    <div class="mhead"><span class="lbl">Marge brute</span><span class="from">62 %</span><span class="arr">→</span><span class="to">57 %</span><span class="delta bad">−5 pts</span></div>
+    <div class="brow"><span class="k">Achats matières</span><div class="bar red"><i data-w="68%"></i></div><span class="v" style="color:var(--bad)">−3,4 pts</span></div>
+    <div class="brow"><span class="k">Sous-traitance</span><div class="bar red"><i data-w="22%"></i></div><span class="v" style="color:var(--bad)">−1,1 pt</span></div>
+    <div class="brow"><span class="k">Transport</span><div class="bar red"><i data-w="10%"></i></div><span class="v" style="color:var(--bad)">−0,5 pt</span></div>
+    <div class="inote">${icon('shield', 13)}<span><b>Texol</b> : +11 % depuis mars (compte 601) — trois hausses successives, sans avenant signé.</span></div>`
+    + bfoot('comptes 601 · 604 · 624 · factures fournisseurs');
+  const el = addBlock(html, { span: true });
+  after(220, () => el.querySelectorAll('.bar i').forEach(b => b.style.width = b.dataset.w));
+  return el;
+}
+
+/* ============================================================
+   SCÉNARIOS
+   ============================================================ */
+const SCEN = {
+
+  main: {
+    q: "Est-ce que je peux recruter 2 personnes l'an prochain sans mettre ma trésorerie en danger ?",
+    speed: 34,
+    run(){
+      after(300,  () => agSet('df', 'active', 'analyse ta demande…'));
+      after(1000, () => typeText(routing, '→ mobilise le Stratège, le Trésorier et le Fiscaliste', 15));
+      after(1500, () => agSet('strat', 'active', 'simule 2 embauches…'));
+      after(2100, () => agSet('treso', 'active', 'projette 12 mois…'));
+      after(2700, () => agSet('fisc',  'active', 'cherche les aides…'));
+      after(3500, () => { blockSim(); after(1700, () => agSet('strat', 'done', 'simulation prête')); });
+      after(7000, () => { blockTreso(); after(2500, () => agSet('treso', 'done', 'point bas : +38 k€')); });
+      after(11600, () => {
+        agSet('fisc', 'done', "8 400 € d'aides");
+        agSet('df', 'active', 'synthétise…');
+        blockSynth([
+          seg('Oui', 1),
+          seg("— à condition d'embaucher à partir de mars. Premier CDI en mars, second en juin : ton point le plus bas resterait à"),
+          seg('+38 k€', 1),
+          seg('en novembre. Les deux dès janvier ? Tu descendrais à +9 k€ — trop juste pour encaisser un imprévu.')
+        ], 'comptes 512 · 64x · échéanciers — moteur déterministe');
+      });
+      after(14800, () => agSet('df', 'done', 'réponse prête'));
+      after(15300, () => blockAction({
+        ic: 'file',
+        t: 'Budget prévisionnel 2027 — 2 embauches',
+        d: 'Plan de trésorerie mensuel, CDI en mars puis juin, aides déduites. Relecture : 2 minutes.',
+        cta: 'Valider', done: 'Préparé',
+        after: 'Partagé avec ton expert-comptable — Cabinet Roche & Associés'
+      }));
+      after(16500, finishScenario);
+      after(19800, showToast);
+    }
+  },
+
+  relances: {
+    q: 'Quels clients dois-je relancer cette semaine ?',
+    speed: 26,
+    run(){
+      after(250,  () => agSet('df', 'active', 'analyse ta demande…'));
+      after(850,  () => typeText(routing, "→ mobilise le Contrôleur des risques et l'Assistant", 15));
+      after(1250, () => agSet('risk', 'active', 'passe la balance âgée…'));
+      after(1850, () => agSet('assist', 'active', 'rédige 3 relances…'));
+      after(2600, () => blockClients());
+      after(4100, () => agSet('risk', 'done', '3 priorités'));
+      after(4500, () => {
+        agSet('df', 'active', 'synthétise…');
+        blockSynth([
+          seg('15 750 €', 1),
+          seg("attendent dehors. Trois relances sont rédigées — ton ton, tes mots — prêtes à partir. Madec d'abord :"),
+          seg('8 400 €', 1),
+          seg("et il paie d'habitude sous 48 h après relance.")
+        ], 'comptes 411 · historique de règlements — moteur déterministe');
+      });
+      after(6800, () => { agSet('df', 'done', 'réponse prête'); agSet('assist', 'done', 'prêtes à partir'); });
+      after(7300, () => blockAction({
+        ic: 'send',
+        t: 'Envoyer les 3 relances',
+        d: 'Rédigées dans ton ton habituel, montants et factures joints. Suivi automatique des réponses.',
+        cta: 'Valider', done: '3 relances envoyées',
+        after: 'Copie à ton expert-comptable · suivi des réponses activé'
+      }));
+      after(8600, finishScenario);
+    }
+  },
+
+  tva: {
+    q: 'Suis-je en règle pour ma prochaine TVA ?',
+    speed: 26,
+    run(){
+      after(250,  () => agSet('df', 'active', 'analyse ta demande…'));
+      after(850,  () => typeText(routing, '→ mobilise le Fiscaliste et le Trésorier', 15));
+      after(1250, () => agSet('fisc', 'active', 'prépare la CA3…'));
+      after(1850, () => agSet('treso', 'active', 'vérifie la couverture…'));
+      after(2600, () => blockTVA());
+      after(4100, () => { agSet('fisc', 'done', 'CA3 prête'); agSet('treso', 'done', 'couverte ✓'); });
+      after(4600, () => {
+        agSet('df', 'active', 'synthétise…');
+        blockSynth([
+          seg('Oui', 1),
+          seg(', tout est carré.'),
+          seg('8 580 €', 1),
+          seg("de TVA à payer le 15 juillet — ta trésorerie le couvre très largement. Je peux la provisionner dès maintenant pour que tu n'y penses plus.")
+        ], 'comptes 44571 · 44566 · calendrier fiscal — moteur déterministe');
+      });
+      after(6900, () => agSet('df', 'done', 'réponse prête'));
+      after(7400, () => blockAction({
+        ic: 'cal',
+        t: 'Provision TVA — 15 juillet',
+        d: 'Virement de 8 580 € programmé vers le compte dédié, déclaration CA3 pré-remplie.',
+        cta: 'Provisionner', done: 'Programmé',
+        after: 'CA3 transmise pour validation à ton expert-comptable'
+      }));
+      after(8700, finishScenario);
+    }
+  },
+
+  marge: {
+    q: 'Pourquoi ma marge baisse ce trimestre ?',
+    speed: 26,
+    run(){
+      after(250,  () => agSet('df', 'active', 'analyse ta demande…'));
+      after(850,  () => typeText(routing, '→ mobilise le Stratège et le Contrôleur des risques', 15));
+      after(1250, () => agSet('strat', 'active', 'décompose la marge…'));
+      after(1850, () => agSet('risk', 'active', 'audite les fournisseurs…'));
+      after(2600, () => blockMarge());
+      after(4300, () => { agSet('strat', 'done', 'cause isolée'); agSet('risk', 'done', 'Texol surveillé'); });
+      after(4800, () => {
+        agSet('df', 'active', 'synthétise…');
+        blockSynth([
+          seg('Ta marge perd'),
+          seg('5 points', 1),
+          seg("— et 3,4 viennent d'un seul fournisseur : Texol a augmenté ses tarifs de 11 % depuis mars. Deux pistes : renégocier (le dossier est prêt), ou répercuter +4 % sur tes prochains devis.")
+        ], 'comptes 601 · 604 · 624 — moteur déterministe');
+      });
+      after(7300, () => agSet('df', 'done', 'réponse prête'));
+      after(7800, () => blockAction({
+        ic: 'file',
+        t: 'Dossier de renégociation Texol',
+        d: 'Historique des hausses, volumes 2026, deux fournisseurs alternatifs comparés. Prêt pour ton appel.',
+        cta: 'Valider', done: 'Préparé',
+        after: 'Comparatif joint · rappel programmé vendredi 10 h'
+      }));
+      after(9100, finishScenario);
+    }
+  },
+
+  unknown: {
+    q: '',
+    run(){
+      after(300, () => agSet('df', 'active', 'analyse ta demande…'));
+      after(1400, () => {
+        const html = bhead('Réponse', 'Directeur Financier') +
+          `<p class="answer">${answerHTML([
+            seg('Dans cette projection, quatre parcours sont scénarisés — choisis une question ci-dessous, ou rejoue la démonstration complète.')
+          ])}</p>`;
+        const el = addBlock(html, { span: true });
+        after(150, () => revealWords(el.querySelector('.answer')));
+      });
+      after(2300, () => agSet('df', 'done', ''));
+      after(2600, finishScenario);
+    }
+  }
+};
+
+/* ---------- Chips d'exploration ---------- */
+const CHIPS = [
+  { k: 'relances', t: 'Quels clients dois-je relancer cette semaine ?' },
+  { k: 'tva',      t: 'Suis-je en règle pour ma prochaine TVA ?' },
+  { k: 'marge',    t: 'Pourquoi ma marge baisse ce trimestre ?' }
+];
+chips.innerHTML = '<span class="chiplabel">Explorer</span>' + CHIPS.map(c =>
+  `<button class="chip" type="button" data-k="${c.k}">${icon('chevron', 12, 2.2)}<span>${c.t}</span></button>`).join('');
+chips.querySelectorAll('.chip').forEach(b =>
+  b.addEventListener('click', () => play(b.dataset.k)));
+
+/* ---------- Moteur de scénarios ---------- */
+function resetStage(){
+  clearTimers();
+  agReset();
+  canvas.innerHTML = '';
+  chips.classList.remove('in');
+  hideToast();
+  ask.classList.remove('busy');
+  routing.textContent = '';
+}
+
+function play(key){
+  resetStage();
+  const sc = SCEN[key];
+  input.readOnly = true;
+  typeText(input, sc.q, sc.speed || 30, () =>
+    after(280, () => {
+      submitQuestion(sc.q);
+      input.readOnly = false;
+      sc.run();
+    })
+  );
+}
+
+function route(q){
+  const t = q.toLowerCase();
+  if (t.includes('relanc') || t.includes('client')) return 'relances';
+  if (t.includes('tva')) return 'tva';
+  if (t.includes('marge')) return 'marge';
+  if (t.includes('recrut') || t.includes('embauch') || t.includes('tréso') || t.includes('treso') || t.includes('personne')) return 'main';
+  return 'unknown';
+}
+
+function submitManual(q){
+  if (!q || !q.trim()) return;
+  resetStage();
+  submitQuestion(q.trim());
+  SCEN[route(q)].run();
+}
+
+/* ---------- Événements ---------- */
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !input.readOnly) submitManual(input.value);
+});
+$('#sendBtn').addEventListener('click', () => { if (!input.readOnly) submitManual(input.value); });
+$('#replayBtn').addEventListener('click', () => play('main'));
+$('#tLater').addEventListener('click', hideToast);
+$('#tClose').addEventListener('click', hideToast);
+$('#tYes').addEventListener('click', () => { hideToast(); play('relances'); });
+
+/* ---------- Lancement ---------- */
+/* ---- Intégration landing : hauteur auto + démarrage à l'entrée en vue ---- */
+let __vzStarted = false;
+function __vzStart(){ if (__vzStarted) return; __vzStarted = true; play('main'); }
+// scrollHeight (et NON getBoundingClientRect) : capture le contenu qui déborde
+// quand l'iframe a une hauteur fixe imposée par la page hôte.
+function __vzH(){
+  const b = document.body, h = document.documentElement;
+  return Math.max(
+    b ? b.scrollHeight : 0,
+    h ? h.scrollHeight : 0,
+    b ? Math.ceil(b.getBoundingClientRect().height) : 0
+  );
+}
+function __vzPostHeight(){
+  try { parent.postMessage({ type:'vz-twin-height', h: __vzH() }, '*'); } catch(e){}
+}
+window.addEventListener('message', (e) => {
+  if (e.data && e.data.type === 'vz-twin-start') __vzStart();
+});
+// On observe le body (sa boîte grandit avec le contenu, contrairement à <html> clampé au viewport)
+if (window.ResizeObserver) {
+  const ro = new ResizeObserver(__vzPostHeight);
+  ro.observe(document.body);
+  ro.observe(document.documentElement);
+}
+// Filet de sécurité : republication continue (message minuscule, ignoré si hauteur inchangée côté hôte).
+setInterval(__vzPostHeight, 350);
+setTimeout(__vzPostHeight, 400);
+// Le script s'exécute en fin de <body> : le DOM est prêt, inutile d'attendre 'load'
+// (dont le handler peut ne jamais se déclencher dans certains contextes embarqués).
+try { parent.postMessage({ type:'vz-twin-ready' }, '*'); } catch(e){}
+// Autonome : lecture immédiate. Embarqué : la page hôte déclenche « à l'écran »,
+// avec un filet de sécurité (jamais bloqué ; l'état initial reste interactif).
+setTimeout(__vzStart, (window.parent === window) ? 700 : 3500);
+</script>
+</body>
+</html>

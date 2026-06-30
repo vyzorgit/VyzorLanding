@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>VYZOR — Sécurité & confidentialité</title>
+  <meta name="description" content="Sécurité, chiffrement et confidentialité des données — VYZOR sur infrastructure SOC 2 / ISO 27001." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicons + Open Graph (Vyzor ribbon) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="vyzor-mark.svg" />
+  <meta name="theme-color" content="#0f1530" />
+  <meta property="og:image" content="https://vyzor.fr/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VYZOR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://vyzor.fr/og-image.png" />
+  <meta property="og:image:alt" content="VYZOR" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content="VYZOR — Sécurité &amp; confidentialité" />
+  <meta property="og:description" content="Sécurité, chiffrement et confidentialité des données — VYZOR sur infrastructure SOC 2 / ISO 27001." />
+  <meta property="og:url" content="https://vyzor.fr/securite.html" />
+  <meta name="twitter:title" content="VYZOR — Sécurité &amp; confidentialité" />
+  <meta name="twitter:description" content="Sécurité, chiffrement et confidentialité des données — VYZOR sur infrastructure SOC 2 / ISO 27001." />
+  <link rel="canonical" href="https://vyzor.fr/securite.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="responsive.css" />
+  <style>
+    :root {
+      --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      --font-display: var(--font-sans);
+      --font-text: var(--font-sans);
+    }
+    html, body, #root { margin: 0; padding: 0; }
+    html, body { background: #070a14; }
+    html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+
+    .vz-reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .vz-reveal.in { opacity: 1; transform: none; }
+    .vz-reveal.in + .vz-reveal.in { transition-delay: 60ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .vz-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-feature-settings: "ss01", "cv11", "calt";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      color: rgba(255,255,255,0.92);
+      overflow-x: clip;
+    }
+    button, input, textarea, select { font-family: inherit; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); letter-spacing: -0.02em; }
+    code, kbd, samp, pre { font-family: var(--font-mono); }
+    * { box-sizing: border-box; }
+    a { color: inherit; }
+    ::selection { background: rgba(240,201,73,0.35); color: #fff; }
+
+    .pg-hero {
+      position: relative;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 180px clamp(24px, 6vw, 96px) 24px;
+      text-align: left;
+    }
+    .pg-crumb {
+      font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .pg-crumb a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 200ms; }
+    .pg-crumb a:hover { color: #f0c949; }
+    .pg-crumb b { color: #f0c949; font-weight: 500; }
+    .pg-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: 0.32em;
+      color: #f0c949; text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .pg-title {
+      font-size: clamp(40px, 6vw, 76px);
+      line-height: 1.02; letter-spacing: -0.03em;
+      font-weight: 600; margin: 0 0 22px; max-width: 900px;
+      color: #fff;
+    }
+    .pg-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #f6dfa1 0%, #f0c949 50%, #c89a2f 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .pg-lede {
+      font-size: 18px; line-height: 1.6;
+      color: rgba(255,255,255,0.6);
+      max-width: 640px; margin: 0;
+    }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://vyzor.fr/"},{"@type":"ListItem","position":2,"name":"Sécurité","item":"https://vyzor.fr/securite.html"}]}</script>
+  <!-- SEO complémentaire -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="alternate" hreflang="fr-FR" href="https://vyzor.fr/securite.html" />
+  <link rel="alternate" hreflang="x-default" href="https://vyzor.fr/securite.html" />
+  <link rel="manifest" href="/site.webmanifest" />
+</head>
+<body>
+  <div id="root"></div>
+  <noscript>
+    <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
+      <h1 style="font-size:32px;margin:0 0 16px;">Sécurité &amp; confidentialité</h1>
+      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Sécurité, chiffrement et confidentialité des données — VYZOR sur infrastructure SOC 2 / ISO 27001.</p>
+      <nav style="font-size:15px;font-weight:600;"><a href="index.html" style="color:#f0c949;margin-right:18px;">Accueil</a><a href="fonctionnalites.html" style="color:#f0c949;margin-right:18px;">Fonctionnalités</a><a href="calculateurs.html" style="color:#f0c949;margin-right:18px;">Calculateurs</a></nav>
+    </div>
+  </noscript>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="shared.jsx"></script>
+  <script type="text/babel" src="glow-border.jsx"></script>
+  <script type="text/babel" src="variant-a.jsx"></script>
+  <script type="text/babel" src="security-glass.jsx"></script>
+  <script type="text/babel" src="security-stack.jsx"></script>
+  <script type="text/babel" src="beta-glass.jsx"></script>
+  <script type="text/babel" src="footer-glass.jsx"></script>
+
+  <script type="text/babel">
+    const App = () => {
+      const gold = "#f0c949";
+      const text = "rgba(255,255,255,0.92)";
+      const muted = "rgba(255,255,255,0.55)";
+      const subtle = "rgba(255,255,255,0.08)";
+
+      React.useEffect(() => {
+        if (typeof IntersectionObserver === "undefined") {
+          document.querySelectorAll(".vz-reveal").forEach(el => el.classList.add("in"));
+          return;
+        }
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+        const id = requestAnimationFrame(() => {
+          document.querySelectorAll(".vz-reveal").forEach(el => io.observe(el));
+        });
+        return () => { cancelAnimationFrame(id); io.disconnect(); };
+      }, []);
+
+      return (
+        <React.Fragment>
+          <VyzorNav gold={gold} text={text} muted={muted} subtle={subtle} />
+
+          <div style={{
+            background: "#070a14",
+            backgroundImage:
+              "radial-gradient(60% 40% at 15% 0%, rgba(45,212,191,0.14), transparent 60%), radial-gradient(50% 40% at 90% 10%, rgba(240,201,73,0.12), transparent 60%), radial-gradient(40% 30% at 50% 100%, rgba(99,102,241,0.10), transparent 60%)",
+            color: text,
+            position: "relative",
+            overflowX: "clip",
+            paddingBottom: 56,
+          }}>
+            <header className="pg-hero vz-reveal in">
+              <h1 className="pg-title">Une sécurité de <em>niveau bancaire</em>.</h1>
+              <p className="pg-lede">
+                Vos données financières sont chiffrées, isolées et hébergées chez les mêmes
+                partenaires d'infrastructure que les banques et fintechs régulées européennes.
+              </p>
+            </header>
+
+            <div className="vz-page-pad" style={{
+              maxWidth: 1180,
+              margin: "0 auto",
+              padding: "0 clamp(24px, 6vw, 96px)",
+            }}>
+              <div><SecuritySectionStacked /></div>
+              <div className="vz-reveal"><BetaFormGlass /></div>
+            </div>
+
+            <div className="vz-reveal" style={{ marginTop: 96 }}>
+              <VyzorFooterGlass fullWidth />
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

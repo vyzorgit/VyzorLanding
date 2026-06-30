@@ -1,0 +1,37 @@
+{
+  "name": "VYZOR — Copilote financier",
+  "short_name": "VYZOR",
+  "description": "Copilote financier intelligent pour dirigeants, DAF et experts-comptables : reporting, prévisions de trésorerie et indicateurs en temps réel.",
+  "lang": "fr-FR",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070a14",
+  "theme_color": "#0f1530",
+  "categories": [
+    "finance",
+    "business",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
