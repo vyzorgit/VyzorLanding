@@ -10,6 +10,82 @@
 //
 // Vocabulaire fidèle : or #f0c949, bleu nuit #070a14, verre.
 
+// Révélation mot-à-mot pilotée au scroll (façon « text reveal by word »).
+// Chaque mot passe d'un état atténué à pleine opacité, de gauche à droite,
+// à mesure que le titre traverse le viewport. Pas de framer-motion : scroll
+// natif + rAF, et bascule pleine opacité si prefers-reduced-motion.
+const TWIN_HEAD_WORDS = [
+  { t: "Le" }, { t: "pilotage" }, { t: "financier" }, { t: "d'un" }, { t: "grand" }, { t: "groupe," },
+  { t: "à", soft: true }, { t: "l'échelle", soft: true }, { t: "de", soft: true }, { t: "votre", soft: true }, { t: "PME.", soft: true },
+];
+
+// En-tête « word-appear » : à l'entrée en vue, chaque mot apparaît en fondu,
+// monte et se dé-floute, en cascade. Effet fluide, sans verrou ni décalage.
+const RevealWordsHeader = ({ text, muted }) => {
+  const ref = React.useRef(null);
+  const [play, setPlay] = React.useState(false);
+  const [reduce] = React.useState(() =>
+    typeof window !== "undefined" && window.matchMedia
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false
+  );
+
+  React.useEffect(() => {
+    if (reduce) { setPlay(true); return; }
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") { setPlay(true); return; }
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => {
+        if (e.isIntersecting) { setPlay(true); io.disconnect(); }
+      });
+    }, { threshold: 0.25, rootMargin: "0px 0px -8% 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [reduce]);
+
+  // Cascade via animationDelay ; état caché tant que l'animation n'a pas démarré
+  // (fill « both » applique l'état 0% pendant le délai).
+  const appear = (delay) =>
+    reduce
+      ? null
+      : play
+        ? { animation: `twinWordAppear 0.72s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s both` }
+        : { opacity: 0 };
+
+  const N = TWIN_HEAD_WORDS.length;
+
+  return (
+    <div ref={ref} className="vz-vision-header" style={{ marginBottom: 40, maxWidth: 800 }}>
+      <h2 style={{
+        fontSize: 52, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.04, textWrap: "balance",
+      }}>
+        {TWIN_HEAD_WORDS.map((w, i) => (
+          <span
+            key={i}
+            style={{
+              display: "inline-block",
+              marginRight: "0.26em",
+              color: w.soft ? muted : text,
+              fontWeight: w.soft ? 400 : 600,
+              fontStyle: w.soft ? "italic" : "normal",
+              willChange: "opacity, transform, filter",
+              ...appear(i * 0.085),
+            }}
+          >
+            {w.t}
+          </span>
+        ))}
+      </h2>
+      <p style={{
+        fontSize: 18, lineHeight: 1.6, color: muted, marginTop: 20, maxWidth: 720, textWrap: "pretty",
+        ...appear(N * 0.085 + 0.06),
+      }}>
+        Connecté à votre comptabilité, Vyzor consolide vos données, <span style={{ color: text }}>anticipe vos besoins de trésorerie, détecte les dérives de marge et sécurise vos échéances</span>. Chaque réponse est chiffrée, tracée jusqu'à l'écriture comptable et assortie d'une recommandation concrète.
+      </p>
+    </div>
+  );
+};
+
 const AgenticTwinSection = ({ id = "vision", gold, text, muted, subtle }) => {
   const wrapRef = React.useRef(null);
   const iframeRef = React.useRef(null);
@@ -52,24 +128,12 @@ const AgenticTwinSection = ({ id = "vision", gold, text, muted, subtle }) => {
     return () => io.disconnect();
   }, [fireStart]);
 
-  const goldGrad = "linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%)";
+  const goldGrad = "linear-gradient(#f0c949,#f0c949)";
 
   return (
     <section id={id} className="vz-vision" style={{ position: "relative", marginBottom: 112 }}>
-      {/* En-tête éditorial — voix « vous », introduit la vision */}
-      <div className="vz-vision-header" style={{ marginBottom: 40, maxWidth: 800 }}>
-        <h2 style={{
-          fontSize: 52, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.04, textWrap: "balance",
-        }}>
-          Une équipe d'agents financiers,{" "}
-          <span style={{ color: muted, fontWeight: 400, fontStyle: "italic" }}>qui ne dort jamais.</span>
-        </h2>
-        <p style={{
-          fontSize: 18, lineHeight: 1.6, color: muted, marginTop: 20, maxWidth: 720, textWrap: "pretty",
-        }}>
-          Posez une question : stratège, trésorier et fiscaliste analysent <span style={{ color: text }}>vos données réelles</span> et vous répondent — chiffres vérifiés, sources à l'appui.
-        </p>
-      </div>
+      {/* En-tête éditorial — voix « vous » : entrée mot-à-mot « word-appear » au scroll */}
+      <RevealWordsHeader text={text} muted={muted} />
 
       {/* Fenêtre produit — l'expérience interactive, isolée dans une iframe */}
       <div ref={wrapRef} className="vz-vision-frame" style={{
@@ -110,7 +174,7 @@ const AgenticTwinSection = ({ id = "vision", gold, text, muted, subtle }) => {
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke={gold} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
           </svg>
-          Démonstration interactive · projection · données fictives
+          Démo interactive avec des données fictives.
         </span>
         <a href="agentic-twin.html" target="_blank" rel="noopener" style={{
           display: "inline-flex", alignItems: "center", gap: 8,
@@ -129,6 +193,14 @@ const AgenticTwinSection = ({ id = "vision", gold, text, muted, subtle }) => {
       </div>
 
       <style>{`
+        @keyframes twinWordAppear {
+          0%   { opacity: 0;    transform: translateY(26px) scale(0.94); filter: blur(8px); }
+          55%  { opacity: 0.85; transform: translateY(6px) scale(0.99);  filter: blur(1.4px); }
+          100% { opacity: 1;    transform: translateY(0) scale(1);        filter: blur(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .vz-vision .vz-vision-header span { animation: none !important; opacity: 1 !important; filter: none !important; transform: none !important; }
+        }
         @media (max-width: 920px) {
           .vz-vision .vz-vision-header h2 { font-size: 38px !important; }
         }

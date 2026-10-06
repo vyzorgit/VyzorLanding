@@ -85,15 +85,17 @@ const MentionsLegales = () => (
       <Sub>Éditeur du Site</Sub>
       <P>
         Le présent site web, accessible à l'URL <Strong>www.vyzor.fr</Strong>, est édité par Antoine CAYER,
-        agissant pour le compte de la société VYZOR, Société par Actions Simplifiée (SAS) en cours de formation.
+        agissant pour le compte de la société VYZOR, Société par Actions Simplifiée (SAS) en cours de formation (immatriculation au RCS de Paris en cours ;
+        le numéro RCS, le capital social et le numéro de TVA intracommunautaire seront indiqués dès leur attribution).
         Adresse de domiciliation : 2 rue Huguette Schwartz, 75014 Paris. Directeur de la publication : Antoine CAYER.
         Contact : <Mail />.
       </P>
       <Sub>Hébergement</Sub>
       <P>
         Le Site est hébergé par la société Vercel, Inc., dont le siège social est situé au 340 S Lemon Ave #4133,
-        Walnut, California 91789, États-Unis. Les données applicatives et financières sont hébergées séparément
-        sur des serveurs situés au sein de l'Union Européenne.
+        Walnut, California 91789, États-Unis (vercel.com — +1 559 288 7060). Les données applicatives et financières sont hébergées séparément
+        sur des serveurs situés au sein de l'Union Européenne par Google Cloud EMEA Limited, 70 Sir John Rogerson's Quay,
+        Dublin 2, Irlande.
       </P>
     </LegalArticle>
 
@@ -166,10 +168,11 @@ const PolitiqueConfidentialite = () => (
     <LegalArticle n="03" title="Nature des données collectées">
       <P>Dans le cadre de l'exploitation de la plateforme, VYZOR est amenée à collecter :</P>
       <Bullets items={[
+        <span><Strong>Données du formulaire bêta</Strong> : nom et prénom, email professionnel, entreprise — utilisées uniquement pour traiter votre candidature et vous recontacter.</span>,
         <span><Strong>Données d'identification</Strong> : nom, prénom, adresse email professionnelle, numéro de téléphone.</span>,
         <span><Strong>Données professionnelles</Strong> : nom du cabinet d'expertise comptable, fonction, nombre de collaborateurs, logiciel de production comptable utilisé.</span>,
         <span><Strong>Données financières et d'exploitation</Strong> : Fichiers d'Écritures Comptables (FEC), données de facturation et indicateurs de performance (KPIs) des clients de l'Utilisateur.</span>,
-        <span><Strong>Données de navigation</Strong> : adresse IP, type de navigateur, pages visitées, durée de session (collectées via cookies analytiques, cf. Article 9).</span>,
+        <span><Strong>Données de navigation</Strong> : adresse IP, type de navigateur, pages visitées, horodatage des requêtes (journaux techniques de l'hébergeur, conservés à des fins de sécurité ; aucun cookie de mesure d'audience, cf. Article 9).</span>,
       ]} />
     </LegalArticle>
 
@@ -206,7 +209,8 @@ const PolitiqueConfidentialite = () => (
         <span><Strong>Hébergement de l'application et des données financières</Strong> : Google Firebase (Google Cloud Platform), avec une configuration ciblant les régions de l'Union Européenne.</span>,
         <span><Strong>Hébergement du site vitrine</Strong> : Vercel, Inc. (serveurs pouvant être situés hors UE, transferts encadrés par les clauses contractuelles types). Le site vitrine ne collecte pas de données financières.</span>,
         <span><Strong>Fournisseurs de modèles de langage (LLM)</Strong> : Anthropic (API Claude) et/ou OpenAI (API GPT), utilisés exclusivement en inférence (pas d'entraînement). Les données sont transmises via API sécurisée avec option Zero Data Retention activée.</span>,
-        <span><Strong>Services bancaires</Strong> : Qonto (gestion du compte professionnel de la société).</span>,
+        <span><Strong>Formulaire de candidature bêta</Strong> : Web3Forms, qui achemine les informations saisies vers la boîte email de VYZOR sans les exploiter pour son propre compte.</span>,
+        <span><Strong>Polices de caractères</Strong> : Google Fonts (Google Ireland Ltd). Le chargement des polices transmet votre adresse IP aux serveurs de Google ; aucun cookie n'est déposé.</span>,
       ]} />
       <P>
         Tous les sous-traitants de VYZOR sont soumis à des obligations de confidentialité et de sécurité au moins aussi
@@ -221,7 +225,8 @@ const PolitiqueConfidentialite = () => (
         <span><Strong>Données prospects</Strong> : 3 ans à compter du dernier contact émanant du prospect.</span>,
         <span><Strong>Données clients (comptes actifs)</Strong> : pendant toute la durée de la relation contractuelle, puis archivées pour une durée de 5 ans (prescription légale).</span>,
         <span><Strong>Données financières (FEC)</Strong> : conservées uniquement le temps nécessaire à la génération du tableau de bord ou supprimées immédiatement sur demande.</span>,
-        <span><Strong>Cookies</Strong> : durée maximale de 13 mois conformément aux recommandations de la CNIL.</span>,
+        <span><Strong>Candidatures bêta</Strong> : 3 ans à compter du dernier contact, puis suppression.</span>,
+        <span><Strong>Journaux techniques</Strong> : 12 mois maximum.</span>,
       ]} />
     </LegalArticle>
 
@@ -240,18 +245,15 @@ const PolitiqueConfidentialite = () => (
 
     <LegalArticle n="09" title="Cookies et traceurs">
       <P>
-        Le Site utilise des cookies, c'est-à-dire de petits fichiers texte déposés sur votre terminal lors de la
-        consultation du Site. Les cookies utilisés se répartissent en deux catégories :
+        Le site vitrine <Strong>ne dépose aucun cookie publicitaire ni de mesure d'audience</Strong> et n'utilise aucun outil de
+        suivi tiers (Google Analytics, pixels publicitaires, etc.). Seuls des traceurs strictement nécessaires au
+        fonctionnement et à la sécurité du Site peuvent être utilisés ; conformément à l'article 82 de la loi Informatique
+        et Libertés, ils ne nécessitent pas votre consentement. C'est pourquoi aucun bandeau cookies n'est affiché.
       </P>
-      <Bullets items={[
-        <span><Strong>Cookies strictement nécessaires</Strong> : ils permettent la navigation sur le Site et l'utilisation de ses fonctionnalités essentielles (authentification, sécurité, préférences de session). Ces cookies ne nécessitent pas votre consentement.</span>,
-        <span><Strong>Cookies analytiques</Strong> : ils permettent de mesurer l'audience du Site et d'améliorer l'expérience utilisateur. Ces cookies sont soumis à votre consentement préalable.</span>,
-      ]} />
       <P>
-        Vous pouvez à tout moment gérer vos préférences via le bandeau de gestion des cookies affiché lors de votre première
-        visite, ou en modifiant les paramètres de votre navigateur. Le refus des cookies analytiques n'a aucune incidence
-        sur votre accès au Site. Durée maximale des cookies : 13 mois conformément aux recommandations de la CNIL ; les
-        informations collectées sont conservées pour une durée maximale de 25 mois.
+        L'application VYZOR (espace connecté) utilise des cookies d'authentification et de session, indispensables à la
+        connexion sécurisée à votre compte. Si VYZOR venait à utiliser des cookies soumis à consentement, un bandeau vous
+        permettrait de les accepter ou de les refuser aussi simplement, et la présente politique serait mise à jour.
       </P>
     </LegalArticle>
 

@@ -125,50 +125,15 @@
       color: #fff;
     }
 
-    /* CTA "Candidater à la bêta" — bordure dorée animée */
     .vz-beta-cta {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 30px;
-      border: none;
-      border-radius: 14px;
-      background: #0b0c10;
-      color: #fff;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      letter-spacing: 0.01em;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 24px; border: none; border-radius: 10px;
+      background: #f0c949; color: #0b0d14;
+      font-weight: 600; font-size: 15px; cursor: pointer;
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-      z-index: 0;
-      transition: transform 220ms ease;
+      transition: background-color 160ms ease;
     }
-    .vz-beta-cta::before,
-    .vz-beta-cta::after {
-      content: '';
-      position: absolute;
-      left: -2px; top: -2px;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      border-radius: 14px;
-      background: linear-gradient(45deg, #8a6a1f, #f0c949, #fff1c2, #d99e2b, #f0c949, #8a6a1f, #f0c949, #fff1c2, #d99e2b, #f0c949);
-      background-size: 400%;
-      z-index: -1;
-      animation: vzBetaRainbow 14s linear infinite;
-    }
-    .vz-beta-cta::after { filter: blur(13px); opacity: 0.5; }
-    .vz-beta-cta:hover { transform: translateY(-2px); }
-    .vz-beta-cta:hover::after { opacity: 0.75; }
-    @keyframes vzBetaRainbow {
-      0%   { background-position: 0 0; }
-      50%  { background-position: 400% 0; }
-      100% { background-position: 0 0; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .vz-beta-cta::before,
-      .vz-beta-cta::after { animation: none; }
-    }
+    .vz-beta-cta:hover { background: #f4d468; }
   `;
   document.head.appendChild(style);
 })();
@@ -382,12 +347,11 @@ const BetaModal = ({ open, onClose }) => {
                 disabled={submitting}
                 style={{
                   width: "100%", padding: "14px",
-                  border: "1px solid #f2d782",
-                  backgroundImage: "linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%)",
+                  backgroundImage: "linear-gradient(#f0c949,#f0c949)",
                   color: "#1a1410", fontWeight: 600, fontSize: 14, borderRadius: 12,
                   cursor: submitting ? "wait" : "pointer",
                   opacity: submitting ? 0.7 : 1,
-                  boxShadow: "0 10px 24px rgba(216,172,47,0.32), inset 0 1px 0 rgba(255,255,255,0.5)",
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
                   letterSpacing: "0.01em",
                   fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
                   marginTop: 4,
@@ -397,7 +361,8 @@ const BetaModal = ({ open, onClose }) => {
                 {submitting ? "Envoi en cours…" : "Envoyer ma candidature →"}
               </button>
               <div style={{ fontSize: 11, color: muted, textAlign: "center", marginTop: 2 }}>
-                En soumettant, vous acceptez d'être recontacté à l'email indiqué.
+                Vos données servent uniquement à traiter votre candidature (conservées 3 ans max.). Vous pouvez y accéder ou les supprimer via admin@vyzor.fr — voir notre{" "}
+                <a href="confidentialite.html" target="_blank" rel="noopener" style={{ color: "#f0c949", textDecoration: "none" }}>politique de confidentialité</a>.
               </div>
             </form>
           </React.Fragment>
@@ -521,13 +486,13 @@ const BetaFormGlass = () => {
         <div>
           <h2 style={{
             fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
-            fontSize: "clamp(36px, 4.4vw, 56px)",
-            margin: 0, letterSpacing: "-0.02em",
-            fontWeight: 400, lineHeight: 1.05, maxWidth: 760,
+            fontSize: "clamp(36px, 4.4vw, 52px)",
+            margin: 0, letterSpacing: "-0.03em",
+            fontWeight: 600, lineHeight: 1.05, maxWidth: 760,
             color: "#fff",
           }}>
             Devenez l'un des <span style={{ color: gold }}>10 premiers</span>
-            <span style={{ color: "rgba(255,255,255,0.45)" }}> à façonner Vyzor.</span>
+            <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 400, fontStyle: "italic" }}> à façonner Vyzor.</span>
           </h2>
         </div>
       </div>
@@ -564,8 +529,7 @@ const BetaFormGlass = () => {
               fontFeatureSettings: '"tnum" 1, "lnum" 1',
             }}>10</div>
             <div style={{
-              fontFamily: '"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace',
-              fontSize: 11, letterSpacing: "0.18em", color: muted, textTransform: "uppercase",
+              fontSize: 15, color: muted,
             }}>places ouvertes</div>
           </div>
         </BetaTiltCard>

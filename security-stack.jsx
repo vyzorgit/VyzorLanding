@@ -50,9 +50,9 @@
       border-radius: 18px;
       flex-shrink: 0;
       display: grid; place-items: center;
-      background-image: linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%);
+      background-image: linear-gradient(#f0c949,#f0c949);
       color: #161208;
-      box-shadow: 0 10px 24px rgba(216,172,47,0.30), inset 0 1px 0 rgba(255,255,255,0.45);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
     .secstack-card__icon svg { width: 28px; height: 28px; }
     .secstack-card__num {

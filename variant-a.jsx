@@ -45,7 +45,7 @@ const VariantA = () => {
             fontWeight: 600,
           }}>
             Comprenez vos chiffres,<br/>
-            <span style={{ background: "linear-gradient(135deg,#f9e08a 0%, #ebc85b 50%, #d8ac2f 100%)", WebkitBackgroundClip: "text", color: "transparent" }}>
+            <span style={{ background: "linear-gradient(#f0c949,#f0c949)", WebkitBackgroundClip: "text", color: "transparent" }}>
               simplement.
             </span>
           </h1>
@@ -78,10 +78,9 @@ const VariantA = () => {
             <a href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{
               display: "inline-flex", alignItems: "center", gap: 10,
               padding: "14px 22px", borderRadius: 12,
-              border: "1px solid #f2d782",
-              backgroundImage: "linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%)",
+              backgroundImage: "linear-gradient(#f0c949,#f0c949)",
               color: "#111", fontWeight: 600, fontSize: 14,
-              boxShadow: "0 10px 24px rgba(216,172,47,0.28), inset 0 1px 0 rgba(255,255,255,0.45)",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
               textDecoration: "none",
             }}>
               Rejoindre la bêta
@@ -299,10 +298,9 @@ const BetaForm = ({ variant = "dark" }) => {
             ))}
             <button type="submit" style={{
               width: "100%", marginTop: 8, padding: "14px",
-              border: "1px solid #f2d782",
-              backgroundImage: "linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%)",
+              backgroundImage: "linear-gradient(#f0c949,#f0c949)",
               color: "#111", fontWeight: 700, fontSize: 14, borderRadius: 12, cursor: "pointer",
-              boxShadow: "0 10px 24px rgba(216,172,47,0.28), inset 0 1px 0 rgba(255,255,255,0.45)",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
               letterSpacing: "0.02em",
             }}>
               Candidater à la bêta →
@@ -333,7 +331,7 @@ const BetaForm = ({ variant = "dark" }) => {
 const VyzorNav = ({ gold, text, muted, subtle }) => {
   const items = [
     { id: "produit", label: "Le produit", href: "index.html#produit", external: true, matchPath: /(^\/?$|index\.html?$)/i, anchor: "produit" },
-    { id: "fonctionnalites", label: "Fonctionnalités", href: "fonctionnalites.html", external: true, matchPath: /fonctionnalites\.html?$/i },
+    { id: "fonctionnalites", label: "Fonctionnalités", href: "fonctionnalites.html", external: true, matchPath: /fonctionnalite(s|-[a-z-]+)\.html?$/i },
     { id: "securite", label: "Sécurité", href: "securite.html", external: true, matchPath: /securite\.html?$/i },
     { id: "faq", label: "FAQ", href: "faq.html", external: true, matchPath: /faq\.html?$/i },
   ];
@@ -393,7 +391,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
     }
   }, [active, hovered, scrolled]);
 
-  const goldGrad = "linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%)";
+  const goldGrad = "linear-gradient(#f0c949,#f0c949)";
 
   return (
     <nav className="vz-nav-wrap" style={{
@@ -447,7 +445,8 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
           }}/>
           {items.map((it) => {
             const isActive = active === it.id;
-            return (
+            const feats = it.id === "fonctionnalites" ? (window.VZ_FEATURES || []) : [];
+            const link = (
               <a
                 key={it.id}
                 href={it.external ? it.href : `#${it.id}`}
@@ -469,8 +468,28 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
                 onMouseOver={(e) => { if (!isActive) e.currentTarget.style.color = text; }}
                 onMouseOut={(e) => { if (!isActive) e.currentTarget.style.color = muted; }}
               >
-                {it.label}
+                {it.label}{feats.length ? <svg aria-hidden="true" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: 5, verticalAlign: "-1px", opacity: 0.7 }}><path d="m6 9 6 6 6-6"/></svg> : null}
               </a>
+            );
+            if (!feats.length) return <React.Fragment key={it.id}>{link}</React.Fragment>;
+            return (
+              <div key={it.id} className="vz-nav-dd" onMouseEnter={() => setHovered(it.id)} onMouseLeave={() => setHovered(null)} style={{ position: "relative" }}>
+                {link}
+                <div className="vz-nav-dd-panel" role="menu">
+                  <div className="vz-nav-dd-grid">
+                    {feats.map((f) => (
+                      <a key={f.slug} {...(f.soon ? { "aria-disabled": true } : { href: vzFeatureHref(f.slug) })} className={"vz-nav-dd-item" + (f.soon ? " soon" : "")} role="menuitem">
+                        <span className="vz-nav-dd-ic"><VzfIcon name={f.icon} size={16} /></span>
+                        <span style={{ minWidth: 0 }}>
+                          <span style={{ display: "block", fontSize: 13.5, fontWeight: 600, color: "#fff" }}>{f.name}{f.soon ? <span style={{ marginLeft: 8, fontSize: 11, fontWeight: 600, color: "#f0c949" }}>Bientôt</span> : null}</span>
+                          <span style={{ display: "block", fontSize: 12.5, lineHeight: 1.45, color: "rgba(255,255,255,0.55)", marginTop: 2 }}>{f.desc}</span>
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                  <a href="fonctionnalites.html" className="vz-nav-dd-all">Voir toutes les fonctionnalités <span aria-hidden="true">→</span></a>
+                </div>
+              </div>
             );
           })}
         </div>
@@ -491,15 +510,14 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
             display: "inline-flex", alignItems: "center", gap: 6,
             padding: scrolled ? "8px 14px" : "8px 16px",
             borderRadius: 999,
-            border: "1px solid #f2d782",
             backgroundImage: goldGrad,
             color: "#111", fontWeight: 600, fontSize: 12.5,
             textDecoration: "none", whiteSpace: "nowrap",
-            boxShadow: "0 6px 18px rgba(216,172,47,0.30), inset 0 1px 0 rgba(255,255,255,0.45)",
+            boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
             transition: "transform 200ms ease, box-shadow 200ms ease",
           }}
-            onMouseOver={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 10px 24px rgba(216,172,47,0.42), inset 0 1px 0 rgba(255,255,255,0.5)"; }}
-            onMouseOut={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 6px 18px rgba(216,172,47,0.30), inset 0 1px 0 rgba(255,255,255,0.45)"; }}
+            onMouseOver={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 1px 2px rgba(0,0,0,0.3)"; }}
+            onMouseOut={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 1px 2px rgba(0,0,0,0.3)"; }}
           >
             <span style={{
               width: 6, height: 6, borderRadius: 999, background: "#1a1410",
@@ -530,6 +548,20 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
           </button>
         </div>
       </div>
+
+      <style>{`
+        .vz-nav-dd-panel { position: absolute; top: calc(100% + 14px); left: 50%; width: 620px; transform: translate(-50%, 6px); opacity: 0; pointer-events: none; transition: opacity 160ms ease, transform 160ms ease; padding: 10px; border-radius: 18px; background: rgba(12,14,20,0.96); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.10); box-shadow: 0 24px 60px rgba(0,0,0,0.55); }
+        .vz-nav-dd-panel::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
+        .vz-nav-dd:hover .vz-nav-dd-panel, .vz-nav-dd:focus-within .vz-nav-dd-panel { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+        .vz-nav-dd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+        .vz-nav-dd-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border-radius: 12px; text-decoration: none; transition: background-color 140ms ease; }
+        .vz-nav-dd-item:hover { background: rgba(255,255,255,0.05); }
+        .vz-nav-dd-item.soon { cursor: default; opacity: 0.6; }
+        .vz-nav-dd-item.soon:hover { background: transparent; }
+        .vz-nav-dd-ic { width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0; display: grid; place-items: center; color: #f0c949; background: rgba(240,201,73,0.06); border: 1px solid rgba(240,201,73,0.2); }
+        .vz-nav-dd-all { display: flex; justify-content: space-between; margin-top: 6px; padding: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; font-weight: 600; color: #f0c949; text-decoration: none; }
+        .vz-nav-dd-all:hover { color: #f4d468; }
+      `}</style>
 
       {/* Panneau mobile — révèle les onglets + connexion */}
       <div
@@ -629,19 +661,32 @@ const MethodologySection = ({ id, gold, text, muted, subtle }) => {
 
   const [active, setActive] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
-  const goldGrad = "linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%)";
+  const goldGrad = "linear-gradient(#f0c949,#f0c949)";
   const cur = steps[active];
 
   // Auto-advance through the three steps; pause on hover/focus or after a manual click.
   const sectionRef = React.useRef(null);
   const resumeTimer = React.useRef(null);
+  const [inView, setInView] = React.useState(false);
+
+  // Le carrousel ne tourne que lorsque la section est visible (économie CPU).
   React.useEffect(() => {
-    if (paused) return;
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") { setInView(true); return; }
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => setInView(e.isIntersecting));
+    }, { threshold: 0.2 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    if (paused || !inView) return;
     const id = setInterval(() => {
       setActive((i) => (i + 1) % steps.length);
     }, 4200);
     return () => clearInterval(id);
-  }, [paused, steps.length]);
+  }, [paused, inView, steps.length]);
 
   const handleManualSelect = (i) => {
     setActive(i);
@@ -722,7 +767,7 @@ const MethodologySection = ({ id, gold, text, muted, subtle }) => {
                 background: isActive ? goldGrad : "#0f0f12",
                 border: `1px solid ${isActive ? "#f2d782" : isPast ? "rgba(240,201,73,0.45)" : "rgba(255,255,255,0.12)"}`,
                 boxShadow: isActive
-                  ? "0 8px 24px rgba(216,172,47,0.35), inset 0 1px 0 rgba(255,255,255,0.45)"
+                  ? "0 1px 2px rgba(0,0,0,0.3)"
                   : "inset 0 1px 0 rgba(255,255,255,0.04)",
                 transition: "all 320ms cubic-bezier(0.22, 1, 0.36, 1)",
               }}>

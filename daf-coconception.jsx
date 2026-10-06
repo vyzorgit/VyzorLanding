@@ -27,7 +27,6 @@
       inset: 0;
       border-radius: inherit;
       background:
-        radial-gradient(130% 90% at 50% -10%, rgba(240,201,73,0.05), transparent 55%),
         linear-gradient(150deg, #101218 0%, #0b0c10 100%);
       z-index: 0;
       transition: background 320ms ease;
@@ -44,25 +43,15 @@
       border-radius: inherit;
       padding: 1.5px;
       pointer-events: none;
-      background: conic-gradient(from var(--vzg-angle) at 50% 50%,
-        rgba(240,201,73,0)    0deg,
-        rgba(240,201,73,0)    72deg,
-        rgba(249,224,138,0.7) 112deg,
-        #fff3c8               136deg,
-        rgba(249,224,138,0.7) 160deg,
-        rgba(240,201,73,0)    200deg,
-        rgba(240,201,73,0)    360deg);
+      background: rgba(255,255,255,0.10);
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
               mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
               mask-composite: exclude;
-      animation: vzg-spin 6.5s linear infinite;
     }
     /* La bordure nette + 3 copies floutées = halo en bloom autour du comète doré */
     .vz-verbatim-card .border-left   { z-index: 4; }
-    .vz-verbatim-card .border-right  { z-index: 3; filter: blur(2px);  opacity: 0.85; }
-    .vz-verbatim-card .border-top    { z-index: 2; filter: blur(7px);  opacity: 0.6; }
-    .vz-verbatim-card .border-bottom { z-index: 1; filter: blur(15px); opacity: 0.45; }
+    .vz-verbatim-card .border-right, .vz-verbatim-card .border-top, .vz-verbatim-card .border-bottom { display: none; }
 
     .vz-verbatim-card .card-content {
       position: relative;
@@ -74,11 +63,10 @@
       padding: 34px 34px 28px;
     }
 
-    .vz-verbatim-card:hover { transform: translateY(-4px); }
-    .vz-verbatim-card:hover .border-element { animation-duration: 3.2s; }
+    .vz-verbatim-card:hover { transform: none; }
+    .vz-verbatim-card:hover .border-element { background: rgba(240,201,73,0.45); }
     .vz-verbatim-card:hover .card-backdrop {
       background:
-        radial-gradient(130% 90% at 50% -10%, rgba(240,201,73,0.11), transparent 55%),
         linear-gradient(150deg, #13151d 0%, #0b0c10 100%);
     }
     .vz-verbatim-card:hover .vz-verbatim-li { color: #fff !important; background: #0a66c2 !important; }
@@ -97,7 +85,7 @@ const DAFCoConception = () => {
   const text = "rgba(255,255,255,0.92)";
   const muted = "rgba(255,255,255,0.55)";
   const subtle = "rgba(255,255,255,0.08)";
-  const goldGrad = "linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%)";
+  const goldGrad = "linear-gradient(#f0c949,#f0c949)";
   const sans = '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif';
 
   // La boucle de co-conception
@@ -186,8 +174,7 @@ const DAFCoConception = () => {
                 display: "grid", placeItems: "center",
                 fontFamily: sans, fontSize: 15, fontWeight: 700,
                 color: "#111", background: goldGrad,
-                border: "1px solid #f2d782",
-                boxShadow: "0 8px 22px rgba(216,172,47,0.30), inset 0 1px 0 rgba(255,255,255,0.45)",
+                boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
                 marginBottom: 22, position: "relative", zIndex: 1,
               }}>{s.n}</span>
               <div style={{ fontSize: 17, fontWeight: 600, letterSpacing: "-0.01em", color: text, marginBottom: 8 }}>{s.t}</div>
@@ -202,10 +189,7 @@ const DAFCoConception = () => {
         <div style={{
           display: "flex", alignItems: "center", gap: 14, marginBottom: 26,
         }}>
-          <span style={{
-            fontSize: 10.5, letterSpacing: "0.22em", textTransform: "uppercase",
-            fontWeight: 700, color: gold,
-          }}>Ce qu'ils en disent</span>
+          <span style={{ fontSize: 18, fontWeight: 600, color: text }}>Ce qu'ils en disent</span>
           <span aria-hidden="true" style={{
             flex: 1, height: 1, background: subtle,
           }} />
@@ -270,8 +254,7 @@ const DAFCoConception = () => {
                     width: 44, height: 44, flexShrink: 0, borderRadius: 999,
                     display: "grid", placeItems: "center",
                     fontFamily: sans, fontSize: 14, fontWeight: 700, color: "#111",
-                    background: goldGrad, border: "1px solid #f2d782",
-                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.45)",
+                    background: goldGrad, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.45)",
                   }}>{v.initials}</span>
                 )}
                 <div style={{ flex: 1, minWidth: 0 }}>

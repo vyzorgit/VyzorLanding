@@ -1,7 +1,9 @@
-// cinematic-hero-glass.jsx — Hero VYZOR « scène » pro
-// Fond profond + particules ascendantes (canvas) + faisceaux spotlight + lignes
-// d'accent. Logo + texte « gooey » qui morphe en or, slogan statique en dessous.
-// Animations pilotées par requestAnimationFrame / ambiances CSS sûres.
+// cinematic-hero-glass.jsx — Hero VYZOR « scène » pro — v2 (review)
+// Fond profond + aurora lente (transform-only) + logo animé + texte « gooey »
+// qui morphe en or. v2 : le hero porte désormais la proposition de valeur
+// complète — badge bêta, sous-titre, CTA, preuves — plus un indice de scroll.
+// Perf : morphing en pause hors viewport / onglet caché, dt clampé,
+// reduced-motion = mot statique net.
 
 // —— Texte « gooey » : deux calques de texte qui se fondent l'un dans l'autre
 const GooeyText = ({
@@ -12,12 +14,35 @@ const GooeyText = ({
   textStyle,
   filterId = "vzThreshold",
 }) => {
+  const rootRef = React.useRef(null);
   const text1Ref = React.useRef(null);
   const text2Ref = React.useRef(null);
   const blendRef = React.useRef(null);
+  const visibleRef = React.useRef(true);
 
   React.useEffect(() => {
     if (!text1Ref.current || !text2Ref.current) return;
+
+    // Reduced motion : premier mot statique, net, aucun rAF.
+    const reduce = typeof window !== "undefined" && window.matchMedia
+      && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      text1Ref.current.style.opacity = "0%";
+      text2Ref.current.textContent = texts[0];
+      text2Ref.current.style.opacity = "100%";
+      text2Ref.current.style.filter = "";
+      if (blendRef.current) blendRef.current.style.filter = "none";
+      return;
+    }
+
+    // Pause du morphing quand le hero sort du viewport (économie CPU/GPU).
+    let io = null;
+    if (rootRef.current && typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver((ents) => {
+        ents.forEach((e) => { visibleRef.current = e.isIntersecting; });
+      }, { rootMargin: "80px" });
+      io.observe(rootRef.current);
+    }
 
     let textIndex = texts.length - 1;
     let time = new Date();
@@ -62,8 +87,11 @@ const GooeyText = ({
       raf = requestAnimationFrame(animate);
       const newTime = new Date();
       const shouldIncrementIndex = cooldown > 0;
-      const dt = (newTime.getTime() - time.getTime()) / 1000;
+      // dt clampé : au retour d'un onglet caché, pas de rattrapage brutal.
+      const dt = Math.min(0.05, (newTime.getTime() - time.getTime()) / 1000);
       time = newTime;
+      // Hors viewport : on laisse l'horloge avancer mais on ne calcule rien.
+      if (!visibleRef.current) return;
       cooldown -= dt;
       if (cooldown <= 0) {
         if (shouldIncrementIndex) {
@@ -79,7 +107,7 @@ const GooeyText = ({
       }
     };
     animate();
-    return () => cancelAnimationFrame(raf);
+    return () => { cancelAnimationFrame(raf); if (io) io.disconnect(); };
   }, [texts, morphTime, cooldownTime]);
 
   const spanStyle = {
@@ -90,7 +118,7 @@ const GooeyText = ({
   };
 
   return (
-    <div style={{ position: "relative", ...style }}>
+    <div ref={rootRef} style={{ position: "relative", ...style }}>
       <svg style={{ position: "absolute", width: 0, height: 0 }} aria-hidden="true" focusable="false">
         <defs>
           <filter id={filterId}>
@@ -188,118 +216,129 @@ const ParticleField = () => {
   );
 };
 
+// —— Scroll velocity : bandeaux qui défilent, accélérés et inversés par le scroll ——
+const vzScrollVel = { v: 0, last: typeof window !== "undefined" ? window.scrollY : 0, t: 0 };
+const ScrollVelocityRow = ({ children, baseVelocity = 20, direction = 1 }) => {
+  const trackRef = React.useRef(null);
+  const unitRef = React.useRef(null);
+  React.useEffect(() => {
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    let raf = 0, x = 0, prev = performance.now(), dirFactor = 1, smooth = 0, lastY = window.scrollY;
+    const tick = (now) => {
+      raf = requestAnimationFrame(tick);
+      const dt = Math.min(0.05, (now - prev) / 1000); prev = now;
+      const y = window.scrollY; const vel = dt > 0 ? (y - lastY) / dt : 0; lastY = y;
+      smooth += (vel - smooth) * 0.12;
+      if (smooth < -5) dirFactor = -1; else if (smooth > 5) dirFactor = 1;
+      const boost = Math.min(Math.abs(smooth) / 1000, 5);
+      const w = unitRef.current ? unitRef.current.offsetWidth : 0;
+      if (!w || !trackRef.current) return;
+      x += direction * dirFactor * baseVelocity * (1 + boost) * dt * (w / 100) * 0.12;
+      x = ((x % w) + w) % w;
+      trackRef.current.style.transform = `translate3d(${-x}px,0,0)`;
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [baseVelocity, direction]);
+  return (
+    <div style={{ overflow: "hidden", whiteSpace: "nowrap", width: "100%" }}>
+      <div ref={trackRef} style={{ display: "inline-flex", willChange: "transform" }}>
+        {[0, 1, 2, 3].map((i) => (
+          <span key={i} ref={i === 0 ? unitRef : null} aria-hidden={i > 0} style={{ display: "inline-flex", flexShrink: 0 }}>{children}</span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const VzVelocityWords = ({ words, color, accent }) => (
+  <React.Fragment>
+    {words.map((w, i) => (
+      <span key={i} style={{ display: "inline-flex", alignItems: "center" }}>
+        <span style={{ color: i % 2 === 0 ? color : accent }}>{w}</span>
+        <span aria-hidden="true" style={{ display: "inline-block", width: "0.14em", height: "0.14em", margin: "0 0.55em", background: "#f0c949", transform: "rotate(45deg)", opacity: 0.8 }} />
+      </span>
+    ))}
+  </React.Fragment>
+);
+
 const CinematicHero = ({
-  brandName = "VYZOR",
-  morphWords = ["Comprenez", "Analysez", "Anticipez", "Pilotez"],
-  taglineTail = "vos chiffres, simplement.",
+  headline = "Comprenez vos chiffres,",
+  headlineAccent = "simplement.",
 }) => {
   const gold = "#f0c949";
   const text = "rgba(255,255,255,0.94)";
-  const muted = "rgba(255,255,255,0.55)";
-
+  const muted = "rgba(255,255,255,0.6)";
   return (
-    <section
-      className="vz-hero-stage"
-      style={{
-        position: "relative",
-        width: "100%",
-        minHeight: "100vh",
-        background: "#070a14",
-        backgroundImage:
-          "radial-gradient(60% 40% at 15% 0%, rgba(99,102,241,0.18), transparent 60%), radial-gradient(50% 40% at 90% 10%, rgba(240,201,73,0.14), transparent 60%), radial-gradient(40% 30% at 50% 100%, rgba(45,212,191,0.10), transparent 60%)",
-        color: text,
-        fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        padding: "150px 24px 110px",
-        overflow: "hidden",
-      }}
-    >
+    <section className="vz-hero-stage" style={{
+      position: "relative", width: "100%", minHeight: "100vh",
+      background: "#070a14", color: text,
+      fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
+      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+      textAlign: "center", padding: "120px 0 88px", overflow: "hidden",
+    }}>
       <style>{`
-        @keyframes vzSpot {
-          0%   { transform: rotateZ(0deg) scale(1);    filter: blur(16px) opacity(0.45); }
-          25%  { transform: rotateZ(-1.5deg) scale(1.18); filter: blur(18px) opacity(0.6); }
-          50%  { transform: rotateZ(2deg) scale(1.28);  filter: blur(15px) opacity(0.4); }
-          75%  { transform: rotateZ(-1deg) scale(1.12); filter: blur(16px) opacity(0.55); }
-          100% { transform: rotateZ(0deg) scale(1);     filter: blur(16px) opacity(0.45); }
-        }
-        @keyframes vzWordmarkIn {
-          0%   { opacity: 0; letter-spacing: 0.6em; filter: blur(18px); transform: translateY(26px); }
-          60%  { opacity: 1; }
-          100% { opacity: 1; letter-spacing: 0.06em; filter: blur(0); transform: translateY(0); }
-        }
-        @keyframes vzHeroRise {
-          0%   { opacity: 0; filter: blur(10px); transform: translateY(24px); }
-          100% { opacity: 1; filter: blur(0); transform: translateY(0); }
-        }
-        .vz-anim-wordmark { animation: vzWordmarkIn 1.25s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
-        .vz-hero-logo svg { width: clamp(150px, 23vw, 300px) !important; height: auto !important; filter: drop-shadow(0 14px 60px rgba(0,0,0,0.5)) drop-shadow(0 0 60px rgba(240,201,73,0.30)); }
-        .vz-anim-gooey    { animation: vzHeroRise 1s cubic-bezier(0.22,1,0.36,1) 0.7s both; }
-        .vz-anim-tail     { animation: vzHeroRise 1s cubic-bezier(0.22,1,0.36,1) 0.95s both; }
-        @media (prefers-reduced-motion: reduce) {
-          .vz-hero-stage .vz-beam-inner { animation: none !important; }
-          .vz-anim-wordmark, .vz-anim-gooey, .vz-anim-tail { animation: none !important; opacity: 1 !important; filter: none !important; transform: none !important; letter-spacing: 0.06em; }
-        }
+        @keyframes vzHeroIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        .vz-hero-in { animation: vzHeroIn 700ms cubic-bezier(0.22,1,0.36,1) both; }
+        .vz-hero-logo svg { width: clamp(64px, 7vw, 88px) !important; height: auto !important; shape-rendering: geometricPrecision; }
+        .vz-btn-primary { transition: background-color 160ms ease; }
+        .vz-btn-primary:hover { background-color: #f4d468 !important; }
+        .vz-btn-ghost { transition: border-color 160ms ease, background-color 160ms ease; }
+        .vz-btn-ghost:hover { border-color: rgba(255,255,255,0.32) !important; background-color: rgba(255,255,255,0.04) !important; }
+        .vz-scroll-cue .vz-cue-ring { transition: border-color 160ms ease, color 160ms ease; }
+        .vz-scroll-cue:hover .vz-cue-ring { border-color: rgba(255,255,255,0.32); color: #fff; }
+        @media (max-width: 720px) { .vz-hero-stage { padding: 106px 0 56px !important; } }
+        @media (max-height: 760px) { .vz-scroll-cue { display: none; } }
+        .vz-velocity { font-size: clamp(48px, 8.4vw, 120px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; }
+        @media (prefers-reduced-motion: reduce) { .vz-hero-in { animation: none !important; } }
       `}</style>
-
-      {/* —— Lignes d'accent retirées : fond uni en raccord avec le reste du site —— */}
-
-      {/* —— Halo doré bas (chaleur de marque) —— */}
-      <div aria-hidden="true" style={{
-        position: "absolute", left: 0, right: 0, bottom: "-10%", margin: "0 auto",
-        width: "70%", height: "40%", zIndex: 0, pointerEvents: "none",
-        background: "radial-gradient(60% 100% at 50% 100%, rgba(240,201,73,0.14), transparent 70%)",
-        filter: "blur(20px)",
-      }} />
-
-      {/* —— Fondu vers le noir de fond en bas : raccord invisible avec la section suivante —— */}
-      <div aria-hidden="true" style={{
-        position: "absolute", left: 0, right: 0, bottom: 0, height: "28%",
-        zIndex: 2, pointerEvents: "none",
-        background: "linear-gradient(180deg, rgba(7,10,20,0) 0%, #070a14 100%)",
-      }} />
-
-      {/* —— Contenu —— */}
-      <div style={{ position: "relative", zIndex: 3, width: "100%", maxWidth: 1040 }}>
-        {/* Logo de marque — grand, animé à l'arrivée */}
-        <div className="vz-anim-wordmark vz-hero-logo" style={{
-          display: "flex", justifyContent: "center",
-          marginBottom: "clamp(22px, 3.5vw, 44px)",
+      <h1 style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap", margin: -1 }}>{headline} {headlineAccent}</h1>
+      <div className="vz-hero-in vz-velocity" aria-hidden="true" style={{
+        position: "relative", width: "100vw", display: "flex", flexDirection: "column", gap: "0.06em", animationDelay: "80ms",
+      }}>
+        <ScrollVelocityRow baseVelocity={14} direction={1}>
+          <VzVelocityWords words={["Comprenez", "Analysez", "Anticipez", "Pilotez"]} color="#fff" accent="#fff" />
+        </ScrollVelocityRow>
+        <ScrollVelocityRow baseVelocity={14} direction={-1}>
+          <VzVelocityWords words={["vos chiffres, simplement."]} color={gold} accent={gold} />
+        </ScrollVelocityRow>
+        <div style={{ position: "absolute", inset: "0 auto 0 0", width: "18%", pointerEvents: "none", background: "linear-gradient(90deg,#070a14 10%,rgba(7,10,20,0))" }} />
+        <div style={{ position: "absolute", inset: "0 0 0 auto", width: "18%", pointerEvents: "none", background: "linear-gradient(270deg,#070a14 10%,rgba(7,10,20,0))" }} />
+      </div>
+      <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 960, padding: "0 24px" }}>
+        <p className="vz-hero-in" style={{
+          fontSize: "clamp(16px, 1.5vw, 18px)", lineHeight: 1.6, color: muted,
+          maxWidth: 560, margin: "clamp(36px, 4vw, 48px) auto 0", textWrap: "pretty",
+          animationDelay: "180ms",
         }}>
-          <VyzorLogo size={300} color={gold} bg="transparent" />
-        </div>
-
-        {/* Texte gooey or */}
-        <div className="vz-anim-gooey">
-          <GooeyText
-            texts={morphWords}
-            morphTime={1}
-            cooldownTime={1.4}
-            style={{ width: "100%", height: "clamp(58px, 9.5vw, 116px)", margin: "0 auto" }}
-            textStyle={{
-              fontSize: "clamp(44px, 7.8vw, 104px)",
-              fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1,
-              color: gold,
-              textShadow: "0 6px 40px rgba(240,201,73,0.30)",
-            }}
-          />
-        </div>
-
-        {/* Slogan tail */}
-        <div className="vz-anim-tail" style={{
-          fontSize: "clamp(26px, 4.2vw, 60px)", fontWeight: 500,
-          letterSpacing: "-0.025em", lineHeight: 1.05,
-          color: "rgba(255,255,255,0.92)",
-          marginTop: "clamp(10px, 1.6vw, 20px)", textWrap: "balance",
+          Vyzor analyse votre passé, éclaire votre présent et projette votre futur financier.
+          Pensé pour les dirigeants de PME, DAF et experts-comptables.
+        </p>
+        <div className="vz-hero-cta-row vz-hero-in" style={{
+          display: "flex", alignItems: "center", justifyContent: "center",
+          gap: 12, marginTop: "clamp(28px, 3vw, 36px)", flexWrap: "wrap", animationDelay: "260ms",
         }}>
-          {taglineTail}
+          <a className="vz-hero-cta-primary vz-btn-primary" href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{
+            display: "inline-flex", alignItems: "center", gap: 10,
+            padding: "14px 24px", borderRadius: 10,
+            backgroundColor: gold, color: "#0b0d14",
+            fontWeight: 600, fontSize: 15, textDecoration: "none",
+          }}>
+            Rejoindre la bêta <span aria-hidden="true">→</span>
+          </a>
+          <a className="vz-hero-cta-ghost vz-btn-ghost" href="#produit" style={{
+            display: "inline-flex", alignItems: "center",
+            padding: "14px 22px", borderRadius: 10,
+            border: "1px solid rgba(255,255,255,0.16)", backgroundColor: "transparent",
+            color: text, fontSize: 15, fontWeight: 500, textDecoration: "none",
+          }}>
+            Découvrir le produit
+          </a>
         </div>
       </div>
     </section>
   );
 };
 
-Object.assign(window, { CinematicHero, GooeyText, ParticleField });
+Object.assign(window, { CinematicHero, GooeyText, ParticleField, ScrollVelocityRow });

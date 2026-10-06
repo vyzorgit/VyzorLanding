@@ -110,4 +110,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vyzor.fr/confidentialite.html" />
   </url>
 
+  <url><loc>https://vyzor.fr/fonctionnalite-conseil.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vyzor.fr/fonctionnalite-tresorerie.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vyzor.fr/fonctionnalite-juridique.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vyzor.fr/fonctionnalite-analyse-financiere.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vyzor.fr/fonctionnalite-multi-societes.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vyzor.fr/fonctionnalite-alertes.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

@@ -50,7 +50,7 @@
       border-color: rgba(240,201,73,0.42);
       background: linear-gradient(160deg, rgba(240,201,73,0.06), rgba(240,201,73,0.015));
       box-shadow:
-        0 18px 40px -12px rgba(216,172,47,0.22),
+        0 1px 2px rgba(0,0,0,0.3),
         0 0 0 1px rgba(240,201,73,0.10) inset,
         0 1px 0 rgba(255,255,255,0.10) inset;
     }
@@ -108,10 +108,9 @@
     }
     .feat-card:hover .feat-card__chevron {
       transform: translateX(4px);
-      background: linear-gradient(135deg, #f9e08a 0%, #ebc85b 52%, #d8ac2f 100%);
-      border-color: #f2d782;
+      background: linear-gradient(#f0c949,#f0c949);
       color: #1a1410;
-      box-shadow: 0 6px 18px rgba(216,172,47,0.32), inset 0 1px 0 rgba(255,255,255,0.5);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
     /* Corner brackets — révélés au hover */
@@ -159,7 +158,7 @@
       background: linear-gradient(135deg, rgba(240,201,73,0.14), rgba(240,201,73,0.06));
       border: 1px solid rgba(240,201,73,0.32);
       box-shadow:
-        0 6px 18px rgba(216,172,47,0.18),
+        0 1px 2px rgba(0,0,0,0.3),
         inset 0 1px 0 rgba(255,255,255,0.08);
       transition:
         left 480ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -344,7 +343,7 @@ const ROLE_ORDER = ["comptable", "daf", "dirigeant"];
 // —— Bandeau "Nouvelle fonctionnalité" — adaptation du BadgeGroup (modern / brand / leading)
 // d'Untitled UI à l'esthétique liquid-glass dorée de Vyzor. Au clic → ouvre le formulaire.
 const FeatureBadge = ({ gold = "#f0c949", href = "#beta" }) => {
-  const goldGrad = "linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%)";
+  const goldGrad = "linear-gradient(#f0c949,#f0c949)";
   return (
     <a
       href={href}
@@ -399,7 +398,7 @@ const FeatureBadge = ({ gold = "#f0c949", href = "#beta" }) => {
           letterSpacing: "0.02em",
           whiteSpace: "nowrap",
           boxShadow:
-            "inset 0 1px 0 rgba(255,255,255,0.6), 0 2px 8px rgba(216,172,47,0.35)",
+            "inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.3)",
         }}
       >
         Nouveauté

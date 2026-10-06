@@ -10,158 +10,91 @@
 //
 // Vocabulaire fidèle : or/noir, glass. Accent « friction » = ambre chaud (ember).
 
-const VZ_GOLD_GRAD = "linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%)";
+const VZ_GOLD_GRAD = "linear-gradient(#f0c949,#f0c949)";
 const VZ_EMBER = "#f0905a";
 const VZ_EMBER_SOFT = "rgba(240,144,90,0.12)";
 const VZ_EMBER_LINE = "rgba(240,144,90,0.30)";
 const VZ_CARD_BG = "linear-gradient(150deg, #11141b, #0c0d11)";
-const VZ_CARD_H = 480; // hauteur fixe identique pour les deux faces
 
 // —— Carte retournable (flip 3D) ——
-const PainFlipCard = ({ persona, gold, text, muted, subtle, initialFlipped = false }) => {
-  const [flipped, setFlipped] = React.useState(initialFlipped);
+const PainFlipCard = ({ persona, gold, text, muted, subtle }) => {
+  const [flipped, setFlipped] = React.useState(false);
   const p = persona;
-
-  const faceBase = {
+  const face = {
     position: "absolute", inset: 0,
     backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden",
-    borderRadius: 24, overflow: "hidden",
-    background: VZ_CARD_BG,
-    border: `1px solid ${subtle}`, borderTop: `1px solid ${VZ_EMBER_LINE}`,
-    boxShadow: "0 30px 70px -34px rgba(0,0,0,0.85)",
-    display: "flex", flexDirection: "column",
+    borderRadius: 20, overflow: "hidden",
+    background: "linear-gradient(180deg, #11141d 0%, #0b0d14 100%)",
+    border: "1px solid rgba(255,255,255,0.07)",
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 60px -30px rgba(0,0,0,0.8)",
+    display: "flex", flexDirection: "column", padding: "30px 32px 26px",
   };
-
+  const Hairline = () => (
+    <span aria-hidden="true" style={{ position: "absolute", top: 0, left: 32, right: 32, height: 1, background: "linear-gradient(90deg, rgba(240,201,73,0), rgba(240,201,73,0.55), rgba(240,201,73,0))" }} />
+  );
+  const Head = ({ right }) => (
+    <header style={{ display: "flex", alignItems: "center", gap: 14 }}>
+      <span style={{
+        width: 44, height: 44, borderRadius: 12, flexShrink: 0, display: "grid", placeItems: "center",
+        color: gold, background: "rgba(240,201,73,0.06)", border: "1px solid rgba(240,201,73,0.22)",
+      }}>{p.icon}</span>
+      <span style={{ display: "flex", flexDirection: "column", gap: 2, flex: 1, minWidth: 0 }}>
+        <span style={{ fontSize: 17, fontWeight: 600, color: "#fff", letterSpacing: "-0.01em" }}>{p.tab}</span>
+        <span style={{ fontSize: 13, color: muted }}>{p.role}</span>
+      </span>
+      {right}
+    </header>
+  );
+  const fade = (on) => ({ opacity: on ? 1 : 0, transition: "opacity 0s linear 350ms" });
   return (
-    <div
-      className="vz-flip"
-      style={{ position: "relative", height: VZ_CARD_H, perspective: 2000, cursor: "pointer" }}
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
+    <div className="vz-flip" role="button" tabIndex={0}
+      aria-label={`${p.tab} : voir ce qui le bloque`}
+      style={{ position: "relative", height: "var(--vz-card-h, 500px)", perspective: 2000, cursor: "pointer" }}
+      onMouseEnter={() => setFlipped(true)} onMouseLeave={() => setFlipped(false)}
       onClick={() => setFlipped((v) => !v)}
-      role="button"
-      tabIndex={0}
-      aria-label={`${p.tab} — voir ce qui le bloque`}
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setFlipped((v) => !v); } }}
     >
       <div className="vz-flip-inner" style={{
-        position: "relative", width: "100%", height: "100%",
-        transformStyle: "preserve-3d",
-        transition: "transform 700ms cubic-bezier(0.4,0.0,0.2,1)",
-        transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+        position: "relative", width: "100%", height: "100%", transformStyle: "preserve-3d",
+        transition: "transform 700ms cubic-bezier(0.4,0,0.2,1)",
+        transform: flipped ? "rotateY(180deg)" : "none",
       }}>
-
-        {/* ——— FACE AVANT : le coup au cœur ——— */}
-        <div style={{ ...faceBase, transform: "rotateY(0deg)", padding: "38px 38px 30px" }}>
-          <span aria-hidden="true" style={{
-            position: "absolute", top: -80, right: -60, width: 260, height: 260, borderRadius: "50%",
-            background: `radial-gradient(circle, ${VZ_EMBER_SOFT}, transparent 62%)`, pointerEvents: "none",
-          }}/>
-
-          {/* En-tête profil */}
-          <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 14 }}>
-            <span style={{
-              width: 48, height: 48, borderRadius: 13, flexShrink: 0,
-              display: "grid", placeItems: "center",
-              backgroundImage: VZ_GOLD_GRAD, color: "#111",
-              boxShadow: "0 8px 20px rgba(216,172,47,0.28), inset 0 1px 0 rgba(255,255,255,0.45)",
-            }}>{p.icon}</span>
-            <div>
-              <div style={{ fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700, color: gold, marginBottom: 3 }}>{p.tab}</div>
-              <div style={{ fontSize: 13, color: muted }}>{p.role}</div>
-            </div>
-          </div>
-
-          {/* Sa phrase intérieure — centrée, dominante */}
-          <div style={{ position: "relative", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <span style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              fontSize: 64, lineHeight: 0, color: VZ_EMBER_LINE, display: "block", height: 30,
-            }} aria-hidden="true">“</span>
+        {/* Face avant */}
+        <div style={{ ...face, ...fade(!flipped) }}>
+          <Hairline />
+          <Head />
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "24px 0" }}>
+            <span aria-hidden="true" style={{ display: "block", width: 28, height: 2, borderRadius: 2, background: gold, marginBottom: 22 }} />
             <p style={{
-              fontSize: 29, lineHeight: 1.32, margin: "16px 0 0", letterSpacing: "-0.02em",
-              fontWeight: 500, color: text, fontStyle: "italic",
+              margin: 0, fontSize: "clamp(28px, 2.9vw, 36px)", lineHeight: 1.22, fontWeight: 500, letterSpacing: "-0.03em",
+              color: "#fff", textWrap: "pretty",
             }}>{p.quote}</p>
           </div>
-
-          {/* Indice de retournement */}
-          <div className="vz-flip-hint" style={{
-            display: "inline-flex", alignItems: "center", gap: 10, alignSelf: "flex-start",
-            padding: "9px 15px", borderRadius: 999,
-            background: VZ_EMBER_SOFT, border: `1px solid ${VZ_EMBER_LINE}`,
-            fontSize: 12.5, fontWeight: 600, letterSpacing: "0.01em", color: VZ_EMBER,
-            transition: "background 220ms ease",
-          }}>
-            Ce qui le bloque vraiment
-            <svg className="vz-flip-arrow" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ transition: "transform 220ms ease" }}>
-              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-            </svg>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, paddingTop: 18, borderTop: `1px solid ${subtle}` }}>
+            <span style={{ fontSize: 14, color: text, fontWeight: 500 }}>Ce qui le bloque vraiment</span>
+            <span className="vz-flip-arrow" aria-hidden="true" style={{
+              width: 36, height: 36, borderRadius: 999, display: "grid", placeItems: "center",
+              border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.75)", fontSize: 15,
+              transition: "border-color 200ms ease, color 200ms ease, transform 200ms ease",
+            }}>→</span>
           </div>
         </div>
-
-        {/* ——— FACE ARRIÈRE : les frictions concrètes ——— */}
-        <div style={{
-          ...faceBase, transform: "rotateY(180deg)", padding: "30px 36px 28px",
-          background: "linear-gradient(150deg, #14110d, #0c0d11)",
-          borderTop: `1px solid ${VZ_EMBER_LINE}`,
-        }}>
-          <span aria-hidden="true" style={{
-            position: "absolute", top: -90, left: -50, width: 240, height: 240, borderRadius: "50%",
-            background: `radial-gradient(circle, ${VZ_EMBER_SOFT}, transparent 60%)`, pointerEvents: "none",
-          }}/>
-
-          {/* mini en-tête : on sait de qui on parle */}
-          <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-            <span style={{
-              width: 30, height: 30, borderRadius: 9, flexShrink: 0,
-              display: "grid", placeItems: "center",
-              background: VZ_EMBER_SOFT, color: VZ_EMBER, border: `1px solid ${VZ_EMBER_LINE}`,
-            }}>
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-              </svg>
-            </span>
-            <span style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: VZ_EMBER }}>
-              Ce qui bloque le {p.short}
-            </span>
-          </div>
-
-          {/* Frictions */}
-          <ul style={{ position: "relative", listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", flex: 1 }}>
+        {/* Face arrière */}
+        <div style={{ ...face, transform: "rotateY(180deg)", ...fade(flipped) }}>
+          <Hairline />
+          <Head />
+          <ol style={{ listStyle: "none", padding: 0, margin: "22px 0 0", display: "flex", flexDirection: "column", flex: 1 }}>
             {p.pains.map((pain, k) => (
-              <li key={pain.ask} style={{
-                display: "flex", gap: 13, padding: "13px 0",
-                borderBottom: k < p.pains.length - 1 ? `1px solid ${subtle}` : "none",
-              }}>
-                <span aria-hidden="true" style={{
-                  flexShrink: 0, marginTop: 6, width: 8, height: 8, borderRadius: "50%",
-                  background: VZ_EMBER, boxShadow: `0 0 0 4px ${VZ_EMBER_SOFT}`,
-                }}/>
+              <li key={pain.ask} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: 12, padding: "12px 0", borderTop: `1px solid ${subtle}` }}>
+                <span style={{ fontFamily: '"Inter", system-ui, sans-serif', fontSize: 13, fontWeight: 600, fontVariantNumeric: "tabular-nums", color: gold, paddingTop: 2 }}>{String(k + 1).padStart(2, "0")}</span>
                 <span>
-                  <span style={{ display: "block", fontSize: 15, fontWeight: 600, color: text, letterSpacing: "-0.01em" }}>{pain.ask}</span>
-                  <span style={{ display: "block", fontSize: 13, lineHeight: 1.45, color: muted, marginTop: 2, textWrap: "pretty" }}>{pain.hurt}</span>
+                  <span style={{ display: "block", fontSize: 15, fontWeight: 600, color: "#fff", letterSpacing: "-0.005em" }}>{pain.ask}</span>
+                  <span style={{ display: "block", fontSize: 13.5, lineHeight: 1.5, color: muted, marginTop: 3, textWrap: "pretty" }}>{pain.hurt}</span>
                 </span>
               </li>
             ))}
-          </ul>
-
-          {/* Coût du statu quo */}
-          <div style={{
-            position: "relative", marginTop: 16,
-            display: "flex", gap: 12, alignItems: "flex-start",
-            padding: "13px 16px", borderRadius: 13,
-            background: VZ_EMBER_SOFT, border: `1px solid ${VZ_EMBER_LINE}`,
-          }}>
-            <span aria-hidden="true" style={{ flexShrink: 0, color: VZ_EMBER, marginTop: 1 }}>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>
-              </svg>
-            </span>
-            <p style={{ fontSize: 12.5, lineHeight: 1.45, margin: 0, color: text, textWrap: "pretty" }}>{p.cost}</p>
-          </div>
+          </ol>
         </div>
-
       </div>
     </div>
   );
@@ -170,7 +103,7 @@ const PainFlipCard = ({ persona, gold, text, muted, subtle, initialFlipped = fal
 const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
   const personas = [
     {
-      tab: "Dirigeant / CEO",
+      tab: "Dirigeant",
       role: "Dirigeant de PME",
       short: "dirigeant",
       icon: (
@@ -213,20 +146,20 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
       {/* En-tête éditorial — nomme la douleur PARTAGÉE */}
       <div className="vz-constat-header" style={{ maxWidth: 820, marginBottom: 48 }}>
         <h2 style={{
-          fontSize: 52, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.05, textWrap: "balance",
+          fontSize: 52, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.08,
         }}>
-          La donnée ne manque pas.{" "}
-          <span style={{ color: muted, fontWeight: 400, fontStyle: "italic" }}>Le temps d'en tirer de l'argent, si.</span>
+          <span style={{ display: "block" }}>Vous pilotez au rétroviseur.</span>
+          <span style={{ display: "block", color: muted }}>Vyzor vous rend le pare-brise.</span>
         </h2>
 
-        <p style={{ fontSize: 18, lineHeight: 1.6, color: muted, marginTop: 22, maxWidth: 720, textWrap: "pretty" }}>
-          Dirigeant ou expert-comptable, c'est la <span style={{ color: text }}>même frustration</span> : tout est dans les chiffres,
-          mais les transformer en décisions qui rapportent demande des heures que personne n'a.
+        <p style={{ fontSize: 18, lineHeight: 1.65, color: muted, marginTop: 24, maxWidth: 640, textWrap: "pretty" }}>
+          Bilan annuel, tableurs, reporting à J+30{"\u00a0"}: la plupart des PME décident sur des données déjà dépassées.
+          Vyzor actualise vos indicateurs en continu pour <span style={{ color: text }}>anticiper la trésorerie, protéger vos marges et arbitrer au bon moment</span>.
         </p>
       </div>
 
       {/* Deux mondes côte à côte — cartes retournables */}
-      <div className="vz-constat-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 22 }}>
+      <div className="vz-constat-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
         {personas.map((p) => (
           <PainFlipCard key={p.tab} persona={p} gold={gold} text={text} muted={muted} subtle={subtle} />
         ))}
@@ -242,10 +175,10 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
           flexShrink: 0, width: 42, height: 42, borderRadius: "50%",
           display: "grid", placeItems: "center",
           backgroundImage: VZ_GOLD_GRAD, color: "#111", fontSize: 19, lineHeight: 1, fontWeight: 700,
-          boxShadow: "0 8px 20px rgba(216,172,47,0.30), inset 0 1px 0 rgba(255,255,255,0.45)",
+          boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
         }} aria-hidden="true">↓</span>
         <p style={{ fontSize: 16.5, lineHeight: 1.5, margin: 0, color: text, letterSpacing: "-0.01em", flex: "1 1 320px" }}>
-          Une seule frustration, deux métiers. <span style={{ color: gold, fontWeight: 600 }}>La réponse tient en trois temps</span> — on vous montre.
+          Une seule frustration, deux métiers. <span style={{ color: gold, fontWeight: 600 }}>La réponse : une équipe d'agents financiers</span> — on vous montre, juste en dessous.
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
           <a href="#produit" style={{
@@ -255,13 +188,13 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
           }}
             onMouseOver={(e) => { e.currentTarget.style.borderColor = "rgba(240,201,73,0.4)"; e.currentTarget.style.color = gold; }}
             onMouseOut={(e) => { e.currentTarget.style.borderColor = subtle; e.currentTarget.style.color = text; }}
-          >Voir la méthode</a>
+          >Voir la démonstration</a>
           <a href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{
             display: "inline-flex", alignItems: "center", gap: 9,
             padding: "12px 20px", borderRadius: 999,
-            border: "1px solid #f2d782", backgroundImage: VZ_GOLD_GRAD,
+            backgroundImage: VZ_GOLD_GRAD,
             color: "#111", fontWeight: 600, fontSize: 14, textDecoration: "none",
-            boxShadow: "0 10px 24px rgba(216,172,47,0.28), inset 0 1px 0 rgba(255,255,255,0.45)",
+            boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
           }}>
             Rejoindre la bêta
             <span aria-hidden="true">→</span>
@@ -271,17 +204,17 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
 
       {/* Réglages */}
       <style>{`
-        .vz-constat .vz-flip:hover .vz-flip-hint { background: rgba(240,144,90,0.20); }
-        .vz-constat .vz-flip:hover .vz-flip-arrow { transform: translateX(3px); }
+        .vz-constat { --vz-card-h: 400px; }
+        @media (max-width: 1100px) { .vz-constat { --vz-card-h: 440px; } }
+        @media (max-width: 920px) { .vz-constat { --vz-card-h: 400px; } }
+        .vz-constat .vz-flip:hover .vz-flip-arrow { border-color: rgba(240,201,73,0.5); color: #f0c949; }
+        @media (prefers-reduced-motion: reduce) { .vz-constat .vz-flip-inner { transition: none !important; } }
         @media (max-width: 920px) {
           .vz-constat .vz-constat-grid { grid-template-columns: 1fr !important; }
           .vz-constat .vz-constat-header h2 { font-size: 38px !important; }
         }
         @media (max-width: 560px) {
           .vz-constat .vz-constat-header h2 { font-size: 32px !important; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .vz-constat .vz-flip-inner { transition: none !important; }
         }
       `}</style>
     </section>

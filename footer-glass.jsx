@@ -11,7 +11,7 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
   const muted = "rgba(255,255,255,0.55)";
   const faint = "rgba(255,255,255,0.32)";
   const subtle = "rgba(255,255,255,0.08)";
-  const goldGrad = "linear-gradient(135deg,#f9e08a 0%, #ebc85b 52%, #d8ac2f 100%)";
+  const goldGrad = "linear-gradient(#f0c949,#f0c949)";
   const cardRef = React.useRef(null);
 
   // —— Liens utiles : uniquement des pages / ancres qui existent ——
@@ -46,13 +46,9 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
 
   const ColTitle = ({ children }) => (
     <div style={{
-      fontFamily: '"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace',
-      fontSize: 10, letterSpacing: "0.22em",
-      color: gold, textTransform: "uppercase",
-      marginBottom: 18,
-      display: "flex", alignItems: "center", gap: 8,
+      fontSize: 14, fontWeight: 600, color: "#fff",
+      marginBottom: 16,
     }}>
-      <span style={{ width: 6, height: 6, borderRadius: 1, background: gold, opacity: 0.7 }} />
       {children}
     </div>
   );
@@ -96,12 +92,7 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
         <div>
           <div style={{ marginBottom: 22 }}>
             <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: "0.18em", color: "#fff" }}>VYZOR</div>
-            <div style={{
-              fontFamily: '"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace',
-              fontSize: 10, letterSpacing: "0.22em", color: gold, textTransform: "uppercase", marginTop: 2,
-            }}>
-              Cockpit financier · v0.9 · bêta
-            </div>
+            
           </div>
 
           <p style={{
@@ -198,20 +189,10 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
 
         <div style={{
           display: "flex", alignItems: "center", gap: 18,
-          fontFamily: '"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace',
-          fontSize: 11, color: faint, letterSpacing: "0.04em",
+          fontSize: 12, color: faint,
         }}>
           <span>© 2026 Vyzor</span>
-          <span style={{ color: subtle }}>·</span>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <span style={{
-              width: 6, height: 6, borderRadius: "50%", background: "#2dd4bf",
-              boxShadow: "0 0 0 3px rgba(45,212,191,0.20)", animation: "vyzorPulse 2s ease-in-out infinite",
-            }} />
-            <span style={{ color: muted }}>Tous systèmes opérationnels</span>
-          </span>
-          <span style={{ color: subtle }}>·</span>
-          <span>Hébergé en France 🇫🇷</span>
+          <span>Données hébergées dans l'UE</span>
         </div>
 
         <div style={{ display: "flex", gap: 22, fontSize: 12, color: muted }}>

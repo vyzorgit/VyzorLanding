@@ -64,7 +64,7 @@
       background: linear-gradient(160deg, rgba(240,201,73,0.045), rgba(240,201,73,0.01));
       transform: translateY(-2px);
       box-shadow:
-        0 18px 40px -16px rgba(216,172,47,0.20),
+        0 1px 2px rgba(0,0,0,0.3),
         inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
@@ -139,20 +139,14 @@
       font-family: "Inter", system-ui, sans-serif;
       font-weight: 500;
       font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
+      
       color: rgba(255,255,255,0.55);
       display: inline-flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 12px;
     }
-    .sec-partners__eyebrow::before {
-      content: "";
-      width: 6px; height: 6px; border-radius: 999px;
-      background: #5be38d;
-      box-shadow: 0 0 10px rgba(91,227,141,0.7);
-    }
+    .sec-partners__eyebrow::before { content: none; }
     .sec-partners__title {
       font-family: "Inter", system-ui, sans-serif;
       font-size: 22px;
@@ -270,10 +264,10 @@
       width: 36px; height: 36px;
       border-radius: 10px;
       display: grid; place-items: center;
-      background: linear-gradient(135deg, #f9e08a 0%, #ebc85b 52%, #d8ac2f 100%);
+      background: linear-gradient(#f0c949,#f0c949);
       color: #1a1410;
       flex-shrink: 0;
-      box-shadow: 0 6px 18px rgba(216,172,47,0.32), inset 0 1px 0 rgba(255,255,255,0.5);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
     .sec-pledge-line__text {
       font-family: "Inter", system-ui, sans-serif;
