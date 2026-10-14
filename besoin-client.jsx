@@ -21,7 +21,7 @@ const PainFlipCard = ({ persona, gold, text, muted, subtle }) => {
   const [flipped, setFlipped] = React.useState(false);
   const p = persona;
   const face = {
-    position: "absolute", inset: 0,
+    position: "relative", gridArea: "1 / 1", minHeight: "var(--vz-card-h, 400px)", boxSizing: "border-box",
     backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden",
     borderRadius: 20, overflow: "hidden",
     background: "linear-gradient(180deg, #11141d 0%, #0b0d14 100%)",
@@ -47,15 +47,12 @@ const PainFlipCard = ({ persona, gold, text, muted, subtle }) => {
   );
   const fade = (on) => ({ opacity: on ? 1 : 0, transition: "opacity 0s linear 350ms" });
   return (
-    <div className="vz-flip" role="button" tabIndex={0}
-      aria-label={`${p.tab} : voir ce qui le bloque`}
-      style={{ position: "relative", height: "var(--vz-card-h, 500px)", perspective: 2000, cursor: "pointer" }}
+    <div className="vz-flip"
+      style={{ position: "relative", minHeight: "var(--vz-card-h, 400px)", display: "grid", perspective: 2000, cursor: "pointer" }}
       onMouseEnter={() => setFlipped(true)} onMouseLeave={() => setFlipped(false)}
-      onClick={() => setFlipped((v) => !v)}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setFlipped((v) => !v); } }}
     >
       <div className="vz-flip-inner" style={{
-        position: "relative", width: "100%", height: "100%", transformStyle: "preserve-3d",
+        position: "relative", width: "100%", display: "grid", transformStyle: "preserve-3d",
         transition: "transform 700ms cubic-bezier(0.4,0,0.2,1)",
         transform: flipped ? "rotateY(180deg)" : "none",
       }}>
@@ -96,6 +93,20 @@ const PainFlipCard = ({ persona, gold, text, muted, subtle }) => {
           </ol>
         </div>
       </div>
+      {/* Commande : bouton réel, ne porte que le libellé d'action ; les deux faces restent lisibles */}
+      <button type="button" className="vz-flip-btn" aria-expanded={flipped}
+        onClick={() => setFlipped((v) => !v)}
+        style={{
+          position: "absolute", inset: 0, zIndex: 2, width: "100%", height: "100%",
+          background: "transparent", border: 0, padding: 0, margin: 0, borderRadius: 20,
+          cursor: "pointer", color: "transparent", fontSize: 0,
+        }}
+      >
+        <span style={{
+          position: "absolute", width: 1, height: 1, margin: -1, padding: 0, overflow: "hidden",
+          clip: "rect(0 0 0 0)", whiteSpace: "nowrap", border: 0, fontSize: 14,
+        }}>{flipped ? "Voir la citation" : "Voir les frictions"}</span>
+      </button>
     </div>
   );
 };
@@ -207,7 +218,8 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
         .vz-constat { --vz-card-h: 400px; }
         @media (max-width: 1100px) { .vz-constat { --vz-card-h: 440px; } }
         @media (max-width: 920px) { .vz-constat { --vz-card-h: 400px; } }
-        .vz-constat .vz-flip:hover .vz-flip-arrow { border-color: rgba(240,201,73,0.5); color: #f0c949; }
+        .vz-constat .vz-flip-btn:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
+        .vz-constat .vz-flip:hover .vz-flip-arrow, .vz-constat .vz-flip:focus-within .vz-flip-arrow { border-color: rgba(240,201,73,0.5); color: #f0c949; }
         @media (prefers-reduced-motion: reduce) { .vz-constat .vz-flip-inner { transition: none !important; } }
         @media (max-width: 920px) {
           .vz-constat .vz-constat-grid { grid-template-columns: 1fr !important; }

@@ -218,9 +218,11 @@ const ParticleField = () => {
 
 // —— Scroll velocity : bandeaux qui défilent, accélérés et inversés par le scroll ——
 const vzScrollVel = { v: 0, last: typeof window !== "undefined" ? window.scrollY : 0, t: 0 };
-const ScrollVelocityRow = ({ children, baseVelocity = 20, direction = 1 }) => {
+const ScrollVelocityRow = ({ children, baseVelocity = 20, direction = 1, paused = false }) => {
   const trackRef = React.useRef(null);
   const unitRef = React.useRef(null);
+  const pausedRef = React.useRef(paused);
+  React.useEffect(() => { pausedRef.current = paused; }, [paused]);
   React.useEffect(() => {
     const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
@@ -229,6 +231,7 @@ const ScrollVelocityRow = ({ children, baseVelocity = 20, direction = 1 }) => {
       raf = requestAnimationFrame(tick);
       const dt = Math.min(0.05, (now - prev) / 1000); prev = now;
       const y = window.scrollY; const vel = dt > 0 ? (y - lastY) / dt : 0; lastY = y;
+      if (pausedRef.current) return; // WCAG 2.2.2 : bandeau en pause
       smooth += (vel - smooth) * 0.12;
       if (smooth < -5) dirFactor = -1; else if (smooth > 5) dirFactor = 1;
       const boost = Math.min(Math.abs(smooth) / 1000, 5);
@@ -270,6 +273,7 @@ const CinematicHero = ({
   const gold = "#f0c949";
   const text = "rgba(255,255,255,0.94)";
   const muted = "rgba(255,255,255,0.6)";
+  const [tapePaused, setTapePaused] = React.useState(false);
   return (
     <section className="vz-hero-stage" style={{
       position: "relative", width: "100%", minHeight: "100vh",
@@ -291,25 +295,37 @@ const CinematicHero = ({
         @media (max-width: 720px) { .vz-hero-stage { padding: 106px 0 56px !important; } }
         @media (max-height: 760px) { .vz-scroll-cue { display: none; } }
         .vz-velocity { font-size: clamp(48px, 8.4vw, 120px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; }
-        @media (prefers-reduced-motion: reduce) { .vz-hero-in { animation: none !important; } }
+        .vz-h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: -1px; }
+        .vz-tape-pause { display: inline-flex; align-items: center; margin-top: 14px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.28); background: transparent; color: rgba(255,255,255,0.8); font: 500 13px "Inter", system-ui, sans-serif; cursor: pointer; }
+        .vz-tape-pause:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+        .vz-tape-pause:focus-visible, .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
+        @media (prefers-reduced-motion: reduce) {
+          .vz-hero-in { animation: none !important; }
+          /* Pas de défilement : le titre h1 devient le titre visible, avec retour à la ligne */
+          .vz-velocity, .vz-tape-pause { display: none !important; }
+          .vz-h1 { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; margin: 0; padding: 0 24px; max-width: 960px; text-align: center; font-size: clamp(40px, 8.4vw, 96px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; color: #fff; text-wrap: balance; }
+        }
       `}</style>
-      <h1 style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap", margin: -1 }}>{headline} {headlineAccent}</h1>
+      <h1 className="vz-h1">{headline} <span style={{ color: gold }}>{headlineAccent}</span></h1>
       <div className="vz-hero-in vz-velocity" aria-hidden="true" style={{
         position: "relative", width: "100vw", display: "flex", flexDirection: "column", gap: "0.06em", animationDelay: "80ms",
       }}>
-        <ScrollVelocityRow baseVelocity={14} direction={1}>
+        <ScrollVelocityRow baseVelocity={14} direction={1} paused={tapePaused}>
           <VzVelocityWords words={["Comprenez", "Analysez", "Anticipez", "Pilotez"]} color="#fff" accent="#fff" />
         </ScrollVelocityRow>
-        <ScrollVelocityRow baseVelocity={14} direction={-1}>
+        <ScrollVelocityRow baseVelocity={14} direction={-1} paused={tapePaused}>
           <VzVelocityWords words={["vos chiffres, simplement."]} color={gold} accent={gold} />
         </ScrollVelocityRow>
         <div style={{ position: "absolute", inset: "0 auto 0 0", width: "18%", pointerEvents: "none", background: "linear-gradient(90deg,#070a14 10%,rgba(7,10,20,0))" }} />
         <div style={{ position: "absolute", inset: "0 0 0 auto", width: "18%", pointerEvents: "none", background: "linear-gradient(270deg,#070a14 10%,rgba(7,10,20,0))" }} />
       </div>
       <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 960, padding: "0 24px" }}>
+        <button type="button" className="vz-tape-pause" onClick={() => setTapePaused((v) => !v)}>
+          {tapePaused ? "Reprendre l'animation" : "Mettre en pause l'animation"}
+        </button>
         <p className="vz-hero-in" style={{
           fontSize: "clamp(16px, 1.5vw, 18px)", lineHeight: 1.6, color: muted,
-          maxWidth: 560, margin: "clamp(36px, 4vw, 48px) auto 0", textWrap: "pretty",
+          maxWidth: 560, margin: "clamp(24px, 3vw, 32px) auto 0", textWrap: "pretty",
           animationDelay: "180ms",
         }}>
           Vyzor analyse votre passé, éclaire votre présent et projette votre futur financier.

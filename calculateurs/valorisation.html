@@ -138,6 +138,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 </head>
 <body>
+<a href="#contenu" style="position:absolute;left:-9999px;top:8px;z-index:100000;padding:10px 16px;background:#0a0a0a;color:#f0c949;border:2px solid #f0c949;border-radius:8px;font:600 14px Inter,system-ui,sans-serif;text-decoration:none" onfocus="this.style.left='12px'" onblur="this.style.left='-9999px'">Aller au contenu</a>
 <div id="root"></div>
   <noscript>
     <div style="max-width:820px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.65;">
@@ -470,7 +471,7 @@ function App() {
       <PageBg />
       <VyzorTopNav current="hub" />
 
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 1040, margin: "0 auto", padding: "120px 20px 48px" }}>
+      <main id="contenu" tabIndex={-1} style={{ position: "relative", zIndex: 1, maxWidth: 1040, margin: "0 auto", padding: "120px 20px 48px", outline: "none" }}>
         <a href="../calculateurs.html" style={{
           display: "inline-flex", alignItems: "center", gap: 6, color: T.textMuted,
           fontSize: 12, textDecoration: "none", marginBottom: 24,
@@ -672,7 +673,7 @@ function App() {
         </div>
 
         <CtaFooter />
-      </div>
+      </main>
     </div>
   );
 }

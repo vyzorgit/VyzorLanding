@@ -1,5 +1,14 @@
 // legal-glass.jsx — Pages légales VYZOR (Mentions légales / CGU + Confidentialité)
 // DA cohérente : fond #070a14, accent or #f0c949, surfaces glass, typo Inter + JetBrains Mono.
+//
+// 14/10/2026 — chantier conformité web (brief audit/briefs/2026-10-14-conformite-web.md) :
+//   - mentions légales complétées selon l'article 6-III de la LCEN (loi 2004-575) ;
+//   - politique de confidentialité limitée à ce que le SITE VITRINE traite réellement
+//     (candidature bêta via Web3Forms, journaux de l'hébergeur, Google Fonts) ; l'application
+//     (espace connecté) a sa propre politique sur app.vyzor.fr/privacy ;
+//   - section « Cookies et traceurs » ancrée (#cookies) avec l'inventaire exact ;
+//   - toute information légale inconnue est marquée [À REMPLIR] ou [À CONFIRMER] : ne jamais
+//     inventer de nom, numéro, adresse ou hébergeur.
 
 const VZ_LEGAL = {
   gold: "#f0c949",
@@ -10,15 +19,15 @@ const VZ_LEGAL = {
 };
 
 // —— Primitives de rendu ——
-const LegalArticle = ({ n, title, children }) => (
-  <section className="vz-reveal" style={{ marginBottom: 40 }}>
+const LegalArticle = ({ n, id, title, children }) => (
+  <section id={id} className="vz-reveal" style={{ marginBottom: 40, scrollMarginTop: 120 }}>
     <h2 style={{
       fontSize: "clamp(20px, 2.4vw, 26px)", fontWeight: 600, lineHeight: 1.2,
       color: "#fff", margin: "0 0 18px", letterSpacing: "-0.02em",
       display: "flex", alignItems: "baseline", gap: 14,
     }}>
       {n != null && (
-        <span style={{
+        <span aria-hidden="true" style={{
           fontFamily: '"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace',
           fontSize: 13, fontWeight: 500, color: VZ_LEGAL.gold,
           letterSpacing: "0.08em", flexShrink: 0,
@@ -55,7 +64,25 @@ const Bullets = ({ items }) => (
 );
 
 const Strong = ({ children }) => <strong style={{ color: VZ_LEGAL.text, fontWeight: 600 }}>{children}</strong>;
-const Mail = () => <a href="mailto:admin@vyzor.fr" style={{ color: VZ_LEGAL.gold, textDecoration: "none" }}>admin@vyzor.fr</a>;
+// Liens : soulignés (WCAG 1.4.1 — la couleur seule ne suffit pas à distinguer un lien).
+const A = ({ href, children, external = false }) => (
+  <a
+    href={href}
+    style={{ color: VZ_LEGAL.gold, textDecoration: "underline", textUnderlineOffset: 3 }}
+    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+  >
+    {children}
+    {external ? <span className="sr-only"> (nouvel onglet)</span> : null}
+  </a>
+);
+const Mail = () => <A href="mailto:contact@vyzor.fr">contact@vyzor.fr</A>;
+// Information légale manquante : jamais inventée, toujours signalée.
+const Todo = ({ children }) => (
+  <mark style={{
+    background: "rgba(240,201,73,0.14)", color: VZ_LEGAL.gold, borderRadius: 4,
+    padding: "0 4px", fontWeight: 600,
+  }}>[{children}]</mark>
+);
 
 const LegalShell = ({ children }) => (
   <div className="vz-page-pad" style={{ maxWidth: 880, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
@@ -74,6 +101,10 @@ const LegalShell = ({ children }) => (
         background: "linear-gradient(90deg, transparent, rgba(240,201,73,0.45), transparent)",
       }} />
       {children}
+      <style>{`
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+          overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+      `}</style>
     </div>
   </div>
 );
@@ -81,42 +112,66 @@ const LegalShell = ({ children }) => (
 // ============ MENTIONS LÉGALES & CGU ============
 const MentionsLegales = () => (
   <LegalShell>
-    <LegalArticle n="01" title="Mentions légales">
+    <LegalArticle n="01" id="editeur" title="Mentions légales (article 6-III de la loi 2004-575 du 21 juin 2004)">
       <Sub>Éditeur du Site</Sub>
       <P>
-        Le présent site web, accessible à l'URL <Strong>www.vyzor.fr</Strong>, est édité par Antoine CAYER,
-        agissant pour le compte de la société VYZOR, Société par Actions Simplifiée (SAS) en cours de formation (immatriculation au RCS de Paris en cours ;
-        le numéro RCS, le capital social et le numéro de TVA intracommunautaire seront indiqués dès leur attribution).
-        Adresse de domiciliation : 2 rue Huguette Schwartz, 75014 Paris. Directeur de la publication : Antoine CAYER.
-        Contact : <Mail />.
+        Le site <Strong>www.vyzor.fr</Strong> est édité par la société <Strong>VYZOR</Strong>, Société par
+        Actions Simplifiée en cours de formation, au capital de{" "}
+        <Todo>À REMPLIR : capital social</Todo>, immatriculée au Registre du commerce et des sociétés de{" "}
+        <Todo>À REMPLIR : ville du greffe</Todo> sous le numéro <Todo>À REMPLIR : numéro RCS</Todo>,
+        SIRET <Todo>À REMPLIR</Todo>, numéro de TVA intracommunautaire <Todo>À REMPLIR</Todo>.
       </P>
-      <Sub>Hébergement</Sub>
       <P>
-        Le Site est hébergé par la société Vercel, Inc., dont le siège social est situé au 340 S Lemon Ave #4133,
-        Walnut, California 91789, États-Unis (vercel.com — +1 559 288 7060). Les données applicatives et financières sont hébergées séparément
-        sur des serveurs situés au sein de l'Union Européenne par Google Cloud EMEA Limited, 70 Sir John Rogerson's Quay,
-        Dublin 2, Irlande.
+        Siège social : <Strong>2 rue Huguette Schwartz, 75014 Paris</Strong>, France{" "}
+        <Todo>À CONFIRMER : adresse reprise des anciennes pages légales</Todo>.
+        Téléphone : <Todo>À REMPLIR : numéro de téléphone</Todo>. Courriel : <Mail />.
+      </P>
+      <Sub>Directeur de la publication</Sub>
+      <P>Antoine CAYER, <Todo>À CONFIRMER : qualité</Todo>.</P>
+      <Sub>Hébergement du site vitrine</Sub>
+      <P>
+        Vercel, Inc., 340 S Lemon Ave #4133, Walnut, California 91789, États-Unis — téléphone
+        +1 559 288 7060 — <A href="https://vercel.com" external>vercel.com</A>.
+      </P>
+      <Sub>Hébergement de l'application et des données</Sub>
+      <P>
+        L'application VYZOR (espace connecté, app.vyzor.fr) et les données qu'elle traite sont hébergées
+        par Google Cloud EMEA Limited (services Firebase), 70 Sir John Rogerson's Quay, Dublin 2, Irlande —
+        téléphone <Todo>À REMPLIR</Todo> — serveurs situés dans l'Union européenne.
+        {" "}<Todo>À CONFIRMER : Supabase, Inc. (base PostgreSQL) selon l'état de la production ; si utilisé, adresse et région</Todo>.
+      </P>
+      <Sub>Contact</Sub>
+      <P>
+        Pour toute question relative au Site ou à vos données : <Mail />. Voir aussi la{" "}
+        <A href="confidentialite.html">politique de confidentialité</A>.
       </P>
     </LegalArticle>
 
-    <LegalArticle n="02" title="Objet des CGU">
+    <LegalArticle n="02" id="objet" title="Objet des CGU">
       <P>
-        Les présentes Conditions Générales d'Utilisation ont pour objet d'encadrer l'accès et l'utilisation du Site
-        et des services VYZOR par tout internaute (ci-après l'« Utilisateur »). La navigation sur le Site emporte
-        acceptation sans réserve des présentes CGU.
+        Les présentes Conditions Générales d'Utilisation encadrent l'accès et l'utilisation du site
+        www.vyzor.fr par tout internaute (ci-après l'« Utilisateur »). La navigation sur le Site emporte
+        acceptation des présentes CGU. L'utilisation de l'application VYZOR (espace connecté) est régie par
+        ses propres conditions, acceptées lors de la création du compte et consultables sur{" "}
+        <A href="https://app.vyzor.fr/cgu" external>app.vyzor.fr/cgu</A>.
       </P>
     </LegalArticle>
 
-    <LegalArticle n="03" title="Accès au Site et aux services">
+    <LegalArticle n="03" id="acces" title="Accès au Site et aux services">
       <P>
         L'Éditeur s'efforce de permettre l'accès au Site 24 heures sur 24, 7 jours sur 7, sauf en cas de force majeure
         ou d'un événement hors du contrôle de l'Éditeur, et sous réserve des éventuelles pannes et interventions de
         maintenance nécessaires au bon fonctionnement du Site et des services. La responsabilité de l'Éditeur ne saurait
         être engagée en cas d'impossibilité d'accès à ce Site et/ou d'utilisation des services.
       </P>
+      <P>
+        Les calculateurs proposés sur le Site (BFR, point mort, fiscal, reporting, valorisation) fournissent des
+        estimations indicatives à partir des valeurs saisies par l'Utilisateur. Elles ne constituent ni un conseil
+        financier, ni un conseil juridique ou fiscal. Les valeurs saisies ne sont pas transmises à l'Éditeur.
+      </P>
     </LegalArticle>
 
-    <LegalArticle n="04" title="Propriété intellectuelle">
+    <LegalArticle n="04" id="propriete" title="Propriété intellectuelle">
       <P>
         La structure générale du Site, ainsi que les textes, graphiques, images, sons, algorithmes, bases de données
         et vidéos la composant, sont la propriété de l'Éditeur ou de ses partenaires. Toute représentation, reproduction,
@@ -126,7 +181,7 @@ const MentionsLegales = () => (
       </P>
     </LegalArticle>
 
-    <LegalArticle n="05" title="Limitation de responsabilité">
+    <LegalArticle n="05" id="responsabilite" title="Limitation de responsabilité">
       <P>
         Les informations contenues sur ce Site sont aussi précises que possible et le Site est périodiquement remis à jour.
         Toutefois, il peut contenir des inexactitudes, des omissions ou des lacunes. Les services de VYZOR (notamment en
@@ -134,134 +189,170 @@ const MentionsLegales = () => (
         professionnel du chiffre, conserve l'entière responsabilité de l'exploitation des données et des conseils financiers
         prodigués à ses propres clients.
       </P>
+      <P>
+        Le Site contient des liens vers des sites tiers (prise de rendez-vous, profils professionnels). L'Éditeur
+        n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu et à leurs pratiques
+        en matière de données personnelles.
+      </P>
     </LegalArticle>
 
-    <LegalArticle n="06" title="Droit applicable et juridiction compétente">
+    <LegalArticle n="06" id="donnees" title="Données personnelles et cookies">
+      <P>
+        Les traitements de données personnelles réalisés via le Site sont décrits dans la{" "}
+        <A href="confidentialite.html">politique de confidentialité</A>. Le Site ne dépose aucun cookie ni traceur
+        soumis à consentement (voir la section{" "}
+        <A href="confidentialite.html#cookies">Cookies et traceurs</A>).
+      </P>
+    </LegalArticle>
+
+    <LegalArticle n="07" id="droit" title="Droit applicable et juridiction compétente">
       <P>
         Les présentes CGU sont régies par la loi française. En cas de litige n'ayant pu faire l'objet d'un accord à
-        l'amiable, les tribunaux du ressort de la Cour d'Appel de Paris seront seuls compétents.
+        l'amiable, les tribunaux du ressort de la Cour d'appel de Paris seront seuls compétents, sous réserve des
+        règles de compétence impératives applicables aux consommateurs.
       </P>
     </LegalArticle>
   </LegalShell>
 );
 
-// ============ POLITIQUE DE CONFIDENTIALITÉ ============
+// ============ POLITIQUE DE CONFIDENTIALITÉ (site vitrine) ============
 const PolitiqueConfidentialite = () => (
   <LegalShell>
-    <LegalArticle n="01" title="Préambule et champ d'application">
+    <LegalArticle n="01" id="preambule" title="Préambule et champ d'application">
       <P>
-        La société VYZOR (en cours de formation) accorde une importance majeure à la confidentialité et à la sécurité
-        des données à caractère personnel et des données financières traitées via sa plateforme. La présente politique
-        s'inscrit dans le strict respect de la Loi Informatique et Libertés du 6 janvier 1978 modifiée et du
-        Règlement (UE) 2016/679 (RGPD).
+        La présente politique décrit les traitements de données à caractère personnel réalisés par VYZOR via le
+        site vitrine <Strong>www.vyzor.fr</Strong>, dans le respect du Règlement (UE) 2016/679 (RGPD) et de la loi
+        Informatique et Libertés du 6 janvier 1978 modifiée.
+      </P>
+      <P>
+        L'application VYZOR (espace connecté, app.vyzor.fr), qui traite des données comptables et financières,
+        dispose de sa propre politique de confidentialité, consultable sur{" "}
+        <A href="https://app.vyzor.fr/privacy" external>app.vyzor.fr/privacy</A>.
       </P>
     </LegalArticle>
 
-    <LegalArticle n="02" title="Le responsable du traitement">
+    <LegalArticle n="02" id="responsable" title="Responsable du traitement">
       <P>
-        Le responsable du traitement des données collectées via le Site est la société VYZOR, Société par Actions
-        Simplifiée en cours de formation, dont le siège social est situé au 2 rue Huguette Schwartz, 75014 Paris.
-        Pour toute question relative à la gestion de vos données, vous pouvez nous contacter à l'adresse suivante : <Mail />.
+        Le responsable du traitement est la société VYZOR, Société par Actions Simplifiée en cours de formation
+        (RCS <Todo>À REMPLIR</Todo>), dont le siège social est
+        situé 2 rue Huguette Schwartz, 75014 Paris, France <Todo>À CONFIRMER : adresse</Todo>. Contact : <Mail />, téléphone{" "}
+        <Todo>À REMPLIR</Todo>.
+      </P>
+      <P>
+        Aucun délégué à la protection des données n'est désigné ; toute demande relative à vos données
+        s'adresse à <Mail />.
       </P>
     </LegalArticle>
 
-    <LegalArticle n="03" title="Nature des données collectées">
-      <P>Dans le cadre de l'exploitation de la plateforme, VYZOR est amenée à collecter :</P>
+    <LegalArticle n="03" id="donnees" title="Données collectées sur le Site">
       <Bullets items={[
-        <span><Strong>Données du formulaire bêta</Strong> : nom et prénom, email professionnel, entreprise — utilisées uniquement pour traiter votre candidature et vous recontacter.</span>,
-        <span><Strong>Données d'identification</Strong> : nom, prénom, adresse email professionnelle, numéro de téléphone.</span>,
-        <span><Strong>Données professionnelles</Strong> : nom du cabinet d'expertise comptable, fonction, nombre de collaborateurs, logiciel de production comptable utilisé.</span>,
-        <span><Strong>Données financières et d'exploitation</Strong> : Fichiers d'Écritures Comptables (FEC), données de facturation et indicateurs de performance (KPIs) des clients de l'Utilisateur.</span>,
-        <span><Strong>Données de navigation</Strong> : adresse IP, type de navigateur, pages visitées, horodatage des requêtes (journaux techniques de l'hébergeur, conservés à des fins de sécurité ; aucun cookie de mesure d'audience, cf. Article 9).</span>,
+        <span><Strong>Candidature à la bêta</Strong> (formulaire « Réservez votre place ») : nom et prénom, adresse email professionnelle, nom de l'entreprise. Ces trois champs sont obligatoires ; aucun autre champ n'est collecté.</span>,
+        <span><Strong>Demandes par courriel</Strong> adressées à contact@vyzor.fr : votre adresse email et le contenu de votre message.</span>,
+        <span><Strong>Prise de rendez-vous</Strong> : le bouton « Demander une démo » renvoie vers Calendly, service tiers qui collecte vos données sur son propre site, selon sa propre politique.</span>,
+        <span><Strong>Journaux techniques de l'hébergeur</Strong> : adresse IP, type de navigateur, page demandée et horodatage, conservés par Vercel à des fins de sécurité et de fonctionnement du service.</span>,
+        <span><Strong>Polices de caractères</Strong> : les polices Inter et JetBrains Mono sont chargées depuis Google Fonts ; votre adresse IP est transmise aux serveurs de Google lors de ce chargement.</span>,
+        <span><Strong>Calculateurs</Strong> : les valeurs saisies sont traitées dans votre navigateur et ne sont pas transmises à VYZOR.</span>,
+      ]} />
+      <P>
+        Le Site ne collecte ni numéro de téléphone, ni données financières, ni données de mesure d'audience.
+        Aucune newsletter n'est proposée à ce jour.
+      </P>
+    </LegalArticle>
+
+    <LegalArticle n="04" id="finalites" title="Finalités et bases légales">
+      <Bullets items={[
+        <span><Strong>Traiter votre candidature à la bêta et vous recontacter</Strong> — base légale : mesures précontractuelles prises à votre demande (article 6.1.b du RGPD).</span>,
+        <span><Strong>Répondre à vos demandes</Strong> envoyées par courriel — base légale : mesures précontractuelles ou intérêt légitime de VYZOR à répondre aux personnes qui la sollicitent (article 6.1.f).</span>,
+        <span><Strong>Assurer la sécurité et le bon fonctionnement du Site</Strong> (journaux techniques) — base légale : intérêt légitime (article 6.1.f).</span>,
+        <span><Strong>Afficher le Site</Strong> (chargement des polices) — base légale : intérêt légitime (article 6.1.f).</span>,
+        <span><Strong>Prospection commerciale</Strong> : VYZOR ne réalise aucune prospection à partir des données du Site. Si une newsletter était mise en place, elle reposerait sur votre consentement préalable, retirable à tout moment via un lien de désinscription.</span>,
       ]} />
     </LegalArticle>
 
-    <LegalArticle n="04" title="Finalités et bases légales">
-      <P>Les traitements mis en œuvre répondent aux finalités suivantes :</P>
+    <LegalArticle n="05" id="destinataires" title="Destinataires, sous-traitants et transferts hors UE">
+      <P>Les données du Site sont accessibles à l'équipe fondatrice de VYZOR et aux prestataires suivants :</P>
       <Bullets items={[
-        <span><Strong>Exécution du contrat</Strong> (ou mesures précontractuelles) : création du compte utilisateur, accès à l'application, génération des tableaux de bord automatisés, support technique.</span>,
-        <span><Strong>Intérêt légitime</Strong> : amélioration de l'interface utilisateur, correction de bugs (debugging), statistiques d'audience du Site.</span>,
-        <span><Strong>Consentement</Strong> : envoi de newsletters, communications marketing, dépôt de cookies non essentiels. L'Utilisateur peut retirer son consentement à tout moment sans que cela n'affecte la licéité du traitement fondé sur le consentement donné avant le retrait de celui-ci.</span>,
+        <span><Strong>Vercel, Inc.</Strong> (États-Unis) : hébergement du Site et journaux techniques. Transfert hors UE encadré par les clauses contractuelles types de la Commission européenne <Todo>À CONFIRMER : certification Data Privacy Framework</Todo>.</span>,
+        <span><Strong>Web3Forms</Strong> <Todo>À REMPLIR : raison sociale, pays</Todo> : acheminement des candidatures bêta vers la boîte email de VYZOR, sans exploitation pour son propre compte. <Todo>À CONFIRMER : localisation des serveurs et garanties de transfert</Todo>.</span>,
+        <span><Strong>Google Ireland Ltd</Strong> (Irlande) : fourniture des polices de caractères (Google Fonts).</span>,
+        <span><Strong>Calendly, LLC</Strong> (États-Unis) : uniquement si vous prenez rendez-vous, sur le site de Calendly.</span>,
+        <span><Strong>Fournisseur de messagerie de VYZOR</Strong> <Todo>À REMPLIR : nom du service de messagerie recevant contact@vyzor.fr</Todo> : réception et stockage des candidatures et des courriels.</span>,
+      ]} />
+      <P>
+        Les bibliothèques techniques du Site (React, Babel) sont chargées depuis le CDN unpkg.com ; ce chargement
+        transmet votre adresse IP à ce CDN, sans dépôt de cookie ni traceur. Aucune donnée n'est vendue ni cédée à
+        des tiers.
+      </P>
+    </LegalArticle>
+
+    <LegalArticle n="06" id="durees" title="Durées de conservation">
+      <Bullets items={[
+        <span><Strong>Candidatures bêta et échanges par courriel</Strong> : 3 ans à compter du dernier contact de votre part, puis suppression.</span>,
+        <span><Strong>Comptes créés à l'issue de la bêta</Strong> : durées définies par la politique de confidentialité de l'application.</span>,
+        <span><Strong>Journaux techniques de l'hébergeur</Strong> : 12 mois au plus <Todo>À CONFIRMER : durée de rétention effective chez Vercel</Todo>.</span>,
       ]} />
     </LegalArticle>
 
-    <LegalArticle n="05" title="Sécurité et protection des modèles d'IA">
+    <LegalArticle n="07" id="droits" title="Vos droits">
       <P>
-        VYZOR met en œuvre toutes les mesures techniques et organisationnelles appropriées pour garantir un niveau de
-        sécurité adapté au risque.
+        Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation du traitement, d'opposition
+        et de portabilité de vos données, ainsi que du droit de définir des directives relatives au sort de vos
+        données après votre décès. Lorsque le traitement repose sur votre consentement, vous pouvez le retirer à tout
+        moment, sans que cela n'affecte la licéité du traitement effectué avant le retrait.
       </P>
       <P>
-        <Strong>Clause stricte relative à l'Intelligence Artificielle</Strong> : VYZOR s'engage formellement. Aucune donnée
-        financière (FEC, bilans, liasses) importée par l'Utilisateur n'est, ni ne sera, utilisée pour entraîner des modèles
-        de langages (LLM) publics ou des intelligences artificielles partagées avec des tiers. Les environnements de calcul
-        sont isolés.
+        Pour exercer ces droits, écrivez à <Mail /> ou par courrier au siège social. Nous répondons dans un délai
+        d'un (1) mois à compter de la réception de la demande ; un justificatif d'identité peut être demandé en cas
+        de doute raisonnable sur l'identité du demandeur.
       </P>
       <P>
-        <Strong>Zero Data Retention (ZDR)</Strong> : les appels API vers les fournisseurs de modèles de langage sont effectués
-        avec les options de non-rétention des données lorsque celles-ci sont disponibles. Cela signifie que les fournisseurs
-        de LLM ne conservent pas les données transmises par VYZOR après le traitement de chaque requête.
+        Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la
+        Commission nationale de l'informatique et des libertés (CNIL), 3 place de Fontenoy, TSA 80715, 75334 Paris
+        Cedex 07 — <A href="https://www.cnil.fr" external>www.cnil.fr</A>.
       </P>
     </LegalArticle>
 
-    <LegalArticle n="06" title="Sous-traitants et transfert de données">
-      <P>Dans le cadre de l'exploitation de la plateforme, VYZOR fait appel aux sous-traitants suivants :</P>
+    <LegalArticle n="08" id="securite" title="Sécurité">
+      <P>
+        Le Site est servi exclusivement en HTTPS, avec des en-têtes de sécurité (politique de sécurité du contenu,
+        HSTS, interdiction d'intégration dans un cadre tiers). Le Site vitrine ne traite aucune donnée financière :
+        celles-ci sont traitées uniquement dans l'application, dont les mesures de sécurité sont décrites sur la
+        page <A href="securite.html">Sécurité</A> et dans sa politique de confidentialité.
+      </P>
+    </LegalArticle>
+
+    <LegalArticle n="09" id="cookies" title="Cookies et traceurs">
+      <P>
+        Le Site <Strong>ne dépose aucun cookie</Strong>, n'écrit rien dans le stockage local de votre navigateur et
+        n'utilise aucun outil de mesure d'audience ni de publicité (ni Google Analytics, ni pixel, ni bouton de
+        partage traçant). Inventaire des ressources tierces chargées par le Site :
+      </P>
       <Bullets items={[
-        <span><Strong>Hébergement de l'application et des données financières</Strong> : Google Firebase (Google Cloud Platform), avec une configuration ciblant les régions de l'Union Européenne.</span>,
-        <span><Strong>Hébergement du site vitrine</Strong> : Vercel, Inc. (serveurs pouvant être situés hors UE, transferts encadrés par les clauses contractuelles types). Le site vitrine ne collecte pas de données financières.</span>,
-        <span><Strong>Fournisseurs de modèles de langage (LLM)</Strong> : Anthropic (API Claude) et/ou OpenAI (API GPT), utilisés exclusivement en inférence (pas d'entraînement). Les données sont transmises via API sécurisée avec option Zero Data Retention activée.</span>,
-        <span><Strong>Formulaire de candidature bêta</Strong> : Web3Forms, qui achemine les informations saisies vers la boîte email de VYZOR sans les exploiter pour son propre compte.</span>,
-        <span><Strong>Polices de caractères</Strong> : Google Fonts (Google Ireland Ltd). Le chargement des polices transmet votre adresse IP aux serveurs de Google ; aucun cookie n'est déposé.</span>,
+        <span><Strong>unpkg.com</Strong> (React, ReactDOM, Babel) : bibliothèques d'affichage — strictement nécessaires au fonctionnement, aucun traceur.</span>,
+        <span><Strong>fonts.googleapis.com / fonts.gstatic.com</Strong> (Google Fonts) : polices de caractères — aucun cookie déposé ; transmission de l'adresse IP (voir article 05).</span>,
+        <span><Strong>api.web3forms.com</Strong> : appelé uniquement lorsque vous envoyez le formulaire de candidature bêta.</span>,
+        <span><Strong>calendly.com, linkedin.com</Strong> : simples liens sortants, aucun script de ces services n'est chargé sur le Site.</span>,
       ]} />
       <P>
-        Tous les sous-traitants de VYZOR sont soumis à des obligations de confidentialité et de sécurité au moins aussi
-        strictes que celles de la présente politique. En cas de transfert de données hors de l'Union Européenne, VYZOR
-        s'assure que des garanties appropriées sont mises en place (clauses contractuelles types de la Commission européenne,
-        ou décision d'adéquation).
+        Aucune de ces ressources n'est un traceur soumis à consentement au sens de l'article 82 de la loi
+        Informatique et Libertés et des lignes directrices de la CNIL. C'est pourquoi aucun bandeau de consentement
+        n'est affiché. Si VYZOR venait à utiliser un traceur soumis à consentement, un bandeau permettant de
+        l'accepter ou de le refuser aussi simplement serait ajouté et la présente politique mise à jour.
+      </P>
+      <P>
+        L'application VYZOR (espace connecté) utilise uniquement des mécanismes strictement nécessaires à la
+        connexion et aux préférences d'affichage ; son inventaire figure dans sa propre politique.
       </P>
     </LegalArticle>
 
-    <LegalArticle n="07" title="Durée de conservation">
-      <Bullets items={[
-        <span><Strong>Données prospects</Strong> : 3 ans à compter du dernier contact émanant du prospect.</span>,
-        <span><Strong>Données clients (comptes actifs)</Strong> : pendant toute la durée de la relation contractuelle, puis archivées pour une durée de 5 ans (prescription légale).</span>,
-        <span><Strong>Données financières (FEC)</Strong> : conservées uniquement le temps nécessaire à la génération du tableau de bord ou supprimées immédiatement sur demande.</span>,
-        <span><Strong>Candidatures bêta</Strong> : 3 ans à compter du dernier contact, puis suppression.</span>,
-        <span><Strong>Journaux techniques</Strong> : 12 mois maximum.</span>,
-      ]} />
-    </LegalArticle>
-
-    <LegalArticle n="08" title="Droits des personnes concernées">
+    <LegalArticle n="10" id="maj" title="Mise à jour de la politique">
       <P>
-        Vous disposez d'un droit d'accès, de rectification, d'effacement (droit à l'oubli), de limitation, de portabilité
-        de vos données et du droit de vous opposer à leur traitement. Vous disposez également du droit de retirer votre
-        consentement à tout moment pour les traitements fondés sur celui-ci.
+        VYZOR peut modifier la présente politique à tout moment. En cas de modification substantielle, les personnes
+        concernées en sont informées par courriel lorsque VYZOR dispose de leur adresse. La date de dernière mise à
+        jour est indiquée en tête du présent document.
       </P>
       <P>
-        Pour exercer ces droits, adressez votre demande à : <Mail />. Nous nous engageons à répondre dans un délai d'un
-        (1) mois à compter de la réception de la demande. En cas de litige, vous pouvez introduire une réclamation auprès
-        de la CNIL (www.cnil.fr).
-      </P>
-    </LegalArticle>
-
-    <LegalArticle n="09" title="Cookies et traceurs">
-      <P>
-        Le site vitrine <Strong>ne dépose aucun cookie publicitaire ni de mesure d'audience</Strong> et n'utilise aucun outil de
-        suivi tiers (Google Analytics, pixels publicitaires, etc.). Seuls des traceurs strictement nécessaires au
-        fonctionnement et à la sécurité du Site peuvent être utilisés ; conformément à l'article 82 de la loi Informatique
-        et Libertés, ils ne nécessitent pas votre consentement. C'est pourquoi aucun bandeau cookies n'est affiché.
-      </P>
-      <P>
-        L'application VYZOR (espace connecté) utilise des cookies d'authentification et de session, indispensables à la
-        connexion sécurisée à votre compte. Si VYZOR venait à utiliser des cookies soumis à consentement, un bandeau vous
-        permettrait de les accepter ou de les refuser aussi simplement, et la présente politique serait mise à jour.
-      </P>
-    </LegalArticle>
-
-    <LegalArticle n="10" title="Mise à jour de la politique">
-      <P>
-        VYZOR se réserve le droit de modifier la présente politique de confidentialité à tout moment. En cas de modification
-        substantielle, les Utilisateurs seront informés par email ou par notification sur la plateforme. La date de dernière
-        mise à jour est indiquée en tête du présent document.
+        Cette page est une information sur nos pratiques et ne constitue pas un conseil juridique.
       </P>
     </LegalArticle>
   </LegalShell>

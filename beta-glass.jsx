@@ -105,7 +105,17 @@
         0 0 0 1px rgba(255,255,255,0.04),
         inset 0 1px 0 rgba(255,255,255,0.08);
       position: relative;
+      max-height: 90vh;
+      overflow: auto;
+      box-sizing: border-box;
       animation: betaRise 360ms cubic-bezier(.2,.8,.2,1) forwards;
+    }
+    .beta-modal:focus { outline: none; }
+    .beta-modal input:focus-visible,
+    .beta-modal button:focus-visible,
+    .beta-modal a:focus-visible { outline: 2px solid #f0c949; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      .beta-modal, .beta-modal-overlay { animation: none; }
     }
     .beta-modal__close {
       position: absolute;
@@ -216,7 +226,8 @@ const BetaModal = ({ open, onClose }) => {
   const muted = "rgba(255,255,255,0.55)";
   const labelMuted = "rgba(255,255,255,0.6)";
   const inputBg = "rgba(255,255,255,0.04)";
-  const inputBorder = "rgba(255,255,255,0.10)";
+  const inputBorder = "rgba(255,255,255,0.4)";
+  const dialogRef = React.useRef(null);
 
   const WEB3FORMS_KEY = "9f003436-eba6-4543-b3ed-06c89a38a69c";
 
@@ -259,16 +270,51 @@ const BetaModal = ({ open, onClose }) => {
     };
   }, [open, onClose]);
 
+  // Focus : premier champ à l'ouverture, retour au déclencheur à la fermeture.
+  React.useEffect(() => {
+    if (!open) return;
+    const trigger = document.activeElement;
+    const el = dialogRef.current;
+    if (el) {
+      const first = el.querySelector("input:not([type=checkbox])");
+      (first || el).focus();
+    }
+    return () => {
+      if (trigger && typeof trigger.focus === "function" && document.contains(trigger)) trigger.focus();
+    };
+  }, [open]);
+
+  // Succès : le formulaire disparaît, on replace le focus dans la boîte de dialogue.
+  React.useEffect(() => {
+    if (open && submitted && dialogRef.current) dialogRef.current.focus();
+  }, [open, submitted]);
+
+  // Piège de focus minimal (Tab / Maj+Tab).
+  const trapTab = (e) => {
+    if (e.key !== "Tab" || !dialogRef.current) return;
+    const items = Array.from(dialogRef.current.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]):not([type=checkbox]), [tabindex]:not([tabindex="-1"])'
+    ));
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    const active = document.activeElement;
+    if (e.shiftKey && (active === first || active === dialogRef.current)) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && active === last) { e.preventDefault(); first.focus(); }
+  };
+
   if (!open) return null;
 
   const overlay = (
     <div className="beta-modal-overlay" onClick={onClose}>
-      <div className="beta-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="beta-modal__close" onClick={onClose} aria-label="Fermer">×</button>
+      <div className="beta-modal" ref={dialogRef} role="dialog" aria-modal="true"
+        aria-labelledby="beta-modal-title" tabIndex={-1}
+        onKeyDown={trapTab} onClick={(e) => e.stopPropagation()}>
+        <button type="button" className="beta-modal__close" onClick={onClose} aria-label="Fermer">×</button>
 
         {!submitted ? (
           <React.Fragment>
-            <h3 style={{
+            <h3 id="beta-modal-title" style={{
               fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
               fontWeight: 400,
               fontSize: 30,
@@ -280,7 +326,7 @@ const BetaModal = ({ open, onClose }) => {
               Réservez votre place.
             </h3>
             <p style={{ fontSize: 13.5, color: muted, lineHeight: 1.6, margin: "0 0 18px" }}>
-              Réponse sous 48h. Aucun engagement.
+              Réponse sous 48h. Aucun engagement. Tous les champs sont obligatoires.
             </p>
             <form
               onSubmit={handleSubmit}
@@ -305,11 +351,11 @@ const BetaModal = ({ open, onClose }) => {
                     color: labelMuted, textTransform: "uppercase",
                     marginBottom: 6, fontWeight: 500,
                     fontFamily: '"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace',
-                  }}>{f.label}</label>
+                  }}>{f.label} <span style={{ textTransform: "none", letterSpacing: 0 }}>(obligatoire)</span></label>
                   <input
                     id={`beta-${f.id}`}
                     name={f.id}
-                    type={f.type} required placeholder={f.placeholder}
+                    type={f.type} required aria-required="true" placeholder={f.placeholder}
                     autoComplete={f.id === "email" ? "email" : f.id === "name" ? "name" : "organization"}
                     style={{
                       width: "100%", padding: "12px 14px", boxSizing: "border-box",
@@ -331,7 +377,7 @@ const BetaModal = ({ open, onClose }) => {
                 </div>
               ))}
               {error && (
-                <div style={{
+                <div role="alert" style={{
                   fontSize: 12.5, color: "#ffb4a8",
                   background: "rgba(255,99,71,0.08)",
                   border: "1px solid rgba(255,99,71,0.30)",
@@ -361,24 +407,24 @@ const BetaModal = ({ open, onClose }) => {
                 {submitting ? "Envoi en cours…" : "Envoyer ma candidature →"}
               </button>
               <div style={{ fontSize: 11, color: muted, textAlign: "center", marginTop: 2 }}>
-                Vos données servent uniquement à traiter votre candidature (conservées 3 ans max.). Vous pouvez y accéder ou les supprimer via admin@vyzor.fr — voir notre{" "}
-                <a href="confidentialite.html" target="_blank" rel="noopener" style={{ color: "#f0c949", textDecoration: "none" }}>politique de confidentialité</a>.
+                Vos données servent uniquement à traiter votre candidature (conservées 3 ans max.). Vous pouvez y accéder ou les supprimer via contact@vyzor.fr — voir notre{" "}
+                <a href="confidentialite.html" target="_blank" rel="noopener" style={{ color: "#f0c949", textDecoration: "underline", textUnderlineOffset: 2 }}>politique de confidentialité</a>.
               </div>
             </form>
           </React.Fragment>
         ) : (
-          <div style={{
+          <div role="status" style={{
             display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
             textAlign: "center", padding: "16px 0", gap: 12,
           }}>
-            <div style={{
+            <div aria-hidden="true" style={{
               width: 60, height: 60, borderRadius: 999,
               background: "rgba(45,212,191,0.12)",
               border: "1px solid rgba(45,212,191,0.40)",
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 26, color: "#7eead8",
             }}>✓</div>
-            <h3 style={{
+            <h3 id="beta-modal-title" style={{
               fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
               fontWeight: 400, fontSize: 26, margin: 0, color: "#fff",
               letterSpacing: "-0.01em",
@@ -388,7 +434,7 @@ const BetaModal = ({ open, onClose }) => {
             <p style={{ fontSize: 13.5, color: muted, lineHeight: 1.6, maxWidth: 320, margin: 0 }}>
               Nous vous recontactons sous 48h à l'email indiqué. Merci de votre intérêt.
             </p>
-            <button onClick={onClose} style={{
+            <button type="button" onClick={onClose} style={{
               marginTop: 8, padding: "10px 18px",
               background: "rgba(255,255,255,0.06)",
               border: "1px solid rgba(255,255,255,0.14)",

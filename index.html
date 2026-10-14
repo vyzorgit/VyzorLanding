@@ -149,6 +149,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 </head>
 <body>
+  <a href="#contenu" style="position:absolute;left:-9999px;top:8px;z-index:100000;padding:10px 16px;background:#0a0a0a;color:#f0c949;border:2px solid #f0c949;border-radius:8px;font:600 14px Inter,system-ui,sans-serif;text-decoration:none" onfocus="this.style.left='12px'" onblur="this.style.left='-9999px'">Aller au contenu</a>
   <div id="root"></div>
   <noscript>
     <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
@@ -271,10 +272,18 @@
       return (
         <React.Fragment>
           <VyzorNav gold={gold} text={text} muted={muted} subtle={subtle} />
-          <CinematicHero />
-          {/* Reste de la page : on réutilise les sections de la variante A après le hero cinématique */}
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <RestOfPage />
+          <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
+            <CinematicHero />
+            {/* Reste de la page : on réutilise les sections de la variante A après le hero cinématique */}
+            <div style={{ position: "relative", zIndex: 1 }}>
+              <RestOfPage />
+            </div>
+          </main>
+          {/* Footer plein écran — hors <main>, sort du container 1180px */}
+          <div style={{ background: "#070a14", position: "relative", zIndex: 1, padding: "96px 0 56px" }}>
+            <div className="vz-reveal">
+              <VyzorFooterGlass fullWidth />
+            </div>
           </div>
         </React.Fragment>
       );
@@ -293,7 +302,7 @@
           backgroundImage: "none",
           color: text,
           fontFamily: '"Inter", system-ui, sans-serif',
-          padding: "32px 0 56px",
+          padding: "32px 0 0",
           position: "relative",
         }}>
           <div className="vz-page-pad" style={{
@@ -307,10 +316,6 @@
             <div className="vz-reveal"><DAFCoConception /></div>
             <div className="vz-reveal"><ExploreMore gold={gold} text={text} muted={muted} subtle={subtle} /></div>
             <div className="vz-reveal"><BetaFormGlass /></div>
-          </div>
-          {/* Footer plein écran — sort du container 1180px */}
-          <div className="vz-reveal" style={{ marginTop: 96 }}>
-            <VyzorFooterGlass fullWidth />
           </div>
         </div>
       );

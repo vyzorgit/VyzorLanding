@@ -61,9 +61,11 @@ const vzfCss = `
 .vzf{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:start;margin-bottom:112px}
 .vzf-aside{position:sticky;top:110px;display:flex;flex-direction:column;gap:22px}
 .vzf-search{position:relative}
-.vzf-search input{width:100%;height:46px;padding:0 40px 0 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);color:#fff;font-size:14.5px;outline:none;transition:border-color 200ms,background 200ms}
-.vzf-search input::placeholder{color:rgba(255,255,255,0.4)}
-.vzf-search input:focus{border-color:rgba(240,201,73,0.5);background:rgba(255,255,255,0.05)}
+.vzf-search input{width:100%;height:46px;padding:0 40px 0 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.4);background:rgba(255,255,255,0.03);color:#fff;font-size:14.5px;outline:none;transition:border-color 200ms,background 200ms}
+.vzf-search input::placeholder{color:rgba(255,255,255,0.6);opacity:1}
+.vzf-search input:focus{border-color:rgba(240,201,73,0.9);background:rgba(255,255,255,0.05)}
+.vzf-search input:focus-visible,.vzf-clear:focus-visible,.vzf-nav a:focus-visible,.vzf-a a:focus-visible,.vzf-empty a:focus-visible{outline:2px solid #f0c949;outline-offset:2px}
+.vzf-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .vzf-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:30px;height:30px;border:0;border-radius:8px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;font-size:18px;line-height:1}
 .vzf-clear:hover{color:#fff;background:rgba(255,255,255,0.06)}
 .vzf-nav{display:flex;flex-direction:column;gap:2px;border-left:1px solid rgba(255,255,255,0.08)}
@@ -71,9 +73,9 @@ const vzfCss = `
 .vzf-nav a:hover{color:rgba(255,255,255,0.9)}
 .vzf-nav a.on{color:#fff;border-left-color:#f0c949}
 .vzf-nav a.dim{opacity:0.35}
-.vzf-num{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;color:rgba(255,255,255,0.35)}
+.vzf-num{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;color:rgba(255,255,255,0.6)}
 .vzf-nav a.on .vzf-num{color:#f0c949}
-.vzf-cnt{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;color:rgba(255,255,255,0.35)}
+.vzf-cnt{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;color:rgba(255,255,255,0.6)}
 .vzf-main{display:flex;flex-direction:column;gap:72px;min-width:0}
 .vzf-group{scroll-margin-top:110px}
 .vzf-ghead{display:flex;flex-direction:column;gap:8px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.1)}
@@ -92,14 +94,15 @@ const vzfCss = `
 .vzf-item.open .vzf-pm{background:rgba(240,201,73,0.14);border-color:rgba(240,201,73,0.34)}
 .vzf-item.open .vzf-pm i{background:#f0c949}
 .vzf-item.open .vzf-pm i+i{transform:rotate(0deg)}
-.vzf-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows 320ms cubic-bezier(0.22,1,0.36,1)}
-.vzf-item.open .vzf-a{grid-template-rows:1fr}
+.vzf-a{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows 320ms cubic-bezier(0.22,1,0.36,1),visibility 0s linear 320ms}
+.vzf-item.open .vzf-a{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows 320ms cubic-bezier(0.22,1,0.36,1),visibility 0s}
+@media (prefers-reduced-motion:reduce){.vzf-a,.vzf-item.open .vzf-a{transition:none}}
 .vzf-a>div{overflow:hidden}
 .vzf-a p{margin:0;padding:0 56px 24px 4px;max-width:720px;font-size:15.5px;line-height:1.7;color:rgba(255,255,255,0.62);text-wrap:pretty}
-.vzf-a a{display:inline-flex;gap:6px;margin:-8px 0 24px 4px;color:#f0c949;text-decoration:none;font-size:14.5px;font-weight:600}
+.vzf-a a{display:inline-flex;gap:6px;margin:-8px 0 24px 4px;color:#f0c949;text-decoration:underline;text-underline-offset:3px;font-size:14.5px;font-weight:600}
 .vzf-a a:hover{color:#f6dfa1}
 .vzf-empty{padding:40px 0;color:rgba(255,255,255,0.6);font-size:16px;line-height:1.6}
-.vzf-empty a{color:#f0c949;text-decoration:none}
+.vzf-empty a{color:#f0c949;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:900px){
 .vzf{grid-template-columns:minmax(0,1fr);gap:28px}
 .vzf-aside{position:static;gap:14px}
@@ -147,7 +150,8 @@ const VyzorFAQ = () => {
       <aside className="vzf-aside">
         <div className="vzf-search">
           <input type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Rechercher une question…" aria-label="Rechercher dans la FAQ" />
-          {query && <button className="vzf-clear" onClick={() => setQuery("")} aria-label="Effacer la recherche">×</button>}
+          {query && <button type="button" className="vzf-clear" onClick={() => setQuery("")} aria-label="Effacer la recherche">×</button>}
+          <p className="vzf-sr" role="status">{nq ? (total === 0 ? "Aucune question trouvée" : total + (total > 1 ? " questions trouvées" : " question trouvée")) : ""}</p>
         </div>
         <nav className="vzf-nav" aria-label="Thèmes de la FAQ">
           {groups.map((g, i) => (
@@ -162,7 +166,7 @@ const VyzorFAQ = () => {
 
       <div className="vzf-main">
         {total === 0 && (
-          <p className="vzf-empty">Aucune question ne correspond à « {query} ».<br />Écrivez-nous à <a href="mailto:admin@vyzor.fr">admin@vyzor.fr</a>, nous vous répondons rapidement.</p>
+          <p className="vzf-empty">Aucune question ne correspond à « {query} ».<br />Écrivez-nous à <a href="mailto:contact@vyzor.fr">contact@vyzor.fr</a>, nous vous répondons rapidement.</p>
         )}
         {groups.map((g, gi) => g.shown.length > 0 && (
           <div key={g.id} id={"faq-" + g.id} data-gid={g.id} className="vzf-group">
@@ -172,13 +176,14 @@ const VyzorFAQ = () => {
             </div>
             {g.shown.map((item) => {
               const isOpen = open.has(item.q);
+              const pid = "vzf-a-" + g.id + "-" + g.items.indexOf(item);
               return (
                 <div key={item.q} className={"vzf-item" + (isOpen ? " open" : "")}>
-                  <button className="vzf-q" onClick={() => toggle(item.q)} aria-expanded={!!isOpen}>
+                  <button type="button" className="vzf-q" onClick={() => toggle(item.q)} aria-expanded={!!isOpen} aria-controls={pid}>
                     <span>{item.q}</span>
                     <span className="vzf-pm" aria-hidden="true"><i></i><i></i></span>
                   </button>
-                  <div className="vzf-a">
+                  <div className="vzf-a" id={pid}>
                     <div>
                       <p>{item.a}</p>
                       {item.link && <a href={item.link.href}>{item.link.label} →</a>}

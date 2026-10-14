@@ -40,6 +40,7 @@ const FeaturePage = () => {
     <React.Fragment>
       <VyzorNav gold={gold} text={text} muted={muted} subtle={subtle} />
       <div style={{ background: "#070a14", color: text, overflow: "hidden" }}>
+        <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
         <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "140px clamp(24px, 6vw, 96px) 0" }}>
           <a href="fonctionnalites.html" className="vzp-back">← Toutes les fonctionnalités</a>
 
@@ -113,6 +114,7 @@ const FeaturePage = () => {
 
           <div className="vz-reveal"><BetaFormGlass /></div>
         </div>
+        </main>
         <div className="vz-reveal" style={{ marginTop: 96 }}><VyzorFooterGlass fullWidth /></div>
       </div>
       <style>{`

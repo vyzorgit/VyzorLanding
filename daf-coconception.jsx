@@ -266,7 +266,7 @@ const DAFCoConception = () => {
                   display: "flex", alignItems: "center", gap: 7, flexShrink: 0,
                   padding: "6px 12px 6px 9px", borderRadius: 999,
                   fontSize: 12, fontWeight: 600,
-                  color: "#0a66c2", background: "rgba(10,102,194,0.12)",
+                  color: "#5aa9f5", background: "rgba(10,102,194,0.12)",
                   transition: "color 220ms ease, background 220ms ease",
                 }}>
                   <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">

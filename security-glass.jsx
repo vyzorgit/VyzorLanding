@@ -459,7 +459,9 @@ const SecuritySection = () => {
             <p className="sec-partners__lead">
               Nous avons choisi des partenaires audités annuellement, dont les
               standards sont reconnus par les régulateurs bancaires européens.
-              Vos données héritent automatiquement de leurs certifications.
+              Les certifications ci-dessous sont celles de ces partenaires, pour
+              leurs propres infrastructures : VYZOR ne détient pas de
+              certification en son nom propre.
             </p>
           </div>
 
@@ -495,10 +497,10 @@ const SecuritySection = () => {
           publicité, aucun partage à des tiers. Vous gardez la main sur vos
           données, à vie. Une question sur la confidentialité&nbsp;? Écrivez-nous à{" "}
           <a
-            href="mailto:admin@vyzor.fr"
+            href="mailto:contact@vyzor.fr"
             style={{ color: gold, textDecoration: "none", borderBottom: `1px dashed ${gold}` }}
           >
-            admin@vyzor.fr
+            contact@vyzor.fr
           </a>.
         </div>
       </div>

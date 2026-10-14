@@ -151,7 +151,7 @@
   }
   .gold { background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .hero p { font-size: 17px; color: #777; max-width: 640px; margin: 0 auto; line-height: 1.6; }
+  .hero p { font-size: 17px; color: #9a9aa3; max-width: 640px; margin: 0 auto; line-height: 1.6; }
   .hero p strong { color: #bbb; font-weight: 600; }
 
   /* --- Cards --- */
@@ -167,7 +167,7 @@
     align-items: center; justify-content: center; font-size: 20px;
   }
   .card-header h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.5px; }
-  .card-desc { color: #555; font-size: 14px; margin-bottom: 32px; padding-left: 56px; }
+  .card-desc { color: #9a9aa3; font-size: 14px; margin-bottom: 32px; padding-left: 56px; }
 
   /* --- Form --- */
   .form-grid {
@@ -176,22 +176,22 @@
   }
   .field label {
     display: block; font-size: 12.5px; font-weight: 500;
-    color: #666; margin-bottom: 9px; letter-spacing: 0.3px;
+    color: #9a9aa3; margin-bottom: 9px; letter-spacing: 0.3px;
   }
   .label-icon { margin-right: 5px; opacity: 0.6; }
   .input-wrap {
     display: flex; align-items: center;
-    background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.4);
     border-radius: 14px; overflow: hidden; transition: border-color 0.3s;
   }
-  .input-wrap:focus-within { border-color: rgba(196,161,93,0.4); }
+  .input-wrap:focus-within { border-color: var(--gold); outline: 2px solid var(--gold); outline-offset: 2px; }
   .input-wrap input {
     flex: 1; background: transparent; border: none;
     padding: 15px 16px; font-size: 17px; font-weight: 600;
     color: #fff; font-family: inherit; outline: none; min-width: 0;
   }
-  .input-wrap input::placeholder { color: #3a3a3a; }
-  .suffix { padding: 0 16px 0 0; font-size: 13px; color: #4a4a4a; white-space: nowrap; font-weight: 500; }
+  .input-wrap input::placeholder { color: #8a8a93; }
+  .suffix { padding: 0 16px 0 0; font-size: 13px; color: #9a9aa3; white-space: nowrap; font-weight: 500; }
 
   /* --- KPI Row --- */
   .kpi-row {
@@ -205,11 +205,11 @@
   }
   .kpi:hover { border-color: rgba(255,255,255,0.12); }
   .kpi .kpi-label {
-    font-size: 11px; font-weight: 600; color: #555;
+    font-size: 11px; font-weight: 600; color: #9a9aa3;
     text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
   }
   .kpi .kpi-value { font-size: 28px; font-weight: 800; letter-spacing: -1px; }
-  .kpi .kpi-sub { font-size: 12px; color: #555; margin-top: 6px; }
+  .kpi .kpi-sub { font-size: 12px; color: #9a9aa3; margin-top: 6px; }
   .kpi.gold-kpi .kpi-value { color: var(--gold); }
   .kpi.green-kpi .kpi-value { color: var(--emerald); }
   .kpi.red-kpi .kpi-value { color: var(--red); }
@@ -255,7 +255,7 @@
     border-radius: 12px; font-size: 14px; color: #aaa;
     display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
   }
-  .cycle-formula .op { color: #666; font-weight: 400; }
+  .cycle-formula .op { color: #9a9aa3; font-weight: 400; }
   .cycle-formula .val { font-weight: 800; }
   .cycle-formula .val.purple { color: var(--purple); }
   .cycle-formula .val.blue { color: var(--blue); }
@@ -275,13 +275,13 @@
   .scenario-col.optimized { border-color: rgba(16,185,129,0.2); }
   .scenario-divider {
     display: flex; align-items: center; justify-content: center;
-    padding: 0 20px; font-size: 28px; color: #333;
+    padding: 0 20px; font-size: 28px; color: #9a9aa3;
   }
   .scenario-title {
     font-size: 13px; font-weight: 700; text-transform: uppercase;
     letter-spacing: 1.5px; margin-bottom: 24px;
   }
-  .scenario-title.current-t { color: #666; }
+  .scenario-title.current-t { color: #9a9aa3; }
   .scenario-title.opt-t { color: var(--emerald); }
 
   .scenario-line {
@@ -289,7 +289,7 @@
     padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
   }
   .scenario-line:last-child { border-bottom: none; }
-  .scenario-line .s-label { font-size: 13px; color: #777; }
+  .scenario-line .s-label { font-size: 13px; color: #9a9aa3; }
   .scenario-line .s-value { font-size: 16px; font-weight: 700; }
 
   .scenario-total {
@@ -298,7 +298,7 @@
   }
   .scenario-total.current-bg { background: rgba(255,255,255,0.03); }
   .scenario-total.opt-bg { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.15); }
-  .scenario-total .st-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 8px; }
+  .scenario-total .st-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #9a9aa3; margin-bottom: 8px; }
   .scenario-total .st-value { font-size: 28px; font-weight: 800; letter-spacing: -1px; }
 
   /* --- Savings banner --- */
@@ -319,7 +319,7 @@
   }
   .savings-stat { text-align: center; }
   .savings-stat .ss-val { font-size: 22px; font-weight: 800; color: var(--emerald); }
-  .savings-stat .ss-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px; }
+  .savings-stat .ss-label { font-size: 11px; color: #9a9aa3; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px; }
 
   /* --- Monthly evolution chart --- */
   .evo-chart {
@@ -328,7 +328,7 @@
     border-radius: 20px;
   }
   .evo-chart h4 {
-    font-size: 14px; font-weight: 600; color: #555;
+    font-size: 14px; font-weight: 600; color: #9a9aa3;
     text-transform: uppercase; letter-spacing: 1px; margin-bottom: 28px;
   }
   .chart-area {
@@ -338,12 +338,12 @@
   }
   .chart-area .y-label {
     position: absolute; left: -8px; transform: translateX(-100%);
-    font-size: 11px; color: #444; white-space: nowrap;
+    font-size: 11px; color: #9a9aa3; white-space: nowrap;
   }
   .chart-area .x-labels {
     position: absolute; bottom: -24px; left: 0; right: 0;
     display: flex; justify-content: space-between;
-    font-size: 10px; color: #444;
+    font-size: 10px; color: #9a9aa3;
   }
   .chart-bars {
     position: absolute; inset: 0;
@@ -380,12 +380,17 @@
     margin-bottom: 14px;
   }
   .slider-row label {
-    width: 180px; font-size: 13px; color: #777; flex-shrink: 0;
+    width: 180px; font-size: 13px; color: #9a9aa3; flex-shrink: 0;
   }
   .slider-row input[type=range] {
     flex: 1; -webkit-appearance: none; appearance: none;
     height: 6px; background: rgba(255,255,255,0.08);
     border-radius: 3px; outline: none;
+  }
+  .slider-row input[type=range]:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  .slider-row input[type=range]::-moz-range-thumb {
+    width: 20px; height: 20px; border-radius: 50%; background: var(--gold);
+    cursor: pointer; border: 3px solid var(--bg);
   }
   .slider-row input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none; width: 20px; height: 20px;
@@ -408,8 +413,21 @@
 
   .footer {
     text-align: center; padding: 56px 0 36px;
-    color: #3a3a3a; font-size: 12px;
+    color: #9a9aa3; font-size: 12px;
   }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+  .skip-link {
+    position: absolute; left: -9999px; top: 8px; z-index: 10000;
+    padding: 10px 16px; background: #0a0a0a; color: #f0c949;
+    border: 2px solid #f0c949; border-radius: 8px;
+    font: 600 14px Inter, system-ui, sans-serif; text-decoration: none;
+  }
+  .skip-link:focus { left: 12px; }
+  main:focus { outline: none; }
 
   /* --- Responsive --- */
   @media (max-width: 900px) {
@@ -433,6 +451,7 @@
 </head>
 <body>
 
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 <div class="glow"></div>
 <div class="glow-2"></div>
 
@@ -456,7 +475,7 @@
   <a class="cta" href="../index.html?contact=1#beta">Demander une démo</a>
 </nav>
 
-<div class="container" style="padding-top: 80px;">
+<main id="contenu" tabindex="-1" class="container" style="padding-top: 80px;">
 
   <!-- HERO -->
   <section class="hero">
@@ -475,52 +494,52 @@
 
     <div class="form-grid">
       <div class="field">
-        <label><span class="label-icon">💶</span>Chiffre d'affaires annuel HT</label>
+        <label for="in-ca"><span class="label-icon" aria-hidden="true">💶</span>Chiffre d'affaires annuel HT</label>
         <div class="input-wrap">
-          <input type="number" id="in-ca" value="2000000" oninput="recalc()">
-          <span class="suffix">€ / an</span>
+          <input type="number" id="in-ca" value="2000000" oninput="recalc()" aria-describedby="u-ca">
+          <span class="suffix" id="u-ca">€ / an</span>
         </div>
       </div>
       <div class="field">
-        <label><span class="label-icon">🛒</span>Achats annuels HT</label>
+        <label for="in-achats"><span class="label-icon" aria-hidden="true">🛒</span>Achats annuels HT</label>
         <div class="input-wrap">
-          <input type="number" id="in-achats" value="800000" oninput="recalc()">
-          <span class="suffix">€ / an</span>
+          <input type="number" id="in-achats" value="800000" oninput="recalc()" aria-describedby="u-achats">
+          <span class="suffix" id="u-achats">€ / an</span>
         </div>
       </div>
       <div class="field">
-        <label><span class="label-icon">📦</span>Stock moyen</label>
+        <label for="in-stock"><span class="label-icon" aria-hidden="true">📦</span>Stock moyen</label>
         <div class="input-wrap">
-          <input type="number" id="in-stock" value="120000" oninput="recalc()">
-          <span class="suffix">€</span>
+          <input type="number" id="in-stock" value="120000" oninput="recalc()" aria-describedby="u-stock">
+          <span class="suffix" id="u-stock">€</span>
         </div>
       </div>
       <div class="field">
-        <label><span class="label-icon">📄</span>Créances clients</label>
+        <label for="in-creances"><span class="label-icon" aria-hidden="true">📄</span>Créances clients</label>
         <div class="input-wrap">
-          <input type="number" id="in-creances" value="280000" oninput="recalc()">
-          <span class="suffix">€</span>
+          <input type="number" id="in-creances" value="280000" oninput="recalc()" aria-describedby="u-creances">
+          <span class="suffix" id="u-creances">€</span>
         </div>
       </div>
       <div class="field">
-        <label><span class="label-icon">🏦</span>Dettes fournisseurs</label>
+        <label for="in-dettes"><span class="label-icon" aria-hidden="true">🏦</span>Dettes fournisseurs</label>
         <div class="input-wrap">
-          <input type="number" id="in-dettes" value="110000" oninput="recalc()">
-          <span class="suffix">€</span>
+          <input type="number" id="in-dettes" value="110000" oninput="recalc()" aria-describedby="u-dettes">
+          <span class="suffix" id="u-dettes">€</span>
         </div>
       </div>
       <div class="field">
-        <label><span class="label-icon">📈</span>Croissance CA prévue</label>
+        <label for="in-growth"><span class="label-icon" aria-hidden="true">📈</span>Croissance CA prévue</label>
         <div class="input-wrap">
-          <input type="number" id="in-growth" value="15" oninput="recalc()">
-          <span class="suffix">% / an</span>
+          <input type="number" id="in-growth" value="15" oninput="recalc()" aria-describedby="u-growth">
+          <span class="suffix" id="u-growth">% / an</span>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ===== SECTION 2 : KPIs ===== -->
-  <div class="kpi-row" id="kpi-row">
+  <div class="kpi-row" id="kpi-row" role="region" aria-label="Résultats du calcul du BFR" aria-live="polite">
     <div class="kpi gold-kpi">
       <div class="kpi-label">BFR</div>
       <div class="kpi-value" id="kpi-bfr">290 000 €</div>
@@ -575,7 +594,7 @@
           <span class="val green" id="f-dpo">50j</span>
           <span class="op">=</span>
           <span class="val gold" id="f-ccc" style="font-size:18px;">56 jours</span>
-          <span style="color:#555; margin-left:8px;">de cash immobilisé</span>
+          <span style="color:#9a9aa3; margin-left:8px;">de cash immobilisé</span>
         </div>
       </div>
     </div>
@@ -591,18 +610,18 @@
 
     <div class="slider-group">
       <div class="slider-row">
-        <label>📄 Réduire DSO de</label>
-        <input type="range" id="opt-dso" min="0" max="30" value="10" oninput="recalc()">
+        <label for="opt-dso"><span aria-hidden="true">📄</span> Réduire DSO de</label>
+        <input type="range" id="opt-dso" min="0" max="30" value="10" oninput="recalc()" aria-describedby="opt-dso-val">
         <div class="slider-val" id="opt-dso-val">−10 j</div>
       </div>
       <div class="slider-row">
-        <label>📦 Réduire DIO de</label>
-        <input type="range" id="opt-dio" min="0" max="30" value="5" oninput="recalc()">
+        <label for="opt-dio"><span aria-hidden="true">📦</span> Réduire DIO de</label>
+        <input type="range" id="opt-dio" min="0" max="30" value="5" oninput="recalc()" aria-describedby="opt-dio-val">
         <div class="slider-val" id="opt-dio-val">−5 j</div>
       </div>
       <div class="slider-row">
-        <label>🏦 Augmenter DPO de</label>
-        <input type="range" id="opt-dpo" min="0" max="20" value="5" oninput="recalc()">
+        <label for="opt-dpo"><span aria-hidden="true">🏦</span> Augmenter DPO de</label>
+        <input type="range" id="opt-dpo" min="0" max="20" value="5" oninput="recalc()" aria-describedby="opt-dpo-val">
         <div class="slider-val" id="opt-dpo-val">+5 j</div>
       </div>
     </div>
@@ -637,7 +656,7 @@
     </div>
 
     <!-- Savings -->
-    <div class="savings-banner">
+    <div class="savings-banner" role="region" aria-label="Trésorerie libérée par l'optimisation" aria-live="polite">
       <div class="savings-left">
         <div class="savings-title">💰 Trésorerie libérée</div>
         <div class="savings-amount" id="savings-amount">93 000 €</div>
@@ -669,13 +688,18 @@
 
     <div class="evo-chart">
       <h4>BFR Mensuel — Actuel vs Optimisé</h4>
-      <div class="chart-area" id="chart-area">
+      <div class="chart-area" id="chart-area" aria-hidden="true">
         <div class="y-label" id="y-max" style="top: 0;"></div>
         <div class="y-label" id="y-mid" style="top: 48%;"></div>
         <div class="y-label" id="y-zero" style="bottom: -4px;">0</div>
         <div class="chart-bars" id="chart-bars"></div>
         <div class="x-labels" id="x-labels"></div>
       </div>
+      <table class="sr-only" id="chart-table">
+        <caption>Projection du BFR sur 12 mois, sans et avec optimisation</caption>
+        <thead><tr><th scope="col">Mois</th><th scope="col">BFR sans optimisation</th><th scope="col">BFR avec optimisation</th></tr></thead>
+        <tbody id="chart-table-body"></tbody>
+      </table>
       <div class="chart-legend-row">
         <div class="legend-item"><div class="legend-dot" style="background: rgba(196,161,93,0.6);"></div> BFR sans optimisation</div>
         <div class="legend-item"><div class="legend-dot" style="background: rgba(16,185,129,0.6);"></div> BFR avec optimisation</div>
@@ -687,10 +711,12 @@
     </div>
   </div>
 
+</main>
+
+<div class="container">
   <div class="footer">
     Simulation indicative — ne constitue pas un conseil financier. Consultez votre expert-comptable pour un diagnostic personnalisé.
   </div>
-
 </div>
 
 <script>
@@ -823,6 +849,19 @@
 
     document.getElementById('y-max').textContent = fmtK(maxVal);
     document.getElementById('y-mid').textContent = fmtK(maxVal / 2);
+
+    const tbody = document.getElementById('chart-table-body');
+    tbody.innerHTML = '';
+    for (let m = 0; m < 12; m++) {
+      const tr = document.createElement('tr');
+      [months[m], fmt(valsCur[m]), fmt(valsOpt[m])].forEach(function (txt, i) {
+        const cell = document.createElement(i === 0 ? 'th' : 'td');
+        if (i === 0) cell.scope = 'row';
+        cell.textContent = txt;
+        tr.appendChild(cell);
+      });
+      tbody.appendChild(tr);
+    }
 
     for (let m = 0; m < 12; m++) {
       const col = document.createElement('div');

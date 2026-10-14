@@ -9,7 +9,7 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
   const gold = "#f0c949";
   const text = "rgba(255,255,255,0.92)";
   const muted = "rgba(255,255,255,0.55)";
-  const faint = "rgba(255,255,255,0.32)";
+  const faint = "rgba(255,255,255,0.6)"; // WCAG 1.4.3 : .32 donnait 2,8:1
   const subtle = "rgba(255,255,255,0.08)";
   const goldGrad = "linear-gradient(#f0c949,#f0c949)";
   const cardRef = React.useRef(null);
@@ -26,8 +26,8 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
   // —— Réseaux : destinations réelles ——
   const socials = [
     {
-      label: "admin@vyzor.fr",
-      href: "mailto:admin@vyzor.fr",
+      label: "contact@vyzor.fr",
+      href: "mailto:contact@vyzor.fr",
       icon: (
         <>
           <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -199,7 +199,8 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
           {[
             { label: "Mentions légales & CGU", href: "mentions-legales.html" },
             { label: "Confidentialité", href: "confidentialite.html" },
-            { label: "admin@vyzor.fr", href: "mailto:admin@vyzor.fr" },
+            { label: "Cookies", href: "confidentialite.html#cookies" },
+            { label: "contact@vyzor.fr", href: "mailto:contact@vyzor.fr" },
           ].map((l) => (
             <a key={l.label} href={l.href} style={{ color: muted, textDecoration: "none", transition: "color 220ms ease" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = gold)}

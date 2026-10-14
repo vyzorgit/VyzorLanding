@@ -184,7 +184,7 @@ const VariantA = () => {
           <div>
             <div style={{ height: 1, width: 56, background: gold, marginBottom: 20 }}/>
             <h2 style={{ fontSize: 32, margin: 0, letterSpacing: "-0.02em", fontWeight: 600 }}>Questions fréquentes</h2>
-            <p style={{ fontSize: 14, color: muted, marginTop: 12 }}>Une autre question ? Écrivez-nous à <a href="mailto:admin@vyzor.fr" style={{ color: gold }}>admin@vyzor.fr</a>.</p>
+            <p style={{ fontSize: 14, color: muted, marginTop: 12 }}>Une autre question ? Écrivez-nous à <a href="mailto:contact@vyzor.fr" style={{ color: gold }}>contact@vyzor.fr</a>.</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {[
@@ -213,7 +213,7 @@ const VariantA = () => {
         <div style={{ display: "flex", gap: 18 }}>
           <a style={{ color: muted, textDecoration: "none" }}>Mentions légales</a>
           <a style={{ color: muted, textDecoration: "none" }}>Confidentialité</a>
-          <a href="mailto:admin@vyzor.fr" style={{ color: muted, textDecoration: "none" }}>admin@vyzor.fr</a>
+          <a href="mailto:contact@vyzor.fr" style={{ color: muted, textDecoration: "none" }}>contact@vyzor.fr</a>
         </div>
       </footer>
     </div>
@@ -346,9 +346,31 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
   const [scrolled, setScrolled] = React.useState(false);
   const [hovered, setHovered] = React.useState(null);
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [ddOpen, setDdOpen] = React.useState(false);
   const [indicator, setIndicator] = React.useState({ left: 0, width: 0, opacity: 0 });
   const itemRefs = React.useRef({});
   const trackRef = React.useRef(null);
+  const burgerRef = React.useRef(null);
+
+  // Échap : ferme le menu mobile et le sous-menu « Fonctionnalités », focus rendu au déclencheur.
+  React.useEffect(() => {
+    if (!menuOpen && !ddOpen) return;
+    const onKey = (e) => {
+      if (e.key !== "Escape") return;
+      if (menuOpen) {
+        setMenuOpen(false);
+        if (burgerRef.current) burgerRef.current.focus();
+      }
+      if (ddOpen) {
+        setDdOpen(false);
+        const parent = itemRefs.current["fonctionnalites"];
+        const ae = document.activeElement;
+        if (parent && ae && ae !== parent && parent.parentElement && parent.parentElement.contains(ae)) parent.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen, ddOpen]);
 
   React.useEffect(() => {
     let raf = 0;
@@ -453,6 +475,11 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
                 ref={(el) => { itemRefs.current[it.id] = el; }}
                 onMouseEnter={() => setHovered(it.id)}
                 onMouseLeave={() => setHovered(null)}
+                {...(feats.length ? {
+                  "aria-expanded": ddOpen,
+                  "aria-controls": "vz-nav-dd-" + it.id,
+                  onKeyDown: (e) => { if (e.key === "ArrowDown") { e.preventDefault(); setDdOpen(true); } },
+                } : {})}
                 style={{
                   position: "relative",
                   padding: "8px 14px",
@@ -473,20 +500,27 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
             );
             if (!feats.length) return <React.Fragment key={it.id}>{link}</React.Fragment>;
             return (
-              <div key={it.id} className="vz-nav-dd" onMouseEnter={() => setHovered(it.id)} onMouseLeave={() => setHovered(null)} style={{ position: "relative" }}>
+              <div key={it.id} className="vz-nav-dd" data-open={ddOpen ? "true" : "false"}
+                onMouseEnter={() => { setHovered(it.id); setDdOpen(true); }}
+                onMouseLeave={() => { setHovered(null); setDdOpen(false); }}
+                onFocus={() => setDdOpen(true)}
+                onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setDdOpen(false); }}
+                style={{ position: "relative" }}>
                 {link}
-                <div className="vz-nav-dd-panel" role="menu">
-                  <div className="vz-nav-dd-grid">
+                <div className="vz-nav-dd-panel" id={"vz-nav-dd-" + it.id}>
+                  <ul className="vz-nav-dd-grid" style={{ listStyle: "none", margin: 0, padding: 0 }}>
                     {feats.map((f) => (
-                      <a key={f.slug} {...(f.soon ? { "aria-disabled": true } : { href: vzFeatureHref(f.slug) })} className={"vz-nav-dd-item" + (f.soon ? " soon" : "")} role="menuitem">
+                      <li key={f.slug} style={{ display: "flex" }}>
+                      <a {...(f.soon ? { "aria-disabled": true } : { href: vzFeatureHref(f.slug) })} className={"vz-nav-dd-item" + (f.soon ? " soon" : "")} style={{ flex: 1 }}>
                         <span className="vz-nav-dd-ic"><VzfIcon name={f.icon} size={16} /></span>
                         <span style={{ minWidth: 0 }}>
                           <span style={{ display: "block", fontSize: 13.5, fontWeight: 600, color: "#fff" }}>{f.name}{f.soon ? <span style={{ marginLeft: 8, fontSize: 11, fontWeight: 600, color: "#f0c949" }}>Bientôt</span> : null}</span>
                           <span style={{ display: "block", fontSize: 12.5, lineHeight: 1.45, color: "rgba(255,255,255,0.55)", marginTop: 2 }}>{f.desc}</span>
                         </span>
                       </a>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                   <a href="fonctionnalites.html" className="vz-nav-dd-all">Voir toutes les fonctionnalités <span aria-hidden="true">→</span></a>
                 </div>
               </div>
@@ -529,8 +563,10 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
           {/* Burger — visible uniquement en mobile via CSS */}
           <button
             type="button"
+            ref={burgerRef}
             className="vz-nav-burger"
             aria-label="Menu"
+            aria-controls="vz-nav-mobile-panel"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
             style={{
@@ -550,9 +586,10 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
       </div>
 
       <style>{`
-        .vz-nav-dd-panel { position: absolute; top: calc(100% + 14px); left: 50%; width: 620px; transform: translate(-50%, 6px); opacity: 0; pointer-events: none; transition: opacity 160ms ease, transform 160ms ease; padding: 10px; border-radius: 18px; background: rgba(12,14,20,0.96); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.10); box-shadow: 0 24px 60px rgba(0,0,0,0.55); }
+        .vz-nav-dd-panel { position: absolute; top: calc(100% + 14px); left: 50%; width: 620px; transform: translate(-50%, 6px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms; padding: 10px; border-radius: 18px; background: rgba(12,14,20,0.96); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.10); box-shadow: 0 24px 60px rgba(0,0,0,0.55); }
         .vz-nav-dd-panel::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
-        .vz-nav-dd:hover .vz-nav-dd-panel, .vz-nav-dd:focus-within .vz-nav-dd-panel { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+        .vz-nav-dd[data-open="true"] .vz-nav-dd-panel { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; transition: opacity 160ms ease, transform 160ms ease, visibility 0s; }
+        @media (prefers-reduced-motion: reduce) { .vz-nav-dd-panel { transition: none !important; } }
         .vz-nav-dd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
         .vz-nav-dd-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border-radius: 12px; text-decoration: none; transition: background-color 140ms ease; }
         .vz-nav-dd-item:hover { background: rgba(255,255,255,0.05); }
@@ -565,8 +602,10 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
 
       {/* Panneau mobile — révèle les onglets + connexion */}
       <div
+        id="vz-nav-mobile-panel"
         className="vz-nav-mobile"
         style={{
+          visibility: menuOpen ? "visible" : "hidden",
           display: "none",
           marginTop: 8,
           borderRadius: 22,
@@ -580,7 +619,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
           maxHeight: menuOpen ? 420 : 0,
           opacity: menuOpen ? 1 : 0,
           pointerEvents: menuOpen ? "auto" : "none",
-          transition: "max-height 320ms cubic-bezier(0.22,1,0.36,1), opacity 240ms ease, padding 320ms ease",
+          transition: `max-height 320ms cubic-bezier(0.22,1,0.36,1), opacity 240ms ease, padding 320ms ease, visibility 0s linear ${menuOpen ? 0 : 320}ms`,
           paddingTop: menuOpen ? 8 : 0,
           paddingBottom: menuOpen ? 8 : 0,
         }}

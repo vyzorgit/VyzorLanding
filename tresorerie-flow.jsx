@@ -14,9 +14,9 @@ const TrHead = ({ t, d }) => (
 );
 
 const TrSeg = ({ items, value, onChange, label }) => (
-  <div className="tr-seg" role="tablist" aria-label={label}>
+  <div className="tr-seg" role="group" aria-label={label}>
     {items.map(([k, l]) => (
-      <button key={k} role="tab" aria-selected={value === k} className={"tr-segb" + (value === k ? " on" : "")} onClick={() => onChange(k)}>{l}</button>
+      <button key={k} type="button" aria-pressed={value === k} className={"tr-segb" + (value === k ? " on" : "")} onClick={() => onChange(k)}>{l}</button>
     ))}
   </div>
 );
@@ -97,15 +97,21 @@ const TrForecast = () => {
       </div>
       <div className="tr-fc" style={{ ...trPanel, padding: "24px clamp(16px, 3vw, 28px)" }}>
         <div style={{ minWidth: 0 }}>
-          <svg viewBox={`0 -14 ${W} ${BB + 34}`} style={{ width: "100%", height: "auto", display: "block" }} role="img" aria-label="Prévision de trésorerie">
+          <svg viewBox={`0 -14 ${W} ${BB + 34}`} style={{ width: "100%", height: "auto", display: "block" }} role="img" aria-label={`Prévision de trésorerie sur ${h} mois, scénario ${sc.l.toLowerCase()} : solde de fin de période ${trNum(rows[rows.length - 1].bal)}, point bas ${trNum(low.bal)} en ${low.m.toLowerCase()}.`}>
+            <defs>
+              <pattern id="trHatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <rect width="4" height="4" fill="#f0905a" />
+                <rect width="1.6" height="4" fill="#0b0d14" opacity="0.55" />
+              </pattern>
+            </defs>
             <line x1="0" x2={W} y1={yV(0)} y2={yV(0)} stroke="rgba(255,255,255,0.25)" strokeDasharray="4 4" />
-            <text x="4" y={yV(0) - 6} fill="rgba(255,255,255,0.4)" fontSize="11">0 €</text>
+            <text x="4" y={yV(0) - 6} fill="rgba(255,255,255,0.65)" fontSize="11">0 €</text>
             <line x1="0" x2={W} y1={H + 14} y2={H + 14} stroke="rgba(255,255,255,0.06)" />
             {rows.map((r, i) => (
               <g key={r.m}>
-                <rect x={(i + 0.5) * step - Math.min(10, step * 0.18) - 1} y={BB - yBar(r.inn)} width={Math.min(10, step * 0.18)} height={yBar(r.inn)} rx="2" fill="rgba(95,212,168,0.35)" />
-                <rect x={(i + 0.5) * step + 1} y={BB - yBar(r.out)} width={Math.min(10, step * 0.18)} height={yBar(r.out)} rx="2" fill="rgba(240,144,90,0.35)" />
-                <text x={(i + 0.5) * step} y={BB + 18} fill="rgba(255,255,255,0.45)" fontSize="11" textAnchor="middle">{r.m}</text>
+                <rect x={(i + 0.5) * step - Math.min(10, step * 0.18) - 1} y={BB - yBar(r.inn)} width={Math.min(10, step * 0.18)} height={yBar(r.inn)} rx="2" fill="#5fd4a8" />
+                <rect x={(i + 0.5) * step + 1} y={BB - yBar(r.out)} width={Math.min(10, step * 0.18)} height={yBar(r.out)} rx="2" fill="url(#trHatch)" />
+                <text x={(i + 0.5) * step} y={BB + 18} fill="rgba(255,255,255,0.65)" fontSize="11" textAnchor="middle">{r.m}</text>
               </g>
             ))}
             <path d={line} fill="none" stroke="#f0c949" strokeWidth="2.2" style={{ transition: "d 400ms ease" }} />
@@ -113,8 +119,8 @@ const TrForecast = () => {
             <text x={Math.min(Math.max((rows.indexOf(low) + 0.5) * step, 60), W - 60)} y={yV(low.bal) + 22} fill="#f0c949" fontSize="12" fontWeight="600" textAnchor="middle">point bas {trNum(low.bal)}</text>
           </svg>
           <div style={{ display: "flex", gap: 18, flexWrap: "wrap", fontSize: 12.5, color: TR_MUTED, marginTop: 10 }}>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 7 }}><i style={{ width: 10, height: 10, borderRadius: 2, background: "rgba(95,212,168,0.6)" }} />Encaissements</span>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 7 }}><i style={{ width: 10, height: 10, borderRadius: 2, background: "rgba(240,144,90,0.6)" }} />Décaissements</span>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 7 }}><i style={{ width: 10, height: 10, borderRadius: 2, background: "#5fd4a8" }} />Encaissements (barre pleine)</span>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 7 }}><i style={{ width: 10, height: 10, borderRadius: 2, background: "repeating-linear-gradient(135deg, #f0905a 0 2px, #1c1410 2px 3.5px)" }} />Décaissements (barre hachurée)</span>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 7 }}><i style={{ width: 14, height: 2, background: "#f0c949" }} />Solde de trésorerie</span>
           </div>
         </div>
@@ -219,7 +225,7 @@ const TresorerieExplainer = () => (
       .tr-arrow::after { content: ""; position: absolute; right: -1px; top: -3px; border: 3.5px solid transparent; border-left: 5px solid #f0c949; }
       .tr-fc { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 24px; align-items: start; }
       .tr-row { display: grid; grid-template-columns: 1.4fr 1fr 0.9fr 0.8fr 0.8fr 130px; gap: 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 13.5px; }
-      .tr-th { font-size: 12.5px; color: rgba(255,255,255,0.45); padding: 12px 0; }
+      .tr-th { font-size: 12.5px; color: rgba(255,255,255,0.6); padding: 12px 0; }
       .tr-btn { all: unset; cursor: pointer; font-size: 12.5px; font-weight: 600; padding: 7px 12px; border-radius: 8px; border: 1px solid rgba(240,201,73,0.4); color: #f0c949; transition: background-color 160ms ease; white-space: nowrap; }
       .tr-btn:hover { background: rgba(240,201,73,0.08); }
       .tr-btn.done { border-color: rgba(95,212,168,0.4); color: #5fd4a8; cursor: default; }

@@ -332,7 +332,7 @@
       border-top: 1px solid var(--border-subtle);
       display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
       font-size: 13px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.6);
     }
     .footer a { color: rgba(255,255,255,0.55); }
     .footer a:hover { color: var(--brand-gold); }
@@ -346,6 +346,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 </head>
 <body>
+  <a href="#contenu" style="position:absolute;left:-9999px;top:8px;z-index:100000;padding:10px 16px;background:#0a0a0a;color:#f0c949;border:2px solid #f0c949;border-radius:8px;font:600 14px Inter,system-ui,sans-serif;text-decoration:none" onfocus="this.style.left='12px'" onblur="this.style.left='-9999px'">Aller au contenu</a>
 
   <div class="ambient"><div class="blob3"></div></div>
   <div class="grain"></div>
@@ -372,6 +373,7 @@
   </nav>
 
   <div class="shell calc-shell">
+    <main id="contenu" tabindex="-1" style="outline:none;">
     <h1>Calculateurs <em>VYZOR</em></h1>
     <p class="lede">
       Quatre outils interactifs pour piloter votre rentabilité, votre fiscalité et le coût caché
@@ -466,6 +468,7 @@
       </a>
 
     </div>
+    </main>
 
     <div class="footer">
       <div>© 2026 Vyzor</div>

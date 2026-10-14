@@ -101,6 +101,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 </head>
 <body>
+  <a href="#contenu" style="position:absolute;left:-9999px;top:8px;z-index:100000;padding:10px 16px;background:#0a0a0a;color:#f0c949;border:2px solid #f0c949;border-radius:8px;font:600 14px Inter,system-ui,sans-serif;text-decoration:none" onfocus="this.style.left='12px'" onblur="this.style.left='-9999px'">Aller au contenu</a>
   <div id="root"></div>
   <noscript>
     <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
@@ -124,6 +125,15 @@
       const text = "rgba(255,255,255,0.92)";
       const muted = "rgba(255,255,255,0.55)";
       const subtle = "rgba(255,255,255,0.08)";
+
+      // Ancre (#cookies…) : le contenu est rendu après Babel, le navigateur ne peut
+      // donc pas y défiler seul au chargement.
+      React.useEffect(() => {
+        const hash = window.location.hash;
+        if (!hash) return;
+        const target = document.getElementById(hash.slice(1));
+        if (target) { target.classList.add("in"); target.scrollIntoView(); }
+      }, []);
 
       React.useEffect(() => {
         if (typeof IntersectionObserver === "undefined") {
@@ -153,14 +163,16 @@
             overflowX: "clip",
             paddingBottom: 56,
           }}>
+            <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
             <header className="pg-hero vz-reveal in">
               <h1 className="pg-title">Mentions légales &amp; CGU</h1>
-              <p className="pg-lede">Dernière mise à jour : 06/10/2026</p>
+              <p className="pg-lede">Dernière mise à jour : 14/10/2026</p>
             </header>
 
             <div style={{ marginTop: 8 }}>
               <MentionsLegales />
             </div>
+            </main>
 
             <div className="vz-reveal" style={{ marginTop: 96 }}>
               <VyzorFooterGlass fullWidth />

@@ -118,6 +118,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 </head>
 <body>
+  <a href="#contenu" style="position:absolute;left:-9999px;top:8px;z-index:100000;padding:10px 16px;background:#0a0a0a;color:#f0c949;border:2px solid #f0c949;border-radius:8px;font:600 14px Inter,system-ui,sans-serif;text-decoration:none" onfocus="this.style.left='12px'" onblur="this.style.left='-9999px'">Aller au contenu</a>
   <div id="root"></div>
   <noscript>
     <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
@@ -174,12 +175,13 @@
             overflow: "clip",
             paddingBottom: 56,
           }}>
+            <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
             {/* Page hero */}
             <header className="pg-hero vz-reveal in">
               <h1 className="pg-title">Questions <em>fréquentes</em>.</h1>
               <p className="pg-lede">
                 24 réponses classées selon votre parcours, de la découverte à la sécurité de vos données. Une autre question ?
-                Écrivez-nous à <a href="mailto:admin@vyzor.fr" style={{ color: "#f0c949", textDecoration: "none" }}>admin@vyzor.fr</a>.
+                Écrivez-nous à <a href="mailto:contact@vyzor.fr" style={{ color: "#f0c949", textDecoration: "underline", textUnderlineOffset: 3 }}>contact@vyzor.fr</a>.
               </p>
             </header>
 
@@ -191,6 +193,7 @@
               <div className="vz-reveal"><VyzorFAQ /></div>
               <div className="vz-reveal"><BetaFormGlass /></div>
             </div>
+            </main>
 
             <div className="vz-reveal" style={{ marginTop: 96 }}>
               <VyzorFooterGlass fullWidth />
