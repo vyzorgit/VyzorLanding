@@ -4,7 +4,7 @@
 //
 // Le cœur interactif (équipe d'agents, question → réponse chiffrée, actions)
 // est un mock vanilla autonome — embarqué dans une iframe isolée
-// (agentic-twin.html). On l'encadre comme une fenêtre de produit, on l'introduit
+// (agentic-twin.html, servie sur /agentic-twin). On l'encadre comme une fenêtre de produit, on l'introduit
 // en voix éditoriale « vous », et on déclenche la démo quand la section entre
 // dans le champ. Hauteur auto-ajustée via postMessage.
 //
@@ -152,7 +152,7 @@ const AgenticTwinSection = ({ id = "vision", gold, text, muted, subtle }) => {
         <iframe
           ref={iframeRef}
           title="Vyzor — vision agentique, démonstration interactive"
-          src="agentic-twin.html"
+          src="/agentic-twin"
           loading="eager"
           style={{
             position: "relative", zIndex: 1,
@@ -176,7 +176,7 @@ const AgenticTwinSection = ({ id = "vision", gold, text, muted, subtle }) => {
           </svg>
           Démo interactive avec des données fictives.
         </span>
-        <a href="agentic-twin.html" target="_blank" rel="noopener" style={{
+        <a href="/agentic-twin" target="_blank" rel="noopener" style={{
           display: "inline-flex", alignItems: "center", gap: 8,
           fontSize: 13, fontWeight: 600, color: text, textDecoration: "none",
           padding: "9px 16px", borderRadius: 999, border: `1px solid ${subtle}`,

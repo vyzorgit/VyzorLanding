@@ -44,7 +44,7 @@ const VYZOR_FAQ_GROUPS = [
   {
     id: "securite", title: "Sécurité & confidentialité", desc: "Vos données restent les vôtres.",
     items: [
-      { q: "Où et comment mes données sont-elles protégées ?", a: "Elles sont chiffrées et hébergées dans l'Union européenne, sur une infrastructure conforme SOC 2 et ISO 27001.", link: { href: "securite.html", label: "Voir nos engagements de sécurité" } },
+      { q: "Où et comment mes données sont-elles protégées ?", a: "Elles sont chiffrées et hébergées dans l'Union européenne, sur une infrastructure conforme SOC 2 et ISO 27001.", link: { href: "/securite", label: "Voir nos engagements de sécurité" } },
       { q: "VYZOR peut-il modifier ma comptabilité ?", a: "Non, jamais. VYZOR accède à vos données en lecture seule : il les analyse, mais n'écrit, ne modifie ni ne supprime rien." },
       { q: "Mes données servent-elles à entraîner l'IA ?", a: "Non. Vos données ne servent jamais à entraîner des modèles et ne sont partagées avec aucun tiers. Les noms sont pseudonymisés avant toute génération de contenu par l'IA." },
       { q: "Que voit l'assistant IA de ma comptabilité ?", a: "Uniquement les agrégats du dossier que vous consultez — jamais les écritures comptables brutes, ni les données d'un autre dossier." },

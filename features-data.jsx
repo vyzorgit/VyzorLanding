@@ -282,7 +282,7 @@ const VZ_FEATURES = [
     ] },
 ];
 
-const vzFeatureHref = (slug) => `fonctionnalite-${slug}.html`;
+const vzFeatureHref = (slug) => `/fonctionnalite-${slug}`;
 
 (function injectVzfStyles() {
   if (document.getElementById("vzf-styles")) return;

@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>VYZOR — Pilotage intelligent pour décideurs exigeants</title>
-  <meta name="description" content="VYZOR, le copilote financier des dirigeants : reporting clair, prévisions de trésorerie et indicateurs en temps réel pour décider plus vite." />
+  <title>Vyzor — Logiciel de pilotage financier pour PME</title>
+  <meta name="description" content="Vyzor, logiciel de pilotage financier pour PME : reporting automatisé, prévision de trésorerie, indicateurs et alertes, depuis votre comptabilité." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Favicons + Open Graph (Vyzor ribbon) -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -22,11 +22,11 @@
   <meta name="twitter:image" content="https://www.vyzor.fr/og-image.png" />
   <meta property="og:image:alt" content="VYZOR" />
   <meta property="og:locale" content="fr_FR" />
-  <meta property="og:title" content="VYZOR — Pilotage intelligent pour décideurs exigeants" />
-  <meta property="og:description" content="VYZOR — Le copilote financier intelligent pour dirigeants. Reporting, prévisions, calculateurs gratuits." />
+  <meta property="og:title" content="Vyzor — Logiciel de pilotage financier pour PME" />
+  <meta property="og:description" content="Vyzor, logiciel de pilotage financier pour PME : reporting automatisé, prévision de trésorerie, indicateurs et alertes, depuis votre comptabilité." />
   <meta property="og:url" content="https://www.vyzor.fr/" />
-  <meta name="twitter:title" content="VYZOR — Pilotage intelligent pour décideurs exigeants" />
-  <meta name="twitter:description" content="VYZOR — Le copilote financier intelligent pour dirigeants. Reporting, prévisions, calculateurs gratuits." />
+  <meta name="twitter:title" content="Vyzor — Logiciel de pilotage financier pour PME" />
+  <meta name="twitter:description" content="Vyzor, logiciel de pilotage financier pour PME : reporting automatisé, prévision de trésorerie, indicateurs et alertes, depuis votre comptabilité." />
   <link rel="canonical" href="https://www.vyzor.fr/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -108,36 +108,72 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "@id": "https://www.vyzor.fr/#organization",
-      "name": "VYZOR",
-      "alternateName": ["Vizor", "Vysor", "Visor", "Vyzor.fr", "Vyzor pilotage"],
+      "name": "Vyzor",
+      "alternateName": "VYZOR",
       "url": "https://www.vyzor.fr/",
-      "logo": "https://www.vyzor.fr/icon-512.png",
-      "description": "VYZOR — Le copilote financier intelligent pour dirigeants : reporting, prévisions et calculateurs gratuits."
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.vyzor.fr/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "Vyzor est un logiciel français de pilotage financier pour dirigeants de PME, DAF et experts-comptables : reporting automatisé, prévision de trésorerie, indicateurs et alertes, à partir des données comptables.",
+      "disambiguatingDescription": "Logiciel de pilotage financier d'entreprise (Vyzor, avec un Z), sans lien avec Vysor, application de recopie d'écran Android.",
+      "email": "contact@vyzor.fr",
+      "areaServed": {
+        "@type": "Country",
+        "name": "France"
+      },
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Antoine Cayer"
+        },
+        {
+          "@type": "Person",
+          "name": "Louis Chevalier"
+        }
+      ],
+      "knowsAbout": [
+        "pilotage financier",
+        "trésorerie",
+        "besoin en fonds de roulement",
+        "analyse financière",
+        "PME",
+        "expertise comptable"
+      ]
     },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "VYZOR",
+      "@id": "https://www.vyzor.fr/#website",
+      "name": "Vyzor",
+      "alternateName": "VYZOR",
       "url": "https://www.vyzor.fr/",
       "inLanguage": "fr-FR",
-      "publisher": { "@id": "https://www.vyzor.fr/#organization" }
+      "publisher": {
+        "@id": "https://www.vyzor.fr/#organization"
+      }
     },
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "VYZOR",
-      "alternateName": ["Vizor", "Vysor"],
+      "name": "Vyzor",
       "applicationCategory": "FinanceApplication",
+      "applicationSubCategory": "Pilotage financier et reporting pour PME",
       "operatingSystem": "Web",
       "inLanguage": "fr-FR",
       "url": "https://www.vyzor.fr/",
-      "description": "Plateforme de pilotage et reporting financier pour dirigeants, DAF et experts-comptables.",
+      "description": "Logiciel de pilotage et de reporting financier pour dirigeants de PME, DAF et experts-comptables : plus de 35 indicateurs, prévision de trésorerie, alertes et assistant IA, depuis le FEC ou les connecteurs Pennylane, MyUnisoft et Odoo.",
       "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "EUR"
+        "priceCurrency": "EUR",
+        "description": "Accès anticipé (bêta)"
       },
-      "publisher": { "@id": "https://www.vyzor.fr/#organization" }
+      "publisher": {
+        "@id": "https://www.vyzor.fr/#organization"
+      }
     }
   ]
   </script>
@@ -156,7 +192,7 @@
     <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
       <h1 style="font-size:32px;margin:0 0 16px;">VYZOR — Pilotage financier intelligent</h1>
       <p style="font-size:17px;color:#aab;margin:0 0 24px;">Le copilote financier intelligent pour dirigeants, DAF et comptables. Reporting, prévisions et calculateurs financiers gratuits.</p>
-      <nav style="font-size:15px;font-weight:600;"><a href="fonctionnalites.html" style="color:#f0c949;margin-right:18px;">Fonctionnalités</a><a href="securite.html" style="color:#f0c949;margin-right:18px;">Sécurité</a><a href="calculateurs.html" style="color:#f0c949;margin-right:18px;">Calculateurs gratuits</a></nav>
+      <nav style="font-size:15px;font-weight:600;"><a href="/fonctionnalites" style="color:#f0c949;margin-right:18px;">Fonctionnalités</a><a href="/securite" style="color:#f0c949;margin-right:18px;">Sécurité</a><a href="/calculateurs" style="color:#f0c949;margin-right:18px;">Calculateurs gratuits</a></nav>
     </div>
   </noscript>
 
@@ -198,7 +234,7 @@
     const ExploreMore = ({ gold, text }) => {
       const items = [
         {
-          href: "fonctionnalites.html",
+          href: "/fonctionnalites",
           kicker: "Fonctionnalités",
           title: "Voir tout ce que Vyzor sait faire",
           icon: (
@@ -211,7 +247,7 @@
           ),
         },
         {
-          href: "securite.html",
+          href: "/securite",
           kicker: "Sécurité",
           title: "Données hébergées dans l'UE, chiffrement, conformité",
           icon: (

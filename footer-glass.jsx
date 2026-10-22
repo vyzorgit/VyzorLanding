@@ -16,11 +16,12 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
 
   // —— Liens utiles : uniquement des pages / ancres qui existent ——
   const usefulLinks = [
-    { label: "Le produit", href: "index.html#produit" },
-    { label: "Fonctionnalités", href: "fonctionnalites.html" },
-    { label: "Sécurité & RGPD", href: "securite.html" },
-    { label: "Calculateurs gratuits", href: "calculateurs.html" },
-    { label: "FAQ", href: "faq.html" },
+    { label: "Le produit", href: "/#produit" },
+    { label: "Fonctionnalités", href: "/fonctionnalites" },
+    { label: "Sécurité & RGPD", href: "/securite" },
+    { label: "Calculateurs gratuits", href: "/calculateurs" },
+    { label: "FAQ", href: "/faq" },
+    { label: "À propos", href: "/a-propos" },
   ];
 
   // —— Réseaux : destinations réelles ——
@@ -197,9 +198,9 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
 
         <div style={{ display: "flex", gap: 22, fontSize: 12, color: muted }}>
           {[
-            { label: "Mentions légales & CGU", href: "mentions-legales.html" },
-            { label: "Confidentialité", href: "confidentialite.html" },
-            { label: "Cookies", href: "confidentialite.html#cookies" },
+            { label: "Mentions légales & CGU", href: "/mentions-legales" },
+            { label: "Confidentialité", href: "/confidentialite" },
+            { label: "Cookies", href: "/confidentialite#cookies" },
             { label: "contact@vyzor.fr", href: "mailto:contact@vyzor.fr" },
           ].map((l) => (
             <a key={l.label} href={l.href} style={{ color: muted, textDecoration: "none", transition: "color 220ms ease" }}

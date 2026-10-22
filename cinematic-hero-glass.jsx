@@ -296,6 +296,7 @@ const CinematicHero = ({
         @media (max-height: 760px) { .vz-scroll-cue { display: none; } }
         .vz-velocity { font-size: clamp(48px, 8.4vw, 120px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; }
         .vz-h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: -1px; }
+        .vz-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: -1px; }
         .vz-tape-pause { display: inline-flex; align-items: center; margin-top: 14px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.28); background: transparent; color: rgba(255,255,255,0.8); font: 500 13px "Inter", system-ui, sans-serif; cursor: pointer; }
         .vz-tape-pause:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
         .vz-tape-pause:focus-visible, .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
@@ -306,7 +307,8 @@ const CinematicHero = ({
           .vz-h1 { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; margin: 0; padding: 0 24px; max-width: 960px; text-align: center; font-size: clamp(40px, 8.4vw, 96px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; color: #fff; text-wrap: balance; }
         }
       `}</style>
-      <h1 className="vz-h1">{headline} <span style={{ color: gold }}>{headlineAccent}</span></h1>
+      {/* Le nom et la catégorie ouvrent le h1 (référencement de la marque), sans changer l'affichage. */}
+      <h1 className="vz-h1"><span className="vz-sr">Vyzor, logiciel de pilotage financier pour PME : </span>{headline} <span style={{ color: gold }}>{headlineAccent}</span></h1>
       <div className="vz-hero-in vz-velocity" aria-hidden="true" style={{
         position: "relative", width: "100vw", display: "flex", flexDirection: "column", gap: "0.06em", animationDelay: "80ms",
       }}>

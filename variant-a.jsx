@@ -330,10 +330,10 @@ const BetaForm = ({ variant = "dark" }) => {
 // New top nav: floating centered pill, active indicator, scroll-aware compact mode
 const VyzorNav = ({ gold, text, muted, subtle }) => {
   const items = [
-    { id: "produit", label: "Le produit", href: "index.html#produit", external: true, matchPath: /(^\/?$|index\.html?$)/i, anchor: "produit" },
-    { id: "fonctionnalites", label: "Fonctionnalités", href: "fonctionnalites.html", external: true, matchPath: /fonctionnalite(s|-[a-z-]+)\.html?$/i },
-    { id: "securite", label: "Sécurité", href: "securite.html", external: true, matchPath: /securite\.html?$/i },
-    { id: "faq", label: "FAQ", href: "faq.html", external: true, matchPath: /faq\.html?$/i },
+    { id: "produit", label: "Le produit", href: "/#produit", external: true, matchPath: /(^\/?$|index\.html?$)/i, anchor: "produit" },
+    { id: "fonctionnalites", label: "Fonctionnalités", href: "/fonctionnalites", external: true, matchPath: /fonctionnalite(s|-[a-z-]+)(\.html?)?$/i },
+    { id: "securite", label: "Sécurité", href: "/securite", external: true, matchPath: /securite(\.html?)?$/i },
+    { id: "faq", label: "FAQ", href: "/faq", external: true, matchPath: /faq(\.html?)?$/i },
   ];
   // Détermine la page courante au montage
   const initialActive = (() => {
@@ -435,7 +435,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
         transition: "all 320ms cubic-bezier(0.22, 1, 0.36, 1)",
       }}>
         {/* Brand — mark seul (transparent) pour s'intégrer au verre de la navbar */}
-        <a href="index.html" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", paddingRight: 4, paddingLeft: 2 }}>
+        <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", paddingRight: 4, paddingLeft: 2 }}>
           <VyzorLogo size={28} color={gold} bg="transparent" />
           <div style={{
             fontSize: 11, letterSpacing: "0.32em", color: text, fontWeight: 700,
@@ -521,7 +521,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
                       </li>
                     ))}
                   </ul>
-                  <a href="fonctionnalites.html" className="vz-nav-dd-all">Voir toutes les fonctionnalités <span aria-hidden="true">→</span></a>
+                  <a href="/fonctionnalites" className="vz-nav-dd-all">Voir toutes les fonctionnalités <span aria-hidden="true">→</span></a>
                 </div>
               </div>
             );

@@ -4,7 +4,7 @@
 // 14/10/2026 — chantier conformité web (brief audit/briefs/2026-10-14-conformite-web.md) :
 //   - mentions légales complétées selon l'article 6-III de la LCEN (loi 2004-575) ;
 //   - politique de confidentialité limitée à ce que le SITE VITRINE traite réellement
-//     (candidature bêta via Web3Forms, journaux de l'hébergeur, Google Fonts) ; l'application
+//     (candidature bêta via Web3Forms, journaux de l'hébergeur) ; l'application
 //     (espace client) a sa propre politique, remise aux clients avec leur accès ;
 //   - 22/10/2026 : l'adresse de l'application n'apparaît plus sur le site (communiquée aux seuls clients) ;
 //   - section « Cookies et traceurs » ancrée (#cookies) avec l'inventaire exact ;
@@ -144,7 +144,7 @@ const MentionsLegales = () => (
       <Sub>Contact</Sub>
       <P>
         Pour toute question relative au Site ou à vos données : <Mail />. Voir aussi la{" "}
-        <A href="confidentialite.html">politique de confidentialité</A>.
+        <A href="/confidentialite">politique de confidentialité</A>.
       </P>
     </LegalArticle>
 
@@ -200,9 +200,9 @@ const MentionsLegales = () => (
     <LegalArticle n="06" id="donnees" title="Données personnelles et cookies">
       <P>
         Les traitements de données personnelles réalisés via le Site sont décrits dans la{" "}
-        <A href="confidentialite.html">politique de confidentialité</A>. Le Site ne dépose aucun cookie ni traceur
+        <A href="/confidentialite">politique de confidentialité</A>. Le Site ne dépose aucun cookie ni traceur
         soumis à consentement (voir la section{" "}
-        <A href="confidentialite.html#cookies">Cookies et traceurs</A>).
+        <A href="/confidentialite#cookies">Cookies et traceurs</A>).
       </P>
     </LegalArticle>
 
@@ -251,7 +251,6 @@ const PolitiqueConfidentialite = () => (
         <span><Strong>Demandes par courriel</Strong> adressées à contact@vyzor.fr : votre adresse email et le contenu de votre message.</span>,
         <span><Strong>Prise de rendez-vous</Strong> : le bouton « Demander une démo » renvoie vers Calendly, service tiers qui collecte vos données sur son propre site, selon sa propre politique.</span>,
         <span><Strong>Journaux techniques de l'hébergeur</Strong> : adresse IP, type de navigateur, page demandée et horodatage, conservés par Vercel à des fins de sécurité et de fonctionnement du service.</span>,
-        <span><Strong>Polices de caractères</Strong> : les polices Inter et JetBrains Mono sont chargées depuis Google Fonts ; votre adresse IP est transmise aux serveurs de Google lors de ce chargement.</span>,
         <span><Strong>Calculateurs</Strong> : les valeurs saisies sont traitées dans votre navigateur et ne sont pas transmises à VYZOR.</span>,
       ]} />
       <P>
@@ -275,13 +274,12 @@ const PolitiqueConfidentialite = () => (
       <Bullets items={[
         <span><Strong>Vercel, Inc.</Strong> (États-Unis) : hébergement du Site et journaux techniques. Transfert hors UE encadré par les clauses contractuelles types de la Commission européenne <Todo>À CONFIRMER : certification Data Privacy Framework</Todo>.</span>,
         <span><Strong>Web3Forms</Strong> <Todo>À REMPLIR : raison sociale, pays</Todo> : acheminement des candidatures bêta vers la boîte email de VYZOR, sans exploitation pour son propre compte. <Todo>À CONFIRMER : localisation des serveurs et garanties de transfert</Todo>.</span>,
-        <span><Strong>Google Ireland Ltd</Strong> (Irlande) : fourniture des polices de caractères (Google Fonts).</span>,
         <span><Strong>Calendly, LLC</Strong> (États-Unis) : uniquement si vous prenez rendez-vous, sur le site de Calendly.</span>,
         <span><Strong>Fournisseur de messagerie de VYZOR</Strong> <Todo>À REMPLIR : nom du service de messagerie recevant contact@vyzor.fr</Todo> : réception et stockage des candidatures et des courriels.</span>,
       ]} />
       <P>
-        Les bibliothèques techniques du Site (React) sont hébergées sur le Site lui-même : leur chargement ne
-        transmet aucune donnée à un tiers. Aucune donnée n'est vendue ni cédée à des tiers.
+        Les bibliothèques techniques (React) et les polices de caractères du Site sont hébergées sur le Site
+        lui-même : leur chargement ne transmet aucune donnée à un tiers. Aucune donnée n'est vendue ni cédée à des tiers.
       </P>
     </LegalArticle>
 
@@ -317,7 +315,7 @@ const PolitiqueConfidentialite = () => (
         Le Site est servi exclusivement en HTTPS, avec des en-têtes de sécurité (politique de sécurité du contenu,
         HSTS, interdiction d'intégration dans un cadre tiers). Le Site vitrine ne traite aucune donnée financière :
         celles-ci sont traitées uniquement dans l'application, dont les mesures de sécurité sont décrites sur la
-        page <A href="securite.html">Sécurité</A> et dans sa politique de confidentialité.
+        page <A href="/securite">Sécurité</A> et dans sa politique de confidentialité.
       </P>
     </LegalArticle>
 
@@ -328,7 +326,6 @@ const PolitiqueConfidentialite = () => (
         partage traçant). Inventaire des ressources tierces chargées par le Site :
       </P>
       <Bullets items={[
-        <span><Strong>fonts.googleapis.com / fonts.gstatic.com</Strong> (Google Fonts) : polices de caractères — aucun cookie déposé ; transmission de l'adresse IP (voir article 05).</span>,
         <span><Strong>api.web3forms.com</Strong> : appelé uniquement lorsque vous envoyez le formulaire de candidature bêta.</span>,
         <span><Strong>calendly.com, linkedin.com</Strong> : simples liens sortants, aucun script de ces services n'est chargé sur le Site.</span>,
       ]} />

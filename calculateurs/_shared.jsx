@@ -190,8 +190,8 @@ function VyzorTopNav({ current = "hub" }) {
   }, []);
 
   const items = [
-    { id: "produit", label: "Le produit", href: "../index.html#produit" },
-    { id: "hub", label: "Calculateurs", href: "../calculateurs.html" },
+    { id: "produit", label: "Le produit", href: "/#produit" },
+    { id: "hub", label: "Calculateurs", href: "/calculateurs" },
   ];
   const goldGrad = `linear-gradient(135deg, ${T.brandGold} 0%, ${T.brandGoldDark} 100%)`;
 
@@ -212,7 +212,7 @@ function VyzorTopNav({ current = "hub" }) {
         boxShadow: "0 16px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.3)",
         transition: "all 320ms cubic-bezier(0.22,1,0.36,1)",
       }}>
-        <a href="../index.html" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", paddingRight: 4, paddingLeft: 2 }}>
+        <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", paddingRight: 4, paddingLeft: 2 }}>
           <svg width="26" height="26" viewBox="0 0 1024 1024" aria-label="Vyzor" style={{ display: "block", flexShrink: 0 }}>
             <g transform="translate(0,1024) scale(0.1,-0.1)" fill={T.brandGold} stroke="none">
               <path d="M4630 7940 c-497 -24 -562 -60 -753 -410 -286 -527 -307 -590 -263 -770 49 -194 90 -265 613 -1035 75 -110 176 -260 225 -332 49 -73 93 -133 98 -133 11 0 30 28 304 458 l206 323 -92 132 c-51 73 -114 164 -140 202 -27 39 -82 117 -123 175 -350 499 -347 493 -279 512 261 74 829 88 1258 33 248 -33 248 -32 173 -153 -56 -91 -384 -596 -416 -642 -10 -14 -52 -79 -93 -145 -41 -66 -131 -205 -200 -310 -402 -613 -872 -1358 -957 -1515 -199 -370 -211 -748 -34 -1092 67 -133 374 -596 466 -705 71 -83 150 -149 167 -138 6 4 -4 23 -24 47 -144 168 -202 494 -134 753 73 278 70 272 716 1295 89 140 179 284 202 320 22 36 76 121 120 190 44 69 121 190 171 270 50 80 141 226 204 325 714 1130 738 1211 502 1657 -30 57 -78 147 -106 200 -228 433 -271 459 -806 488 -203 11 -771 11 -1005 0z"/>
@@ -264,7 +264,7 @@ function VyzorTopNav({ current = "hub" }) {
           width: 1, height: 18, background: "rgba(255,255,255,0.10)",
         }}/>
 
-        <a href="../index.html?contact=1#beta" data-contact className="vz-cnav-cta" style={{
+        <a href="/?contact=1#beta" data-contact className="vz-cnav-cta" style={{
           padding: "8px 14px",
           fontSize: 12.5,
           fontWeight: 600,
@@ -435,7 +435,7 @@ function EmailGate({ onSubmit, icon = "lock", title = "Débloquez votre analyse"
         <h3 style={{ color: T.textPrimary, fontSize: 22, fontWeight: 700, marginBottom: 8, fontFamily: T.sans }}>{title}</h3>
         <p style={{ color: T.textMuted, fontSize: 14, marginBottom: 24, lineHeight: 1.6, fontFamily: T.sans }}>{desc}</p>
         <a
-          href="../index.html?contact=1#beta"
+          href="/?contact=1#beta"
           data-contact
           style={{
             display: "inline-block", width: "100%", padding: "14px 24px",
@@ -477,7 +477,7 @@ function CtaFooter() {
           VYZOR transforme vos données en dashboards actionnables.
           Fini les tableurs — bienvenue dans le pilotage intelligent.
         </p>
-        <a href="../index.html?contact=1#beta" data-contact style={{
+        <a href="/?contact=1#beta" data-contact style={{
           display: "inline-block", position: "relative", zIndex: 1,
           padding: "16px 44px", background: goldGradient, color: "#000",
           border: "1px solid rgba(255,255,255,0.30)", borderRadius: 12, fontSize: 16, fontWeight: 700,
@@ -488,7 +488,7 @@ function CtaFooter() {
       </div>
       <div style={{ textAlign: "center", color: T.textMuted, fontSize: 12, paddingBottom: 32 }}>
         © 2026 VYZOR SAS — Pilotage intelligent pour décideurs exigeants ·{" "}
-        <a href="../calculateurs.html" style={{ color: T.brandGold, textDecoration: "none" }}>← Tous les calculateurs</a>
+        <a href="/calculateurs" style={{ color: T.brandGold, textDecoration: "none" }}>← Tous les calculateurs</a>
       </div>
     </React.Fragment>
   );

@@ -42,7 +42,7 @@ const FeaturePage = () => {
       <div style={{ background: "#070a14", color: text, overflow: "hidden" }}>
         <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
         <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "140px clamp(24px, 6vw, 96px) 0" }}>
-          <a href="fonctionnalites.html" className="vzp-back">← Toutes les fonctionnalités</a>
+          <a href="/fonctionnalites" className="vzp-back">← Toutes les fonctionnalités</a>
 
           <header className="vzp-hero">
             <h1 style={{ margin: 0, fontSize: "clamp(36px, 4.6vw, 56px)", lineHeight: 1.04, letterSpacing: "-0.03em", fontWeight: 600, color: "#fff", textWrap: "balance" }}>{f.name}</h1>

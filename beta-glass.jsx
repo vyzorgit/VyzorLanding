@@ -411,7 +411,7 @@ const BetaModal = ({ open, onClose }) => {
               </button>
               <div style={{ fontSize: 11, color: muted, textAlign: "center", marginTop: 2 }}>
                 Vos données servent uniquement à traiter votre candidature (conservées 3 ans max.). Vous pouvez y accéder ou les supprimer via contact@vyzor.fr — voir notre{" "}
-                <a href="confidentialite.html" target="_blank" rel="noopener" style={{ color: "#f0c949", textDecoration: "underline", textUnderlineOffset: 2 }}>politique de confidentialité</a>.
+                <a href="/confidentialite" target="_blank" rel="noopener" style={{ color: "#f0c949", textDecoration: "underline", textUnderlineOffset: 2 }}>politique de confidentialité</a>.
               </div>
             </form>
           </React.Fragment>

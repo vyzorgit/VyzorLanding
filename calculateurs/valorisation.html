@@ -2,7 +2,7 @@
 <html lang="fr-FR">
 <head>
 <meta charset="utf-8" />
-<title>Calculateur valorisation entreprise gratuit | Multiples EBITDA, DCF, Patrimonial — VYZOR</title>
+<title>Valorisation d&#x27;entreprise gratuite : EBITDA, DCF — Vyzor</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Favicons + Open Graph (Vyzor ribbon) -->
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
@@ -28,22 +28,22 @@
 <meta name="language" content="French" />
 <meta name="geo.region" content="FR" />
 <meta name="geo.placename" content="France" />
-<link rel="canonical" href="https://www.vyzor.fr/calculateurs/valorisation.html" />
-<link rel="alternate" hreflang="fr-FR" href="https://www.vyzor.fr/calculateurs/valorisation.html" />
-<link rel="alternate" hreflang="x-default" href="https://www.vyzor.fr/calculateurs/valorisation.html" />
+<link rel="canonical" href="https://www.vyzor.fr/calculateurs/valorisation" />
+<link rel="alternate" hreflang="fr-FR" href="https://www.vyzor.fr/calculateurs/valorisation" />
+<link rel="alternate" hreflang="x-default" href="https://www.vyzor.fr/calculateurs/valorisation" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta property="og:site_name" content="VYZOR" />
-<meta property="og:title" content="Calculateur valorisation entreprise gratuit | Multiples EBITDA, DCF, Patrimonial — VYZOR" />
+<meta property="og:title" content="Valorisation d&#x27;entreprise gratuite : EBITDA, DCF — Vyzor" />
 <meta property="og:description" content="Estimez la valeur de votre entreprise en quelques clics avec 3 méthodes : multiples d'EBITDA, DCF et patrimoniale. Outil gratuit pour dirigeants et repreneurs." />
-<meta property="og:url" content="https://www.vyzor.fr/calculateurs/valorisation.html" />
+<meta property="og:url" content="https://www.vyzor.fr/calculateurs/valorisation" />
 <meta property="og:image" content="https://www.vyzor.fr/og-image.png" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Calculateur valorisation entreprise gratuit — VYZOR" />
+<meta name="twitter:title" content="Valorisation d&#x27;entreprise gratuite : EBITDA, DCF — Vyzor" />
 <meta name="twitter:description" content="Estimez la valeur de votre entreprise : multiples EBITDA, DCF et méthode patrimoniale." />
 <meta name="twitter:image" content="https://www.vyzor.fr/og-image.png" />
 
@@ -53,7 +53,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Calculateur de valorisation d'entreprise VYZOR",
-  "url": "https://www.vyzor.fr/calculateurs/valorisation.html",
+  "url": "https://www.vyzor.fr/calculateurs/valorisation",
   "description": "Simulateur en ligne gratuit pour estimer la valorisation d'une entreprise selon trois méthodes : multiples d'EBITDA sectoriels, DCF (cash flow actualisé) et patrimoniale.",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "All",
@@ -79,8 +79,8 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.vyzor.fr/" },
-    { "@type": "ListItem", "position": 2, "name": "Calculateurs financiers", "item": "https://www.vyzor.fr/calculateurs.html" },
-    { "@type": "ListItem", "position": 3, "name": "Calculateur de valorisation", "item": "https://www.vyzor.fr/calculateurs/valorisation.html" }
+    { "@type": "ListItem", "position": 2, "name": "Calculateurs financiers", "item": "https://www.vyzor.fr/calculateurs" },
+    { "@type": "ListItem", "position": 3, "name": "Calculateur de valorisation", "item": "https://www.vyzor.fr/calculateurs/valorisation" }
   ]
 }
 </script>
@@ -161,12 +161,12 @@
 
       <h2 style="font-size:18px;margin:32px 0 10px;">Autres calculateurs financiers gratuits</h2>
       <nav style="font-size:15px;font-weight:600;line-height:2;">
-        <a href="bfr.html" style="color:#f0c949;margin-right:18px;">Calculateur BFR</a>
-        <a href="breakeven.html" style="color:#f0c949;margin-right:18px;">Seuil de rentabilité</a>
-        <a href="fiscal.html" style="color:#f0c949;margin-right:18px;">Simulateur fiscal</a>
-        <a href="reporting.html" style="color:#f0c949;margin-right:18px;">ROI reporting</a>
-        <br><a href="../calculateurs.html" style="color:#f0c949;margin-right:18px;">Tous les calculateurs</a>
-        <a href="../index.html" style="color:#f0c949;">Accueil VYZOR</a>
+        <a href="/calculateurs/bfr" style="color:#f0c949;margin-right:18px;">Calculateur BFR</a>
+        <a href="/calculateurs/breakeven" style="color:#f0c949;margin-right:18px;">Seuil de rentabilité</a>
+        <a href="/calculateurs/fiscal" style="color:#f0c949;margin-right:18px;">Simulateur fiscal</a>
+        <a href="/calculateurs/reporting" style="color:#f0c949;margin-right:18px;">ROI reporting</a>
+        <br><a href="/calculateurs" style="color:#f0c949;margin-right:18px;">Tous les calculateurs</a>
+        <a href="/" style="color:#f0c949;">Accueil VYZOR</a>
       </nav>
     </div>
   </noscript>
@@ -473,7 +473,7 @@ function App() {
       <VyzorTopNav current="hub" />
 
       <main id="contenu" tabIndex={-1} style={{ position: "relative", zIndex: 1, maxWidth: 1040, margin: "0 auto", padding: "120px 20px 48px", outline: "none" }}>
-        <a href="../calculateurs.html" style={{
+        <a href="/calculateurs" style={{
           display: "inline-flex", alignItems: "center", gap: 6, color: T.textMuted,
           fontSize: 12, textDecoration: "none", marginBottom: 24,
         }}>← Tous les calculateurs</a>

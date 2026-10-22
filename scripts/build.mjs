@@ -41,6 +41,18 @@ const MIN_WORDS = 120;
 // Garde : l'adresse de l'application n'est donnée qu'aux clients (décision du 22/10/2026) ;
 // les exports Claude Design peuvent réintroduire le lien « Se connecter » de la barre de navigation.
 const FORBIDDEN = [/app\.vyzor\.fr/i, /Se connecter/];
+// Polices hébergées sur le site (Fontsource) à la place de Google Fonts : aucune adresse IP
+// transmise à Google, une requête de moins. Seuls les jeux latin et latin étendu sont publiés.
+const FONT_SOURCES = [
+  ["@fontsource-variable/inter/wght.css", "Inter Variable", "Inter"],
+  ["@fontsource-variable/hanken-grotesk/wght.css", "Hanken Grotesk Variable", "Hanken Grotesk"],
+  ...["400", "500", "700"].map((w) => [`@fontsource/jetbrains-mono/${w}.css`]),
+  ...["400", "500", "600", "700"].map((w) => [`@fontsource/ibm-plex-mono/${w}.css`]),
+];
+const FONTS_HEAD = [
+  '<link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />',
+  '<link rel="stylesheet" href="/fonts/fonts.css" />',
+].join("\n  ");
 const TEXT_EXT = [".html", ".js", ".css", ".txt", ".xml", ".json", ".webmanifest"];
 
 const MOUNT_CALL = 'ReactDOM.createRoot(document.getElementById("root")).render(';
@@ -130,7 +142,7 @@ async function buildReactPage(file, html) {
   }
   const code = parts.join("\n;\n");
 
-  const pagePath = "/" + (file === "index.html" ? "" : file);
+  const pagePath = "/" + file.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "");
   const { html: rendered, styles } = prerender(code, pagePath);
   if (!/<h1[\s>]/.test(rendered)) throw new Error(`${file} : pas de titre h1 dans le rendu`);
   const words = wordCount(rendered);
@@ -152,6 +164,38 @@ async function buildReactPage(file, html) {
   if (!html.includes('<div id="root"></div>')) throw new Error(`${file} : #root introuvable`);
   html = html.replace("</head>", `  ${head}\n</head>`).replace('<div id="root"></div>', `<div id="root">${rendered}</div>`);
   return { html, words, kb: Math.round(Buffer.byteLength(bundle) / 1024) };
+}
+
+// Écrit dist/fonts/fonts.css et ses fichiers woff2 à partir des feuilles Fontsource.
+function buildFonts() {
+  mkdirSync(join(DIST, "fonts"), { recursive: true });
+  const blocks = [];
+  for (const [css, from, to] of FONT_SOURCES) {
+    const file = join(ROOT, "node_modules", css);
+    for (const block of readFileSync(file, "utf8").match(/\/\* [^*]+ \*\/\s*@font-face \{[^}]+\}/g)) {
+      if (!/-latin(-ext)?-/.test(block.split("*/")[0])) continue;
+      let out = block.replace(/,\s*url\([^)]+\.woff\) format\('woff'\)/, "");
+      if (from) out = out.replaceAll(`'${from}'`, `'${to}'`);
+      out = out.replace(/url\(\.\/files\/([^)]+\.woff2)\)/, (_, name) => {
+        cpSync(join(dirname(file), "files", name), join(DIST, "fonts", name));
+        return `url(/fonts/${name})`;
+      });
+      blocks.push(out);
+    }
+  }
+  writeFileSync(join(DIST, "fonts", "fonts.css"), blocks.join("\n\n") + "\n");
+  return blocks.length;
+}
+
+// Remplace les liens Google Fonts d'une page (exports Claude Design) par les polices du site.
+function useLocalFonts(html) {
+  const before = html;
+  html = html
+    .replace(/[ \t]*<link rel="preconnect" href="https:\/\/fonts\.(googleapis|gstatic)\.com"[^>]*>\n?/g, "")
+    .replace(/[ \t]*<link[^>]+href="https:\/\/fonts\.googleapis\.com\/css2[^"]*"[^>]*>\n?/g, "")
+    .replace(/[ \t]*@import url\(['"]?https:\/\/fonts\.googleapis\.com\/[^)]*\);?\n?/g, "");
+  if (html === before) return html;
+  return html.replace("</title>", `</title>\n  ${FONTS_HEAD}`);
 }
 
 // Empreintes CSP des scripts exécutables intégrés (les blocs ld+json ne s'exécutent pas).
@@ -178,6 +222,7 @@ mkdirSync(join(DIST, "vendor"), { recursive: true });
 cpSync(join(ROOT, "node_modules/react/umd/react.production.min.js"), join(DIST, `vendor/react-${REACT_VERSION}.min.js`));
 cpSync(join(ROOT, "node_modules/react-dom/umd/react-dom.production.min.js"), join(DIST, `vendor/react-dom-${REACT_VERSION}.min.js`));
 
+const fontFaces = buildFonts();
 const hashes = [];
 const report = [];
 for (const file of walk(ROOT)) {
@@ -193,6 +238,7 @@ for (const file of walk(ROOT)) {
   } else {
     report.push(`${file} : HTML statique`);
   }
+  html = useLocalFonts(html);
   hashes.push(...inlineScriptHashes(html));
   writeFileSync(target, html);
 }
@@ -201,9 +247,11 @@ for (const file of walk(DIST)) {
   if (!TEXT_EXT.some((ext) => file.endsWith(ext)) || file.includes("/vendor/")) continue;
   const text = readFileSync(join(ROOT, file), "utf8");
   for (const re of FORBIDDEN) if (re.test(text)) leaks.push(`${relative("dist", file)} (${re.source})`);
+  if (/fonts\.(googleapis|gstatic)\.com/.test(text)) throw new Error(`${relative("dist", file)} : police encore chargée depuis Google Fonts`);
 }
 if (leaks.length) throw new Error(`Lien vers l'application publié sur le site, à retirer :\n  ${leaks.join("\n  ")}`);
 
 const cspChanged = syncCsp(hashes);
 console.log(report.join("\n"));
+console.log(`polices : ${fontFaces} @font-face hébergées sur le site`);
 console.log(cspChanged ? "vercel.json : empreintes CSP mises à jour" : "vercel.json : CSP à jour");

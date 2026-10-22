@@ -1,16 +1,28 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "installCommand": "npm ci",
   "redirects": [
     {
       "source": "/fonctionnalites-v2.html",
-      "destination": "/fonctionnalites.html",
+      "destination": "/fonctionnalites",
       "permanent": true
     },
     {
       "source": "/fonctionnalites-orbital.html",
-      "destination": "/fonctionnalites.html",
+      "destination": "/fonctionnalites",
+      "permanent": true
+    },
+    {
+      "source": "/fonctionnalites-v2",
+      "destination": "/fonctionnalites",
+      "permanent": true
+    },
+    {
+      "source": "/fonctionnalites-orbital",
+      "destination": "/fonctionnalites",
       "permanent": true
     }
   ],
@@ -20,7 +32,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; frame-src 'self'; form-action 'self' https://api.web3forms.com; script-src 'self' 'sha256-5L4CcmV4UX5998JVejgoltdQzB4/TCzefXGkjza42lY=' 'sha256-D5BCAkJl15eP0aNrFZprIPqreeE9vHuxNULZaxN6Nyo=' 'sha256-jz8XJfOgwOvMsddSN65JUpHP9fUGd1k4S7HztP0csg4='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'none'; upgrade-insecure-requests"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; frame-src 'self'; form-action 'self' https://api.web3forms.com; script-src 'self' 'sha256-5L4CcmV4UX5998JVejgoltdQzB4/TCzefXGkjza42lY=' 'sha256-D5BCAkJl15eP0aNrFZprIPqreeE9vHuxNULZaxN6Nyo=' 'sha256-jz8XJfOgwOvMsddSN65JUpHP9fUGd1k4S7HztP0csg4='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'none'; upgrade-insecure-requests"
         },
         {
           "key": "X-Frame-Options",

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>À propos de Vyzor, logiciel de pilotage financier</title>
+  <meta name="description" content="Vyzor est un logiciel français de pilotage financier pour dirigeants de PME, DAF et experts-comptables. Qui nous sommes, ce que fait Vyzor, comment il est construit." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="vyzor-mark.svg" />
+  <meta name="theme-color" content="#0f1530" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VYZOR" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content="À propos de Vyzor, logiciel de pilotage financier" />
+  <meta property="og:url" content="https://www.vyzor.fr/a-propos" />
+  <meta property="og:description" content="Vyzor est un logiciel français de pilotage financier pour dirigeants de PME, DAF et experts-comptables. Qui nous sommes, ce que fait Vyzor, comment il est construit." />
+  <meta property="og:image" content="https://www.vyzor.fr/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="VYZOR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.vyzor.fr/og-image.png" />
+  <meta name="twitter:title" content="À propos de Vyzor, logiciel de pilotage financier" />
+  <meta name="twitter:description" content="Vyzor est un logiciel français de pilotage financier pour dirigeants de PME, DAF et experts-comptables. Qui nous sommes, ce que fait Vyzor, comment il est construit." />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "AboutPage", "@id": "https://www.vyzor.fr/a-propos", "url": "https://www.vyzor.fr/a-propos", "name": "À propos de Vyzor, logiciel de pilotage financier", "inLanguage": "fr-FR", "isPartOf": {"@id": "https://www.vyzor.fr/#website"}, "about": {"@type": "Organization", "@id": "https://www.vyzor.fr/#organization", "name": "Vyzor", "alternateName": "VYZOR", "url": "https://www.vyzor.fr/", "logo": "https://www.vyzor.fr/icon-512.png", "email": "contact@vyzor.fr", "description": "Logiciel français de pilotage financier pour dirigeants de PME, DAF et experts-comptables.", "disambiguatingDescription": "Logiciel de pilotage financier d'entreprise (Vyzor, avec un Z), sans lien avec Vysor, application de recopie d'écran Android.", "founder": [{"@type": "Person", "name": "Antoine Cayer"}, {"@type": "Person", "name": "Louis Chevalier"}]}, "mainEntity": {"@id": "https://www.vyzor.fr/#organization"}}</script>
+  <link rel="canonical" href="https://www.vyzor.fr/a-propos" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="responsive.css" />
+  <style>
+    :root {
+      --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      --font-display: var(--font-sans);
+      --font-text: var(--font-sans);
+    }
+    html, body, #root { margin: 0; padding: 0; }
+    html, body { background: #070a14; }
+    html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+
+    .vz-reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .vz-reveal.in { opacity: 1; transform: none; }
+    .vz-reveal.in + .vz-reveal.in { transition-delay: 60ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .vz-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-feature-settings: "ss01", "cv11", "calt";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      color: rgba(255,255,255,0.92);
+      overflow-x: clip;
+    }
+    button, input, textarea, select { font-family: inherit; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); letter-spacing: -0.02em; }
+    code, kbd, samp, pre { font-family: var(--font-mono); }
+    * { box-sizing: border-box; }
+    a { color: inherit; }
+    ::selection { background: rgba(240,201,73,0.35); color: #fff; }
+
+    .pg-hero {
+      position: relative;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 180px clamp(24px, 6vw, 96px) 24px;
+      text-align: left;
+    }
+    .pg-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: 0.32em;
+      color: #f0c949; text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .pg-title {
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.04; letter-spacing: -0.03em;
+      font-weight: 600; margin: 0 0 18px; max-width: 760px;
+      color: #fff;
+    }
+    .pg-lede {
+      font-family: var(--font-mono);
+      font-size: 12px; line-height: 1.6; letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.6);
+      margin: 0;
+    }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <!-- SEO complémentaire -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="alternate" hreflang="fr-FR" href="https://www.vyzor.fr/a-propos" />
+  <link rel="alternate" hreflang="x-default" href="https://www.vyzor.fr/a-propos" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <style>.vz-skip:focus{left:12px!important}</style>
+</head>
+<body>
+  <a href="#contenu" style="position:absolute;left:-9999px;top:8px;z-index:100000;padding:10px 16px;background:#0a0a0a;color:#f0c949;border:2px solid #f0c949;border-radius:8px;font:600 14px Inter,system-ui,sans-serif;text-decoration:none" class="vz-skip">Aller au contenu</a>
+  <div id="root"></div>
+  <noscript>
+    <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
+      <h1 style="font-size:32px;margin:0 0 16px;">Mentions légales &amp; CGU</h1>
+      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Mentions légales et Conditions Générales d'Utilisation du site et des services VYZOR.</p>
+      <nav style="font-size:15px;font-weight:600;"><a href="/" style="color:#f0c949;margin-right:18px;">Accueil</a></nav>
+    </div>
+  </noscript>
+
+  <script type="text/babel" src="shared.jsx"></script>
+  <script type="text/babel" src="glow-border.jsx"></script>
+  <script type="text/babel" src="features-data.jsx"></script>
+  <script type="text/babel" src="variant-a.jsx"></script>
+  <script type="text/babel" src="legal-glass.jsx"></script>
+  <script type="text/babel" src="footer-glass.jsx"></script>
+
+  <script type="text/babel">
+    // Page « À propos » : faits vérifiables sur Vyzor (identité de marque pour Google et les assistants IA).
+    const AboutVyzor = () => (
+      <LegalShell>
+        <LegalArticle n="01" id="en-bref" title="Vyzor en bref">
+          <Bullets items={[
+            <span><Strong>Ce que c'est</Strong> : un logiciel de pilotage financier qui transforme les données comptables (FEC, Pennylane, MyUnisoft, Odoo, ou import Excel et PDF) en tableaux de bord, indicateurs, prévisions de trésorerie et alertes.</span>,
+            <span><Strong>Pour qui</Strong> : les dirigeants de PME, les DAF (internes, externalisés ou à temps partagé) et les cabinets d'expertise comptable.</span>,
+            <span><Strong>Où nous en sommes</Strong> : accès anticipé (bêta), en France, service en français.</span>,
+            <span><Strong>Les données</Strong> : importées en lecture seule, hébergées dans l'Union européenne, jamais utilisées pour entraîner des modèles d'IA.</span>,
+            <span><Strong>Contact</Strong> : <Mail />.</span>,
+          ]} />
+        </LegalArticle>
+
+        <LegalArticle n="02" id="pourquoi" title="Pourquoi Vyzor">
+          <P>
+            La comptabilité d'une PME contient l'essentiel de ce qu'il faut pour la piloter, mais elle reste difficile
+            à lire pour qui n'est pas du métier. Vyzor analyse le passé de l'entreprise, éclaire son présent et projette
+            son futur financier, pour que le dirigeant décide avec des chiffres clairs, sans attendre le bilan.
+          </P>
+        </LegalArticle>
+
+        <LegalArticle n="03" id="construction" title="Construit avec des professionnels du chiffre">
+          <P>
+            Vyzor est co-construit avec un panel de DAF qui l'utilisent sur leurs propres chiffres : ils testent
+            l'outil en conditions réelles, remontent ce qui manque ou ce qui gêne, et les retours qui font consensus
+            entrent dans le produit.
+          </P>
+        </LegalArticle>
+
+        <LegalArticle n="04" id="equipe" title="L'équipe">
+          <P>
+            Vyzor est fondé par <Strong>Antoine Cayer</Strong> et <Strong>Louis Chevalier</Strong>, associés.
+            L'entreprise est une société par actions simplifiée (SAS) en cours de formation, établie en France.
+          </P>
+        </LegalArticle>
+
+        <LegalArticle n="05" id="nom" title="Vyzor, avec un Z">
+          <P>
+            Vyzor s'écrit V-Y-Z-O-R. Il n'a aucun lien avec Vysor, l'application de recopie d'écran pour Android,
+            ni avec d'autres produits au nom proche. Le seul site officiel est <A href="/">www.vyzor.fr</A>.
+          </P>
+        </LegalArticle>
+
+        <LegalArticle n="06" id="plus-loin" title="Pour aller plus loin">
+          <Bullets items={[
+            <span><A href="/fonctionnalites">Les fonctionnalités</A> : analyse financière, trésorerie, alertes, Conseil, juridique, multi-sociétés.</span>,
+            <span><A href="/securite">La sécurité et la confidentialité</A> des données.</span>,
+            <span><A href="/calculateurs">Les calculateurs gratuits</A> : BFR, seuil de rentabilité, valorisation, simulateur fiscal.</span>,
+            <span><A href="/faq">Les questions fréquentes</A>.</span>,
+          ]} />
+        </LegalArticle>
+      </LegalShell>
+    );
+
+    const App = () => {
+      const gold = "#f0c949";
+      const text = "rgba(255,255,255,0.92)";
+      const muted = "rgba(255,255,255,0.55)";
+      const subtle = "rgba(255,255,255,0.08)";
+
+      // Ancre (#cookies…) : le contenu est rendu après Babel, le navigateur ne peut
+      // donc pas y défiler seul au chargement.
+      React.useEffect(() => {
+        const hash = window.location.hash;
+        if (!hash) return;
+        const target = document.getElementById(hash.slice(1));
+        if (target) { target.classList.add("in"); target.scrollIntoView(); }
+      }, []);
+
+      React.useEffect(() => {
+        if (typeof IntersectionObserver === "undefined") {
+          document.querySelectorAll(".vz-reveal").forEach(el => el.classList.add("in"));
+          return;
+        }
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.08, rootMargin: "0px 0px -4% 0px" });
+        const id = requestAnimationFrame(() => {
+          document.querySelectorAll(".vz-reveal").forEach(el => io.observe(el));
+        });
+        return () => { cancelAnimationFrame(id); io.disconnect(); };
+      }, []);
+
+      return (
+        <React.Fragment>
+          <VyzorNav gold={gold} text={text} muted={muted} subtle={subtle} />
+
+          <div style={{
+            background: "#070a14",
+            backgroundImage: "none",
+            color: text,
+            position: "relative",
+            overflowX: "clip",
+            paddingBottom: 56,
+          }}>
+            <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
+            <header className="pg-hero vz-reveal in">
+              <h1 className="pg-title">À propos de Vyzor</h1>
+              <p style={{ margin: 0, maxWidth: 640, fontSize: 17, lineHeight: 1.6, color: "rgba(255,255,255,0.65)", textWrap: "pretty" }}>Le logiciel français de pilotage financier des dirigeants de PME, des DAF et des experts-comptables.</p>
+            </header>
+
+            <div style={{ marginTop: 8 }}>
+              <AboutVyzor />
+            </div>
+            </main>
+
+            <div className="vz-reveal" style={{ marginTop: 96 }}>
+              <VyzorFooterGlass fullWidth />
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
