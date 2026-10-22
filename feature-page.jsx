@@ -102,13 +102,17 @@ const FeaturePage = () => {
           <section className="vz-reveal" style={{ marginTop: 112 }}>
             <h2 style={{ margin: 0, fontSize: 24, letterSpacing: "-0.02em", fontWeight: 600, color: "#fff" }}>Les autres fonctionnalités</h2>
             <div className="vzp-others">
-              {others.map((o) => (
-                <a key={o.slug} {...(o.soon ? { "aria-disabled": true } : { href: vzFeatureHref(o.slug) })} className={"vzp-other" + (o.soon ? " soon" : "")}>
-                  <span style={{ color: gold, display: "grid", placeItems: "center" }}><VzfIcon name={o.icon} size={17} /></span>
-                  <span style={{ flex: 1 }}>{o.name}</span>
-                  {o.soon ? <span style={{ fontSize: 12, fontWeight: 600, color: gold }}>Bientôt</span> : <span aria-hidden="true" className="vzp-other-arr">→</span>}
-                </a>
-              ))}
+              {others.map((o) => {
+                // Fonctionnalité à venir : simple bloc, pas un lien sans adresse.
+                const Tag = o.soon ? "div" : "a";
+                return (
+                  <Tag key={o.slug} href={o.soon ? undefined : vzFeatureHref(o.slug)} className={"vzp-other" + (o.soon ? " soon" : "")}>
+                    <span style={{ color: gold, display: "grid", placeItems: "center" }}><VzfIcon name={o.icon} size={17} /></span>
+                    <span style={{ flex: 1 }}>{o.name}</span>
+                    {o.soon ? <span style={{ fontSize: 12, fontWeight: 600, color: gold }}>Bientôt</span> : <span aria-hidden="true" className="vzp-other-arr">→</span>}
+                  </Tag>
+                );
+              })}
             </div>
           </section>
 
