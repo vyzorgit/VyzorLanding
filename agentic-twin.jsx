@@ -24,11 +24,11 @@ const TWIN_HEAD_WORDS = [
 const RevealWordsHeader = ({ text, muted }) => {
   const ref = React.useRef(null);
   const [play, setPlay] = React.useState(false);
-  const [reduce] = React.useState(() =>
-    typeof window !== "undefined" && window.matchMedia
-      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      : false
-  );
+  // Lu après montage : le pré-rendu et la première passe navigateur doivent produire le même HTML.
+  const [reduce, setReduce] = React.useState(false);
+  React.useEffect(() => {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) setReduce(true);
+  }, []);
 
   React.useEffect(() => {
     if (reduce) { setPlay(true); return; }

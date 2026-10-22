@@ -496,42 +496,42 @@
       <div class="field">
         <label for="in-ca"><span class="label-icon" aria-hidden="true">💶</span>Chiffre d'affaires annuel HT</label>
         <div class="input-wrap">
-          <input type="number" id="in-ca" value="2000000" oninput="recalc()" aria-describedby="u-ca">
+          <input type="number" id="in-ca" value="2000000" data-recalc aria-describedby="u-ca">
           <span class="suffix" id="u-ca">€ / an</span>
         </div>
       </div>
       <div class="field">
         <label for="in-achats"><span class="label-icon" aria-hidden="true">🛒</span>Achats annuels HT</label>
         <div class="input-wrap">
-          <input type="number" id="in-achats" value="800000" oninput="recalc()" aria-describedby="u-achats">
+          <input type="number" id="in-achats" value="800000" data-recalc aria-describedby="u-achats">
           <span class="suffix" id="u-achats">€ / an</span>
         </div>
       </div>
       <div class="field">
         <label for="in-stock"><span class="label-icon" aria-hidden="true">📦</span>Stock moyen</label>
         <div class="input-wrap">
-          <input type="number" id="in-stock" value="120000" oninput="recalc()" aria-describedby="u-stock">
+          <input type="number" id="in-stock" value="120000" data-recalc aria-describedby="u-stock">
           <span class="suffix" id="u-stock">€</span>
         </div>
       </div>
       <div class="field">
         <label for="in-creances"><span class="label-icon" aria-hidden="true">📄</span>Créances clients</label>
         <div class="input-wrap">
-          <input type="number" id="in-creances" value="280000" oninput="recalc()" aria-describedby="u-creances">
+          <input type="number" id="in-creances" value="280000" data-recalc aria-describedby="u-creances">
           <span class="suffix" id="u-creances">€</span>
         </div>
       </div>
       <div class="field">
         <label for="in-dettes"><span class="label-icon" aria-hidden="true">🏦</span>Dettes fournisseurs</label>
         <div class="input-wrap">
-          <input type="number" id="in-dettes" value="110000" oninput="recalc()" aria-describedby="u-dettes">
+          <input type="number" id="in-dettes" value="110000" data-recalc aria-describedby="u-dettes">
           <span class="suffix" id="u-dettes">€</span>
         </div>
       </div>
       <div class="field">
         <label for="in-growth"><span class="label-icon" aria-hidden="true">📈</span>Croissance CA prévue</label>
         <div class="input-wrap">
-          <input type="number" id="in-growth" value="15" oninput="recalc()" aria-describedby="u-growth">
+          <input type="number" id="in-growth" value="15" data-recalc aria-describedby="u-growth">
           <span class="suffix" id="u-growth">% / an</span>
         </div>
       </div>
@@ -611,17 +611,17 @@
     <div class="slider-group">
       <div class="slider-row">
         <label for="opt-dso"><span aria-hidden="true">📄</span> Réduire DSO de</label>
-        <input type="range" id="opt-dso" min="0" max="30" value="10" oninput="recalc()" aria-describedby="opt-dso-val">
+        <input type="range" id="opt-dso" min="0" max="30" value="10" data-recalc aria-describedby="opt-dso-val">
         <div class="slider-val" id="opt-dso-val">−10 j</div>
       </div>
       <div class="slider-row">
         <label for="opt-dio"><span aria-hidden="true">📦</span> Réduire DIO de</label>
-        <input type="range" id="opt-dio" min="0" max="30" value="5" oninput="recalc()" aria-describedby="opt-dio-val">
+        <input type="range" id="opt-dio" min="0" max="30" value="5" data-recalc aria-describedby="opt-dio-val">
         <div class="slider-val" id="opt-dio-val">−5 j</div>
       </div>
       <div class="slider-row">
         <label for="opt-dpo"><span aria-hidden="true">🏦</span> Augmenter DPO de</label>
-        <input type="range" id="opt-dpo" min="0" max="20" value="5" oninput="recalc()" aria-describedby="opt-dpo-val">
+        <input type="range" id="opt-dpo" min="0" max="20" value="5" data-recalc aria-describedby="opt-dpo-val">
         <div class="slider-val" id="opt-dpo-val">+5 j</div>
       </div>
     </div>
@@ -889,6 +889,7 @@
   }
 
   // --- INIT ---
+  document.querySelectorAll('[data-recalc]').forEach((el) => el.addEventListener('input', recalc));
   recalc();
 </script>
 </body>

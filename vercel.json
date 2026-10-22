@@ -1,21 +1,60 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm ci",
+  "redirects": [
+    {
+      "source": "/fonctionnalites-v2.html",
+      "destination": "/fonctionnalites.html",
+      "permanent": true
+    },
+    {
+      "source": "/fonctionnalites-orbital.html",
+      "destination": "/fonctionnalites.html",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; frame-src 'self'; form-action 'self' https://api.web3forms.com; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'none'; upgrade-insecure-requests"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; frame-src 'self'; form-action 'self' https://api.web3forms.com; script-src 'self' 'sha256-5L4CcmV4UX5998JVejgoltdQzB4/TCzefXGkjza42lY=' 'sha256-D5BCAkJl15eP0aNrFZprIPqreeE9vHuxNULZaxN6Nyo=' 'sha256-jz8XJfOgwOvMsddSN65JUpHP9fUGd1k4S7HztP0csg4='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'none'; upgrade-insecure-requests"
         },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), hid=(), magnetometer=(), gyroscope=(), accelerometer=(), browsing-topics=(), interest-cohort=()"
         },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000" }
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000"
+        }
+      ]
+    },
+    {
+      "source": "/(assets|vendor)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     }
   ]

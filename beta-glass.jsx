@@ -228,6 +228,9 @@ const BetaModal = ({ open, onClose }) => {
   const inputBg = "rgba(255,255,255,0.04)";
   const inputBorder = "rgba(255,255,255,0.4)";
   const dialogRef = React.useRef(null);
+  // Portail monté après hydratation : le pré-rendu (serveur) ne sait pas rendre de portail.
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
 
   const WEB3FORMS_KEY = "9f003436-eba6-4543-b3ed-06c89a38a69c";
 
@@ -449,6 +452,7 @@ const BetaModal = ({ open, onClose }) => {
     </div>
   );
 
+  if (!mounted) return null;
   return ReactDOM.createPortal(overlay, document.body);
 };
 
