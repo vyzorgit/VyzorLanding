@@ -48,13 +48,13 @@ Le produit est co-construit avec un panel de professionnels du chiffre qui l'uti
 
 ## Calculateurs financiers gratuits
 
-Outils en ligne gratuits, sans inscription, accessibles depuis https://vyzor.fr/calculateurs.html :
+Outils en ligne gratuits, sans inscription, accessibles depuis https://www.vyzor.fr/calculateurs.html :
 
-- **Calculateur BFR** (https://vyzor.fr/calculateurs/bfr.html) : besoin en fonds de roulement à partir des délais clients (DSO), délais fournisseurs (DPO) et rotation des stocks.
-- **Seuil de rentabilité / point mort** (https://vyzor.fr/calculateurs/breakeven.html) : break-even à partir des coûts fixes, coûts variables et prix de vente, avec marge de sécurité.
-- **Simulateur fiscal** (https://vyzor.fr/calculateurs/fiscal.html) : comparateur de statuts juridiques (SAS/SASU, SARL/EURL, micro-BIC, micro-BNC) avec calcul IS, IR et cotisations.
-- **Valorisation d'entreprise** (https://vyzor.fr/calculateurs/valorisation.html) : estimation multi-méthodes — multiples d'EBITDA sectoriels, DCF (flux actualisés) et approche patrimoniale.
-- **ROI du reporting financier** (https://vyzor.fr/calculateurs/reporting.html) : audit du temps et de la fiabilité du pilotage, gain potentiel de l'automatisation.
+- **Calculateur BFR** (https://www.vyzor.fr/calculateurs/bfr.html) : besoin en fonds de roulement à partir des délais clients (DSO), délais fournisseurs (DPO) et rotation des stocks.
+- **Seuil de rentabilité / point mort** (https://www.vyzor.fr/calculateurs/breakeven.html) : break-even à partir des coûts fixes, coûts variables et prix de vente, avec marge de sécurité.
+- **Simulateur fiscal** (https://www.vyzor.fr/calculateurs/fiscal.html) : comparateur de statuts juridiques (SAS/SASU, SARL/EURL, micro-BIC, micro-BNC) avec calcul IS, IR et cotisations.
+- **Valorisation d'entreprise** (https://www.vyzor.fr/calculateurs/valorisation.html) : estimation multi-méthodes — multiples d'EBITDA sectoriels, DCF (flux actualisés) et approche patrimoniale.
+- **ROI du reporting financier** (https://www.vyzor.fr/calculateurs/reporting.html) : audit du temps et de la fiabilité du pilotage, gain potentiel de l'automatisation.
 
 ## Accès & disponibilité
 
@@ -148,11 +148,11 @@ Oui. VYZOR est en accès anticipé, en co-construction avec ses premiers utilisa
 
 ## Pages & contact
 
-- Accueil : https://vyzor.fr/
-- Fonctionnalités : https://vyzor.fr/fonctionnalites.html
-- FAQ : https://vyzor.fr/faq.html
-- Sécurité & confidentialité : https://vyzor.fr/securite.html
-- Calculateurs : https://vyzor.fr/calculateurs.html
-- Mentions légales & CGU : https://vyzor.fr/mentions-legales.html
-- Politique de confidentialité (RGPD) : https://vyzor.fr/confidentialite.html
+- Accueil : https://www.vyzor.fr/
+- Fonctionnalités : https://www.vyzor.fr/fonctionnalites.html
+- FAQ : https://www.vyzor.fr/faq.html
+- Sécurité & confidentialité : https://www.vyzor.fr/securite.html
+- Calculateurs : https://www.vyzor.fr/calculateurs.html
+- Mentions légales & CGU : https://www.vyzor.fr/mentions-legales.html
+- Politique de confidentialité (RGPD) : https://www.vyzor.fr/confidentialite.html
 - Contact : contact@vyzor.fr
