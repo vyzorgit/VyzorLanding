@@ -38,6 +38,10 @@ const SKIPPED = new Set(["node_modules", "dist", "scripts", ".git", ".claude", "
 const SKIPPED_EXT = [".jsx", ".bak", ".md"];
 // Garde : une page pré-rendue doit contenir un vrai texte, sinon le pré-rendu a échoué.
 const MIN_WORDS = 120;
+// Garde : l'adresse de l'application n'est donnée qu'aux clients (décision du 22/10/2026) ;
+// les exports Claude Design peuvent réintroduire le lien « Se connecter » de la barre de navigation.
+const FORBIDDEN = [/app\.vyzor\.fr/i, /Se connecter/];
+const TEXT_EXT = [".html", ".js", ".css", ".txt", ".xml", ".json", ".webmanifest"];
 
 const MOUNT_CALL = 'ReactDOM.createRoot(document.getElementById("root")).render(';
 const CLIENT_PRELUDE = `window.__vzMount = function (el) {
@@ -192,6 +196,14 @@ for (const file of walk(ROOT)) {
   hashes.push(...inlineScriptHashes(html));
   writeFileSync(target, html);
 }
+const leaks = [];
+for (const file of walk(DIST)) {
+  if (!TEXT_EXT.some((ext) => file.endsWith(ext)) || file.includes("/vendor/")) continue;
+  const text = readFileSync(join(ROOT, file), "utf8");
+  for (const re of FORBIDDEN) if (re.test(text)) leaks.push(`${relative("dist", file)} (${re.source})`);
+}
+if (leaks.length) throw new Error(`Lien vers l'application publié sur le site, à retirer :\n  ${leaks.join("\n  ")}`);
+
 const cspChanged = syncCsp(hashes);
 console.log(report.join("\n"));
 console.log(cspChanged ? "vercel.json : empreintes CSP mises à jour" : "vercel.json : CSP à jour");
