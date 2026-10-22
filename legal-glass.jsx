@@ -279,9 +279,8 @@ const PolitiqueConfidentialite = () => (
         <span><Strong>Fournisseur de messagerie de VYZOR</Strong> <Todo>À REMPLIR : nom du service de messagerie recevant contact@vyzor.fr</Todo> : réception et stockage des candidatures et des courriels.</span>,
       ]} />
       <P>
-        Les bibliothèques techniques du Site (React, Babel) sont chargées depuis le CDN unpkg.com ; ce chargement
-        transmet votre adresse IP à ce CDN, sans dépôt de cookie ni traceur. Aucune donnée n'est vendue ni cédée à
-        des tiers.
+        Les bibliothèques techniques du Site (React) sont hébergées sur le Site lui-même : leur chargement ne
+        transmet aucune donnée à un tiers. Aucune donnée n'est vendue ni cédée à des tiers.
       </P>
     </LegalArticle>
 
@@ -328,7 +327,6 @@ const PolitiqueConfidentialite = () => (
         partage traçant). Inventaire des ressources tierces chargées par le Site :
       </P>
       <Bullets items={[
-        <span><Strong>unpkg.com</Strong> (React, ReactDOM, Babel) : bibliothèques d'affichage — strictement nécessaires au fonctionnement, aucun traceur.</span>,
         <span><Strong>fonts.googleapis.com / fonts.gstatic.com</Strong> (Google Fonts) : polices de caractères — aucun cookie déposé ; transmission de l'adresse IP (voir article 05).</span>,
         <span><Strong>api.web3forms.com</Strong> : appelé uniquement lorsque vous envoyez le formulaire de candidature bêta.</span>,
         <span><Strong>calendly.com, linkedin.com</Strong> : simples liens sortants, aucun script de ces services n'est chargé sur le Site.</span>,
