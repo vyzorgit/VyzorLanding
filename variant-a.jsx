@@ -528,18 +528,8 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
           })}
         </div>
 
-        {/* Auth + CTA */}
+        {/* CTA (l'accès à l'application n'est communiqué qu'aux clients) */}
         <div style={{ display: "flex", alignItems: "center", gap: 6, paddingLeft: 6 }}>
-          <a href="https://app.vyzor.fr" target="_blank" rel="noopener" className="vz-nav-login" style={{
-            fontSize: 12.5, color: muted, textDecoration: "none", whiteSpace: "nowrap",
-            padding: "8px 12px", borderRadius: 999,
-            transition: "color 200ms, background 200ms",
-          }}
-            onMouseOver={(e) => { e.currentTarget.style.color = text; e.currentTarget.style.background = "rgba(255,255,255,0.04)"; }}
-            onMouseOut={(e) => { e.currentTarget.style.color = muted; e.currentTarget.style.background = "transparent"; }}
-          >
-            Se connecter
-          </a>
           <a href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" className="vz-nav-cta" style={{
             display: "inline-flex", alignItems: "center", gap: 6,
             padding: scrolled ? "8px 14px" : "8px 16px",
@@ -600,7 +590,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
         .vz-nav-dd-all:hover { color: #f4d468; }
       `}</style>
 
-      {/* Panneau mobile — révèle les onglets + connexion */}
+      {/* Panneau mobile — révèle les onglets */}
       <div
         id="vz-nav-mobile-panel"
         className="vz-nav-mobile"
@@ -638,17 +628,6 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
             {it.label}
           </a>
         ))}
-        <div style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "6px 12px" }} />
-        <a
-          href="https://app.vyzor.fr" target="_blank" rel="noopener"
-          onClick={() => setMenuOpen(false)}
-          style={{
-            display: "block", padding: "13px 16px", borderRadius: 14,
-            fontSize: 15, fontWeight: 500, color: muted, textDecoration: "none",
-          }}
-        >
-          Se connecter
-        </a>
       </div>
     </nav>
   );

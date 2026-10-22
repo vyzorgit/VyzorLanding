@@ -171,8 +171,8 @@ html, body { -webkit-text-size-adjust: 100%; }
     width: 100% !important;
     justify-content: space-between !important;
   }
-  /* on masque les onglets inline + connexion, on garde logo + CTA + burger */
-  .vz-nav-divider, .vz-nav-links, .vz-nav-login { display: none !important; }
+  /* on masque les onglets inline, on garde logo + CTA + burger */
+  .vz-nav-divider, .vz-nav-links { display: none !important; }
   .vz-nav-burger { display: inline-flex !important; }
   .vz-nav-mobile { display: block !important; }
 }
@@ -187,7 +187,7 @@ html, body { -webkit-text-size-adjust: 100%; }
     padding: 0 18px !important;
   }
 
-  /* —— NAV : compresser, masquer "Se connecter" + "Calculateurs" pour ne garder que CTA —— */
+  /* —— NAV : compresser, masquer "Calculateurs" pour ne garder que CTA —— */
   .vz-nav-wrap {
     left: 12px !important;
     right: 12px !important;
@@ -200,7 +200,7 @@ html, body { -webkit-text-size-adjust: 100%; }
     gap: 6px !important;
     padding: 6px 6px 6px 10px !important;
   }
-  .vz-nav-divider, .vz-nav-links, .vz-nav-login { display: none !important; }
+  .vz-nav-divider, .vz-nav-links { display: none !important; }
   .vz-nav-cta {
     padding: 8px 12px !important;
     font-size: 11.5px !important;

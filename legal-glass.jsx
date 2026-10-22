@@ -5,7 +5,8 @@
 //   - mentions légales complétées selon l'article 6-III de la LCEN (loi 2004-575) ;
 //   - politique de confidentialité limitée à ce que le SITE VITRINE traite réellement
 //     (candidature bêta via Web3Forms, journaux de l'hébergeur, Google Fonts) ; l'application
-//     (espace connecté) a sa propre politique sur app.vyzor.fr/privacy ;
+//     (espace client) a sa propre politique, remise aux clients avec leur accès ;
+//   - 22/10/2026 : l'adresse de l'application n'apparaît plus sur le site (communiquée aux seuls clients) ;
 //   - section « Cookies et traceurs » ancrée (#cookies) avec l'inventaire exact ;
 //   - toute information légale inconnue est marquée [À REMPLIR] ou [À CONFIRMER] : ne jamais
 //     inventer de nom, numéro, adresse ou hébergeur.
@@ -135,7 +136,7 @@ const MentionsLegales = () => (
       </P>
       <Sub>Hébergement de l'application et des données</Sub>
       <P>
-        L'application VYZOR (espace connecté, app.vyzor.fr) et les données qu'elle traite sont hébergées
+        L'application VYZOR (espace client) et les données qu'elle traite sont hébergées
         par Google Cloud EMEA Limited (services Firebase), 70 Sir John Rogerson's Quay, Dublin 2, Irlande —
         téléphone <Todo>À REMPLIR</Todo> — serveurs situés dans l'Union européenne.
         {" "}<Todo>À CONFIRMER : Supabase, Inc. (base PostgreSQL) selon l'état de la production ; si utilisé, adresse et région</Todo>.
@@ -151,9 +152,9 @@ const MentionsLegales = () => (
       <P>
         Les présentes Conditions Générales d'Utilisation encadrent l'accès et l'utilisation du site
         www.vyzor.fr par tout internaute (ci-après l'« Utilisateur »). La navigation sur le Site emporte
-        acceptation des présentes CGU. L'utilisation de l'application VYZOR (espace connecté) est régie par
-        ses propres conditions, acceptées lors de la création du compte et consultables sur{" "}
-        <A href="https://app.vyzor.fr/cgu" external>app.vyzor.fr/cgu</A>.
+        acceptation des présentes CGU. L'utilisation de l'application VYZOR (espace client) est régie par
+        ses propres conditions, remises aux clients avec leur accès, acceptées lors de la création du compte
+        et consultables à tout moment dans l'application ; elles sont aussi communiquées sur demande à <Mail />.
       </P>
     </LegalArticle>
 
@@ -225,9 +226,9 @@ const PolitiqueConfidentialite = () => (
         Informatique et Libertés du 6 janvier 1978 modifiée.
       </P>
       <P>
-        L'application VYZOR (espace connecté, app.vyzor.fr), qui traite des données comptables et financières,
-        dispose de sa propre politique de confidentialité, consultable sur{" "}
-        <A href="https://app.vyzor.fr/privacy" external>app.vyzor.fr/privacy</A>.
+        L'application VYZOR (espace client), qui traite des données comptables et financières, dispose de sa
+        propre politique de confidentialité, remise aux clients avec leur accès et consultable à tout moment
+        dans l'application ; elle est aussi communiquée sur demande à <Mail />.
       </P>
     </LegalArticle>
 
@@ -338,7 +339,7 @@ const PolitiqueConfidentialite = () => (
         l'accepter ou de le refuser aussi simplement serait ajouté et la présente politique mise à jour.
       </P>
       <P>
-        L'application VYZOR (espace connecté) utilise uniquement des mécanismes strictement nécessaires à la
+        L'application VYZOR (espace client) utilise uniquement des mécanismes strictement nécessaires à la
         connexion et aux préférences d'affichage ; son inventaire figure dans sa propre politique.
       </P>
     </LegalArticle>
