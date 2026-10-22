@@ -486,7 +486,7 @@ const BetaFormGlass = () => {
       const isSamePage =
         href.startsWith("#") ||
         href.startsWith("?") ||
-        href.includes(window.location.pathname);
+        (() => { try { const norm = (p) => p.replace(/\/index(\.html)?$/, "/").replace(/\.html$/, ""); return norm(new URL(href, window.location.href).pathname) === norm(window.location.pathname); } catch (_) { return false; } })();
       if (isSamePage) {
         e.preventDefault();
         setOpen(true);

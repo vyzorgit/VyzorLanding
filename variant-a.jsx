@@ -189,7 +189,7 @@ const VariantA = () => {
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {[
               { q: "Pourquoi limiter la bêta à 10 entreprises ?", a: "Pour co-construire en profondeur. Chaque bêta-testeur a un échange direct avec l'équipe produit toutes les deux semaines." },
-              { q: "Mes données comptables sont-elles confidentielles ?", a: "Hébergement français, chiffrement au repos et en transit, aucune donnée revendue. Vous restez propriétaire et pouvez tout supprimer en un clic." },
+              { q: "Mes données comptables sont-elles confidentielles ?", a: "Hébergement dans l'Union européenne, chiffrement au repos et en transit, aucune donnée revendue. Vous restez propriétaire et pouvez tout supprimer en un clic." },
               { q: "Quel format pour mon Excel ?", a: "FEC, balance, ou simple grand livre exporté de Sage / Cegid / Pennylane / EBP. Vyzor détecte automatiquement le schéma." },
               { q: "Combien coûte Vyzor après la bêta ?", a: "Les bêta-testeurs bénéficient d'un tarif préférentiel à vie. Les tarifs publics seront annoncés à la sortie." },
             ].map((f) => (
