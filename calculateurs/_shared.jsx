@@ -192,6 +192,7 @@ function VyzorTopNav({ current = "hub" }) {
   const items = [
     { id: "produit", label: "Le produit", href: "/#produit" },
     { id: "hub", label: "Calculateurs", href: "/calculateurs" },
+    { id: "guides", label: "Guides", href: "/guides" },
   ];
   const goldGrad = `linear-gradient(135deg, ${T.brandGold} 0%, ${T.brandGoldDark} 100%)`;
 
@@ -407,12 +408,47 @@ function KpiTile({ icon, label, value, color, sub }) {
 }
 
 /* ── EmailGate — Liquid Glass overlay ── */
+// L'email part dans la boîte contact@vyzor.fr via web3forms (même service que la candidature bêta).
+const VZ_WEB3FORMS_KEY = "9f003436-eba6-4543-b3ed-06c89a38a69c";
+async function vzSubscribe(email, source, website) {
+  try {
+    const fd = new FormData();
+    fd.append("access_key", VZ_WEB3FORMS_KEY);
+    fd.append("subject", "Nouveau contact (calculateur) — " + source);
+    fd.append("from_name", "Vyzor — Calculateurs");
+    fd.append("email", email);
+    fd.append("source", source);
+    fd.append("botcheck", website || "");
+    const r = await fetch("https://api.web3forms.com/submit", { method: "POST", body: fd });
+    const d = await r.json().catch(() => ({}));
+    return { ok: r.ok && d.success };
+  } catch (e) {
+    return { ok: false };
+  }
+}
+
 function EmailGate({ onSubmit, icon = "lock", title = "Débloquez votre analyse", desc = "Recevez votre rapport personnalisé." }) {
-  // Le bouton "Voir mon analyse" pointe désormais vers le formulaire
-  // de contact unique sur la landing (modale BetaModal #beta).
+  // L'email débloque le résultat tout de suite et inscrit le visiteur aux guides Vyzor.
+  const [email, setEmail] = React.useState("");
+  const [website, setWebsite] = React.useState("");
+  const [busy, setBusy] = React.useState(false);
+  const [error, setError] = React.useState(null);
   const iconNode = icon && typeof icon === "string" && ICON_PATHS[icon]
     ? <Icon name={icon} size={24} color={T.brandGold} />
     : null;
+
+  const submit = async (e) => {
+    e.preventDefault();
+    if (busy) return;
+    const value = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(value)) { setError("Entrez une adresse email valide."); return; }
+    setBusy(true); setError(null);
+    const source = typeof window !== "undefined" && window.location ? window.location.pathname : "calculateur";
+    const res = await vzSubscribe(value, source, website);
+    setBusy(false);
+    if (res.ok) { if (onSubmit) onSubmit(value); }
+    else setError(res.error || "Une erreur est survenue. Réessayez dans un instant.");
+  };
 
   return (
     <div style={{
@@ -423,35 +459,50 @@ function EmailGate({ onSubmit, icon = "lock", title = "Débloquez votre analyse"
       display: "flex", alignItems: "center", justifyContent: "center",
       borderRadius: 20, zIndex: 10,
     }}>
-      <div style={{ textAlign: "center", padding: 32, maxWidth: 400 }}>
+      <form onSubmit={submit} noValidate style={{ textAlign: "center", padding: "16px 24px", maxWidth: 400, width: "100%" }}>
         <div style={{
-          width: 56, height: 56, borderRadius: 16,
+          width: 44, height: 44, borderRadius: 14,
           background: "linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.02) 100%)",
           border: "1px solid rgba(255,255,255,0.12)",
           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)",
           display: "flex", alignItems: "center", justifyContent: "center",
-          margin: "0 auto 20px",
+          margin: "0 auto 12px",
         }}>{iconNode}</div>
-        <h3 style={{ color: T.textPrimary, fontSize: 22, fontWeight: 700, marginBottom: 8, fontFamily: T.sans }}>{title}</h3>
-        <p style={{ color: T.textMuted, fontSize: 14, marginBottom: 24, lineHeight: 1.6, fontFamily: T.sans }}>{desc}</p>
-        <a
-          href="/?contact=1#beta"
-          data-contact
+        <h3 style={{ color: T.textPrimary, fontSize: 20, fontWeight: 700, margin: "0 0 6px", fontFamily: T.sans }}>{title}</h3>
+        <p style={{ color: T.textMuted, fontSize: 14, margin: "0 0 14px", lineHeight: 1.5, fontFamily: T.sans }}>{desc}</p>
+        <label htmlFor="vz-gate-email" style={{ position: "absolute", left: -9999 }}>Votre email professionnel</label>
+        <input
+          id="vz-gate-email" type="email" required autoComplete="email" inputMode="email"
+          placeholder="vous@entreprise.fr" value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          aria-invalid={error ? "true" : "false"}
           style={{
-            display: "inline-block", width: "100%", padding: "14px 24px",
-            background: goldGradient,
-            color: "#000",
-            border: "1px solid rgba(255,255,255,0.30)",
-            borderRadius: 12,
-            fontSize: 15, fontWeight: 700, fontFamily: T.sans,
-            cursor: "pointer", textDecoration: "none",
-            boxShadow: "0 10px 32px rgba(197,160,89,0.35), inset 0 1px 0 rgba(255,255,255,0.45)",
-            transition: "all 0.3s",
-            boxSizing: "border-box",
+            width: "100%", boxSizing: "border-box", padding: "13px 16px", marginBottom: 10,
+            background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.4)",
+            borderRadius: 12, color: T.textPrimary, fontSize: 15, fontFamily: T.sans, outline: "none",
           }}
-        >Voir mon analyse →</a>
-        <p style={{ color: T.textMuted, fontSize: 11, marginTop: 14 }}>Réponse sous 48h. Aucun engagement.</p>
-      </div>
+        />
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true"
+          value={website} onChange={(e) => setWebsite(e.target.value)}
+          style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }} />
+        <button type="submit" disabled={busy} style={{
+          display: "inline-block", width: "100%", padding: "14px 24px",
+          background: goldGradient,
+          color: "#000",
+          border: "1px solid rgba(255,255,255,0.30)",
+          borderRadius: 12,
+          fontSize: 15, fontWeight: 700, fontFamily: T.sans,
+          cursor: busy ? "wait" : "pointer",
+          boxShadow: "0 10px 32px rgba(197,160,89,0.35), inset 0 1px 0 rgba(255,255,255,0.45)",
+          transition: "all 0.3s",
+          boxSizing: "border-box", opacity: busy ? 0.7 : 1,
+        }}>{busy ? "Un instant…" : "Voir mon analyse →"}</button>
+        {error && <p role="alert" style={{ color: T.error, fontSize: 13, margin: "8px 0 0" }}>{error}</p>}
+        <p style={{ color: T.textMuted, fontSize: 11, margin: "10px 0 0", lineHeight: 1.5 }}>
+          Résultat immédiat. Nous pourrons vous envoyer nos guides.{" "}
+          <a href="/confidentialite" style={{ color: T.textMuted, textDecoration: "underline" }}>Confidentialité</a>
+        </p>
+      </form>
     </div>
   );
 }

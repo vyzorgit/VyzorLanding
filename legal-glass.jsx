@@ -251,11 +251,11 @@ const PolitiqueConfidentialite = () => (
         <span><Strong>Demandes par courriel</Strong> adressées à contact@vyzor.fr : votre adresse email et le contenu de votre message.</span>,
         <span><Strong>Prise de rendez-vous</Strong> : le bouton « Demander une démo » renvoie vers Calendly, service tiers qui collecte vos données sur son propre site, selon sa propre politique.</span>,
         <span><Strong>Journaux techniques de l'hébergeur</Strong> : adresse IP, type de navigateur, page demandée et horodatage, conservés par Vercel à des fins de sécurité et de fonctionnement du service.</span>,
-        <span><Strong>Calculateurs</Strong> : les valeurs saisies sont traitées dans votre navigateur et ne sont pas transmises à VYZOR.</span>,
+        <span><Strong>Calculateurs</Strong> : les valeurs saisies sont traitées dans votre navigateur et ne sont pas transmises à VYZOR. Pour afficher le résultat détaillé, votre adresse email professionnelle est demandée ; seuls l'email et la page d'origine sont enregistrés.</span>,
+        <span><Strong>Inscription aux guides</Strong> (formulaire des pages Guides) : adresse email professionnelle et page d'origine.</span>,
       ]} />
       <P>
         Le Site ne collecte ni numéro de téléphone, ni données financières, ni données de mesure d'audience.
-        Aucune newsletter n'est proposée à ce jour.
       </P>
     </LegalArticle>
 
@@ -265,7 +265,7 @@ const PolitiqueConfidentialite = () => (
         <span><Strong>Répondre à vos demandes</Strong> envoyées par courriel — base légale : mesures précontractuelles ou intérêt légitime de VYZOR à répondre aux personnes qui la sollicitent (article 6.1.f).</span>,
         <span><Strong>Assurer la sécurité et le bon fonctionnement du Site</Strong> (journaux techniques) — base légale : intérêt légitime (article 6.1.f).</span>,
         <span><Strong>Afficher le Site</Strong> (chargement des polices) — base légale : intérêt légitime (article 6.1.f).</span>,
-        <span><Strong>Prospection commerciale</Strong> : VYZOR ne réalise aucune prospection à partir des données du Site. Si une newsletter était mise en place, elle reposerait sur votre consentement préalable, retirable à tout moment via un lien de désinscription.</span>,
+        <span><Strong>Vous envoyer les guides et la lettre d'information de VYZOR</Strong> (pilotage financier des entreprises) à l'adresse professionnelle laissée sur un calculateur ou une page Guides — base légale : intérêt légitime de VYZOR à informer les professionnels sur des sujets en rapport avec leur activité (article 6.1.f), avec information au moment de la collecte. Vous pouvez vous y opposer à tout moment, sans motif, par simple email à contact@vyzor.fr ou via le lien présent dans chaque envoi.</span>,
       ]} />
     </LegalArticle>
 
@@ -273,7 +273,7 @@ const PolitiqueConfidentialite = () => (
       <P>Les données du Site sont accessibles à l'équipe fondatrice de VYZOR et aux prestataires suivants :</P>
       <Bullets items={[
         <span><Strong>Vercel, Inc.</Strong> (États-Unis) : hébergement du Site et journaux techniques. Transfert hors UE encadré par les clauses contractuelles types de la Commission européenne <Todo>À CONFIRMER : certification Data Privacy Framework</Todo>.</span>,
-        <span><Strong>Web3Forms</Strong> <Todo>À REMPLIR : raison sociale, pays</Todo> : acheminement des candidatures bêta vers la boîte email de VYZOR, sans exploitation pour son propre compte. <Todo>À CONFIRMER : localisation des serveurs et garanties de transfert</Todo>.</span>,
+        <span><Strong>Web3Forms</Strong> <Todo>À REMPLIR : raison sociale, pays</Todo> : acheminement des candidatures bêta et des adresses laissées sur les calculateurs et les guides vers la boîte email de VYZOR, sans exploitation pour son propre compte. <Todo>À CONFIRMER : localisation des serveurs et garanties de transfert</Todo>.</span>,
         <span><Strong>Calendly, LLC</Strong> (États-Unis) : uniquement si vous prenez rendez-vous, sur le site de Calendly.</span>,
         <span><Strong>Fournisseur de messagerie de VYZOR</Strong> <Todo>À REMPLIR : nom du service de messagerie recevant contact@vyzor.fr</Todo> : réception et stockage des candidatures et des courriels.</span>,
       ]} />
@@ -286,6 +286,7 @@ const PolitiqueConfidentialite = () => (
     <LegalArticle n="06" id="durees" title="Durées de conservation">
       <Bullets items={[
         <span><Strong>Candidatures bêta et échanges par courriel</Strong> : 3 ans à compter du dernier contact de votre part, puis suppression.</span>,
+        <span><Strong>Inscrits aux guides</Strong> : jusqu'à votre opposition, ou 3 ans sans contact de votre part, puis suppression.</span>,
         <span><Strong>Comptes créés à l'issue de la bêta</Strong> : durées définies par la politique de confidentialité de l'application.</span>,
         <span><Strong>Journaux techniques de l'hébergeur</Strong> : 12 mois au plus <Todo>À CONFIRMER : durée de rétention effective chez Vercel</Todo>.</span>,
       ]} />
@@ -326,7 +327,7 @@ const PolitiqueConfidentialite = () => (
         partage traçant). Inventaire des ressources tierces chargées par le Site :
       </P>
       <Bullets items={[
-        <span><Strong>api.web3forms.com</Strong> : appelé uniquement lorsque vous envoyez le formulaire de candidature bêta.</span>,
+        <span><Strong>api.web3forms.com</Strong> : appelé uniquement lorsque vous envoyez le formulaire de candidature bêta ou une adresse email sur un calculateur ou une page Guides.</span>,
         <span><Strong>calendly.com, linkedin.com</Strong> : simples liens sortants, aucun script de ces services n'est chargé sur le Site.</span>,
       ]} />
       <P>

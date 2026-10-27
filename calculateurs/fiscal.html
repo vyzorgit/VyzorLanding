@@ -425,7 +425,7 @@ function App() {
           </div>
         </div>
 
-        <SlabCard style={{ position: "relative", overflow: "hidden", marginBottom: 32 }}>
+        <SlabCard style={{ position: "relative", overflow: "hidden", marginBottom: 32, minHeight: gated ? 400 : undefined }}>
           <h3 style={{ margin: 0, fontSize: 18, fontWeight: 700 }}>Comparaison par statut juridique</h3>
           <p style={{ margin: "4px 0 20px", color: T.textMuted, fontSize: 13 }}>Net restant après impôts, cotisations et TVA — même CA</p>
           <div style={{ filter: gated ? "blur(8px)" : "none", transition: "filter 0.5s", pointerEvents: gated ? "none" : "auto" }}>
