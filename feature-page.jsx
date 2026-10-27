@@ -48,7 +48,7 @@ const FeaturePage = () => {
             <h1 style={{ margin: 0, fontSize: "clamp(36px, 4.6vw, 56px)", lineHeight: 1.04, letterSpacing: "-0.03em", fontWeight: 600, color: "#fff", textWrap: "balance" }}>{f.name}</h1>
             <div>
               <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: muted, textWrap: "pretty" }}>{f.lead}</p>
-              <a className="vz-btn-primary" href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{ display: "inline-flex", alignItems: "center", gap: 10, marginTop: 24, padding: "13px 22px", borderRadius: 10, backgroundColor: gold, color: "#0b0d14", fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Demander une démo <span aria-hidden="true">→</span></a>
+              <a className="vz-btn-primary" href="/?contact=1#beta" data-contact style={{ display: "inline-flex", alignItems: "center", gap: 10, marginTop: 24, padding: "13px 22px", borderRadius: 10, backgroundColor: gold, color: "#0b0d14", fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Réserver ma place dans la bêta <span aria-hidden="true">→</span></a>
             </div>
           </header>
 

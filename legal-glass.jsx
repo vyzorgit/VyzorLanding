@@ -249,7 +249,7 @@ const PolitiqueConfidentialite = () => (
       <Bullets items={[
         <span><Strong>Candidature à la bêta</Strong> (formulaire « Réservez votre place ») : nom et prénom, adresse email professionnelle, nom de l'entreprise. Ces trois champs sont obligatoires ; aucun autre champ n'est collecté.</span>,
         <span><Strong>Demandes par courriel</Strong> adressées à contact@vyzor.fr : votre adresse email et le contenu de votre message.</span>,
-        <span><Strong>Prise de rendez-vous</Strong> : le bouton « Demander une démo » renvoie vers Calendly, service tiers qui collecte vos données sur son propre site, selon sa propre politique.</span>,
+        <span><Strong>Prise de rendez-vous</Strong> : après l'envoi du formulaire bêta, le lien « Choisir mon créneau » renvoie vers Calendly, service tiers qui collecte vos données sur son propre site, selon sa propre politique.</span>,
         <span><Strong>Journaux techniques de l'hébergeur</Strong> : adresse IP, type de navigateur, page demandée et horodatage, conservés par Vercel à des fins de sécurité et de fonctionnement du service.</span>,
         <span><Strong>Calculateurs</Strong> : les valeurs saisies sont traitées dans votre navigateur et ne sont pas transmises à VYZOR. Pour afficher le résultat détaillé, votre adresse email professionnelle est demandée ; seuls l'email et la page d'origine sont enregistrés.</span>,
         <span><Strong>Inscription aux guides</Strong> (formulaire des pages Guides) : adresse email professionnelle et page d'origine.</span>,

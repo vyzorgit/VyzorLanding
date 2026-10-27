@@ -296,7 +296,7 @@ const BetaModal = ({ open, onClose }) => {
   const trapTab = (e) => {
     if (e.key !== "Tab" || !dialogRef.current) return;
     const items = Array.from(dialogRef.current.querySelectorAll(
-      'a[href], button:not([disabled]), input:not([disabled]):not([type=checkbox]), [tabindex]:not([tabindex="-1"])'
+      'a[href], button:not([disabled]), input:not([disabled]):not([type=checkbox]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
     ));
     if (!items.length) return;
     const first = items[0];
@@ -329,7 +329,7 @@ const BetaModal = ({ open, onClose }) => {
               Réservez votre place.
             </h3>
             <p style={{ fontSize: 13.5, color: muted, lineHeight: 1.6, margin: "0 0 18px" }}>
-              Réponse sous 48h. Aucun engagement. Tous les champs sont obligatoires.
+              Gratuit, sans engagement. Réponse sous 48 h. Tous les champs sont obligatoires.
             </p>
             <form
               onSubmit={handleSubmit}
@@ -379,6 +379,27 @@ const BetaModal = ({ open, onClose }) => {
                   />
                 </div>
               ))}
+              <div>
+                <label htmlFor="beta-software" style={{
+                  display: "block", fontSize: 10, letterSpacing: "0.16em",
+                  color: labelMuted, textTransform: "uppercase",
+                  marginBottom: 6, fontWeight: 500,
+                  fontFamily: '"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace',
+                }}>Logiciel comptable <span style={{ textTransform: "none", letterSpacing: 0 }}>(obligatoire)</span></label>
+                <select id="beta-software" name="software" required aria-required="true" defaultValue=""
+                  style={{
+                    width: "100%", padding: "12px 14px", boxSizing: "border-box",
+                    background: inputBg, color: "#fff", colorScheme: "dark",
+                    border: `1px solid ${inputBorder}`, borderRadius: 10,
+                    fontSize: 14, outline: "none",
+                    fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
+                  }}>
+                  <option value="" disabled style={{ background: "#14130f" }}>Choisir…</option>
+                  <option value="Pennylane" style={{ background: "#14130f" }}>Pennylane</option>
+                  <option value="Autre logiciel" style={{ background: "#14130f" }}>Un autre logiciel</option>
+                  <option value="Ne sait pas" style={{ background: "#14130f" }}>Je ne sais pas (c'est mon cabinet)</option>
+                </select>
+              </div>
               {error && (
                 <div role="alert" style={{
                   fontSize: 12.5, color: "#ffb4a8",
@@ -435,8 +456,13 @@ const BetaModal = ({ open, onClose }) => {
               Candidature reçue.
             </h3>
             <p style={{ fontSize: 13.5, color: muted, lineHeight: 1.6, maxWidth: 320, margin: 0 }}>
-              Nous vous recontactons sous 48h à l'email indiqué. Merci de votre intérêt.
+              Nous vous recontactons sous 48 h à l'email indiqué. Vous préférez fixer le rendez-vous tout de suite ?
             </p>
+            <a href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{
+              marginTop: 4, padding: "11px 18px", borderRadius: 10,
+              background: "#f0c949", color: "#0b0d14", fontWeight: 600, fontSize: 14,
+              textDecoration: "none", fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
+            }}>Choisir mon créneau <span aria-hidden="true">→</span></a>
             <button type="button" onClick={onClose} style={{
               marginTop: 8, padding: "10px 18px",
               background: "rgba(255,255,255,0.06)",
@@ -491,7 +517,9 @@ const BetaFormGlass = () => {
         href.startsWith("#") ||
         href.startsWith("?") ||
         (() => { try { const norm = (p) => p.replace(/\/index(\.html)?$/, "/").replace(/\.html$/, ""); return norm(new URL(href, window.location.href).pathname) === norm(window.location.pathname); } catch (_) { return false; } })();
-      if (isSamePage) {
+      // Un lien [data-contact] ouvre la modale sur place dès qu'elle est montée sur la page
+      // (accueil, fonctionnalités, FAQ, sécurité) ; ailleurs, il mène à l'accueil qui l'ouvre.
+      if (isSamePage || a.hasAttribute("data-contact")) {
         e.preventDefault();
         setOpen(true);
       }
@@ -520,10 +548,11 @@ const BetaFormGlass = () => {
   const inputBorder = "rgba(255,255,255,0.10)";
 
   const benefits = [
-    "Onboarding personnalisé en visio (45 min)",
-    "Échange bi-mensuel avec l'équipe produit",
-    "Influence directe sur la roadmap",
-    "Tarif préférentiel à vie après la bêta",
+    "Un diagnostic financier de votre entreprise dès le premier rendez-vous",
+    "Vos données branchées avec vous, en visio",
+    "Vyzor gratuit pendant toute la bêta",
+    "Une ligne directe avec les fondateurs, vos retours dans la roadmap",
+    "Votre tarif préférentiel bloqué à vie après la bêta",
   ];
 
   return (
@@ -591,7 +620,7 @@ const BetaFormGlass = () => {
             fontSize: 26, fontWeight: 400, lineHeight: 1.15,
             letterSpacing: "-0.01em", color: "#fff", marginTop: 6,
           }}>
-            Quatre garanties, pas une de plus.
+            Ce que vous recevez.
           </div>
           <ul style={{
             listStyle: "none", padding: 0, margin: "4px 0 0",
@@ -623,12 +652,16 @@ const BetaFormGlass = () => {
         textAlign: "center", marginTop: 44, gap: 14,
       }}>
         <button
+          type="button"
           className="vz-beta-cta"
-          onClick={() => window.open("https://calendly.com/admin-vyzor/30min", "_blank", "noopener")}
+          onClick={() => setOpen(true)}
         >
-          Candidater à la bêta
-          <span style={{ fontSize: 16, marginLeft: 2 }}>→</span>
+          Réserver ma place dans la bêta
+          <span aria-hidden="true" style={{ fontSize: 16, marginLeft: 2 }}>→</span>
         </button>
+        <p style={{ margin: 0, maxWidth: 560, fontSize: 14, lineHeight: 1.6, color: muted, textWrap: "pretty" }}>
+          <span style={{ color: text, fontWeight: 600 }}>Notre engagement :</span> si au premier rendez-vous nous ne vous montrons pas au moins un levier concret sur votre trésorerie ou vos marges, nous vous le disons et on s'arrête là.
+        </p>
       </div>
 
       <BetaModal open={open} onClose={() => setOpen(false)} />

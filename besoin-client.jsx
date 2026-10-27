@@ -159,7 +159,7 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
         <h2 style={{
           fontSize: 52, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.08,
         }}>
-          <span style={{ display: "block" }}>Vous pilotez au rétroviseur.</span>
+          <span style={{ display: "block" }}>Vous pilotez au rétroviseur.</span>{" "}
           <span style={{ display: "block", color: muted }}>Vyzor vous rend le pare-brise.</span>
         </h2>
 
@@ -189,7 +189,7 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
           boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
         }} aria-hidden="true">↓</span>
         <p style={{ fontSize: 16.5, lineHeight: 1.5, margin: 0, color: text, letterSpacing: "-0.01em", flex: "1 1 320px" }}>
-          Une seule frustration, deux métiers. <span style={{ color: gold, fontWeight: 600 }}>La réponse : une équipe d'agents financiers</span> — on vous montre, juste en dessous.
+          Ces questions ont une réponse, <span style={{ color: gold, fontWeight: 600 }}>et elle est déjà dans votre comptabilité</span>. Vyzor la met sous vos yeux, chaque semaine.
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
           <a href="#produit" style={{
@@ -199,15 +199,15 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
           }}
             onMouseOver={(e) => { e.currentTarget.style.borderColor = "rgba(240,201,73,0.4)"; e.currentTarget.style.color = gold; }}
             onMouseOut={(e) => { e.currentTarget.style.borderColor = subtle; e.currentTarget.style.color = text; }}
-          >Voir la démonstration</a>
-          <a href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{
+          >Revoir la démo</a>
+          <a href="/?contact=1#beta" data-contact style={{
             display: "inline-flex", alignItems: "center", gap: 9,
             padding: "12px 20px", borderRadius: 999,
             backgroundImage: VZ_GOLD_GRAD,
             color: "#111", fontWeight: 600, fontSize: 14, textDecoration: "none",
             boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
           }}>
-            Rejoindre la bêta
+            Réserver ma place
             <span aria-hidden="true">→</span>
           </a>
         </div>

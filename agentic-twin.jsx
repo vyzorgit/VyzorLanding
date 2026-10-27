@@ -64,7 +64,7 @@ const RevealWordsHeader = ({ text, muted }) => {
             key={i}
             style={{
               display: "inline-block",
-              marginRight: "0.26em",
+              
               color: w.soft ? muted : text,
               fontWeight: w.soft ? 400 : 600,
               fontStyle: w.soft ? "italic" : "normal",
@@ -74,13 +74,13 @@ const RevealWordsHeader = ({ text, muted }) => {
           >
             {w.t}
           </span>
-        ))}
+        )).reduce((acc, el, i) => (i ? [...acc, " ", el] : [el]), [])}
       </h2>
       <p style={{
         fontSize: 18, lineHeight: 1.6, color: muted, marginTop: 20, maxWidth: 720, textWrap: "pretty",
         ...appear(N * 0.085 + 0.06),
       }}>
-        Connecté à votre comptabilité, Vyzor consolide vos données, <span style={{ color: text }}>anticipe vos besoins de trésorerie, détecte les dérives de marge et sécurise vos échéances</span>. Chaque réponse est chiffrée, tracée jusqu'à l'écriture comptable et assortie d'une recommandation concrète.
+        Posez une question en français, Vyzor répond avec vos chiffres : <span style={{ color: text }}>trésorerie à 12 mois, dérives de marge, échéances à venir</span>. Chaque réponse est chiffrée, tracée jusqu'à l'écriture comptable et assortie d'une recommandation concrète. Essayez ci-dessous sur une PME fictive, sans inscription.
       </p>
     </div>
   );
@@ -189,6 +189,25 @@ const AgenticTwinSection = ({ id = "vision", gold, text, muted, subtle }) => {
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M7 17 17 7"/><path d="M9 7h8v8"/>
           </svg>
+        </a>
+      </div>
+
+      {/* Passage à l'acte juste après la preuve */}
+      <div className="vz-vision-cta" style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between", gap: 18, flexWrap: "wrap",
+        marginTop: 28, padding: "22px 26px", borderRadius: 16,
+        background: "rgba(240,201,73,0.05)", border: "1px solid rgba(240,201,73,0.18)",
+      }}>
+        <p style={{ margin: 0, fontSize: 17, lineHeight: 1.5, color: text, letterSpacing: "-0.01em", flex: "1 1 320px" }}>
+          La même chose, <span style={{ color: gold, fontWeight: 600 }}>avec vos vrais chiffres</span>. On branche votre comptabilité avec vous au premier rendez-vous.
+        </p>
+        <a href="/?contact=1#beta" data-contact style={{
+          display: "inline-flex", alignItems: "center", gap: 9,
+          padding: "12px 20px", borderRadius: 999, backgroundImage: goldGrad,
+          color: "#111", fontWeight: 600, fontSize: 14, textDecoration: "none", whiteSpace: "nowrap",
+          boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
+        }}>
+          Réserver ma place <span aria-hidden="true">→</span>
         </a>
       </div>
 

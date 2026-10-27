@@ -164,7 +164,7 @@
       "operatingSystem": "Web",
       "inLanguage": "fr-FR",
       "url": "https://www.vyzor.fr/",
-      "description": "Logiciel de pilotage et de reporting financier pour dirigeants de PME, DAF et experts-comptables : plus de 35 indicateurs, prévision de trésorerie, alertes et assistant IA, depuis le FEC ou les connecteurs Pennylane, MyUnisoft et Odoo.",
+      "description": "Logiciel de pilotage et de reporting financier pour dirigeants de PME, DAF et experts-comptables : plus de 35 indicateurs, prévision de trésorerie, alertes et assistant IA, depuis le connecteur Pennylane ou un import FEC.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -190,8 +190,8 @@
   <div id="root"></div>
   <noscript>
     <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
-      <h1 style="font-size:32px;margin:0 0 16px;">VYZOR — Pilotage financier intelligent</h1>
-      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Le copilote financier intelligent pour dirigeants, DAF et comptables. Reporting, prévisions et calculateurs financiers gratuits.</p>
+      <h1 style="font-size:32px;margin:0 0 16px;">Vous perdez de l'argent quelque part. Vyzor vous montre où.</h1>
+      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Vyzor, le logiciel de pilotage financier pour PME, lit votre comptabilité Pennylane et vous dit où part votre argent, ce qu'il vous restera dans 12 mois et quoi faire en premier.</p>
       <nav style="font-size:15px;font-weight:600;"><a href="/fonctionnalites" style="color:#f0c949;margin-right:18px;">Fonctionnalités</a><a href="/securite" style="color:#f0c949;margin-right:18px;">Sécurité</a><a href="/calculateurs" style="color:#f0c949;margin-right:18px;">Calculateurs gratuits</a></nav>
     </div>
   </noscript>
@@ -202,6 +202,7 @@
   <script type="text/babel" src="features-data.jsx"></script>
   <script type="text/babel" src="variant-a.jsx"></script>
   <script type="text/babel" src="besoin-client.jsx"></script>
+  <script type="text/babel" src="how-it-works.jsx"></script>
   <script type="text/babel" src="agentic-twin.jsx"></script>
   <script type="text/babel" src="features-glass.jsx"></script>
   <script type="text/babel" src="daf-coconception.jsx"></script>
@@ -346,9 +347,11 @@
             margin: "0 auto",
             padding: "0 clamp(24px, 6vw, 96px)",
           }}>
-            {/* Narratif : d'abord la douleur (constat), puis la réponse (produit) */}
-            <div className="vz-reveal"><BesoinClientSection id="constat" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
+            {/* Narratif (refonte 27/10/2026) : la preuve visuelle d'abord (démo), puis la douleur,
+                la facilité (3 étapes), la crédibilité (DAF), enfin l'offre bêta. */}
             <AgenticTwinSection id="produit" gold={gold} text={text} muted={muted} subtle={subtle} />
+            <div className="vz-reveal"><BesoinClientSection id="constat" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
+            <div className="vz-reveal"><HowItWorksSection id="comment" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
             <div className="vz-reveal"><DAFCoConception /></div>
             <div className="vz-reveal"><ExploreMore gold={gold} text={text} muted={muted} subtle={subtle} /></div>
             <div className="vz-reveal"><BetaFormGlass /></div>
