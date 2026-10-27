@@ -1,33 +1,34 @@
 /* ── Vyzor Design Tokens ── */
 const T = {
-  bgBase: "#09090b",
-  bgSurface: "#0f0f12",
-  bgElevated: "#18181b",
+  bgBase: "#070a14",
+  bgSurface: "#0f1115",
+  bgElevated: "#141823",
   borderSubtle: "rgba(255, 255, 255, 0.06)",
   borderStrong: "rgba(255, 255, 255, 0.12)",
-  borderSolid: "#27272a",
-  brandGold: "#C5A059",
-  brandGoldDark: "#a38243",
+  borderSolid: "#232838",
+  brandGold: "#f0c949",
+  brandGoldDark: "#c89a2f",
   textPrimary: "#ffffff",
   textSecondary: "#e4e4e7",
   textMuted: "#8b8b93",
   success: "#10B981",
   error: "#f43f5e",
-  warning: "#C5A059",
+  warning: "#f0c949",
   info: "#3b82f6",
   sans: "'Inter', system-ui, sans-serif",
   /* Numbers use Inter Bold (700) — kept under "mono" key for backwards compat */
   mono: "'Inter', system-ui, sans-serif",
 };
 
-const goldGradient = `linear-gradient(135deg, ${T.brandGold} 0%, ${T.brandGoldDark} 100%)`;
-const goldGlow = `0 4px 32px rgba(197, 160, 89, 0.25)`;
-const goldGlowStrong = `0 8px 48px rgba(197, 160, 89, 0.35)`;
+// Boutons or à plat, comme la landing (#f0c949).
+const goldGradient = `linear-gradient(${T.brandGold}, ${T.brandGold})`;
+const goldGlow = `0 1px 2px rgba(0,0,0,0.3)`;
+const goldGlowStrong = `0 1px 2px rgba(0,0,0,0.3)`;
 
 /* ── Apple Liquid Glass surface (used by SlabCard) ── */
 const liquidGlass = {
   background:
-    "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 30%, rgba(0,0,0,0.18) 100%), rgba(15,15,18,0.55)",
+    "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 30%, rgba(0,0,0,0.18) 100%), rgba(15,17,21,0.55)",
   backdropFilter: "blur(24px) saturate(170%)",
   WebkitBackdropFilter: "blur(24px) saturate(170%)",
   border: "1px solid rgba(255,255,255,0.08)",
@@ -42,14 +43,14 @@ const liquidGlass = {
   const s = document.createElement("style");
   s.id = "lq-ambient-styles";
   s.textContent = `
-    .lq-ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .lq-ambient { display: none; }
     .lq-ambient::before, .lq-ambient::after {
       content: ""; position: absolute; border-radius: 50%;
       filter: blur(120px); opacity: 0.55;
     }
     .lq-ambient::before {
       width: 720px; height: 720px; top: -200px; left: -200px;
-      background: radial-gradient(circle, rgba(197,160,89,0.22), transparent 70%);
+      background: radial-gradient(circle, rgba(240,201,73,0.22), transparent 70%);
     }
     .lq-ambient::after {
       width: 640px; height: 640px; top: 40%; right: -160px;
@@ -63,7 +64,7 @@ const liquidGlass = {
     }
     .lq-grain {
       position: fixed; inset: 0; z-index: 1; pointer-events: none;
-      opacity: 0.035; mix-blend-mode: overlay;
+      opacity: 0; mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>");
     }
     .lq-card { position: relative; }
@@ -77,16 +78,16 @@ const liquidGlass = {
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none; appearance: none;
       width: 18px; height: 18px; border-radius: 50%;
-      background: linear-gradient(135deg, #f3dca5 0%, ${T.brandGold} 60%, ${T.brandGoldDark} 100%);
+      background: linear-gradient(135deg, #f6dfa1 0%, ${T.brandGold} 60%, ${T.brandGoldDark} 100%);
       border: 1px solid rgba(255,255,255,0.4);
-      box-shadow: 0 4px 14px rgba(197,160,89,0.45), inset 0 1px 0 rgba(255,255,255,0.6);
+      box-shadow: 0 4px 14px rgba(240,201,73,0.45), inset 0 1px 0 rgba(255,255,255,0.6);
       cursor: pointer;
     }
     input[type="range"]::-moz-range-thumb {
       width: 18px; height: 18px; border-radius: 50%;
-      background: linear-gradient(135deg, #f3dca5 0%, ${T.brandGold} 60%, ${T.brandGoldDark} 100%);
+      background: linear-gradient(135deg, #f6dfa1 0%, ${T.brandGold} 60%, ${T.brandGoldDark} 100%);
       border: 1px solid rgba(255,255,255,0.4);
-      box-shadow: 0 4px 14px rgba(197,160,89,0.45);
+      box-shadow: 0 4px 14px rgba(240,201,73,0.45);
       cursor: pointer;
     }
 
@@ -168,9 +169,9 @@ function IconChip({ name, size = 36, iconSize = 18, tone = "gold" }) {
       width: size, height: size, borderRadius: size * 0.32,
       display: "flex", alignItems: "center", justifyContent: "center",
       background: isGold
-        ? "linear-gradient(135deg, rgba(197,160,89,0.16) 0%, rgba(197,160,89,0.04) 100%)"
+        ? "linear-gradient(135deg, rgba(240,201,73,0.16) 0%, rgba(240,201,73,0.04) 100%)"
         : "linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.02) 100%)",
-      border: `1px solid ${isGold ? "rgba(197,160,89,0.28)" : "rgba(255,255,255,0.12)"}`,
+      border: `1px solid ${isGold ? "rgba(240,201,73,0.28)" : "rgba(255,255,255,0.12)"}`,
       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.18)",
       flexShrink: 0,
     }}>
@@ -192,6 +193,7 @@ function VyzorTopNav({ current = "hub" }) {
   const items = [
     { id: "produit", label: "Le produit", href: "/#produit" },
     { id: "hub", label: "Calculateurs", href: "/calculateurs" },
+    { id: "guides", label: "Guides", href: "/guides" },
   ];
   const goldGrad = `linear-gradient(135deg, ${T.brandGold} 0%, ${T.brandGoldDark} 100%)`;
 
@@ -205,10 +207,10 @@ function VyzorTopNav({ current = "hub" }) {
         gap: scrolled ? 10 : 18,
         padding: scrolled ? "6px 6px 6px 14px" : "8px 8px 8px 18px",
         borderRadius: 999,
-        background: scrolled ? "rgba(15,15,18,0.72)" : "rgba(15,15,18,0.55)",
+        background: scrolled ? "rgba(15,17,21,0.72)" : "rgba(15,17,21,0.55)",
         backdropFilter: "blur(28px) saturate(180%)",
         WebkitBackdropFilter: "blur(28px) saturate(180%)",
-        border: `1px solid ${scrolled ? "rgba(197,160,89,0.22)" : "rgba(255,255,255,0.08)"}`,
+        border: `1px solid ${scrolled ? "rgba(240,201,73,0.22)" : "rgba(255,255,255,0.08)"}`,
         boxShadow: "0 16px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.3)",
         transition: "all 320ms cubic-bezier(0.22,1,0.36,1)",
       }}>
@@ -245,11 +247,11 @@ function VyzorTopNav({ current = "hub" }) {
                 fontSize: 12.5,
                 fontWeight: 500,
                 letterSpacing: "0.01em",
-                color: active ? "#f3dca5" : "rgba(255,255,255,0.6)",
+                color: active ? "#f6dfa1" : "rgba(255,255,255,0.6)",
                 textDecoration: "none",
                 borderRadius: 999,
-                background: active ? "rgba(197,160,89,0.10)" : "transparent",
-                border: `1px solid ${active ? "rgba(197,160,89,0.28)" : "transparent"}`,
+                background: active ? "rgba(240,201,73,0.10)" : "transparent",
+                border: `1px solid ${active ? "rgba(240,201,73,0.28)" : "transparent"}`,
                 transition: "color 220ms ease, background 220ms",
                 whiteSpace: "nowrap",
               }}
@@ -273,8 +275,8 @@ function VyzorTopNav({ current = "hub" }) {
           textDecoration: "none",
           borderRadius: 999,
           whiteSpace: "nowrap",
-          boxShadow: "0 4px 18px rgba(197,160,89,0.32), inset 0 1px 0 rgba(255,255,255,0.5)",
-        }}>Demander une démo</a>
+          boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
+        }}>Rejoindre la bêta</a>
       </div>
     </nav>
   );
@@ -326,11 +328,11 @@ function NumberField({ label, value, onChange, unit, icon, min = 0, step = 1 }) 
       <div style={{
         display: "flex", alignItems: "center",
         background: focused ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.03)",
-        border: `1px solid ${focused ? "rgba(197,160,89,0.55)" : "rgba(255,255,255,0.10)"}`,
+        border: `1px solid ${focused ? "rgba(240,201,73,0.55)" : "rgba(255,255,255,0.10)"}`,
         backdropFilter: "blur(12px) saturate(150%)",
         WebkitBackdropFilter: "blur(12px) saturate(150%)",
         boxShadow: focused
-          ? "0 0 0 3px rgba(197,160,89,0.12), inset 0 1px 0 rgba(255,255,255,0.08)"
+          ? "0 0 0 3px rgba(240,201,73,0.12), inset 0 1px 0 rgba(255,255,255,0.08)"
           : "inset 0 1px 0 rgba(255,255,255,0.06)",
         borderRadius: 12, overflow: "hidden",
         transition: "border-color 240ms, background 240ms, box-shadow 240ms",
@@ -387,7 +389,7 @@ function KpiTile({ icon, label, value, color, sub }) {
     <div className="lq-card" style={{
       borderRadius: 16, padding: "22px 16px",
       background:
-        "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 30%, rgba(0,0,0,0.18) 100%), rgba(15,15,18,0.50)",
+        "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 30%, rgba(0,0,0,0.18) 100%), rgba(15,17,21,0.50)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       border: "1px solid rgba(255,255,255,0.08)",
@@ -395,7 +397,7 @@ function KpiTile({ icon, label, value, color, sub }) {
       flex: "1 1 160px", textAlign: "left",
       transition: "transform 280ms cubic-bezier(0.22,1,0.36,1), border-color 280ms",
     }}
-      onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.borderColor = "rgba(197,160,89,0.25)"; }}
+      onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.borderColor = "rgba(240,201,73,0.25)"; }}
       onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"; }}
     >
       {iconNode && <div style={{ marginBottom: 14, position: "relative", zIndex: 1 }}>{iconNode}</div>}
@@ -407,51 +409,101 @@ function KpiTile({ icon, label, value, color, sub }) {
 }
 
 /* ── EmailGate — Liquid Glass overlay ── */
+// L'email part dans la boîte contact@vyzor.fr via web3forms (même service que la candidature bêta).
+const VZ_WEB3FORMS_KEY = "9f003436-eba6-4543-b3ed-06c89a38a69c";
+async function vzSubscribe(email, source, website) {
+  try {
+    const fd = new FormData();
+    fd.append("access_key", VZ_WEB3FORMS_KEY);
+    fd.append("subject", "Nouveau contact (calculateur) — " + source);
+    fd.append("from_name", "Vyzor — Calculateurs");
+    fd.append("email", email);
+    fd.append("source", source);
+    fd.append("botcheck", website || "");
+    const r = await fetch("https://api.web3forms.com/submit", { method: "POST", body: fd });
+    const d = await r.json().catch(() => ({}));
+    return { ok: r.ok && d.success };
+  } catch (e) {
+    return { ok: false };
+  }
+}
+
 function EmailGate({ onSubmit, icon = "lock", title = "Débloquez votre analyse", desc = "Recevez votre rapport personnalisé." }) {
-  // Le bouton "Voir mon analyse" pointe désormais vers le formulaire
-  // de contact unique sur la landing (modale BetaModal #beta).
+  // L'email débloque le résultat tout de suite et inscrit le visiteur aux guides Vyzor.
+  const [email, setEmail] = React.useState("");
+  const [website, setWebsite] = React.useState("");
+  const [busy, setBusy] = React.useState(false);
+  const [error, setError] = React.useState(null);
   const iconNode = icon && typeof icon === "string" && ICON_PATHS[icon]
     ? <Icon name={icon} size={24} color={T.brandGold} />
     : null;
 
+  const submit = async (e) => {
+    e.preventDefault();
+    if (busy) return;
+    const value = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(value)) { setError("Entrez une adresse email valide."); return; }
+    setBusy(true); setError(null);
+    const source = typeof window !== "undefined" && window.location ? window.location.pathname : "calculateur";
+    const res = await vzSubscribe(value, source, website);
+    setBusy(false);
+    if (res.ok) { if (onSubmit) onSubmit(value); }
+    else setError(res.error || "Une erreur est survenue. Réessayez dans un instant.");
+  };
+
   return (
     <div style={{
       position: "absolute", inset: 0,
-      background: "rgba(9,9,11,0.55)",
+      background: "rgba(7,10,20,0.55)",
       backdropFilter: "blur(28px) saturate(160%)",
       WebkitBackdropFilter: "blur(28px) saturate(160%)",
       display: "flex", alignItems: "center", justifyContent: "center",
       borderRadius: 20, zIndex: 10,
     }}>
-      <div style={{ textAlign: "center", padding: 32, maxWidth: 400 }}>
+      <form onSubmit={submit} noValidate style={{ textAlign: "center", padding: "16px 24px", maxWidth: 400, width: "100%" }}>
         <div style={{
-          width: 56, height: 56, borderRadius: 16,
+          width: 44, height: 44, borderRadius: 14,
           background: "linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.02) 100%)",
           border: "1px solid rgba(255,255,255,0.12)",
           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)",
           display: "flex", alignItems: "center", justifyContent: "center",
-          margin: "0 auto 20px",
+          margin: "0 auto 12px",
         }}>{iconNode}</div>
-        <h3 style={{ color: T.textPrimary, fontSize: 22, fontWeight: 700, marginBottom: 8, fontFamily: T.sans }}>{title}</h3>
-        <p style={{ color: T.textMuted, fontSize: 14, marginBottom: 24, lineHeight: 1.6, fontFamily: T.sans }}>{desc}</p>
-        <a
-          href="/?contact=1#beta"
-          data-contact
+        <h3 style={{ color: T.textPrimary, fontSize: 20, fontWeight: 700, margin: "0 0 6px", fontFamily: T.sans }}>{title}</h3>
+        <p style={{ color: T.textMuted, fontSize: 14, margin: "0 0 14px", lineHeight: 1.5, fontFamily: T.sans }}>{desc}</p>
+        <label htmlFor="vz-gate-email" style={{ position: "absolute", left: -9999 }}>Votre email professionnel</label>
+        <input
+          id="vz-gate-email" type="email" required autoComplete="email" inputMode="email"
+          placeholder="vous@entreprise.fr" value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          aria-invalid={error ? "true" : "false"}
           style={{
-            display: "inline-block", width: "100%", padding: "14px 24px",
-            background: goldGradient,
-            color: "#000",
-            border: "1px solid rgba(255,255,255,0.30)",
-            borderRadius: 12,
-            fontSize: 15, fontWeight: 700, fontFamily: T.sans,
-            cursor: "pointer", textDecoration: "none",
-            boxShadow: "0 10px 32px rgba(197,160,89,0.35), inset 0 1px 0 rgba(255,255,255,0.45)",
-            transition: "all 0.3s",
-            boxSizing: "border-box",
+            width: "100%", boxSizing: "border-box", padding: "13px 16px", marginBottom: 10,
+            background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.4)",
+            borderRadius: 12, color: T.textPrimary, fontSize: 15, fontFamily: T.sans, outline: "none",
           }}
-        >Voir mon analyse →</a>
-        <p style={{ color: T.textMuted, fontSize: 11, marginTop: 14 }}>Réponse sous 48h. Aucun engagement.</p>
-      </div>
+        />
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true"
+          value={website} onChange={(e) => setWebsite(e.target.value)}
+          style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }} />
+        <button type="submit" disabled={busy} style={{
+          display: "inline-block", width: "100%", padding: "14px 24px",
+          background: goldGradient,
+          color: "#000",
+          border: "1px solid rgba(255,255,255,0.30)",
+          borderRadius: 12,
+          fontSize: 15, fontWeight: 700, fontFamily: T.sans,
+          cursor: busy ? "wait" : "pointer",
+          boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
+          transition: "all 0.3s",
+          boxSizing: "border-box", opacity: busy ? 0.7 : 1,
+        }}>{busy ? "Un instant…" : "Voir mon analyse →"}</button>
+        {error && <p role="alert" style={{ color: T.error, fontSize: 13, margin: "8px 0 0" }}>{error}</p>}
+        <p style={{ color: T.textMuted, fontSize: 11, margin: "10px 0 0", lineHeight: 1.5 }}>
+          Résultat immédiat. Nous pourrons vous envoyer nos guides.{" "}
+          <a href="/confidentialite" style={{ color: T.textMuted, textDecoration: "underline" }}>Confidentialité</a>
+        </p>
+      </form>
     </div>
   );
 }
@@ -464,10 +516,10 @@ function CtaFooter() {
         textAlign: "center", padding: "52px 32px", marginBottom: 40,
         borderRadius: 24,
         background:
-          "linear-gradient(180deg, rgba(197,160,89,0.10) 0%, rgba(255,255,255,0.02) 30%, rgba(0,0,0,0.20) 100%), rgba(15,15,18,0.55)",
+          "linear-gradient(180deg, rgba(240,201,73,0.10) 0%, rgba(255,255,255,0.02) 30%, rgba(0,0,0,0.20) 100%), rgba(15,17,21,0.55)",
         backdropFilter: "blur(28px) saturate(180%)",
         WebkitBackdropFilter: "blur(28px) saturate(180%)",
-        border: "1px solid rgba(197,160,89,0.20)",
+        border: "1px solid rgba(240,201,73,0.20)",
         boxShadow: "0 24px 72px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.3)",
       }}>
         <h2 style={{ fontSize: 30, fontWeight: 700, marginBottom: 14, letterSpacing: "-0.01em", color: T.textPrimary, position: "relative", zIndex: 1 }}>
@@ -482,7 +534,7 @@ function CtaFooter() {
           padding: "16px 44px", background: goldGradient, color: "#000",
           border: "1px solid rgba(255,255,255,0.30)", borderRadius: 12, fontSize: 16, fontWeight: 700,
           fontFamily: T.sans, cursor: "pointer",
-          boxShadow: "0 14px 40px rgba(197,160,89,0.38), inset 0 1px 0 rgba(255,255,255,0.5)",
+          boxShadow: "0 14px 40px rgba(240,201,73,0.38), inset 0 1px 0 rgba(255,255,255,0.5)",
           textDecoration: "none",
         }}>Demander une démo gratuite →</a>
       </div>

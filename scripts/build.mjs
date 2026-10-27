@@ -17,6 +17,7 @@ import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 import { transform } from "esbuild";
 import { Window } from "happy-dom";
+import { buildGuides } from "./guides.mjs";
 
 const require = createRequire(import.meta.url);
 const React = require("react");
@@ -34,7 +35,7 @@ const EXCLUDED_PAGES = new Set(["fonctionnalites-v2.html", "fonctionnalites-orbi
 // Outil d'édition de Claude Design, inutile en production (réapparaît dans les exports).
 const IGNORED_SCRIPTS = new Set(["tweaks-panel.jsx"]);
 // Non publiés : sources, outillage, configuration.
-const SKIPPED = new Set(["node_modules", "dist", "scripts", ".git", ".claude", ".vercel", "package.json", "package-lock.json", "vercel.json", ".gitignore", ".DS_Store"]);
+const SKIPPED = new Set(["node_modules", "dist", "scripts", "content", ".git", ".claude", ".vercel", "package.json", "package-lock.json", "vercel.json", ".gitignore", ".DS_Store"]);
 const SKIPPED_EXT = [".jsx", ".bak", ".md"];
 // Garde : une page pré-rendue doit contenir un vrai texte, sinon le pré-rendu a échoué.
 const MIN_WORDS = 120;
@@ -242,6 +243,8 @@ for (const file of walk(ROOT)) {
   hashes.push(...inlineScriptHashes(html));
   writeFileSync(target, html);
 }
+const guides = buildGuides(ROOT, DIST);
+report.push(...guides.report);
 const leaks = [];
 for (const file of walk(DIST)) {
   if (!TEXT_EXT.some((ext) => file.endsWith(ext)) || file.includes("/vendor/")) continue;

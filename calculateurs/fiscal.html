@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
   <link rel="icon" type="image/svg+xml" href="../vyzor-mark.svg" />
-  <meta name="theme-color" content="#0f1530" />
+  <meta name="theme-color" content="#070a14" />
   <meta property="og:image" content="https://www.vyzor.fr/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -120,10 +120,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
-  html, body { margin: 0; padding: 0; background: #09090b; }
+  html, body { margin: 0; padding: 0; background: #070a14; }
   body { font-family: "Inter", system-ui, sans-serif; color: #fff; }
   * { box-sizing: border-box; }
-  ::selection { background: rgba(197,160,89,0.3); }
+  ::selection { background: rgba(240,201,73,0.3); }
 </style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
@@ -170,8 +170,8 @@ const STATUTS = {
   micro_bnc: { label: "Micro-BNC", sub: "Profession libérale < 77 700€", icon: "user", color: "#3b82f6", tva: "franchise", abattement: 0.34, ir: true, is: false, cotisations: 0.22 },
   micro_bic: { label: "Micro-BIC (Services)", sub: "Prestataire < 77 700€", icon: "tools", color: "#8b5cf6", tva: "franchise", abattement: 0.50, ir: true, is: false, cotisations: 0.22 },
   micro_bic_vente: { label: "Micro-BIC (Vente)", sub: "Commerce < 188 700€", icon: "store", color: "#ec4899", tva: "franchise", abattement: 0.71, ir: true, is: false, cotisations: 0.125 },
-  eurl_ir: { label: "EURL (IR)", sub: "Assoc. unique, option IR", icon: "building", color: "#C5A059", tva: "normal", abattement: 0, ir: true, is: false, cotisations: 0.45 },
-  sas_is: { label: "SAS / SASU", sub: "Président assimilé salarié", icon: "rocket", color: "#C5A059", tva: "normal", abattement: 0, ir: false, is: true, cotisations: 0.82 },
+  eurl_ir: { label: "EURL (IR)", sub: "Assoc. unique, option IR", icon: "building", color: "#f0c949", tva: "normal", abattement: 0, ir: true, is: false, cotisations: 0.45 },
+  sas_is: { label: "SAS / SASU", sub: "Président assimilé salarié", icon: "rocket", color: "#f0c949", tva: "normal", abattement: 0, ir: false, is: true, cotisations: 0.82 },
   sarl_is: { label: "SARL / EURL (IS)", sub: "Gérant majoritaire TNS", icon: "scale", color: "#10B981", tva: "normal", abattement: 0, ir: false, is: true, cotisations: 0.45 },
 };
 
@@ -235,8 +235,8 @@ function StatutCard({ id, statut, selected, onClick }) {
   return (
     <button onClick={() => onClick(id)} style={{
       background: active
-        ? `linear-gradient(180deg, ${statut.color}18 0%, ${statut.color}04 100%), rgba(15,15,18,0.55)`
-        : "rgba(15,15,18,0.45)",
+        ? `linear-gradient(180deg, ${statut.color}18 0%, ${statut.color}04 100%), rgba(15,17,21,0.55)`
+        : "rgba(15,17,21,0.45)",
       backdropFilter: "blur(16px) saturate(160%)",
       WebkitBackdropFilter: "blur(16px) saturate(160%)",
       border: `1px solid ${active ? statut.color + "55" : "rgba(255,255,255,0.08)"}`,
@@ -425,7 +425,7 @@ function App() {
           </div>
         </div>
 
-        <SlabCard style={{ position: "relative", overflow: "hidden", marginBottom: 32 }}>
+        <SlabCard style={{ position: "relative", overflow: "hidden", marginBottom: 32, minHeight: gated ? 400 : undefined }}>
           <h3 style={{ margin: 0, fontSize: 18, fontWeight: 700 }}>Comparaison par statut juridique</h3>
           <p style={{ margin: "4px 0 20px", color: T.textMuted, fontSize: 13 }}>Net restant après impôts, cotisations et TVA — même CA</p>
           <div style={{ filter: gated ? "blur(8px)" : "none", transition: "filter 0.5s", pointerEvents: gated ? "none" : "auto" }}>
