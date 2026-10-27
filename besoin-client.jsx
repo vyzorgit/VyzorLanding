@@ -111,46 +111,96 @@ const PainFlipCard = ({ persona, gold, text, muted, subtle }) => {
   );
 };
 
-const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
-  const personas = [
-    {
-      tab: "Dirigeant",
-      role: "Dirigeant de PME",
-      short: "dirigeant",
-      icon: (
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <circle cx="12" cy="8" r="4"/>
-          <path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/>
-        </svg>
-      ),
-      quote: "Je perds de l'argent quelque part. Je ne sais juste pas où.",
-      pains: [
-        { ask: "Où part vraiment mon argent ?", hurt: "Impossible de voir ses plus gros postes de dépense sans y passer des soirées dans des tableurs." },
-        { ask: "Est-ce que mon modèle gagne assez ?", hurt: "Marges, rentabilité, business model — personne ne lui dit clairement où gagner plus." },
-        { ask: "Quels leviers je laisse passer ?", hurt: "Sa fiscalité, il la subit. Les économies réelles restent invisibles, mois après mois." },
-      ],
-      cost: "Le coût du flou : des économies bien réelles qui dorment dans ses chiffres — et un ROI qu'il ne voit jamais venir.",
-    },
-    {
-      tab: "Expert-comptable",
-      role: "Cabinet & expert-comptable",
-      short: "cabinet",
-      icon: (
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M4 4h16v5H4z"/>
-          <path d="M4 13h7v7H4z"/>
-          <path d="M15 13h5v7h-5z"/>
-        </svg>
-      ),
-      quote: "Mes clients attendent du conseil. Je n'ai le temps que pour la conformité.",
-      pains: [
-        { ask: "Le réglementaire mange tout.", hurt: "Aucune marge pour l'analyse à valeur ajoutée — le travail à fort impact passe à la trappe." },
-        { ask: "En période de bilan, je suis submergé.", hurt: "La relation client passe toujours en dernier, au pire moment pour elle." },
-        { ask: "Expliquer, relancer, échanger…", hurt: "Des heures perdues dossier par dossier — du temps de conseil jamais facturé." },
-      ],
-      cost: "Le coût du flou : des heures de conseil — donc du chiffre d'affaires — qui partent en saisie et en relances.",
-    },
-  ];
+const VZ_PERSONAS = [
+  {
+    tab: "Dirigeant",
+    role: "Dirigeant de PME",
+    short: "dirigeant",
+    icon: (
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/>
+      </svg>
+    ),
+    quote: "Je perds de l'argent quelque part. Je ne sais juste pas où.",
+    pains: [
+      { ask: "Où part vraiment mon argent ?", hurt: "Impossible de voir ses plus gros postes de dépense sans y passer des soirées dans des tableurs." },
+      { ask: "Est-ce que mon modèle gagne assez ?", hurt: "Marges, rentabilité, business model — personne ne lui dit clairement où gagner plus." },
+      { ask: "Quels leviers je laisse passer ?", hurt: "Sa fiscalité, il la subit. Les économies réelles restent invisibles, mois après mois." },
+    ],
+    cost: "Le coût du flou : des économies bien réelles qui dorment dans ses chiffres — et un ROI qu'il ne voit jamais venir.",
+  },
+  {
+    tab: "Expert-comptable",
+    role: "Cabinet & expert-comptable",
+    short: "cabinet",
+    icon: (
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M4 4h16v5H4z"/>
+        <path d="M4 13h7v7H4z"/>
+        <path d="M15 13h5v7h-5z"/>
+      </svg>
+    ),
+    quote: "Mes clients attendent du conseil. Je n'ai le temps que pour la conformité.",
+    pains: [
+      { ask: "Le réglementaire mange tout.", hurt: "Aucune marge pour l'analyse à valeur ajoutée — le travail à fort impact passe à la trappe." },
+      { ask: "En période de bilan, je suis submergé.", hurt: "La relation client passe toujours en dernier, au pire moment pour elle." },
+      { ask: "Expliquer, relancer, échanger…", hurt: "Des heures perdues dossier par dossier — du temps de conseil jamais facturé." },
+    ],
+    cost: "Le coût du flou : des heures de conseil — donc du chiffre d'affaires — qui partent en saisie et en relances.",
+  },
+];
+
+// —— Constat d'une cible : la phrase (gauche) et ses trois frictions + le coût (droite) ——
+const PainSplit = ({ persona: p, gold, text, muted, subtle }) => {
+  const card = {
+    position: "relative", borderRadius: 20, overflow: "hidden", boxSizing: "border-box",
+    background: "linear-gradient(180deg, #11141d 0%, #0b0d14 100%)",
+    border: "1px solid rgba(255,255,255,0.07)",
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 60px -30px rgba(0,0,0,0.8)",
+    display: "flex", flexDirection: "column", padding: "30px 32px 28px",
+  };
+  const Hairline = () => (
+    <span aria-hidden="true" style={{ position: "absolute", top: 0, left: 32, right: 32, height: 1, background: "linear-gradient(90deg, rgba(240,201,73,0), rgba(240,201,73,0.55), rgba(240,201,73,0))" }} />
+  );
+  return (
+    <div className="vz-constat-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0, 0.9fr) minmax(0, 1.1fr)", gap: 20 }}>
+      <div style={card}>
+        <Hairline />
+        <header style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <span style={{ width: 44, height: 44, borderRadius: 12, flexShrink: 0, display: "grid", placeItems: "center", color: gold, background: "rgba(240,201,73,0.06)", border: "1px solid rgba(240,201,73,0.22)" }}>{p.icon}</span>
+          <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <span style={{ fontSize: 17, fontWeight: 600, color: "#fff", letterSpacing: "-0.01em" }}>{p.tab}</span>
+            <span style={{ fontSize: 13, color: muted }}>{p.role}</span>
+          </span>
+        </header>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "36px 0 12px" }}>
+          <span aria-hidden="true" style={{ display: "block", width: 28, height: 2, borderRadius: 2, background: gold, marginBottom: 22 }} />
+          <p style={{ margin: 0, fontSize: "clamp(28px, 2.9vw, 36px)", lineHeight: 1.22, fontWeight: 500, letterSpacing: "-0.03em", color: "#fff", textWrap: "pretty" }}>« {p.quote} »</p>
+        </div>
+      </div>
+      <div style={card}>
+        <Hairline />
+        <span style={{ fontSize: 14, fontWeight: 600, color: text }}>Ce qui le bloque vraiment</span>
+        <ol style={{ listStyle: "none", padding: 0, margin: "16px 0 0", display: "flex", flexDirection: "column" }}>
+          {p.pains.map((pain, k) => (
+            <li key={pain.ask} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: 12, padding: "14px 0", borderTop: `1px solid ${subtle}` }}>
+              <span style={{ fontSize: 13, fontWeight: 600, fontVariantNumeric: "tabular-nums", color: gold, paddingTop: 2 }}>{String(k + 1).padStart(2, "0")}</span>
+              <span>
+                <span style={{ display: "block", fontSize: 16, fontWeight: 600, color: "#fff", letterSpacing: "-0.005em" }}>{pain.ask}</span>
+                <span style={{ display: "block", fontSize: 14, lineHeight: 1.55, color: muted, marginTop: 4, textWrap: "pretty" }}>{pain.hurt}</span>
+              </span>
+            </li>
+          ))}
+        </ol>
+        <p style={{ margin: "auto 0 0", paddingTop: 18, borderTop: `1px solid ${subtle}`, fontSize: 14.5, lineHeight: 1.55, color: "#f3b48d", textWrap: "pretty" }}>{p.cost}</p>
+      </div>
+    </div>
+  );
+};
+
+const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle, audience = "dirigeant", showBridge = true }) => {
+  const personas = VZ_PERSONAS;
 
   return (
     <section id={id} className="vz-constat" style={{ position: "relative", marginBottom: 120 }}>
@@ -169,15 +219,11 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
         </p>
       </div>
 
-      {/* Deux mondes côte à côte — cartes retournables */}
-      <div className="vz-constat-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-        {personas.map((p) => (
-          <PainFlipCard key={p.tab} persona={p} gold={gold} text={text} muted={muted} subtle={subtle} />
-        ))}
-      </div>
+      {/* Une cible par page (refonte 27/10/2026) : la phrase qu'il se dit, puis ce qui le bloque, visibles d'emblée */}
+      <PainSplit persona={personas.find((p) => p.short === (audience === "cabinet" ? "cabinet" : "dirigeant"))} gold={gold} text={text} muted={muted} subtle={subtle} />
 
-      {/* Passerelle vers « trois temps » */}
-      <div className="vz-constat-bridge" style={{
+      {/* Passerelle vers l'offre */}
+      {showBridge ? <div className="vz-constat-bridge" style={{
         display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap",
         marginTop: 26, padding: "22px 26px", borderRadius: 16,
         background: "rgba(240,201,73,0.05)", border: `1px solid rgba(240,201,73,0.18)`,
@@ -211,7 +257,7 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
             <span aria-hidden="true">→</span>
           </a>
         </div>
-      </div>
+      </div> : null}
 
       {/* Réglages */}
       <style>{`
@@ -233,4 +279,4 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle }) => {
   );
 };
 
-Object.assign(window, { BesoinClientSection, PainFlipCard });
+Object.assign(window, { BesoinClientSection, PainFlipCard, PainSplit, VZ_PERSONAS });

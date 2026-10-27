@@ -232,6 +232,8 @@ const BetaModal = ({ open, onClose }) => {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
 
+  // Sur /cabinets, la modale sert à présenter un client : textes adaptés.
+  const isCabinet = mounted && /^\/cabinets/.test(window.location.pathname);
   const WEB3FORMS_KEY = "9f003436-eba6-4543-b3ed-06c89a38a69c";
 
   const handleSubmit = async (e) => {
@@ -244,6 +246,7 @@ const BetaModal = ({ open, onClose }) => {
     fd.append("access_key", WEB3FORMS_KEY);
     fd.append("subject", "Nouvelle candidature bêta — Vyzor");
     fd.append("from_name", "Vyzor — Bêta");
+    fd.append("page", window.location.pathname || "/");
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -326,10 +329,12 @@ const BetaModal = ({ open, onClose }) => {
               margin: "0 0 8px",
               color: "#fff",
             }}>
-              Réservez votre place.
+              {isCabinet ? "Parlons de votre client." : "Réservez votre place."}
             </h3>
             <p style={{ fontSize: 13.5, color: muted, lineHeight: 1.6, margin: "0 0 18px" }}>
-              Gratuit, sans engagement. Réponse sous 48 h. Tous les champs sont obligatoires.
+              {isCabinet
+                ? "Laissez vos coordonnées : on vous rappelle sous 48 h pour organiser le diagnostic de votre client. Tous les champs sont obligatoires."
+                : "Gratuit, sans engagement. Réponse sous 48 h. Tous les champs sont obligatoires."}
             </p>
             <form
               onSubmit={handleSubmit}
@@ -346,7 +351,7 @@ const BetaModal = ({ open, onClose }) => {
               {[
                 { id: "name", label: "Nom et prénom", placeholder: "Marie Durand", type: "text" },
                 { id: "email", label: "Email pro", placeholder: "marie@entreprise.fr", type: "email" },
-                { id: "company", label: "Entreprise", placeholder: "ACME SAS", type: "text" },
+                { id: "company", label: isCabinet ? "Cabinet" : "Entreprise", placeholder: isCabinet ? "Cabinet Durand" : "ACME SAS", type: "text" },
               ].map((f) => (
                 <div key={f.id}>
                   <label htmlFor={`beta-${f.id}`} style={{
@@ -385,7 +390,7 @@ const BetaModal = ({ open, onClose }) => {
                   color: labelMuted, textTransform: "uppercase",
                   marginBottom: 6, fontWeight: 500,
                   fontFamily: '"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace',
-                }}>Logiciel comptable <span style={{ textTransform: "none", letterSpacing: 0 }}>(obligatoire)</span></label>
+                }}>{isCabinet ? "Logiciel comptable du client" : "Logiciel comptable"} <span style={{ textTransform: "none", letterSpacing: 0 }}>(obligatoire)</span></label>
                 <select id="beta-software" name="software" required aria-required="true" defaultValue=""
                   style={{
                     width: "100%", padding: "12px 14px", boxSizing: "border-box",
@@ -482,7 +487,7 @@ const BetaModal = ({ open, onClose }) => {
   return ReactDOM.createPortal(overlay, document.body);
 };
 
-const BetaFormGlass = () => {
+const BetaFormGlass = ({ modalOnly = false }) => {
   const [open, setOpen] = React.useState(false);
 
   // Auto-ouverture de la modale "contact" :
@@ -547,6 +552,7 @@ const BetaFormGlass = () => {
   const muted = "rgba(255,255,255,0.55)";
   const inputBorder = "rgba(255,255,255,0.10)";
 
+  const betaPlaces = (window.VZ_BETA && window.VZ_BETA.places) || 10;
   const benefits = [
     "Un diagnostic financier de votre entreprise dès le premier rendez-vous",
     "Vos données branchées avec vous, en visio",
@@ -554,6 +560,9 @@ const BetaFormGlass = () => {
     "Une ligne directe avec les fondateurs, vos retours dans la roadmap",
     "Votre tarif préférentiel bloqué à vie après la bêta",
   ];
+
+  // Mode « modale seule » : pages qui ont leur propre bloc d'offre (ex. /cabinets).
+  if (modalOnly) return <BetaModal open={open} onClose={() => setOpen(false)} />;
 
   return (
     <section id="beta" style={{ position: "relative", marginTop: 72 }}>
@@ -570,7 +579,7 @@ const BetaFormGlass = () => {
             fontWeight: 600, lineHeight: 1.05, maxWidth: 760,
             color: "#fff",
           }}>
-            Devenez l'un des <span style={{ color: gold }}>10 premiers</span>
+            Devenez l'un des <span style={{ color: gold }}>{betaPlaces} premiers</span>
             <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 400, fontStyle: "italic" }}> à façonner Vyzor.</span>
           </h2>
         </div>
@@ -593,8 +602,9 @@ const BetaFormGlass = () => {
             Gratuit pendant la bêta. À tarif préférentiel à vie.
           </div>
           <div style={{ fontSize: 14, lineHeight: 1.65, color: muted }}>
-            Un canal direct avec l'équipe produit. Vos retours pèsent
-            sur la roadmap, pas sur un ticket parmi d'autres.
+            <span style={{ color: text, fontWeight: 600 }}>Pourquoi gratuit ?</span> Parce que vos retours
+            nous aident à finir le produit. En échange, vous l'utilisez sans payer, avec une ligne directe
+            avec les fondateurs, et votre tarif est bloqué à vie.
           </div>
           <div style={{ flex: 1 }} />
           <div style={{
@@ -606,10 +616,10 @@ const BetaFormGlass = () => {
               fontSize: 56, fontWeight: 700, color: gold,
               lineHeight: 0.9, letterSpacing: "-0.04em",
               fontFeatureSettings: '"tnum" 1, "lnum" 1',
-            }}>10</div>
+            }}>{betaPlaces}</div>
             <div style={{
-              fontSize: 15, color: muted,
-            }}>places ouvertes</div>
+              fontSize: 15, color: muted, lineHeight: 1.4,
+            }}>places ouvertes.<br/>Une fois attribuées, la bêta ferme.</div>
           </div>
         </BetaTiltCard>
 

@@ -348,7 +348,7 @@ const CinematicHero = () => {
           </a>
         </div>
         <p className="vz-hero-in" style={{ margin: "14px 0 0", fontSize: 13, color: "rgba(255,255,255,0.5)", animationDelay: "300ms" }}>
-          Gratuit pendant la bêta · 10 places · réponse sous 48 h
+          Gratuit pendant la bêta · {(window.VZ_BETA && window.VZ_BETA.places) || 10} places · réponse sous 48 h
         </p>
         <ul className="vz-hero-proofs vz-hero-in" style={{ animationDelay: "340ms" }}>
           {proofs.map((p) => (

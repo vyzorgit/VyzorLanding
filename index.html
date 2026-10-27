@@ -203,6 +203,7 @@
   <script type="text/babel" src="variant-a.jsx"></script>
   <script type="text/babel" src="besoin-client.jsx"></script>
   <script type="text/babel" src="how-it-works.jsx"></script>
+  <script type="text/babel" src="conversion-sections.jsx"></script>
   <script type="text/babel" src="agentic-twin.jsx"></script>
   <script type="text/babel" src="features-glass.jsx"></script>
   <script type="text/babel" src="daf-coconception.jsx"></script>
@@ -309,6 +310,7 @@
       return (
         <React.Fragment>
           <VyzorNav gold={gold} text={text} muted={muted} subtle={subtle} />
+          <StickyBetaCta />
           <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
             <CinematicHero />
             {/* Reste de la page : on réutilise les sections de la variante A après le hero cinématique */}
@@ -350,11 +352,13 @@
             {/* Narratif (refonte 27/10/2026) : la preuve visuelle d'abord (démo), puis la douleur,
                 la facilité (3 étapes), la crédibilité (DAF), enfin l'offre bêta. */}
             <AgenticTwinSection id="produit" gold={gold} text={text} muted={muted} subtle={subtle} />
-            <div className="vz-reveal"><BesoinClientSection id="constat" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
+            <div className="vz-reveal"><BesoinClientSection id="constat" gold={gold} text={text} muted={muted} subtle={subtle} audience="dirigeant" showBridge={false} /></div>
+            <div className="vz-reveal"><OutcomesSection id="resultats" gold={gold} muted={muted} /></div>
             <div className="vz-reveal"><HowItWorksSection id="comment" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
             <div className="vz-reveal"><DAFCoConception /></div>
-            <div className="vz-reveal"><ExploreMore gold={gold} text={text} muted={muted} subtle={subtle} /></div>
             <div className="vz-reveal"><BetaFormGlass /></div>
+            <div className="vz-reveal" style={{ marginTop: 120 }}><ObjectionsSection id="questions" gold={gold} muted={muted} /></div>
+            <div className="vz-reveal"><FinalCtaSection gold={gold} muted={muted} /></div>
           </div>
         </div>
       );
