@@ -76,7 +76,7 @@ function shell({ css, mark }, { title, description, canonical, ogType, jsonld, b
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/svg+xml" href="/vyzor-mark.svg" />
-  <meta name="theme-color" content="#0f1530" />
+  <meta name="theme-color" content="#070a14" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="${canonical}" />
   <link rel="alternate" hreflang="fr-FR" href="${canonical}" />
@@ -114,7 +114,7 @@ function shell({ css, mark }, { title, description, canonical, ogType, jsonld, b
     <a class="nav-link calc-nav-links" href="/calculateurs">Calculateurs</a>
     <a class="nav-link active calc-nav-links" href="/guides">Guides</a>
     <span class="nav-sep calc-nav-links"></span>
-    <a class="nav-cta" href="/?contact=1#beta" data-contact>Demander une démo</a>
+    <a class="nav-cta" href="/?contact=1#beta" data-contact>Rejoindre la bêta</a>
   </nav>
   <div class="shell calc-shell">
     <main id="contenu" tabindex="-1">
@@ -300,6 +300,32 @@ const GUIDE_CSS = `
     .gfoot-cols a{display:block;color:rgba(255,255,255,0.55);padding:5px 0} .gfoot-cols a:hover{color:var(--brand-gold)}
     .gfoot-h{color:#fff;font-weight:600;margin-bottom:8px}
     .gfoot-b{margin-top:28px;color:rgba(255,255,255,0.4);font-size:12.5px}
+
+    /* —— Thème actuel de la landing (fond bleu nuit #070a14, or #f0c949) : prime sur les styles hérités —— */
+    :root{--bg-base:#070a14;--bg-surface:#0c1020;--brand-gold:#f0c949;--brand-gold-dark:#c89a2f;--brand-gold-soft:rgba(240,201,73,0.16);--border-subtle:rgba(255,255,255,0.08)}
+    html,body{background:#070a14}
+    body{color:rgba(255,255,255,0.92)}
+    ::selection{background:rgba(240,201,73,0.35);color:#fff}
+    .ambient,.grain{display:none}
+    .nav{background:rgba(15,17,21,0.55);border:1px solid rgba(255,255,255,0.10);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);box-shadow:0 8px 30px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.05)}
+    .nav-link{color:rgba(255,255,255,0.55)}
+    .nav-link.active{color:#f0c949;background:rgba(240,201,73,0.10);border-color:rgba(240,201,73,0.30)}
+    .nav-cta,.tool-cta,.sub button{background:#f0c949;background-image:linear-gradient(#f0c949,#f0c949);color:#111;font-weight:600;border:0;box-shadow:0 1px 2px rgba(0,0,0,0.3)}
+    .nav-cta:hover,.tool-cta:hover,.sub button:hover{transform:translateY(-1px)}
+    .eyebrow,.crumb b,.gcard-cat,.essentiel-h,.toc-h{color:#f0c949}
+    h1 em{background:linear-gradient(135deg,#f6dfa1 0%,#f0c949 50%,#c89a2f 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .card,.essentiel,.toc,.tool,.sub{border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:linear-gradient(160deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015));backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);box-shadow:0 1px 2px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.05)}
+    .card::before{background:linear-gradient(180deg,rgba(255,255,255,0.06),transparent 45%);opacity:0.7;mix-blend-mode:normal}
+    .card::after{background:radial-gradient(320px circle at var(--mx,50%) var(--my,0%),rgba(240,201,73,0.10),transparent 60%)}
+    .card:hover{border-color:rgba(240,201,73,0.42);background:linear-gradient(160deg,rgba(240,201,73,0.06),rgba(240,201,73,0.015));box-shadow:0 1px 2px rgba(0,0,0,0.3),0 0 0 1px rgba(240,201,73,0.10) inset}
+    .card-cta{color:#f0c949}
+    .essentiel,.tool{border-color:rgba(240,201,73,0.32)}
+    .prose a,.faq a,.essentiel a,.sub-msg{color:#f6dfa1;text-decoration-color:rgba(240,201,73,0.45)}
+    .prose a:hover,.toc a:hover,.gfoot-cols a:hover,.crumb a:hover{color:#f0c949}
+    .prose blockquote{border-left-color:#f0c949;background:rgba(240,201,73,0.06)}
+    .faq summary::after{color:#f0c949}
+    .sub input[type=email]{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.4)}
+    .sub input[type=email]:focus{outline-color:#f0c949}
     @media (max-width:640px){.guide .lede{font-size:17px}.prose{font-size:16px}.essentiel,.toc,.tool,.sub{padding:22px 20px}.guide h1{font-size:32px}}
 `;
 
