@@ -1,11 +1,11 @@
 ---
-title: "BFR : comment le calculer, l'interpréter et le réduire (exemple chiffré)"
-seo_title: "BFR : calcul, exemple chiffré et 5 leviers pour le réduire"
-description: "Calculez le besoin en fonds de roulement de votre PME pas à pas, en euros et en jours de CA, avec un exemple chiffré et 5 leviers pour libérer de la trésorerie."
-slug: besoin-en-fonds-de-roulement
+title: "Calcul du BFR : formule, exemple chiffré et 5 leviers pour le réduire"
+seo_title: "Calcul du BFR : formule, exemple chiffré et interprétation"
+description: "Calcul du BFR pas à pas : formule, BFR en jours de CA, exemple chiffré, BFR positif ou négatif, et 5 leviers pour libérer de la trésorerie."
+slug: calcul-bfr
 date: 2026-10-27
 category: Trésorerie
-keyword: "besoin en fonds de roulement"
+keyword: "calcul bfr"
 tool: bfr
 essentiel:
   - "Le besoin en fonds de roulement (BFR) est l'argent immobilisé en permanence par le cycle d'exploitation : stocks plus créances clients, moins dettes fournisseurs et autres dettes d'exploitation."
@@ -28,7 +28,7 @@ sources:
     url: "https://hauts-de-france.dreets.gouv.fr/sites/hauts-de-france.dreets.gouv.fr/IMG/pdf/lutte_contre_les_retards_de_paiement.pdf"
 ---
 
-Une entreprise rentable peut manquer de trésorerie. La raison tient presque toujours en trois lettres : **BFR**. Entre le moment où vous payez vos achats et celui où vos clients vous règlent, de l'argent reste bloqué dans votre cycle d'exploitation. Ce guide montre comment le calculer à partir de votre bilan, comment le lire en jours de chiffre d'affaires, et où chercher pour le réduire.
+Une entreprise rentable peut manquer de trésorerie. La raison tient presque toujours en trois lettres : **BFR**. Entre le moment où vous payez vos achats et celui où vos clients vous règlent, de l'argent reste bloqué dans votre cycle d'exploitation. Ce guide détaille le calcul du BFR à partir de votre bilan, comment le lire en jours de chiffre d'affaires, et où chercher pour le réduire.
 
 ## Qu'est-ce que le besoin en fonds de roulement ?
 
@@ -40,7 +40,7 @@ Le besoin en fonds de roulement est l'argent dont l'entreprise a besoin en perma
 
 Le BFR est la différence entre ce qui est bloqué (stocks, créances) et ce qui vous est avancé (dettes fournisseurs, dettes fiscales et sociales d'exploitation). Tant que cette différence est positive, il faut la financer : par la trésorerie, par des capitaux stables ou par un découvert.
 
-## La formule du BFR
+## Calcul du BFR : la formule
 
 Au bilan, à une même date :
 
@@ -75,7 +75,7 @@ On décompose ce chiffre avec trois ratios :
 
 La lecture est immédiate : les clients paient en deux mois, les fournisseurs sont payés en un mois et demi, et le stock dort un mois et demi. C'est ce décalage qu'il faut financer.
 
-## Comment interpréter son BFR
+## BFR positif ou négatif : comment l'interpréter
 
 **Un BFR positif** est la situation normale d'une entreprise qui vend à crédit ou stocke. Il devient un problème quand il augmente plus vite que l'activité.
 

@@ -9,7 +9,7 @@ Catégories : Trésorerie · Rentabilité · Lecture des comptes · Fiscalité �
 
 ## À publier
 
-- [x] 2026-10-27 · besoin-en-fonds-de-roulement · Trésorerie · besoin en fonds de roulement
+- [x] 2026-10-27 · calcul-bfr · Trésorerie · calcul bfr (5 400 recherches/mois, SD 33)
 - [ ] Rentabilité · seuil de rentabilité · calcul pas à pas avec charges fixes / variables, exemple d'une PME de services · breakeven
 - [ ] Trésorerie · prévisionnel de trésorerie · construire un plan sur 13 semaines puis 12 mois, modèle de lignes · bfr
 - [ ] Lecture des comptes · EBE (excédent brut d'exploitation) · calcul depuis le compte de résultat, EBE vs résultat net vs EBITDA · valorisation
