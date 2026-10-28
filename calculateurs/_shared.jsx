@@ -409,7 +409,7 @@ function KpiTile({ icon, label, value, color, sub }) {
 }
 
 /* ── EmailGate — Liquid Glass overlay ── */
-// L'email part dans la boîte contact@vyzor.fr via web3forms (même service que la candidature bêta).
+// L'email part dans la boîte admin@vyzor.fr via web3forms (même service que la candidature bêta).
 const VZ_WEB3FORMS_KEY = "9f003436-eba6-4543-b3ed-06c89a38a69c";
 async function vzSubscribe(email, source, website) {
   try {

@@ -184,7 +184,7 @@ const VariantA = () => {
           <div>
             <div style={{ height: 1, width: 56, background: gold, marginBottom: 20 }}/>
             <h2 style={{ fontSize: 32, margin: 0, letterSpacing: "-0.02em", fontWeight: 600 }}>Questions fréquentes</h2>
-            <p style={{ fontSize: 14, color: muted, marginTop: 12 }}>Une autre question ? Écrivez-nous à <a href="mailto:contact@vyzor.fr" style={{ color: gold }}>contact@vyzor.fr</a>.</p>
+            <p style={{ fontSize: 14, color: muted, marginTop: 12 }}>Une autre question ? Écrivez-nous à <a href="mailto:admin@vyzor.fr" style={{ color: gold }}>admin@vyzor.fr</a>.</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {[
@@ -213,7 +213,7 @@ const VariantA = () => {
         <div style={{ display: "flex", gap: 18 }}>
           <a style={{ color: muted, textDecoration: "none" }}>Mentions légales</a>
           <a style={{ color: muted, textDecoration: "none" }}>Confidentialité</a>
-          <a href="mailto:contact@vyzor.fr" style={{ color: muted, textDecoration: "none" }}>contact@vyzor.fr</a>
+          <a href="mailto:admin@vyzor.fr" style={{ color: muted, textDecoration: "none" }}>admin@vyzor.fr</a>
         </div>
       </footer>
     </div>

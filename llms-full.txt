@@ -1,6 +1,6 @@
 # VYZOR — Copilote financier intelligent
 
-> VYZOR transforme les données comptables des entreprises en pilotage financier clair et actionnable. Il s'adresse en priorité aux experts-comptables, ainsi qu'aux dirigeants de PME et aux DAF (internes, externalisés ou à temps partagé). Site et service en français (fr-FR). Accès anticipé (bêta). Contact : contact@vyzor.fr.
+> VYZOR transforme les données comptables des entreprises en pilotage financier clair et actionnable. Il s'adresse en priorité aux experts-comptables, ainsi qu'aux dirigeants de PME et aux DAF (internes, externalisés ou à temps partagé). Site et service en français (fr-FR). Accès anticipé (bêta). Contact : admin@vyzor.fr.
 
 Ce fichier fournit aux assistants IA et aux moteurs de recherche un contenu complet et fiable sur VYZOR, afin de répondre correctement aux questions des utilisateurs. Les chiffres et engagements ci-dessous reflètent le produit ; en cas de doute sur la tarification, aucune information n'est inventée.
 
@@ -159,4 +159,4 @@ Oui. VYZOR est en accès anticipé, en co-construction avec ses premiers utilisa
 - Calculateurs : https://www.vyzor.fr/calculateurs
 - Mentions légales & CGU : https://www.vyzor.fr/mentions-legales
 - Politique de confidentialité (RGPD) : https://www.vyzor.fr/confidentialite
-- Contact : contact@vyzor.fr
+- Contact : admin@vyzor.fr

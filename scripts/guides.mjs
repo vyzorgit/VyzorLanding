@@ -124,7 +124,7 @@ ${body}
       <div class="gfoot-cols">
         <div><div class="gfoot-h">Outils gratuits</div>${Object.values(TOOLS).map((t) => `<a href="${t.href}">${esc(t.name)}</a>`).join("")}</div>
         <div><div class="gfoot-h">Vyzor</div><a href="/">Accueil</a><a href="/fonctionnalites">Fonctionnalités</a><a href="/guides">Guides</a><a href="/faq">FAQ</a><a href="/a-propos">À propos</a><a href="/securite">Sécurité</a></div>
-        <div><div class="gfoot-h">Légal</div><a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a><a href="mailto:contact@vyzor.fr">contact@vyzor.fr</a></div>
+        <div><div class="gfoot-h">Légal</div><a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a><a href="mailto:admin@vyzor.fr">admin@vyzor.fr</a></div>
       </div>
       <div class="gfoot-b">© ${new Date().getFullYear()} Vyzor — pilotage financier des PME</div>
     </footer>
@@ -138,7 +138,7 @@ const subscribeForm = (source) => `
       <section class="sub" aria-labelledby="sub-h">
         <div class="eyebrow">Guides Vyzor</div>
         <h2 id="sub-h">Recevez les prochains guides</h2>
-        <p>Un guide pratique de pilotage financier, écrit pour les dirigeants de PME. Pas de spam ; un email à contact@vyzor.fr suffit pour ne plus rien recevoir.</p>
+        <p>Un guide pratique de pilotage financier, écrit pour les dirigeants de PME. Pas de spam ; un email à admin@vyzor.fr suffit pour ne plus rien recevoir.</p>
         <form data-vz-subscribe="${esc(source)}" novalidate>
           <label for="sub-email" class="sr">Votre email professionnel</label>
           <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="vous@entreprise.fr" />

@@ -436,7 +436,7 @@ const BetaModal = ({ open, onClose }) => {
                 {submitting ? "Envoi en cours…" : "Envoyer ma candidature →"}
               </button>
               <div style={{ fontSize: 11, color: muted, textAlign: "center", marginTop: 2 }}>
-                Vos données servent uniquement à traiter votre candidature (conservées 3 ans max.). Vous pouvez y accéder ou les supprimer via contact@vyzor.fr — voir notre{" "}
+                Vos données servent uniquement à traiter votre candidature (conservées 3 ans max.). Vous pouvez y accéder ou les supprimer via admin@vyzor.fr — voir notre{" "}
                 <a href="/confidentialite" target="_blank" rel="noopener" style={{ color: "#f0c949", textDecoration: "underline", textUnderlineOffset: 2 }}>politique de confidentialité</a>.
               </div>
             </form>

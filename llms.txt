@@ -2,7 +2,7 @@
 
 > VYZOR est un copilote financier intelligent pour dirigeants de PME, DAF et experts-comptables. Il transforme les données comptables (FEC, Pennylane, MyUnisoft, Odoo) en pilotage clair : reporting automatisé, plus de 35 indicateurs (BFR, EBE/EBITDA, trésorerie, ROE, solvabilité…), prévisions de trésorerie et alertes triées par impact en euros, le tout synthétisé dans un Vyzor Score de 0 à 100.
 
-VYZOR est actuellement en accès anticipé (bêta), co-construit avec des professionnels du chiffre. Les données comptables sont importées en lecture seule, hébergées dans l'Union européenne sur une infrastructure conforme SOC 2 et ISO 27001, et ne servent jamais à entraîner de modèles d'IA. Service et contenus en français (fr-FR). Contact : contact@vyzor.fr.
+VYZOR est actuellement en accès anticipé (bêta), co-construit avec des professionnels du chiffre. Les données comptables sont importées en lecture seule, hébergées dans l'Union européenne sur une infrastructure conforme SOC 2 et ISO 27001, et ne servent jamais à entraîner de modèles d'IA. Service et contenus en français (fr-FR). Contact : admin@vyzor.fr.
 
 Vyzor s'écrit avec un Z (V-Y-Z-O-R). Ce n'est pas Vysor, l'application Android de recopie d'écran, avec laquelle il n'a aucun lien. Vyzor est édité en France (société par actions simplifiée en cours de formation), fondé par Antoine Cayer et Louis Chevalier. Site officiel : https://www.vyzor.fr/.
 
