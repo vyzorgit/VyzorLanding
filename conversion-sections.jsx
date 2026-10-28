@@ -54,8 +54,8 @@ const OutcomesSection = ({ id = "resultats", gold, muted }) => {
         .vz-out-card {
           position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 420px;
           overflow: hidden; border-radius: 18px; text-decoration: none; color: inherit;
-          background: linear-gradient(180deg, #10131b 0%, #0b0d14 100%);
-          border: 1px solid rgba(255,255,255,0.07); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+          background: linear-gradient(180deg, #121a3a 0%, #0b1026 100%);
+          border: 1px solid rgba(140,160,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
           transition: border-color 200ms ease;
         }
         .vz-out-card:hover { border-color: rgba(240,201,73,0.35); }
@@ -78,9 +78,7 @@ const VZ_OBJECTIONS = [
   { q: "Est-ce que ça remplace mon expert-comptable ?", a: "Non. Vyzor ne tient pas votre comptabilité : il lit le travail de votre cabinet et le transforme en décisions. Votre comptable garde son rôle, vous gagnez la lecture." },
   { q: "Mes données sont-elles en sécurité ?", a: "Vyzor accède à votre comptabilité en lecture seule : il ne modifie, n'écrit ni ne supprime rien. Les données sont chiffrées, hébergées dans l'Union européenne, et ne servent jamais à entraîner une IA. Vous coupez l'accès en un clic." },
   { q: "Combien de temps ça me prend ?", a: "Quelques minutes pour connecter Pennylane, et on le fait avec vous au premier rendez-vous. Ensuite, Vyzor travaille seul : vous n'avez rien à saisir." },
-  { q: "Je ne suis pas un financier, je vais m'y retrouver ?", a: "C'est fait pour. Vous posez vos questions en français (« est-ce que je peux embaucher ? ») et Vyzor répond avec vos chiffres, la source et une recommandation." },
   { q: "Et après la bêta, combien ça coûte ?", a: "La bêta est gratuite. Le tarif sera annoncé avant sa fin, et les bêta-testeurs gardent un tarif préférentiel à vie. Aucun engagement : vous partez quand vous voulez." },
-  { q: "Je n'utilise pas Pennylane, c'est possible ?", a: "Oui. Un export FEC, que tous les logiciels comptables savent produire, suffit pour démarrer. Indiquez votre logiciel dans le formulaire, on vous dit ce qui est possible." },
 ];
 
 const ObjectionsSection = ({ id = "questions", gold, muted }) => {
@@ -135,10 +133,9 @@ const FinalCtaSection = ({ gold, muted }) => (
   <section className="vz-final" style={{
     position: "relative", overflow: "hidden", textAlign: "center",
     margin: "120px 0 40px", padding: "72px clamp(20px, 5vw, 64px)", borderRadius: 28,
-    background: "linear-gradient(180deg, rgba(240,201,73,0.08) 0%, rgba(255,255,255,0.02) 40%, rgba(0,0,0,0.15) 100%), #0b0d14",
-    border: "1px solid rgba(240,201,73,0.22)",
+    background: "radial-gradient(ellipse 70% 90% at 50% 0%, #1a2656 0%, #0f1636 45%, #0a0f24 100%)",
+    border: "1px solid rgba(140,160,255,0.18)",
   }}>
-    <span aria-hidden="true" style={{ position: "absolute", top: -160, left: "50%", transform: "translateX(-50%)", width: 700, height: 320, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(240,201,73,0.16), transparent 68%)", filter: "blur(24px)", pointerEvents: "none" }} />
     <h2 style={{ position: "relative", margin: "0 auto", maxWidth: 820, fontSize: "clamp(32px, 4.4vw, 52px)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.08, color: "#fff", textWrap: "balance" }}>
       Dans 12 mois, vous saurez où est passé votre argent.{" "}
       <span style={{ color: gold }}>Ou vous le découvrirez au bilan.</span>
@@ -209,8 +206,8 @@ const FoundersSection = ({ id = "fondateurs", gold, muted }) => (
     <div className="vz-found-grid" style={{
       display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)", gap: 40, alignItems: "center",
       padding: "40px clamp(24px, 4vw, 48px)", borderRadius: 24,
-      background: "linear-gradient(180deg, #11141d 0%, #0b0d14 100%)",
-      border: "1px solid rgba(255,255,255,0.07)",
+      background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)",
+      border: "1px solid rgba(140,160,255,0.12)",
       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 60px -30px rgba(0,0,0,0.8)",
     }}>
       <div>

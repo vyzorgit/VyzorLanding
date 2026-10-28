@@ -27,7 +27,7 @@
       inset: 0;
       border-radius: inherit;
       background:
-        linear-gradient(150deg, #101218 0%, #0b0c10 100%);
+        linear-gradient(150deg, #121a3a 0%, #0b1026 100%);
       z-index: 0;
       transition: background 320ms ease;
     }
@@ -67,7 +67,7 @@
     .vz-verbatim-card:hover .border-element { background: rgba(240,201,73,0.45); }
     .vz-verbatim-card:hover .card-backdrop {
       background:
-        linear-gradient(150deg, #13151d 0%, #0b0c10 100%);
+        linear-gradient(150deg, #16204a 0%, #0c1230 100%);
     }
     .vz-verbatim-card:hover .vz-verbatim-li { color: #fff !important; background: #0a66c2 !important; }
 
@@ -142,7 +142,7 @@ const DAFCoConception = () => {
 
       {/* Corps — la boucle de co-conception, en flux horizontal */}
       <div className="vz-daf-panel" style={{
-        background: "linear-gradient(140deg, #0e1015, #0c0d11)",
+        background: "linear-gradient(140deg, #121a3a, #0b1026)",
         border: `1px solid ${subtle}`, borderTop: `1px solid rgba(240,201,73,0.20)`,
         borderRadius: 20, overflow: "hidden", position: "relative",
         padding: "44px 48px",
@@ -150,7 +150,7 @@ const DAFCoConception = () => {
         {/* halo doré discret */}
         <div aria-hidden="true" style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(60% 90% at 50% -10%, rgba(240,201,73,0.07), transparent 60%)",
+          background: "radial-gradient(60% 90% at 50% -10%, rgba(140,160,255,0.10), transparent 60%)",
         }} />
 
         <div className="vz-daf-loop-grid" style={{

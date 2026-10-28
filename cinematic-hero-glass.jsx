@@ -295,7 +295,7 @@ const CinematicHero = () => {
         .vz-btn-ghost { transition: border-color 160ms ease, background-color 160ms ease; }
         .vz-btn-ghost:hover { border-color: rgba(255,255,255,0.32) !important; background-color: rgba(255,255,255,0.04) !important; }
         .vz-hero-h1 { font-size: clamp(38px, 5.6vw, 76px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
-        .vz-hero-glow { position: absolute; top: -180px; left: 50%; transform: translateX(-50%); width: 900px; height: 520px; border-radius: 50%; background: radial-gradient(ellipse, rgba(240,201,73,0.13), transparent 66%); pointer-events: none; filter: blur(30px); }
+        .vz-hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 0%, #1b2860 0%, #101a42 32%, rgba(7,10,20,0) 72%); }
         .vz-hero-proofs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin: clamp(36px, 4vw, 48px) 0 0; padding: 0; list-style: none; }
         .vz-hero-proofs li { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: rgba(255,255,255,0.7); }
         .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }

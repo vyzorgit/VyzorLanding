@@ -196,7 +196,7 @@ const AgenticTwinSection = ({ id = "vision", gold, text, muted, subtle }) => {
       <div className="vz-vision-cta" style={{
         display: "flex", alignItems: "center", justifyContent: "space-between", gap: 18, flexWrap: "wrap",
         marginTop: 28, padding: "22px 26px", borderRadius: 16,
-        background: "rgba(240,201,73,0.05)", border: "1px solid rgba(240,201,73,0.18)",
+        background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)", border: "1px solid rgba(140,160,255,0.14)",
       }}>
         <p style={{ margin: 0, fontSize: 17, lineHeight: 1.5, color: text, letterSpacing: "-0.01em", flex: "1 1 320px" }}>
           La même chose, <span style={{ color: gold, fontWeight: 600 }}>avec vos vrais chiffres</span>. On branche votre comptabilité avec vous au premier rendez-vous.
