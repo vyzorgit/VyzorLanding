@@ -243,7 +243,7 @@ const FoundersSection = ({ id = "fondateurs", gold, muted }) => (
 // —— Page /equipe : fondateurs, histoire, et encart « Nous rejoindre » ——
 const TeamPageBody = ({ gold, muted }) => (
   <React.Fragment>
-    <header className="pg-hero vz-reveal in" style={{ marginBottom: 72 }}>
+    <header className="pg-hero" style={{ marginBottom: 72 }}>
       <h1 className="pg-title">L'équipe derrière <em>Vyzor</em>.</h1>
       <p className="pg-lede">
         Les grands groupes ont des équipes entières pour lire leurs chiffres. Les PME ont un bilan par an.
@@ -251,7 +251,7 @@ const TeamPageBody = ({ gold, muted }) => (
       </p>
     </header>
     <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
-      <ul className="vz-team-grid vz-reveal" style={{ listStyle: "none", margin: "0 0 96px", padding: 0, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+      <ul className="vz-team-grid" style={{ listStyle: "none", margin: "0 0 96px", padding: 0, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
         {VZ_FOUNDERS.map((f) => (
           <li key={f.name} style={{
             display: "grid", gridTemplateColumns: "160px 1fr", gap: 24, alignItems: "center",
@@ -272,7 +272,7 @@ const TeamPageBody = ({ gold, muted }) => (
         ))}
       </ul>
 
-      <section className="vz-reveal" style={{ marginBottom: 96, maxWidth: 820 }}>
+      <section style={{ marginBottom: 96, maxWidth: 820 }}>
         <h2 style={{ fontSize: 40, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.1, color: "#fff" }}>
           D'où vient Vyzor.
         </h2>
@@ -283,7 +283,7 @@ const TeamPageBody = ({ gold, muted }) => (
         </p>
       </section>
 
-      <section className="vz-reveal" style={{
+      <section style={{
         marginBottom: 40, padding: "48px clamp(24px, 4vw, 48px)", borderRadius: 24,
         background: "radial-gradient(ellipse 70% 90% at 50% 0%, #1a2656 0%, #0f1636 45%, #0a0f24 100%)",
         border: "1px solid rgba(140,160,255,0.18)",
