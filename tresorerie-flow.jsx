@@ -2,7 +2,7 @@
 
 const TR_MUTED = "rgba(255,255,255,0.58)";
 const TR_LINE = "rgba(255,255,255,0.08)";
-const trPanel = { borderRadius: 20, background: "linear-gradient(180deg, #10131b 0%, #0b0d14 100%)", border: "1px solid rgba(255,255,255,0.07)" };
+const trPanel = { borderRadius: 20, background: "linear-gradient(180deg, #121a3a 0%, #0d1430 100%)", border: "1px solid rgba(255,255,255,0.07)" };
 const trBox = { borderRadius: 12, border: `1px solid ${TR_LINE}`, background: "rgba(255,255,255,0.025)" };
 const trNum = (v) => `${v > 0 ? "+" : ""}${v} k€`;
 
@@ -101,7 +101,7 @@ const TrForecast = () => {
             <defs>
               <pattern id="trHatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
                 <rect width="4" height="4" fill="#f0905a" />
-                <rect width="1.6" height="4" fill="#0b0d14" opacity="0.55" />
+                <rect width="1.6" height="4" fill="#0d1430" opacity="0.55" />
               </pattern>
             </defs>
             <line x1="0" x2={W} y1={yV(0)} y2={yV(0)} stroke="rgba(255,255,255,0.25)" strokeDasharray="4 4" />
@@ -115,7 +115,7 @@ const TrForecast = () => {
               </g>
             ))}
             <path d={line} fill="none" stroke="#f0c949" strokeWidth="2.2" style={{ transition: "d 400ms ease" }} />
-            {rows.map((r, i) => <circle key={r.m} cx={(i + 0.5) * step} cy={yV(r.bal)} r={r === low ? 5 : 2.5} fill={r === low ? "#0b0d14" : "#f0c949"} stroke="#f0c949" strokeWidth="2" />)}
+            {rows.map((r, i) => <circle key={r.m} cx={(i + 0.5) * step} cy={yV(r.bal)} r={r === low ? 5 : 2.5} fill={r === low ? "#0d1430" : "#f0c949"} stroke="#f0c949" strokeWidth="2" />)}
             <text x={Math.min(Math.max((rows.indexOf(low) + 0.5) * step, 60), W - 60)} y={yV(low.bal) + 22} fill="#f0c949" fontSize="12" fontWeight="600" textAnchor="middle">point bas {trNum(low.bal)}</text>
           </svg>
           <div style={{ display: "flex", gap: 18, flexWrap: "wrap", fontSize: 12.5, color: TR_MUTED, marginTop: 10 }}>
@@ -218,7 +218,7 @@ const TresorerieExplainer = () => (
       .tr-seg { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
       .tr-segb { all: unset; cursor: pointer; padding: 8px 13px; border-radius: 9px; font-size: 13px; color: rgba(255,255,255,0.65); transition: background-color 160ms ease, color 160ms ease; }
       .tr-segb:hover { color: #fff; }
-      .tr-segb.on { background: #f0c949; color: #0b0d14; font-weight: 600; }
+      .tr-segb.on { background: #f0c949; color: #0d1430; font-weight: 600; }
       .tr-segb:focus-visible, .tr-btn:focus-visible { outline: 2px solid rgba(240,201,73,0.6); outline-offset: 2px; }
       .tr-flow { display: grid; grid-template-columns: minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr); align-items: center; }
       .tr-arrow { height: 1px; background: linear-gradient(90deg, rgba(240,201,73,0.2), #f0c949); position: relative; }

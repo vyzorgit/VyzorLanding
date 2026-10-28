@@ -1,5 +1,5 @@
 // footer-glass.jsx — Footer "Liquid Glass" pour VYZOR
-// DA cinématique : fond #070a14, accent or #f0c949, surfaces glass, halo refractif,
+// DA cinématique : fond #0a1026, accent or #f0c949, surfaces glass, halo refractif,
 // bordures lumineuses, typo Inter + JetBrains Mono.
 // UX inspirée d'un footer shadcn : 4 colonnes (marque / liens utiles / suivez-nous /
 // newsletter avec formulaire d'inscription + overlay animé succès/erreur).
@@ -31,8 +31,8 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
   // —— Réseaux : destinations réelles ——
   const socials = [
     {
-      label: "contact@vyzor.fr",
-      href: "mailto:contact@vyzor.fr",
+      label: "admin@vyzor.fr",
+      href: "mailto:admin@vyzor.fr",
       icon: (
         <>
           <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -205,7 +205,7 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
             { label: "Mentions légales & CGU", href: "/mentions-legales" },
             { label: "Confidentialité", href: "/confidentialite" },
             { label: "Cookies", href: "/confidentialite#cookies" },
-            { label: "contact@vyzor.fr", href: "mailto:contact@vyzor.fr" },
+            { label: "admin@vyzor.fr", href: "mailto:admin@vyzor.fr" },
           ].map((l) => (
             <a key={l.label} href={l.href} style={{ color: muted, textDecoration: "none", transition: "color 220ms ease" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = gold)}

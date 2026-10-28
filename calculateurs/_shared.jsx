@@ -1,8 +1,8 @@
 /* ── Vyzor Design Tokens ── */
 const T = {
-  bgBase: "#070a14",
-  bgSurface: "#0f1115",
-  bgElevated: "#141823",
+  bgBase: "#0a1026",
+  bgSurface: "#111936",
+  bgElevated: "#16204a",
   borderSubtle: "rgba(255, 255, 255, 0.06)",
   borderStrong: "rgba(255, 255, 255, 0.12)",
   borderSolid: "#232838",
@@ -28,7 +28,7 @@ const goldGlowStrong = `0 1px 2px rgba(0,0,0,0.3)`;
 /* ── Apple Liquid Glass surface (used by SlabCard) ── */
 const liquidGlass = {
   background:
-    "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 30%, rgba(0,0,0,0.18) 100%), rgba(15,17,21,0.55)",
+    "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 30%, rgba(0,0,0,0.18) 100%), rgba(17,25,54,0.55)",
   backdropFilter: "blur(24px) saturate(170%)",
   WebkitBackdropFilter: "blur(24px) saturate(170%)",
   border: "1px solid rgba(255,255,255,0.08)",
@@ -207,7 +207,7 @@ function VyzorTopNav({ current = "hub" }) {
         gap: scrolled ? 10 : 18,
         padding: scrolled ? "6px 6px 6px 14px" : "8px 8px 8px 18px",
         borderRadius: 999,
-        background: scrolled ? "rgba(15,17,21,0.72)" : "rgba(15,17,21,0.55)",
+        background: scrolled ? "rgba(17,25,54,0.72)" : "rgba(17,25,54,0.55)",
         backdropFilter: "blur(28px) saturate(180%)",
         WebkitBackdropFilter: "blur(28px) saturate(180%)",
         border: `1px solid ${scrolled ? "rgba(240,201,73,0.22)" : "rgba(255,255,255,0.08)"}`,
@@ -389,7 +389,7 @@ function KpiTile({ icon, label, value, color, sub }) {
     <div className="lq-card" style={{
       borderRadius: 16, padding: "22px 16px",
       background:
-        "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 30%, rgba(0,0,0,0.18) 100%), rgba(15,17,21,0.50)",
+        "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 30%, rgba(0,0,0,0.18) 100%), rgba(17,25,54,0.50)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       border: "1px solid rgba(255,255,255,0.08)",
@@ -409,7 +409,7 @@ function KpiTile({ icon, label, value, color, sub }) {
 }
 
 /* ── EmailGate — Liquid Glass overlay ── */
-// L'email part dans la boîte contact@vyzor.fr via web3forms (même service que la candidature bêta).
+// L'email part dans la boîte admin@vyzor.fr via web3forms (même service que la candidature bêta).
 const VZ_WEB3FORMS_KEY = "9f003436-eba6-4543-b3ed-06c89a38a69c";
 async function vzSubscribe(email, source, website) {
   try {
@@ -454,7 +454,7 @@ function EmailGate({ onSubmit, icon = "lock", title = "Débloquez votre analyse"
   return (
     <div style={{
       position: "absolute", inset: 0,
-      background: "rgba(7,10,20,0.55)",
+      background: "rgba(10,16,38,0.55)",
       backdropFilter: "blur(28px) saturate(160%)",
       WebkitBackdropFilter: "blur(28px) saturate(160%)",
       display: "flex", alignItems: "center", justifyContent: "center",
@@ -516,7 +516,7 @@ function CtaFooter() {
         textAlign: "center", padding: "52px 32px", marginBottom: 40,
         borderRadius: 24,
         background:
-          "linear-gradient(180deg, rgba(240,201,73,0.10) 0%, rgba(255,255,255,0.02) 30%, rgba(0,0,0,0.20) 100%), rgba(15,17,21,0.55)",
+          "linear-gradient(180deg, rgba(240,201,73,0.10) 0%, rgba(255,255,255,0.02) 30%, rgba(0,0,0,0.20) 100%), rgba(17,25,54,0.55)",
         backdropFilter: "blur(28px) saturate(180%)",
         WebkitBackdropFilter: "blur(28px) saturate(180%)",
         border: "1px solid rgba(240,201,73,0.20)",

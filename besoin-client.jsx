@@ -14,7 +14,7 @@ const VZ_GOLD_GRAD = "linear-gradient(#f0c949,#f0c949)";
 const VZ_EMBER = "#f0905a";
 const VZ_EMBER_SOFT = "rgba(240,144,90,0.12)";
 const VZ_EMBER_LINE = "rgba(240,144,90,0.30)";
-const VZ_CARD_BG = "linear-gradient(150deg, #11141b, #0c0d11)";
+const VZ_CARD_BG = "linear-gradient(150deg, #121a3a, #0c1230)";
 
 // —— Carte retournable (flip 3D) ——
 const PainFlipCard = ({ persona, gold, text, muted, subtle }) => {

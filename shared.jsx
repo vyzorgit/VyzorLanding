@@ -47,10 +47,10 @@ const VyzorLogo = ({ size = 32, color = "#C5A059", bg = "transparent", ring = "t
 const MockDashboard = ({ skin = "dark", scale = 1 }) => {
   const dark = skin === "dark";
   const editorial = skin === "editorial";
-  const bg = dark ? "#0f0f12" : editorial ? "#f7f3ec" : "#ffffff";
+  const bg = dark ? "#0c1230" : editorial ? "#f7f3ec" : "#ffffff";
   const surface = dark ? "rgba(255,255,255,0.04)" : editorial ? "#ffffff" : "#f8fafc";
   const border = dark ? "rgba(255,255,255,0.08)" : editorial ? "rgba(40,30,20,0.12)" : "rgba(15,23,42,0.10)";
-  const text = dark ? "rgba(255,255,255,0.92)" : "#0f1115";
+  const text = dark ? "rgba(255,255,255,0.92)" : "#111936";
   const muted = dark ? "rgba(255,255,255,0.55)" : editorial ? "rgba(60,50,40,0.65)" : "#64748b";
   const gold = dark ? "#f0c949" : editorial ? "#b8862a" : "#b8862a";
   const emerald = dark ? "#2dd4bf" : "#0f766e";

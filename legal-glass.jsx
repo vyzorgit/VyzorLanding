@@ -1,5 +1,5 @@
 // legal-glass.jsx — Pages légales VYZOR (Mentions légales / CGU + Confidentialité)
-// DA cohérente : fond #070a14, accent or #f0c949, surfaces glass, typo Inter + JetBrains Mono.
+// DA cohérente : fond #0a1026, accent or #f0c949, surfaces glass, typo Inter + JetBrains Mono.
 //
 // 14/10/2026 — chantier conformité web (brief audit/briefs/2026-10-14-conformite-web.md) :
 //   - mentions légales complétées selon l'article 6-III de la LCEN (loi 2004-575) ;
@@ -76,7 +76,7 @@ const A = ({ href, children, external = false }) => (
     {external ? <span className="sr-only"> (nouvel onglet)</span> : null}
   </a>
 );
-const Mail = () => <A href="mailto:contact@vyzor.fr">contact@vyzor.fr</A>;
+const Mail = () => <A href="mailto:admin@vyzor.fr">admin@vyzor.fr</A>;
 // Information légale manquante : jamais inventée, toujours signalée.
 const Todo = ({ children }) => (
   <mark style={{
@@ -248,7 +248,7 @@ const PolitiqueConfidentialite = () => (
     <LegalArticle n="03" id="donnees" title="Données collectées sur le Site">
       <Bullets items={[
         <span><Strong>Candidature à la bêta</Strong> (formulaire « Réservez votre place ») : nom et prénom, adresse email professionnelle, nom de l'entreprise. Ces trois champs sont obligatoires ; aucun autre champ n'est collecté.</span>,
-        <span><Strong>Demandes par courriel</Strong> adressées à contact@vyzor.fr : votre adresse email et le contenu de votre message.</span>,
+        <span><Strong>Demandes par courriel</Strong> adressées à admin@vyzor.fr : votre adresse email et le contenu de votre message.</span>,
         <span><Strong>Prise de rendez-vous</Strong> : après l'envoi du formulaire bêta, le lien « Choisir mon créneau » renvoie vers Calendly, service tiers qui collecte vos données sur son propre site, selon sa propre politique.</span>,
         <span><Strong>Journaux techniques de l'hébergeur</Strong> : adresse IP, type de navigateur, page demandée et horodatage, conservés par Vercel à des fins de sécurité et de fonctionnement du service.</span>,
         <span><Strong>Calculateurs</Strong> : les valeurs saisies sont traitées dans votre navigateur et ne sont pas transmises à VYZOR. Pour afficher le résultat détaillé, votre adresse email professionnelle est demandée ; seuls l'email et la page d'origine sont enregistrés.</span>,
@@ -265,7 +265,7 @@ const PolitiqueConfidentialite = () => (
         <span><Strong>Répondre à vos demandes</Strong> envoyées par courriel — base légale : mesures précontractuelles ou intérêt légitime de VYZOR à répondre aux personnes qui la sollicitent (article 6.1.f).</span>,
         <span><Strong>Assurer la sécurité et le bon fonctionnement du Site</Strong> (journaux techniques) — base légale : intérêt légitime (article 6.1.f).</span>,
         <span><Strong>Afficher le Site</Strong> (chargement des polices) — base légale : intérêt légitime (article 6.1.f).</span>,
-        <span><Strong>Vous envoyer les guides et la lettre d'information de VYZOR</Strong> (pilotage financier des entreprises) à l'adresse professionnelle laissée sur un calculateur ou une page Guides — base légale : intérêt légitime de VYZOR à informer les professionnels sur des sujets en rapport avec leur activité (article 6.1.f), avec information au moment de la collecte. Vous pouvez vous y opposer à tout moment, sans motif, par simple email à contact@vyzor.fr ou via le lien présent dans chaque envoi.</span>,
+        <span><Strong>Vous envoyer les guides et la lettre d'information de VYZOR</Strong> (pilotage financier des entreprises) à l'adresse professionnelle laissée sur un calculateur ou une page Guides — base légale : intérêt légitime de VYZOR à informer les professionnels sur des sujets en rapport avec leur activité (article 6.1.f), avec information au moment de la collecte. Vous pouvez vous y opposer à tout moment, sans motif, par simple email à admin@vyzor.fr ou via le lien présent dans chaque envoi.</span>,
       ]} />
     </LegalArticle>
 
@@ -275,7 +275,7 @@ const PolitiqueConfidentialite = () => (
         <span><Strong>Vercel, Inc.</Strong> (États-Unis) : hébergement du Site et journaux techniques. Transfert hors UE encadré par les clauses contractuelles types de la Commission européenne <Todo>À CONFIRMER : certification Data Privacy Framework</Todo>.</span>,
         <span><Strong>Web3Forms</Strong> <Todo>À REMPLIR : raison sociale, pays</Todo> : acheminement des candidatures bêta et des adresses laissées sur les calculateurs et les guides vers la boîte email de VYZOR, sans exploitation pour son propre compte. <Todo>À CONFIRMER : localisation des serveurs et garanties de transfert</Todo>.</span>,
         <span><Strong>Calendly, LLC</Strong> (États-Unis) : uniquement si vous prenez rendez-vous, sur le site de Calendly.</span>,
-        <span><Strong>Fournisseur de messagerie de VYZOR</Strong> <Todo>À REMPLIR : nom du service de messagerie recevant contact@vyzor.fr</Todo> : réception et stockage des candidatures et des courriels.</span>,
+        <span><Strong>Fournisseur de messagerie de VYZOR</Strong> <Todo>À REMPLIR : nom du service de messagerie recevant admin@vyzor.fr</Todo> : réception et stockage des candidatures et des courriels.</span>,
       ]} />
       <P>
         Les bibliothèques techniques (React) et les polices de caractères du Site sont hébergées sur le Site

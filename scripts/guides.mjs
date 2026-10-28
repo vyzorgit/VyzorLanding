@@ -76,7 +76,7 @@ function shell({ css, mark }, { title, description, canonical, ogType, jsonld, b
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/svg+xml" href="/vyzor-mark.svg" />
-  <meta name="theme-color" content="#070a14" />
+  <meta name="theme-color" content="#0a1026" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="${canonical}" />
   <link rel="alternate" hreflang="fr-FR" href="${canonical}" />
@@ -124,7 +124,7 @@ ${body}
       <div class="gfoot-cols">
         <div><div class="gfoot-h">Outils gratuits</div>${Object.values(TOOLS).map((t) => `<a href="${t.href}">${esc(t.name)}</a>`).join("")}</div>
         <div><div class="gfoot-h">Vyzor</div><a href="/">Accueil</a><a href="/fonctionnalites">Fonctionnalités</a><a href="/guides">Guides</a><a href="/faq">FAQ</a><a href="/a-propos">À propos</a><a href="/securite">Sécurité</a></div>
-        <div><div class="gfoot-h">Légal</div><a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a><a href="mailto:contact@vyzor.fr">contact@vyzor.fr</a></div>
+        <div><div class="gfoot-h">Légal</div><a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a><a href="mailto:admin@vyzor.fr">admin@vyzor.fr</a></div>
       </div>
       <div class="gfoot-b">© ${new Date().getFullYear()} Vyzor — pilotage financier des PME</div>
     </footer>
@@ -138,7 +138,7 @@ const subscribeForm = (source) => `
       <section class="sub" aria-labelledby="sub-h">
         <div class="eyebrow">Guides Vyzor</div>
         <h2 id="sub-h">Recevez les prochains guides</h2>
-        <p>Un guide pratique de pilotage financier, écrit pour les dirigeants de PME. Pas de spam ; un email à contact@vyzor.fr suffit pour ne plus rien recevoir.</p>
+        <p>Un guide pratique de pilotage financier, écrit pour les dirigeants de PME. Pas de spam ; un email à admin@vyzor.fr suffit pour ne plus rien recevoir.</p>
         <form data-vz-subscribe="${esc(source)}" novalidate>
           <label for="sub-email" class="sr">Votre email professionnel</label>
           <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="vous@entreprise.fr" />
@@ -246,7 +246,7 @@ ${subscribeForm("guides")}`;
 }
 
 const GUIDE_CSS = `
-    .vz-skip{position:absolute;left:-9999px;top:8px;z-index:100000;padding:10px 16px;background:#0a0a0a;color:#f0c949;border:2px solid #f0c949;border-radius:8px;font:600 14px Inter,system-ui,sans-serif}
+    .vz-skip{position:absolute;left:-9999px;top:8px;z-index:100000;padding:10px 16px;background:#0a1026;color:#f0c949;border:2px solid #f0c949;border-radius:8px;font:600 14px Inter,system-ui,sans-serif}
     .vz-skip:focus{left:12px}
     .sr{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
     main{outline:none}
@@ -301,13 +301,13 @@ const GUIDE_CSS = `
     .gfoot-h{color:#fff;font-weight:600;margin-bottom:8px}
     .gfoot-b{margin-top:28px;color:rgba(255,255,255,0.4);font-size:12.5px}
 
-    /* —— Thème actuel de la landing (fond bleu nuit #070a14, or #f0c949) : prime sur les styles hérités —— */
-    :root{--bg-base:#070a14;--bg-surface:#0c1020;--brand-gold:#f0c949;--brand-gold-dark:#c89a2f;--brand-gold-soft:rgba(240,201,73,0.16);--border-subtle:rgba(255,255,255,0.08)}
-    html,body{background:#070a14}
+    /* —— Thème actuel de la landing (fond bleu nuit #0a1026, or #f0c949) : prime sur les styles hérités —— */
+    :root{--bg-base:#0a1026;--bg-surface:#0c1020;--brand-gold:#f0c949;--brand-gold-dark:#c89a2f;--brand-gold-soft:rgba(240,201,73,0.16);--border-subtle:rgba(255,255,255,0.08)}
+    html,body{background:#0a1026}
     body{color:rgba(255,255,255,0.92)}
     ::selection{background:rgba(240,201,73,0.35);color:#fff}
     .ambient,.grain{display:none}
-    .nav{background:rgba(15,17,21,0.55);border:1px solid rgba(255,255,255,0.10);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);box-shadow:0 8px 30px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.05)}
+    .nav{background:rgba(17,25,54,0.55);border:1px solid rgba(255,255,255,0.10);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);box-shadow:0 8px 30px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.05)}
     .nav-link{color:rgba(255,255,255,0.55)}
     .nav-link.active{color:#f0c949;background:rgba(240,201,73,0.10);border-color:rgba(240,201,73,0.30)}
     .nav-cta,.tool-cta,.sub button{background:#f0c949;background-image:linear-gradient(#f0c949,#f0c949);color:#111;font-weight:600;border:0;box-shadow:0 1px 2px rgba(0,0,0,0.3)}

@@ -49,7 +49,7 @@ const VisTresorerie = () => {
         {[0.25, 0.5, 0.75].map((r) => <line key={r} x1="0" x2={W} y1={H * r} y2={H * r} stroke={VZF_LINE} />)}
         <path d={`${d} L${W},${H} L0,${H} Z`} fill="url(#vzfArea)" />
         <path d={d} fill="none" stroke={VZF_GOLD} strokeWidth="2" />
-        <circle cx={8 * step} cy={y(38)} r="4" fill="#0b0d14" stroke={VZF_GOLD} strokeWidth="2" />
+        <circle cx={8 * step} cy={y(38)} r="4" fill="#0d1430" stroke={VZF_GOLD} strokeWidth="2" />
       </svg>
     </div>
   );
@@ -158,7 +158,7 @@ const VisConnexions = () => {
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {src.slice(0, 3).map((s) => <span key={s} style={{ ...vzfCard, padding: "8px 6px", fontSize: 12.5, color: "#fff", textAlign: "center", whiteSpace: "nowrap" }}>{s}</span>)}
       </div>
-      <div style={{ position: "relative", width: 56, height: 56, borderRadius: 14, display: "grid", placeItems: "center", background: "#0b0d14", border: "1px solid rgba(240,201,73,0.35)" }}>
+      <div style={{ position: "relative", width: 56, height: 56, borderRadius: 14, display: "grid", placeItems: "center", background: "#0d1430", border: "1px solid rgba(240,201,73,0.35)" }}>
         <span className="vzf-beam vzf-beam-l" aria-hidden="true" />
         <span className="vzf-beam vzf-beam-r" aria-hidden="true" />
         <VyzorLogo size={30} color={VZF_GOLD} bg="transparent" />

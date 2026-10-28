@@ -166,7 +166,7 @@ const VyzorFAQ = () => {
 
       <div className="vzf-main">
         {total === 0 && (
-          <p className="vzf-empty">Aucune question ne correspond à « {query} ».<br />Écrivez-nous à <a href="mailto:contact@vyzor.fr">contact@vyzor.fr</a>, nous vous répondons rapidement.</p>
+          <p className="vzf-empty">Aucune question ne correspond à « {query} ».<br />Écrivez-nous à <a href="mailto:admin@vyzor.fr">admin@vyzor.fr</a>, nous vous répondons rapidement.</p>
         )}
         {groups.map((g, gi) => g.shown.length > 0 && (
           <div key={g.id} id={"faq-" + g.id} data-gid={g.id} className="vzf-group">

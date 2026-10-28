@@ -39,7 +39,7 @@ const FeaturePage = () => {
   return (
     <React.Fragment>
       <VyzorNav gold={gold} text={text} muted={muted} subtle={subtle} />
-      <div style={{ background: "#070a14", color: text, overflow: "hidden" }}>
+      <div style={{ background: "#0a1026", color: text, overflow: "hidden" }}>
         <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
         <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "140px clamp(24px, 6vw, 96px) 0" }}>
           <a href="/fonctionnalites" className="vzp-back">← Toutes les fonctionnalités</a>
@@ -48,7 +48,7 @@ const FeaturePage = () => {
             <h1 style={{ margin: 0, fontSize: "clamp(36px, 4.6vw, 56px)", lineHeight: 1.04, letterSpacing: "-0.03em", fontWeight: 600, color: "#fff", textWrap: "balance" }}>{f.name}</h1>
             <div>
               <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: muted, textWrap: "pretty" }}>{f.lead}</p>
-              <a className="vz-btn-primary" href="/?contact=1#beta" data-contact style={{ display: "inline-flex", alignItems: "center", gap: 10, marginTop: 24, padding: "13px 22px", borderRadius: 10, backgroundColor: gold, color: "#0b0d14", fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Réserver ma place dans la bêta <span aria-hidden="true">→</span></a>
+              <a className="vz-btn-primary" href="/?contact=1#beta" data-contact style={{ display: "inline-flex", alignItems: "center", gap: 10, marginTop: 24, padding: "13px 22px", borderRadius: 10, backgroundColor: gold, color: "#0d1430", fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Réserver ma place dans la bêta <span aria-hidden="true">→</span></a>
             </div>
           </header>
 
@@ -142,7 +142,7 @@ const FeaturePage = () => {
         .vzp-back:hover { color: #fff; }
         .vzp-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .vzp-hero + * { margin-top: 64px !important; }
-        .vzp-visual { position: relative; height: 380px; border-radius: 20px; overflow: hidden; background: linear-gradient(180deg, #10131b 0%, #0b0d14 100%); border: 1px solid rgba(255,255,255,0.07); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 30px 80px -40px rgba(0,0,0,0.8); }
+        .vzp-visual { position: relative; height: 380px; border-radius: 20px; overflow: hidden; background: linear-gradient(180deg, #121a3a 0%, #0d1430 100%); border: 1px solid rgba(255,255,255,0.07); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 30px 80px -40px rgba(0,0,0,0.8); }
         .vzp-visual:has(.vzp-visual-auto) { height: auto !important; min-height: 0 !important; }
         .vzp-visual-auto { position: relative !important; padding-bottom: 20px; -webkit-mask-image: none !important; mask-image: none !important; }
         .vzp-visual-in { position: absolute; inset: 0; padding-top: 12px; -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 30%); mask-image: linear-gradient(to top, transparent 0%, #000 30%); }
