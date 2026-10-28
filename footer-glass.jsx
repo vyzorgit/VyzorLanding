@@ -18,6 +18,8 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
   const usefulLinks = [
     { label: "Le produit", href: "/#produit" },
     { label: "Fonctionnalités", href: "/fonctionnalites" },
+    { label: "Vyzor pour Pennylane", href: "/pennylane" },
+    { label: "Experts-comptables", href: "/cabinets" },
     { label: "Sécurité & RGPD", href: "/securite" },
     { label: "Calculateurs gratuits", href: "/calculateurs" },
     { label: "Guides", href: "/guides" },

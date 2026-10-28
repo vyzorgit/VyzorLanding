@@ -24,10 +24,10 @@ const TrSeg = ({ items, value, onChange, label }) => (
 // —— Sources ——
 const TrSources = () => (
   <section className="vz-reveal" style={{ marginTop: 112 }}>
-    <TrHead t="Construite à partir de vos flux réels" d="La prévision ne repose pas sur un tableur rempli à la main. Vyzor croise vos comptes bancaires, vos factures et vos échéances pour projeter chaque entrée et chaque sortie." />
+    <TrHead t="Construite à partir de vos flux réels" d="La prévision ne repose pas sur un tableur rempli à la main. Vyzor part de votre comptabilité (factures, échéances, emprunts) pour projeter chaque entrée et chaque sortie. La connexion directe à vos comptes bancaires arrive bientôt." />
     <div className="tr-flow" style={{ ...trPanel, padding: "32px clamp(16px, 3vw, 32px)", marginTop: 32 }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        {[["Comptes bancaires", "Soldes et mouvements synchronisés"], ["Factures clients", "Encaissements attendus et retards"], ["Factures fournisseurs", "Décaissements à venir"], ["Échéances fiscales et sociales", "TVA, IS, URSSAF"], ["Emprunts", "Remboursements planifiés"]].map(([t, d]) => (
+        {[["Comptes bancaires", "Synchronisation directe bientôt disponible"], ["Factures clients", "Encaissements attendus et retards"], ["Factures fournisseurs", "Décaissements à venir"], ["Échéances fiscales et sociales", "TVA, IS, URSSAF"], ["Emprunts", "Remboursements planifiés"]].map(([t, d]) => (
           <div key={t} style={{ ...trBox, padding: "11px 14px" }}>
             <div style={{ fontSize: 13.5, fontWeight: 600, color: "#fff" }}>{t}</div>
             <div style={{ fontSize: 12.5, color: TR_MUTED, marginTop: 2 }}>{d}</div>

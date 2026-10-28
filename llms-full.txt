@@ -35,7 +35,7 @@ Le produit est co-construit avec un panel de professionnels du chiffre qui l'uti
 
 ## Connexion & données
 
-- **Connecteurs** : Pennylane, MyUnisoft et Odoo, en lecture seule. Connexions bancaires et agrégateur Chift en préparation.
+- **Connecteurs** : Pennylane, en lecture seule ; MyUnisoft et Odoo en cours de finalisation. Connexions bancaires en préparation.
 - **Import de fichiers** : FEC, Excel (.xlsx / .csv) et PDF de liasse fiscale, depuis l'espace Documents — utile sans connecteur.
 - **Lecture seule** : VYZOR ne modifie, n'écrit ni ne supprime jamais rien dans la comptabilité.
 - **Mise à jour** : synchronisation manuelle d'un clic aujourd'hui ; synchronisation automatique quotidienne prévue.
@@ -70,7 +70,7 @@ VYZOR est en accès anticipé (bêta), en co-construction avec ses premiers util
 VYZOR est un copilote financier intelligent pour dirigeants, DAF et experts-comptables. Il transforme vos chiffres en pilotage clair : reporting automatisé, prévisions de trésorerie et alertes triées par impact en euros, le tout résumé dans un Vyzor Score lisible en quelques secondes.
 
 ### À qui s'adresse VYZOR ?
-Avant tout aux experts-comptables qui veulent offrir à leurs clients un véritable pilotage financier et se positionner en conseil à forte valeur ajoutée. VYZOR s'adresse aussi aux dirigeants de PME qui veulent piloter sans être experts-comptables, et aux DAF — internes, externalisés ou à temps partagé — qui veulent gagner du temps sur le reporting. L'outil est co-conçu avec un panel de professionnels du chiffre.
+Avant tout aux dirigeants de PME qui utilisent Pennylane et veulent piloter sans être financiers. VYZOR s'adresse aussi aux DAF — internes, externalisés ou à temps partagé — qui veulent gagner du temps sur le reporting, et aux experts-comptables qui veulent offrir à leurs clients un véritable pilotage financier. L'outil est co-conçu avec un panel de professionnels du chiffre.
 
 ### Faut-il être expert en finance pour utiliser VYZOR ?
 Non. VYZOR est pensé pour être lisible en quelques secondes, même sans bagage financier : un score de santé synthétique, des alertes hiérarchisées par impact en euros et un export PDF prêt pour le conseil d'administration.
@@ -79,7 +79,7 @@ Non. VYZOR est pensé pour être lisible en quelques secondes, même sans bagage
 VYZOR importe directement votre FEC (Fichier des Écritures Comptables) — sans re-saisie — et peut aussi se connecter via API à vos outils comptables. Vos données sont structurées automatiquement pour produire reporting, prévisions et alertes.
 
 ### Quels logiciels comptables se connectent à VYZOR ?
-VYZOR se connecte en lecture seule à Pennylane, MyUnisoft et Odoo. Les connexions bancaires et l'agrégateur Chift sont en préparation. Si votre outil n'est pas encore couvert, l'import de fichiers (FEC, Excel, PDF de liasse fiscale) prend le relais.
+VYZOR se connecte en lecture seule à Pennylane ; MyUnisoft et Odoo sont en cours de finalisation. Les connexions bancaires sont en préparation. Si votre outil n'est pas encore couvert, l'import de fichiers (FEC, Excel, PDF de liasse fiscale) prend le relais.
 
 ### Quels fichiers puis-je importer si je n'ai pas de connecteur ?
 Votre FEC, des fichiers Excel (.xlsx ou .csv) ou un PDF de liasse fiscale, depuis votre espace Documents. VYZOR les structure automatiquement pour calculer vos indicateurs, même sans connecteur.

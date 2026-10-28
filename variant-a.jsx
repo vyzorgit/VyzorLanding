@@ -530,7 +530,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
 
         {/* CTA (l'accès à l'application n'est communiqué qu'aux clients) */}
         <div style={{ display: "flex", alignItems: "center", gap: 6, paddingLeft: 6 }}>
-          <a href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" className="vz-nav-cta" style={{
+          <a href="/?contact=1#beta" data-contact className="vz-nav-cta" style={{
             display: "inline-flex", alignItems: "center", gap: 6,
             padding: scrolled ? "8px 14px" : "8px 16px",
             borderRadius: 999,

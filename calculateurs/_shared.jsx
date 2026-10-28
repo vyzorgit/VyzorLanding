@@ -526,8 +526,8 @@ function CtaFooter() {
           Pilotez votre rentabilité en temps réel
         </h2>
         <p style={{ color: T.textSecondary, fontSize: 16, maxWidth: 540, margin: "0 auto 32px", lineHeight: 1.7, position: "relative", zIndex: 1 }}>
-          VYZOR transforme vos données en dashboards actionnables.
-          Fini les tableurs — bienvenue dans le pilotage intelligent.
+          Ce calcul, Vyzor le fait chaque semaine avec vos vrais chiffres Pennylane.
+          Gratuit pendant la bêta, 10 places.
         </p>
         <a href="/?contact=1#beta" data-contact style={{
           display: "inline-block", position: "relative", zIndex: 1,
@@ -536,7 +536,7 @@ function CtaFooter() {
           fontFamily: T.sans, cursor: "pointer",
           boxShadow: "0 14px 40px rgba(240,201,73,0.38), inset 0 1px 0 rgba(255,255,255,0.5)",
           textDecoration: "none",
-        }}>Demander une démo gratuite →</a>
+        }}>Réserver ma place dans la bêta →</a>
       </div>
       <div style={{ textAlign: "center", color: T.textMuted, fontSize: 12, paddingBottom: 32 }}>
         © 2026 VYZOR SAS — Pilotage intelligent pour décideurs exigeants ·{" "}

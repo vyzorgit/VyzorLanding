@@ -266,94 +266,98 @@ const VzVelocityWords = ({ words, color, accent }) => (
   </React.Fragment>
 );
 
-const CinematicHero = ({
-  headline = "Comprenez vos chiffres,",
-  headlineAccent = "simplement.",
-}) => {
+// —— Hero v3 (refonte Hormozi, 27/10/2026) ——
+// Une cible (dirigeants de PME sous Pennylane), une promesse (savoir où part l'argent),
+// une action (réserver sa place dans la bêta). Titre fixe : plus de bandeau défilant,
+// le texte est lisible tel quel par Google et les moteurs IA.
+const CinematicHero = () => {
   const gold = "#f0c949";
   const text = "rgba(255,255,255,0.94)";
-  const muted = "rgba(255,255,255,0.6)";
-  const [tapePaused, setTapePaused] = React.useState(false);
+  const muted = "rgba(255,255,255,0.62)";
+  const proofs = [
+    "Compatible Pennylane",
+    "Lecture seule, rien n'est modifié",
+    "Données hébergées dans l'UE",
+  ];
   return (
     <section className="vz-hero-stage" style={{
-      position: "relative", width: "100%", minHeight: "100vh",
+      position: "relative", width: "100%",
       background: "#070a14", color: text,
       fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
       display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-      textAlign: "center", padding: "120px 0 88px", overflow: "hidden",
+      textAlign: "center", padding: "150px 0 56px", overflow: "hidden",
     }}>
       <style>{`
         @keyframes vzHeroIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
         .vz-hero-in { animation: vzHeroIn 700ms cubic-bezier(0.22,1,0.36,1) both; }
-        .vz-hero-logo svg { width: clamp(64px, 7vw, 88px) !important; height: auto !important; shape-rendering: geometricPrecision; }
         .vz-btn-primary { transition: background-color 160ms ease; }
         .vz-btn-primary:hover { background-color: #f4d468 !important; }
         .vz-btn-ghost { transition: border-color 160ms ease, background-color 160ms ease; }
         .vz-btn-ghost:hover { border-color: rgba(255,255,255,0.32) !important; background-color: rgba(255,255,255,0.04) !important; }
-        .vz-scroll-cue .vz-cue-ring { transition: border-color 160ms ease, color 160ms ease; }
-        .vz-scroll-cue:hover .vz-cue-ring { border-color: rgba(255,255,255,0.32); color: #fff; }
-        @media (max-width: 720px) { .vz-hero-stage { padding: 106px 0 56px !important; } }
-        @media (max-height: 760px) { .vz-scroll-cue { display: none; } }
-        .vz-velocity { font-size: clamp(48px, 8.4vw, 120px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; }
-        .vz-h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: -1px; }
-        .vz-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: -1px; }
-        .vz-tape-pause { display: inline-flex; align-items: center; margin-top: 14px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.28); background: transparent; color: rgba(255,255,255,0.8); font: 500 13px "Inter", system-ui, sans-serif; cursor: pointer; }
-        .vz-tape-pause:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
-        .vz-tape-pause:focus-visible, .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
-        @media (prefers-reduced-motion: reduce) {
-          .vz-hero-in { animation: none !important; }
-          /* Pas de défilement : le titre h1 devient le titre visible, avec retour à la ligne */
-          .vz-velocity, .vz-tape-pause { display: none !important; }
-          .vz-h1 { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; margin: 0; padding: 0 24px; max-width: 960px; text-align: center; font-size: clamp(40px, 8.4vw, 96px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; color: #fff; text-wrap: balance; }
-        }
+        .vz-hero-h1 { font-size: clamp(38px, 5.6vw, 76px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
+        .vz-hero-glow { position: absolute; top: -180px; left: 50%; transform: translateX(-50%); width: 900px; height: 520px; border-radius: 50%; background: radial-gradient(ellipse, rgba(240,201,73,0.13), transparent 66%); pointer-events: none; filter: blur(30px); }
+        .vz-hero-proofs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin: clamp(36px, 4vw, 48px) 0 0; padding: 0; list-style: none; }
+        .vz-hero-proofs li { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: rgba(255,255,255,0.7); }
+        .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
+        @media (max-width: 720px) { .vz-hero-stage { padding: 132px 0 48px !important; } }
+        @media (prefers-reduced-motion: reduce) { .vz-hero-in { animation: none !important; } }
       `}</style>
-      {/* Le nom et la catégorie ouvrent le h1 (référencement de la marque), sans changer l'affichage. */}
-      <h1 className="vz-h1"><span className="vz-sr">Vyzor, logiciel de pilotage financier pour PME : </span>{headline} <span style={{ color: gold }}>{headlineAccent}</span></h1>
-      <div className="vz-hero-in vz-velocity" aria-hidden="true" style={{
-        position: "relative", width: "100vw", display: "flex", flexDirection: "column", gap: "0.06em", animationDelay: "80ms",
-      }}>
-        <ScrollVelocityRow baseVelocity={14} direction={1} paused={tapePaused}>
-          <VzVelocityWords words={["Comprenez", "Analysez", "Anticipez", "Pilotez"]} color="#fff" accent="#fff" />
-        </ScrollVelocityRow>
-        <ScrollVelocityRow baseVelocity={14} direction={-1} paused={tapePaused}>
-          <VzVelocityWords words={["vos chiffres, simplement."]} color={gold} accent={gold} />
-        </ScrollVelocityRow>
-        <div style={{ position: "absolute", inset: "0 auto 0 0", width: "18%", pointerEvents: "none", background: "linear-gradient(90deg,#070a14 10%,rgba(7,10,20,0))" }} />
-        <div style={{ position: "absolute", inset: "0 0 0 auto", width: "18%", pointerEvents: "none", background: "linear-gradient(270deg,#070a14 10%,rgba(7,10,20,0))" }} />
-      </div>
-      <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 960, padding: "0 24px" }}>
-        <button type="button" className="vz-tape-pause" onClick={() => setTapePaused((v) => !v)}>
-          {tapePaused ? "Reprendre l'animation" : "Mettre en pause l'animation"}
-        </button>
+      <span aria-hidden="true" className="vz-hero-glow" />
+      <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 1040, padding: "0 24px" }}>
         <p className="vz-hero-in" style={{
-          fontSize: "clamp(16px, 1.5vw, 18px)", lineHeight: 1.6, color: muted,
-          maxWidth: 560, margin: "clamp(24px, 3vw, 32px) auto 0", textWrap: "pretty",
+          display: "inline-flex", alignItems: "center", gap: 9, margin: "0 0 28px",
+          padding: "7px 14px", borderRadius: 999,
+          border: "1px solid rgba(240,201,73,0.32)", background: "rgba(240,201,73,0.08)",
+          fontSize: 13.5, fontWeight: 500, color: gold,
+        }}>
+          <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: 999, background: gold }} />
+          Pour les dirigeants de PME sous Pennylane
+        </p>
+        <h1 className="vz-hero-h1 vz-hero-in" style={{ animationDelay: "80ms" }}>
+          Vous perdez de l'argent quelque part.{" "}
+          <span style={{ color: gold, display: "block" }}>Vyzor vous montre où.</span>
+        </h1>
+        <p className="vz-hero-in" style={{
+          fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6, color: muted,
+          maxWidth: 680, margin: "clamp(24px, 3vw, 32px) auto 0", textWrap: "pretty",
           animationDelay: "180ms",
         }}>
-          Vyzor analyse votre passé, éclaire votre présent et projette votre futur financier.
-          Pensé pour les dirigeants de PME, DAF et experts-comptables.
+          Vyzor, le logiciel de pilotage financier pour PME, lit votre comptabilité et vous dit{" "}
+          <span style={{ color: text }}>où part votre argent, ce qu'il vous restera dans 12 mois et quoi faire en premier</span>.
+          Sans tableur, sans attendre le bilan.
         </p>
         <div className="vz-hero-cta-row vz-hero-in" style={{
           display: "flex", alignItems: "center", justifyContent: "center",
-          gap: 12, marginTop: "clamp(28px, 3vw, 36px)", flexWrap: "wrap", animationDelay: "260ms",
+          gap: 12, marginTop: "clamp(30px, 3vw, 38px)", flexWrap: "wrap", animationDelay: "260ms",
         }}>
-          <a className="vz-hero-cta-primary vz-btn-primary" href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{
+          <a className="vz-hero-cta-primary vz-btn-primary" href="/?contact=1#beta" data-contact style={{
             display: "inline-flex", alignItems: "center", gap: 10,
-            padding: "14px 24px", borderRadius: 10,
+            padding: "15px 26px", borderRadius: 10,
             backgroundColor: gold, color: "#0b0d14",
-            fontWeight: 600, fontSize: 15, textDecoration: "none",
+            fontWeight: 600, fontSize: 15.5, textDecoration: "none",
           }}>
-            Rejoindre la bêta <span aria-hidden="true">→</span>
+            Réserver ma place dans la bêta <span aria-hidden="true">→</span>
           </a>
           <a className="vz-hero-cta-ghost vz-btn-ghost" href="#produit" style={{
             display: "inline-flex", alignItems: "center",
-            padding: "14px 22px", borderRadius: 10,
+            padding: "15px 22px", borderRadius: 10,
             border: "1px solid rgba(255,255,255,0.16)", backgroundColor: "transparent",
-            color: text, fontSize: 15, fontWeight: 500, textDecoration: "none",
+            color: text, fontSize: 15.5, fontWeight: 500, textDecoration: "none",
           }}>
-            Découvrir le produit
+            Voir la démo
           </a>
         </div>
+        <p className="vz-hero-in" style={{ margin: "14px 0 0", fontSize: 13, color: "rgba(255,255,255,0.5)", animationDelay: "300ms" }}>
+          Gratuit pendant la bêta · {(window.VZ_BETA && window.VZ_BETA.places) || 10} places · réponse sous 48 h
+        </p>
+        <ul className="vz-hero-proofs vz-hero-in" style={{ animationDelay: "340ms" }}>
+          {proofs.map((p) => (
+            <li key={p}>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke={gold} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>
+              {p}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
