@@ -19,8 +19,8 @@ const VzCompare = ({ left, right, gold, muted }) => {
   const col = (c, strong) => (
     <div style={{
       position: "relative", borderRadius: 20, padding: "28px 30px 30px",
-      background: strong ? "linear-gradient(180deg, rgba(240,201,73,0.07) 0%, #0b0d14 100%)" : "linear-gradient(180deg, #11141d 0%, #0b0d14 100%)",
-      border: strong ? "1px solid rgba(240,201,73,0.3)" : "1px solid rgba(255,255,255,0.07)",
+      background: strong ? "linear-gradient(180deg, #16204a 0%, #0c1230 100%)" : "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)",
+      border: strong ? "1px solid rgba(240,201,73,0.3)" : "1px solid rgba(140,160,255,0.12)",
     }}>
       <div style={{ fontSize: 13, fontWeight: 600, color: strong ? gold : muted, marginBottom: 6 }}>{c.kicker}</div>
       <h3 style={{ margin: "0 0 18px", fontSize: 22, fontWeight: 600, color: "#fff", letterSpacing: "-0.015em" }}>{c.title}</h3>
@@ -82,7 +82,6 @@ const PennylanePageBody = ({ gold, text, muted, subtle }) => (
       </section>
       <div className="vz-reveal"><OutcomesSection id="resultats" gold={gold} muted={muted} /></div>
       <div className="vz-reveal"><HowItWorksSection id="comment" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
-      <div className="vz-reveal"><FoundersSection gold={gold} muted={muted} /></div>
       <div className="vz-reveal"><BetaFormGlass /></div>
       <div className="vz-reveal" style={{ marginTop: 120 }}><ObjectionsSection id="questions" gold={gold} muted={muted} /></div>
       <div className="vz-reveal"><FinalCtaSection gold={gold} muted={muted} /></div>
@@ -118,7 +117,7 @@ const CabinetsPageBody = ({ gold, text, muted, subtle }) => {
           <VzSectionHead a="Ce que Vyzor fait" b="pour votre cabinet." muted={muted} />
           <ol className="vz-cab-grid" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
             {blocks.map((b, i) => (
-              <li key={b.t} style={{ borderRadius: 20, padding: "28px 28px 30px", background: "linear-gradient(180deg, #11141d 0%, #0b0d14 100%)", border: "1px solid rgba(255,255,255,0.07)" }}>
+              <li key={b.t} style={{ borderRadius: 20, padding: "28px 28px 30px", background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)", border: "1px solid rgba(140,160,255,0.12)" }}>
                 <span style={{ fontSize: 13, fontWeight: 600, color: gold }}>{String(i + 1).padStart(2, "0")}</span>
                 <h3 style={{ margin: "12px 0 10px", fontSize: 21, fontWeight: 600, color: "#fff", letterSpacing: "-0.015em" }}>{b.t}</h3>
                 <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: muted }}>{b.d}</p>
@@ -129,8 +128,8 @@ const CabinetsPageBody = ({ gold, text, muted, subtle }) => {
         </section>
         <section className="vz-reveal" style={{
           textAlign: "center", padding: "64px clamp(20px, 5vw, 64px)", borderRadius: 28, marginBottom: 40,
-          background: "linear-gradient(180deg, rgba(240,201,73,0.08) 0%, rgba(255,255,255,0.02) 40%, rgba(0,0,0,0.15) 100%), #0b0d14",
-          border: "1px solid rgba(240,201,73,0.22)",
+          background: "radial-gradient(ellipse 70% 90% at 50% 0%, #1a2656 0%, #0f1636 45%, #0a0f24 100%)",
+          border: "1px solid rgba(140,160,255,0.18)",
         }}>
           <h2 style={{ margin: "0 auto", maxWidth: 780, fontSize: "clamp(30px, 4vw, 46px)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff", textWrap: "balance" }}>
             Un client qui veut enfin comprendre ses chiffres ? <span style={{ color: gold }}>Présentez-le-nous.</span>

@@ -24,8 +24,8 @@ const PainFlipCard = ({ persona, gold, text, muted, subtle }) => {
     position: "relative", gridArea: "1 / 1", minHeight: "var(--vz-card-h, 400px)", boxSizing: "border-box",
     backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden",
     borderRadius: 20, overflow: "hidden",
-    background: "linear-gradient(180deg, #11141d 0%, #0b0d14 100%)",
-    border: "1px solid rgba(255,255,255,0.07)",
+    background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)",
+    border: "1px solid rgba(140,160,255,0.12)",
     boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 60px -30px rgba(0,0,0,0.8)",
     display: "flex", flexDirection: "column", padding: "30px 32px 26px",
   };
@@ -155,8 +155,8 @@ const VZ_PERSONAS = [
 const PainSplit = ({ persona: p, gold, text, muted, subtle }) => {
   const card = {
     position: "relative", borderRadius: 20, overflow: "hidden", boxSizing: "border-box",
-    background: "linear-gradient(180deg, #11141d 0%, #0b0d14 100%)",
-    border: "1px solid rgba(255,255,255,0.07)",
+    background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)",
+    border: "1px solid rgba(140,160,255,0.12)",
     boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 60px -30px rgba(0,0,0,0.8)",
     display: "flex", flexDirection: "column", padding: "30px 32px 28px",
   };
@@ -214,8 +214,7 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle, audien
         </h2>
 
         <p style={{ fontSize: 18, lineHeight: 1.65, color: muted, marginTop: 24, maxWidth: 640, textWrap: "pretty" }}>
-          Bilan annuel, tableurs, reporting à J+30{"\u00a0"}: la plupart des PME décident sur des données déjà dépassées.
-          Vyzor actualise vos indicateurs en continu pour <span style={{ color: text }}>anticiper la trésorerie, protéger vos marges et arbitrer au bon moment</span>.
+          Bilan annuel, tableurs, reporting à J+30{"\u00a0"}: la plupart des PME décident sur des chiffres déjà dépassés.
         </p>
       </div>
 

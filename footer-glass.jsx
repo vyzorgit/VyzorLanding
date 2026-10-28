@@ -24,6 +24,7 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
     { label: "Calculateurs gratuits", href: "/calculateurs" },
     { label: "Guides", href: "/guides" },
     { label: "FAQ", href: "/faq" },
+    { label: "L'équipe", href: "/equipe" },
     { label: "À propos", href: "/a-propos" },
   ];
 

@@ -46,8 +46,8 @@ const HowItWorksSection = ({ id = "comment", gold, text, muted, subtle }) => {
         {steps.map((st, i) => (
           <li key={st.title} style={{
             position: "relative", borderRadius: 20, overflow: "hidden",
-            background: "linear-gradient(180deg, #11141d 0%, #0b0d14 100%)",
-            border: "1px solid rgba(255,255,255,0.07)",
+            background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)",
+            border: "1px solid rgba(140,160,255,0.12)",
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 60px -30px rgba(0,0,0,0.8)",
             padding: "28px 28px 30px", display: "flex", flexDirection: "column", gap: 16,
           }}>
