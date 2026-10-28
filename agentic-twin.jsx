@@ -138,7 +138,7 @@ const AgenticTwinSection = ({ id = "vision", gold, text, muted, subtle }) => {
       {/* Fenêtre produit — l'expérience interactive, isolée dans une iframe */}
       <div ref={wrapRef} className="vz-vision-frame" style={{
         position: "relative", borderRadius: 24, overflow: "hidden",
-        background: "#070a14",
+        background: "#0b1026",
         border: `1px solid ${subtle}`, borderTop: `1px solid rgba(240,201,73,0.30)`,
         boxShadow: "0 40px 90px -38px rgba(0,0,0,0.85), 0 0 60px -30px rgba(240,201,73,0.25)",
       }}>

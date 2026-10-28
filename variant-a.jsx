@@ -334,6 +334,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
     { id: "fonctionnalites", label: "Fonctionnalités", href: "/fonctionnalites", external: true, matchPath: /fonctionnalite(s|-[a-z-]+)(\.html?)?$/i },
     { id: "securite", label: "Sécurité", href: "/securite", external: true, matchPath: /securite(\.html?)?$/i },
     { id: "faq", label: "FAQ", href: "/faq", external: true, matchPath: /faq(\.html?)?$/i },
+    { id: "equipe", label: "Équipe", href: "/equipe", external: true, matchPath: /equipe(\.html?)?$/i },
   ];
   // Détermine la page courante au montage
   const initialActive = (() => {
