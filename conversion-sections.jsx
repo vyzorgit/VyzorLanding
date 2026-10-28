@@ -240,4 +240,77 @@ const FoundersSection = ({ id = "fondateurs", gold, muted }) => (
   </section>
 );
 
-Object.assign(window, { VZ_BETA, VzCtaLink, OutcomesSection, ObjectionsSection, FinalCtaSection, StickyBetaCta, FoundersSection, VZ_FOUNDERS });
+// —— Page /equipe : fondateurs, histoire, et encart « Nous rejoindre » ——
+const TeamPageBody = ({ gold, muted }) => (
+  <React.Fragment>
+    <header className="pg-hero vz-reveal in" style={{ marginBottom: 72 }}>
+      <h1 className="pg-title">L'équipe derrière <em>Vyzor</em>.</h1>
+      <p className="pg-lede">
+        Les grands groupes ont des équipes entières pour lire leurs chiffres. Les PME ont un bilan par an.
+        Nous construisons Vyzor pour donner au dirigeant de PME la même lecture, sans l'équipe.
+      </p>
+    </header>
+    <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
+      <ul className="vz-team-grid vz-reveal" style={{ listStyle: "none", margin: "0 0 96px", padding: 0, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+        {VZ_FOUNDERS.map((f) => (
+          <li key={f.name} style={{
+            display: "grid", gridTemplateColumns: "160px 1fr", gap: 24, alignItems: "center",
+            padding: 24, borderRadius: 22,
+            background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)",
+            border: "1px solid rgba(140,160,255,0.12)",
+          }}>
+            <img src={f.img} alt={`Portrait de ${f.name}`} width="320" height="320" loading="lazy" decoding="async" style={{
+              display: "block", width: "100%", height: "auto", aspectRatio: "1 / 1", objectFit: "cover",
+              borderRadius: 16, border: "1px solid rgba(240,201,73,0.22)",
+            }} />
+            <div>
+              <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, color: "#fff", letterSpacing: "-0.015em" }}>{f.name}</h2>
+              <div style={{ marginTop: 4, fontSize: 14, fontWeight: 600, color: gold }}>{f.role}</div>
+              <p style={{ margin: "10px 0 0", fontSize: 15, lineHeight: 1.6, color: muted }}>{f.bio}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <section className="vz-reveal" style={{ marginBottom: 96, maxWidth: 820 }}>
+        <h2 style={{ fontSize: 40, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.1, color: "#fff" }}>
+          D'où vient Vyzor.
+        </h2>
+        <p style={{ margin: "18px 0 0", fontSize: 17, lineHeight: 1.7, color: muted }}>
+          Vyzor est né d'un hackathon avec Google. Depuis, il est accompagné par l'incubateur Prodiges
+          et construit avec un panel de DAF qui le testent sur leurs propres chiffres.
+          Pendant la bêta, les premiers utilisateurs parlent directement aux fondateurs.
+        </p>
+      </section>
+
+      <section className="vz-reveal" style={{
+        marginBottom: 40, padding: "48px clamp(24px, 4vw, 48px)", borderRadius: 24,
+        background: "radial-gradient(ellipse 70% 90% at 50% 0%, #1a2656 0%, #0f1636 45%, #0a0f24 100%)",
+        border: "1px solid rgba(140,160,255,0.18)",
+        display: "grid", gridTemplateColumns: "minmax(0, 1.3fr) auto", gap: 32, alignItems: "center",
+      }} id="nous-rejoindre">
+        <div>
+          <h2 style={{ margin: 0, fontSize: 34, fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff" }}>
+            Nous rejoindre.
+          </h2>
+          <p style={{ margin: "14px 0 0", fontSize: 16, lineHeight: 1.65, color: muted, maxWidth: 560 }}>
+            Nous cherchons des profils produit, tech et commerciaux (notamment avec une expérience
+            des éditeurs de logiciels comptables) qui veulent construire Vyzor avec nous.
+            Parlez-nous de vous, en quelques lignes.
+          </p>
+        </div>
+        <a href="mailto:contact@vyzor.fr?subject=Rejoindre%20Vyzor" className="vz-btn-primary" style={{
+          display: "inline-flex", alignItems: "center", gap: 10, whiteSpace: "nowrap",
+          padding: "15px 24px", borderRadius: 10, backgroundColor: "#f0c949", color: "#0b0d14",
+          fontWeight: 600, fontSize: 15, textDecoration: "none",
+        }}>Nous écrire <span aria-hidden="true">→</span></a>
+      </section>
+      <style>{`
+        @media (max-width: 920px) { .vz-team-grid { grid-template-columns: 1fr !important; } #nous-rejoindre { grid-template-columns: 1fr !important; } }
+        @media (max-width: 520px) { .vz-team-grid li { grid-template-columns: 1fr !important; } .vz-team-grid img { max-width: 220px; } }
+      `}</style>
+    </div>
+  </React.Fragment>
+);
+
+Object.assign(window, { VZ_BETA, VzCtaLink, OutcomesSection, ObjectionsSection, FinalCtaSection, StickyBetaCta, FoundersSection, VZ_FOUNDERS, TeamPageBody });

@@ -140,56 +140,12 @@ const DAFCoConception = () => {
         </h2>
       </div>
 
-      {/* Corps — la boucle de co-conception, en flux horizontal */}
-      <div className="vz-daf-panel" style={{
-        background: "linear-gradient(140deg, #121a3a, #0b1026)",
-        border: `1px solid ${subtle}`, borderTop: `1px solid rgba(240,201,73,0.20)`,
-        borderRadius: 20, overflow: "hidden", position: "relative",
-        padding: "44px 48px",
-      }}>
-        {/* halo doré discret */}
-        <div aria-hidden="true" style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(60% 90% at 50% -10%, rgba(140,160,255,0.10), transparent 60%)",
-        }} />
-
-        <div className="vz-daf-loop-grid" style={{
-          display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0,
-          position: "relative", zIndex: 1,
-        }}>
-          {/* rail horizontal reliant les 3 étapes */}
-          <div aria-hidden="true" className="vz-daf-rail" style={{
-            position: "absolute", top: 27, left: "16.66%", right: "16.66%", height: 1,
-            background: "linear-gradient(90deg, rgba(255,255,255,0.06), rgba(240,201,73,0.45), rgba(255,255,255,0.06))",
-          }} />
-          {loop.map((s, i) => (
-            <div key={s.n} className="vz-daf-step" style={{
-              display: "flex", flexDirection: "column", alignItems: "flex-start",
-              padding: i === 0 ? "0 32px 0 0" : i === loop.length - 1 ? "0 0 0 32px" : "0 32px",
-              borderLeft: i === 0 ? "none" : `1px solid ${subtle}`,
-              position: "relative",
-            }}>
-              <span style={{
-                width: 54, height: 54, flexShrink: 0, borderRadius: 999,
-                display: "grid", placeItems: "center",
-                fontFamily: sans, fontSize: 15, fontWeight: 700,
-                color: "#111", background: goldGrad,
-                boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
-                marginBottom: 22, position: "relative", zIndex: 1,
-              }}>{s.n}</span>
-              <div style={{ fontSize: 17, fontWeight: 600, letterSpacing: "-0.01em", color: text, marginBottom: 8 }}>{s.t}</div>
-              <div style={{ fontSize: 14, color: muted, lineHeight: 1.6 }}>{s.d}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Verbatims — retours réels du panel · cliquables vers LinkedIn */}
-      <div className="vz-daf-verbatims" style={{ marginTop: 56 }}>
+      <div className="vz-daf-verbatims" style={{ marginTop: 0 }}>
         <div style={{
           display: "flex", alignItems: "center", gap: 14, marginBottom: 26,
         }}>
-          <span style={{ fontSize: 18, fontWeight: 600, color: text }}>Ce qu'ils en disent</span>
+          <span style={{ fontSize: 18, fontWeight: 600, color: text }}>Ce qu'en disent les DAF qui le testent</span>
           <span aria-hidden="true" style={{
             flex: 1, height: 1, background: subtle,
           }} />
