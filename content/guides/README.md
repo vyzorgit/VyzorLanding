@@ -5,7 +5,7 @@ Un guide = un fichier `content/guides/AAAA-MM-JJ-slug.md`. `npm run build` le pu
 Le build échoue (et rien n'est publié) si un champ manque ou si l'article fait moins de 700 mots.
 Un article daté dans le futur n'est publié qu'à partir de sa date (au build suivant).
 
-Règles de rédaction : `brain/contenu/editorial.md` (dépôt vyzorgit/vyzor). File des sujets : `content/queue.md`.
+Règles de rédaction : `content/EDITORIAL.md`. File des sujets : `content/queue.md`.
 
 ```markdown
 ---
