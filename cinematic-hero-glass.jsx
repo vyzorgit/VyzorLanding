@@ -298,6 +298,7 @@ const CinematicHero = () => {
         .vz-hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 0%, #1b2860 0%, #101a42 32%, rgba(10,16,38,0) 72%); }
         .vz-hero-proofs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin: clamp(36px, 4vw, 48px) 0 0; padding: 0; list-style: none; }
         .vz-hero-proofs li { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: rgba(255,255,255,0.7); }
+        .vz-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: -1px; }
         .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
         @media (max-width: 720px) { .vz-hero-stage { padding: 132px 0 48px !important; } }
         @media (prefers-reduced-motion: reduce) { .vz-hero-in { animation: none !important; } }
@@ -314,6 +315,8 @@ const CinematicHero = () => {
           Pour les dirigeants de PME sous Pennylane
         </p>
         <h1 className="vz-hero-h1 vz-hero-in" style={{ animationDelay: "80ms" }}>
+          {/* Marque + catégorie en tête du h1 (référencement de la marque « Vyzor », souvent confondue avec Vysor) */}
+          <span className="vz-sr">Vyzor, logiciel de pilotage financier pour PME : </span>
           Vous perdez de l'argent quelque part.{" "}
           <span style={{ color: gold, display: "block" }}>Vyzor vous montre où.</span>
         </h1>
