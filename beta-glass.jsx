@@ -14,8 +14,8 @@
       border-radius: 24px;
       overflow: hidden;
       isolation: isolate;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(160deg, rgba(20,18,12,0.85), rgba(14,13,10,0.7));
+      border: 1px solid rgba(140,160,255,0.14);
+      background: linear-gradient(160deg, #131c3e, #0b1026);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       will-change: transform;
@@ -49,8 +49,8 @@
       transform: translate(-50%, -50%);
       background: radial-gradient(
         circle,
-        rgba(240,201,73,0.18) 0%,
-        rgba(240,201,73,0.06) 25%,
+        rgba(140,160,255,0.16) 0%,
+        rgba(140,160,255,0.05) 25%,
         transparent 45%
       );
     }
@@ -96,7 +96,7 @@
     .beta-modal {
       width: 100%;
       max-width: 520px;
-      background: linear-gradient(160deg, rgba(22,19,12,0.96), rgba(14,13,10,0.92));
+      background: linear-gradient(160deg, #141d42, #0b1026);
       border: 1px solid rgba(240,201,73,0.28);
       border-radius: 22px;
       padding: 32px;
@@ -603,13 +603,10 @@ const BetaFormGlass = ({ modalOnly = false }) => {
             Un DAF à temps partagé coûte à une PME 1 200 à 5 000 € HT par mois.
           </div>
           <div style={{ fontSize: 14, lineHeight: 1.65, color: muted }}>
-            Vyzor fait une bonne partie de ce travail de lecture : reporting, trésorerie, alertes.
-            Pendant la bêta, c'est gratuit.
+            Vyzor fait une bonne partie de ce travail de lecture. Pendant la bêta, c'est gratuit.
           </div>
           <div style={{ fontSize: 14, lineHeight: 1.65, color: muted }}>
-            <span style={{ color: text, fontWeight: 600 }}>Pourquoi gratuit ?</span> Parce que vos retours
-            nous aident à finir le produit. En échange, vous l'utilisez sans payer, avec une ligne directe
-            avec les fondateurs, et votre tarif est bloqué à vie.
+            Pourquoi gratuit ? Vos retours nous aident à finir le produit.
           </div>
           <div style={{ flex: 1 }} />
           <div style={{
