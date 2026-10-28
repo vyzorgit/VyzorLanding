@@ -553,12 +553,13 @@ const BetaFormGlass = ({ modalOnly = false }) => {
   const inputBorder = "rgba(255,255,255,0.10)";
 
   const betaPlaces = (window.VZ_BETA && window.VZ_BETA.places) || 10;
+  // Pile de valeur (Hormozi) : valeurs prudentes, sourcées dans la note sous le tableau.
   const benefits = [
-    "Un diagnostic financier de votre entreprise dès le premier rendez-vous",
-    "Vos données branchées avec vous, en visio",
-    "Vyzor gratuit pendant toute la bêta",
-    "Une ligne directe avec les fondateurs, vos retours dans la roadmap",
-    "Votre tarif préférentiel bloqué à vie après la bêta",
+    { t: "Un diagnostic financier complet de votre entreprise, au premier rendez-vous", v: "≈ 400 €" },
+    { t: "Votre reporting, votre trésorerie à 12 mois et vos alertes, tenus à jour par Vyzor", v: "≈ 750 € / mois" },
+    { t: "Vos données branchées avec vous, en visio", v: "Inclus" },
+    { t: "Une ligne directe avec les fondateurs, vos retours dans la roadmap", v: "Inclus" },
+    { t: "Votre tarif préférentiel bloqué à vie après la bêta", v: "Inclus" },
   ];
 
   // Mode « modale seule » : pages qui ont leur propre bloc d'offre (ex. /cabinets).
@@ -599,7 +600,11 @@ const BetaFormGlass = ({ modalOnly = false }) => {
             fontSize: 26, fontWeight: 400, lineHeight: 1.15,
             letterSpacing: "-0.01em", color: "#fff", marginTop: 6,
           }}>
-            Gratuit pendant la bêta. À tarif préférentiel à vie.
+            Un DAF à temps partagé coûte à une PME 1 200 à 5 000 € HT par mois.
+          </div>
+          <div style={{ fontSize: 14, lineHeight: 1.65, color: muted }}>
+            Vyzor fait une bonne partie de ce travail de lecture : reporting, trésorerie, alertes.
+            Pendant la bêta, c'est gratuit.
           </div>
           <div style={{ fontSize: 14, lineHeight: 1.65, color: muted }}>
             <span style={{ color: text, fontWeight: 600 }}>Pourquoi gratuit ?</span> Parce que vos retours
@@ -636,8 +641,8 @@ const BetaFormGlass = ({ modalOnly = false }) => {
             listStyle: "none", padding: 0, margin: "4px 0 0",
             display: "flex", flexDirection: "column",
           }}>
-            {benefits.map((l, i) => (
-              <li key={l} style={{
+            {benefits.map((b, i) => (
+              <li key={b.t} style={{
                 display: "flex", alignItems: "flex-start", gap: 14,
                 fontSize: 14, lineHeight: 1.5, color: text,
                 padding: "13px 0",
@@ -649,10 +654,19 @@ const BetaFormGlass = ({ modalOnly = false }) => {
                 }}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span>{l}</span>
+                <span style={{ flex: 1 }}>{b.t}</span>
+                <span style={{ flexShrink: 0, fontSize: 13, fontWeight: 600, color: b.v === "Inclus" ? muted : gold, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap", marginTop: 1 }}>{b.v}</span>
               </li>
             ))}
           </ul>
+          <div style={{ flex: 1 }} />
+          <div style={{
+            display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12,
+            paddingTop: 16, borderTop: `1px solid rgba(240,201,73,0.3)`,
+          }}>
+            <span style={{ fontSize: 15, fontWeight: 600, color: "#fff" }}>Votre prix pendant la bêta</span>
+            <span style={{ fontSize: 34, fontWeight: 700, color: gold, letterSpacing: "-0.03em", lineHeight: 1 }}>0 €</span>
+          </div>
         </BetaTiltCard>
       </div>
 
@@ -671,6 +685,11 @@ const BetaFormGlass = ({ modalOnly = false }) => {
         </button>
         <p style={{ margin: 0, maxWidth: 560, fontSize: 14, lineHeight: 1.6, color: muted, textWrap: "pretty" }}>
           <span style={{ color: text, fontWeight: 600 }}>Notre engagement :</span> si au premier rendez-vous nous ne vous montrons pas au moins un levier concret sur votre trésorerie ou vos marges, nous vous le disons et on s'arrête là.
+        </p>
+        <p style={{ margin: "6px 0 0", maxWidth: 680, fontSize: 11.5, lineHeight: 1.6, color: "rgba(255,255,255,0.45)", textWrap: "pretty" }}>
+          Valeurs estimées à partir du tarif d'un DAF externalisé (750 à 1 350 € HT la journée, 2 à 3 jours par mois dans une petite PME, soit 1 200 à 5 000 € HT par mois selon{" "}
+          <a href="https://www.comet-one.com/actualites/expertise-financiere/cout-daf-externalise-2026/" target="_blank" rel="noopener" style={{ color: "inherit" }}>Comet One</a> et{" "}
+          <a href="https://www.knp-finance.fr/prix-daf-externalise/" target="_blank" rel="noopener" style={{ color: "inherit" }}>KNP Finance</a>) : le diagnostic équivaut à une demi-journée, le suivi mensuel à environ une journée, la part que les DAF consacrent à produire le reporting.
         </p>
       </div>
 

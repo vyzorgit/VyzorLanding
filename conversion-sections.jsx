@@ -196,4 +196,51 @@ const StickyBetaCta = () => {
   );
 };
 
-Object.assign(window, { VZ_BETA, VzCtaLink, OutcomesSection, ObjectionsSection, FinalCtaSection, StickyBetaCta });
+// —— 5. Qui est derrière : des visages, une raison, un engagement ——
+const VZ_FOUNDERS = [
+  { name: "Antoine Cayer", role: "Co-fondateur, CEO", img: "/img/fondateur-antoine.webp",
+    bio: "MSc Data for Finance, Mines Paris–PSL. Passé par Air Liquide et LVMH." },
+  { name: "Louis Chevalier", role: "Co-fondateur, acquisition", img: "/img/fondateur-louis.webp",
+    bio: "MSc Data for Finance, Mines Paris–PSL. Passé par Natixis CIB et Kano." },
+];
+
+const FoundersSection = ({ id = "fondateurs", gold, muted }) => (
+  <section id={id} className="vz-found" style={{ position: "relative", marginBottom: 96 }}>
+    <div className="vz-found-grid" style={{
+      display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)", gap: 40, alignItems: "center",
+      padding: "40px clamp(24px, 4vw, 48px)", borderRadius: 24,
+      background: "linear-gradient(180deg, #11141d 0%, #0b0d14 100%)",
+      border: "1px solid rgba(255,255,255,0.07)",
+      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 60px -30px rgba(0,0,0,0.8)",
+    }}>
+      <div>
+        <h2 style={{ fontSize: 40, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.1, color: "#fff" }}>
+          Pendant la bêta, <span style={{ color: gold }}>c'est nous que vous avez au téléphone.</span>
+        </h2>
+        <p style={{ margin: "20px 0 0", fontSize: 16, lineHeight: 1.65, color: muted, maxWidth: 480, textWrap: "pretty" }}>
+          Les grands groupes ont des équipes entières pour lire leurs chiffres. Les PME ont un bilan par an.
+          Nous avons créé Vyzor pour donner au dirigeant de PME la même lecture, sans l'équipe.
+          Accompagnés par l'incubateur Prodiges.
+        </p>
+      </div>
+      <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+        {VZ_FOUNDERS.map((f) => (
+          <li key={f.name}>
+            <img src={f.img} alt={`Portrait de ${f.name}`} width="320" height="320" loading="lazy" decoding="async" style={{
+              display: "block", width: "100%", height: "auto", aspectRatio: "1 / 1", objectFit: "cover",
+              borderRadius: 18, border: "1px solid rgba(240,201,73,0.22)",
+            }} />
+            <div style={{ marginTop: 14, fontSize: 17, fontWeight: 600, color: "#fff", letterSpacing: "-0.01em" }}>{f.name}</div>
+            <div style={{ marginTop: 2, fontSize: 13.5, fontWeight: 600, color: gold }}>{f.role}</div>
+            <div style={{ marginTop: 6, fontSize: 13.5, lineHeight: 1.5, color: muted }}>{f.bio}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <style>{`
+      @media (max-width: 920px) { .vz-found .vz-found-grid { grid-template-columns: 1fr !important; gap: 28px !important; } .vz-found h2 { font-size: 32px !important; } }
+    `}</style>
+  </section>
+);
+
+Object.assign(window, { VZ_BETA, VzCtaLink, OutcomesSection, ObjectionsSection, FinalCtaSection, StickyBetaCta, FoundersSection, VZ_FOUNDERS });

@@ -128,7 +128,7 @@ const VZ_PERSONAS = [
       { ask: "Est-ce que mon modèle gagne assez ?", hurt: "Marges, rentabilité, business model — personne ne lui dit clairement où gagner plus." },
       { ask: "Quels leviers je laisse passer ?", hurt: "Sa fiscalité, il la subit. Les économies réelles restent invisibles, mois après mois." },
     ],
-    cost: "Le coût du flou : des économies bien réelles qui dorment dans ses chiffres — et un ROI qu'il ne voit jamais venir.",
+    cost: "Le coût du flou : des économies qui dorment dans ses chiffres, et des retards clients qu'il ne voit pas venir. En France, ils privent les PME et TPE d'environ 13 milliards d'euros de trésorerie (Banque de France, 2025).",
   },
   {
     tab: "Expert-comptable",

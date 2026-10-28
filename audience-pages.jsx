@@ -82,6 +82,7 @@ const PennylanePageBody = ({ gold, text, muted, subtle }) => (
       </section>
       <div className="vz-reveal"><OutcomesSection id="resultats" gold={gold} muted={muted} /></div>
       <div className="vz-reveal"><HowItWorksSection id="comment" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
+      <div className="vz-reveal"><FoundersSection gold={gold} muted={muted} /></div>
       <div className="vz-reveal"><BetaFormGlass /></div>
       <div className="vz-reveal" style={{ marginTop: 120 }}><ObjectionsSection id="questions" gold={gold} muted={muted} /></div>
       <div className="vz-reveal"><FinalCtaSection gold={gold} muted={muted} /></div>
