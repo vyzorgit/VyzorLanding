@@ -6,7 +6,7 @@
 
 ## Objectif
 
-SEO et GEO (être trouvé dans Google **et cité par les IA** : ChatGPT, Claude, Perplexity, Google AI) sur les requêtes des dirigeants de PME en matière de pilotage financier, pour amener du trafic sur vyzor.fr et des emails via les calculateurs. Les emails arrivent dans contact@vyzor.fr (web3forms) ; récupération manuelle, aucun outil d'emailing (décision du 27/10). Jamais de scraping (décision du 08/10).
+SEO et GEO (être trouvé dans Google **et cité par les IA** : ChatGPT, Claude, Perplexity, Google AI) sur les requêtes des dirigeants de PME en matière de pilotage financier, pour amener du trafic sur vyzor.fr et des emails via les calculateurs. Les emails arrivent dans admin@vyzor.fr (web3forms) ; récupération manuelle, aucun outil d'emailing (décision du 27/10). Jamais de scraping (décision du 08/10).
 
 ## Production
 

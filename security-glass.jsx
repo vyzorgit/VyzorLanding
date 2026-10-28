@@ -497,10 +497,10 @@ const SecuritySection = () => {
           publicité, aucun partage à des tiers. Vous gardez la main sur vos
           données, à vie. Une question sur la confidentialité&nbsp;? Écrivez-nous à{" "}
           <a
-            href="mailto:contact@vyzor.fr"
+            href="mailto:admin@vyzor.fr"
             style={{ color: gold, textDecoration: "none", borderBottom: `1px dashed ${gold}` }}
           >
-            contact@vyzor.fr
+            admin@vyzor.fr
           </a>.
         </div>
       </div>

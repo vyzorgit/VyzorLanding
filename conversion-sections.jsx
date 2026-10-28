@@ -92,7 +92,7 @@ const ObjectionsSection = ({ id = "questions", gold, muted }) => {
             <span style={{ display: "block", color: muted }}>sans détour.</span>
           </h2>
           <p style={{ margin: "20px 0 0", fontSize: 16, lineHeight: 1.6, color: muted, maxWidth: 360 }}>
-            Une autre question ? Toutes les réponses sont dans la <a href="/faq" style={{ color: gold, textUnderlineOffset: 3 }}>FAQ</a>, ou écrivez-nous à contact@vyzor.fr.
+            Une autre question ? Toutes les réponses sont dans la <a href="/faq" style={{ color: gold, textUnderlineOffset: 3 }}>FAQ</a>, ou écrivez-nous à admin@vyzor.fr.
           </p>
         </div>
         <ul style={{ listStyle: "none", margin: 0, padding: 0, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
@@ -299,7 +299,7 @@ const TeamPageBody = ({ gold, muted }) => (
             Parlez-nous de vous, en quelques lignes.
           </p>
         </div>
-        <a href="mailto:contact@vyzor.fr?subject=Rejoindre%20Vyzor" className="vz-btn-primary" style={{
+        <a href="mailto:admin@vyzor.fr?subject=Rejoindre%20Vyzor" className="vz-btn-primary" style={{
           display: "inline-flex", alignItems: "center", gap: 10, whiteSpace: "nowrap",
           padding: "15px 24px", borderRadius: 10, backgroundColor: "#f0c949", color: "#0d1430",
           fontWeight: 600, fontSize: 15, textDecoration: "none",
