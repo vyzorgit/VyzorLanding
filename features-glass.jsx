@@ -142,7 +142,7 @@
       display: inline-flex;
       padding: 6px;
       border-radius: 999px;
-      background: rgba(15,17,21,0.55);
+      background: rgba(17,25,54,0.55);
       border: 1px solid rgba(255,255,255,0.10);
       backdrop-filter: blur(18px) saturate(140%);
       -webkit-backdrop-filter: blur(18px) saturate(140%);

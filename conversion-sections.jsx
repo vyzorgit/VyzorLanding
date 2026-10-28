@@ -10,7 +10,7 @@ const VzCtaLink = ({ children, size = "md", style }) => (
   <a href="/?contact=1#beta" data-contact className="vz-btn-primary" style={{
     display: "inline-flex", alignItems: "center", gap: 10, whiteSpace: "nowrap",
     padding: size === "lg" ? "16px 28px" : "13px 22px", borderRadius: 10,
-    backgroundColor: "#f0c949", color: "#0b0d14",
+    backgroundColor: "#f0c949", color: "#0d1430",
     fontWeight: 600, fontSize: size === "lg" ? 16 : 15, textDecoration: "none",
     ...style,
   }}>
@@ -183,7 +183,7 @@ const StickyBetaCta = () => {
           transition: transform 280ms cubic-bezier(0.22,1,0.36,1), opacity 200ms ease; }
         .vz-sticky[data-show="true"] { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
         .vz-sticky-txt { font-size: 13.5px; color: rgba(255,255,255,0.8); white-space: nowrap; }
-        .vz-sticky a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; background: #f0c949; color: #0b0d14; font-weight: 600; font-size: 14px; text-decoration: none; white-space: nowrap; }
+        .vz-sticky a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; background: #f0c949; color: #0d1430; font-weight: 600; font-size: 14px; text-decoration: none; white-space: nowrap; }
         .vz-sticky a:hover { background: #f4d468; }
         .vz-sticky a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
         @media (max-width: 420px) { .vz-sticky-txt { display: none; } .vz-sticky { padding: 6px; } }
@@ -301,7 +301,7 @@ const TeamPageBody = ({ gold, muted }) => (
         </div>
         <a href="mailto:contact@vyzor.fr?subject=Rejoindre%20Vyzor" className="vz-btn-primary" style={{
           display: "inline-flex", alignItems: "center", gap: 10, whiteSpace: "nowrap",
-          padding: "15px 24px", borderRadius: 10, backgroundColor: "#f0c949", color: "#0b0d14",
+          padding: "15px 24px", borderRadius: 10, backgroundColor: "#f0c949", color: "#0d1430",
           fontWeight: 600, fontSize: 15, textDecoration: "none",
         }}>Nous écrire <span aria-hidden="true">→</span></a>
       </section>

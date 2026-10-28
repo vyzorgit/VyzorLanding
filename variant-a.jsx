@@ -9,7 +9,7 @@ const VariantA = () => {
   return (
     <div style={{
       width: "100%", minHeight: "100%",
-      background: "radial-gradient(circle at 18% -10%, rgba(240,201,73,0.10), transparent 35%), radial-gradient(circle at 85% -20%, rgba(45,212,191,0.07), transparent 40%), #0f1115",
+      background: "radial-gradient(circle at 18% -10%, rgba(240,201,73,0.10), transparent 35%), radial-gradient(circle at 85% -20%, rgba(45,212,191,0.07), transparent 40%), #111936",
       color: text,
       fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
       padding: "32px 56px 56px",
@@ -118,7 +118,7 @@ const VariantA = () => {
       {/* DÉMO PRODUIT */}
       <section style={{ position: "relative", marginBottom: 96 }}>
         <div className="vz-vA-demo" style={{
-          background: "linear-gradient(140deg, #0c0f16, #121722 45%, #0f1115)",
+          background: "linear-gradient(140deg, #0c0f16, #121722 45%, #111936)",
           border: `1px solid ${subtle}`,
           borderRadius: 20, padding: 48,
           display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 48, alignItems: "center",
@@ -164,7 +164,7 @@ const VariantA = () => {
             { q: "Une place vous attend.", a: "Candidatez ↓", r: "Bêta Q2 2026" },
           ].map((t, i) => (
             <div key={i} style={{
-              background: i === 1 ? "rgba(240,201,73,0.04)" : "#0f0f12",
+              background: i === 1 ? "rgba(240,201,73,0.04)" : "#0c1230",
               border: `1px solid ${i === 1 ? "rgba(240,201,73,0.25)" : subtle}`,
               borderRadius: 16, padding: 24, minHeight: 180, display: "flex", flexDirection: "column", justifyContent: "space-between",
             }}>
@@ -226,13 +226,13 @@ const BetaForm = ({ variant = "dark" }) => {
   const dark = variant === "dark";
   const editorial = variant === "editorial";
   const gold = dark ? "#f0c949" : "#b8862a";
-  const text = dark ? "rgba(255,255,255,0.92)" : editorial ? "#1a1410" : "#0f1115";
+  const text = dark ? "rgba(255,255,255,0.92)" : editorial ? "#1a1410" : "#111936";
   const muted = dark ? "rgba(255,255,255,0.55)" : editorial ? "rgba(60,50,40,0.65)" : "#64748b";
   const bg = dark
     ? "linear-gradient(140deg, #14110a, #1a1610 45%, #0f0e0a)"
     : editorial
       ? "#1a1410"
-      : "#0f1115";
+      : "#111936";
   const inputBg = dark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.06)";
   const inputBorder = dark ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.18)";
   const labelMuted = dark ? muted : "rgba(255,255,255,0.65)";
@@ -426,7 +426,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
         gap: scrolled ? 10 : 18,
         padding: scrolled ? "6px 6px 6px 14px" : "8px 8px 8px 18px",
         borderRadius: 999,
-        background: scrolled ? "rgba(15,17,21,0.78)" : "rgba(15,17,21,0.55)",
+        background: scrolled ? "rgba(17,25,54,0.78)" : "rgba(17,25,54,0.55)",
         backdropFilter: "blur(18px) saturate(140%)",
         WebkitBackdropFilter: "blur(18px) saturate(140%)",
         border: `1px solid ${scrolled ? "rgba(240,201,73,0.22)" : "rgba(255,255,255,0.10)"}`,
@@ -600,7 +600,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
           display: "none",
           marginTop: 8,
           borderRadius: 22,
-          background: "rgba(15,17,21,0.92)",
+          background: "rgba(17,25,54,0.92)",
           backdropFilter: "blur(18px) saturate(140%)",
           WebkitBackdropFilter: "blur(18px) saturate(140%)",
           border: "1px solid rgba(255,255,255,0.10)",
@@ -783,7 +783,7 @@ const MethodologySection = ({ id, gold, text, muted, subtle }) => {
                 display: "grid", placeItems: "center",
                 fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif', fontSize: 13, fontWeight: 700, letterSpacing: "-0.01em",
                 color: isActive ? "#111" : isPast ? gold : muted,
-                background: isActive ? goldGrad : "#0f0f12",
+                background: isActive ? goldGrad : "#0c1230",
                 border: `1px solid ${isActive ? "#f2d782" : isPast ? "rgba(240,201,73,0.45)" : "rgba(255,255,255,0.12)"}`,
                 boxShadow: isActive
                   ? "0 1px 2px rgba(0,0,0,0.3)"
@@ -816,7 +816,7 @@ const MethodologySection = ({ id, gold, text, muted, subtle }) => {
       {/* Active step — split panel with preview + content */}
       <div className="vz-method-panel" style={{
         display: "grid", gridTemplateColumns: "1.05fr 1fr", gap: 0,
-        background: "linear-gradient(140deg, #0e1015, #0c0d11)",
+        background: "linear-gradient(140deg, #0e1015, #0c1230)",
         border: `1px solid ${subtle}`, borderTop: `1px solid rgba(240,201,73,0.20)`,
         borderRadius: 20, overflow: "hidden", position: "relative",
         minHeight: 360,
@@ -891,7 +891,7 @@ const MethodologySection = ({ id, gold, text, muted, subtle }) => {
           <div className="vz-method-stat" style={{
             position: "absolute", top: 24, right: 24,
             padding: "10px 14px", borderRadius: 12,
-            background: "rgba(15,17,21,0.78)", backdropFilter: "blur(10px)",
+            background: "rgba(17,25,54,0.78)", backdropFilter: "blur(10px)",
             border: `1px solid rgba(240,201,73,0.22)`,
             display: "flex", alignItems: "baseline", gap: 8,
           }}>
@@ -938,7 +938,7 @@ const MethodPreview = ({ kind, gold, muted, subtle, text }) => {
     const bars = [38, 52, 44, 61, 56, 70, 64, 78, 72, 84, 80, 92];
     return (
       <div style={{
-        background: "#0c0d11", border: `1px solid ${subtle}`, borderRadius: 14, padding: 18,
+        background: "#0c1230", border: `1px solid ${subtle}`, borderRadius: 14, padding: 18,
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
           <span style={{ fontSize: 10, letterSpacing: "0.18em", color: muted, textTransform: "uppercase" }}>Tendance · 12 mois</span>
@@ -974,7 +974,7 @@ const MethodPreview = ({ kind, gold, muted, subtle, text }) => {
     const off = C - (score / 100) * C * 0.75;
     return (
       <div style={{
-        background: "#0c0d11", border: `1px solid ${subtle}`, borderRadius: 14, padding: 18,
+        background: "#0c1230", border: `1px solid ${subtle}`, borderRadius: 14, padding: 18,
         display: "flex", alignItems: "center", gap: 18,
       }}>
         <div style={{ position: "relative", width: 124, height: 124 }}>
@@ -1025,7 +1025,7 @@ const MethodPreview = ({ kind, gold, muted, subtle, text }) => {
   };
   return (
     <div style={{
-      background: "#0c0d11", border: `1px solid ${subtle}`, borderRadius: 14, padding: 18,
+      background: "#0c1230", border: `1px solid ${subtle}`, borderRadius: 14, padding: 18,
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
         <span style={{ fontSize: 10, letterSpacing: "0.18em", color: muted, textTransform: "uppercase" }}>Projection · 90 jours</span>

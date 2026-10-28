@@ -78,7 +78,7 @@
     /* Modal */
     .beta-modal-overlay {
       position: fixed; inset: 0; z-index: 1000;
-      background: rgba(7,10,20,0.72);
+      background: rgba(10,16,38,0.72);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       display: grid; place-items: center;
@@ -138,7 +138,7 @@
     .vz-beta-cta {
       display: inline-flex; align-items: center; gap: 10px;
       padding: 14px 24px; border: none; border-radius: 10px;
-      background: #f0c949; color: #0b0d14;
+      background: #f0c949; color: #0d1430;
       font-weight: 600; font-size: 15px; cursor: pointer;
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
       transition: background-color 160ms ease;
@@ -399,10 +399,10 @@ const BetaModal = ({ open, onClose }) => {
                     fontSize: 14, outline: "none",
                     fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
                   }}>
-                  <option value="" disabled style={{ background: "#14130f" }}>Choisir…</option>
-                  <option value="Pennylane" style={{ background: "#14130f" }}>Pennylane</option>
-                  <option value="Autre logiciel" style={{ background: "#14130f" }}>Un autre logiciel</option>
-                  <option value="Ne sait pas" style={{ background: "#14130f" }}>Je ne sais pas (c'est mon cabinet)</option>
+                  <option value="" disabled style={{ background: "#0b1026" }}>Choisir…</option>
+                  <option value="Pennylane" style={{ background: "#0b1026" }}>Pennylane</option>
+                  <option value="Autre logiciel" style={{ background: "#0b1026" }}>Un autre logiciel</option>
+                  <option value="Ne sait pas" style={{ background: "#0b1026" }}>Je ne sais pas (c'est mon cabinet)</option>
                 </select>
               </div>
               {error && (
@@ -465,7 +465,7 @@ const BetaModal = ({ open, onClose }) => {
             </p>
             <a href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{
               marginTop: 4, padding: "11px 18px", borderRadius: 10,
-              background: "#f0c949", color: "#0b0d14", fontWeight: 600, fontSize: 14,
+              background: "#f0c949", color: "#0d1430", fontWeight: 600, fontSize: 14,
               textDecoration: "none", fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
             }}>Choisir mon créneau <span aria-hidden="true">→</span></a>
             <button type="button" onClick={onClose} style={{

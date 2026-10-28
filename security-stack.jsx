@@ -27,7 +27,7 @@
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.08);
       border-top: 1px solid rgba(240,201,73,0.22);
-      background: linear-gradient(150deg, #11141b, #0c0d11);
+      background: linear-gradient(150deg, #121a3a, #0c1230);
       box-shadow: 0 30px 70px -34px rgba(0,0,0,0.85);
     }
     .secstack-card__grid {
