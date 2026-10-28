@@ -1,5 +1,5 @@
 // footer-glass.jsx — Footer "Liquid Glass" pour VYZOR
-// DA cinématique : fond #070a14, accent or #f0c949, surfaces glass, halo refractif,
+// DA cinématique : fond #0a1026, accent or #f0c949, surfaces glass, halo refractif,
 // bordures lumineuses, typo Inter + JetBrains Mono.
 // UX inspirée d'un footer shadcn : 4 colonnes (marque / liens utiles / suivez-nous /
 // newsletter avec formulaire d'inscription + overlay animé succès/erreur).

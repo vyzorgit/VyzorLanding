@@ -2,7 +2,7 @@
 
 const AF_MUTED = "rgba(255,255,255,0.58)";
 const AF_LINE = "rgba(255,255,255,0.08)";
-const afPanel = { borderRadius: 20, background: "linear-gradient(180deg, #10131b 0%, #0b0d14 100%)", border: "1px solid rgba(255,255,255,0.07)" };
+const afPanel = { borderRadius: 20, background: "linear-gradient(180deg, #121a3a 0%, #0d1430 100%)", border: "1px solid rgba(255,255,255,0.07)" };
 const afBox = { borderRadius: 12, border: `1px solid ${AF_LINE}`, background: "rgba(255,255,255,0.025)" };
 
 const AfHead = ({ n, t, d }) => (
@@ -124,7 +124,7 @@ const AfKpiViz = ({ view }) => {
       <text x={W} y={y(54) - 6} fill="rgba(255,255,255,0.5)" fontSize="11" textAnchor="end">moyenne sectorielle 54 %</text>
       <path d={d} fill="none" stroke="#f0c949" strokeWidth="2" />
       {AF_SERIES.map(([yr, v], k) => (
-        <g key={yr}><circle cx={k * step} cy={y(v)} r="4" fill="#0b0d14" stroke="#f0c949" strokeWidth="2" />
+        <g key={yr}><circle cx={k * step} cy={y(v)} r="4" fill="#0d1430" stroke="#f0c949" strokeWidth="2" />
           <text x={k * step} y={H + 24} fill="rgba(255,255,255,0.5)" fontSize="11" textAnchor="middle">{yr}</text></g>
       ))}
     </svg>
@@ -147,7 +147,7 @@ const AfKpi = () => {
           <div style={{ marginTop: 22, fontSize: 13, fontWeight: 600, color: "#fff" }}>Votre position dans le secteur</div>
           <div style={{ position: "relative", height: 8, borderRadius: 4, marginTop: 14, background: "linear-gradient(90deg, rgba(240,144,90,0.5), rgba(255,255,255,0.15), rgba(95,212,168,0.5))" }}>
             <span style={{ position: "absolute", left: "40%", top: -5, width: 1, height: 18, background: "rgba(255,255,255,0.6)" }} />
-            <span style={{ position: "absolute", left: "62%", top: -6, width: 20, height: 20, marginLeft: -10, borderRadius: 999, background: "#f0c949", border: "3px solid #0b0d14" }} />
+            <span style={{ position: "absolute", left: "62%", top: -6, width: 20, height: 20, marginLeft: -10, borderRadius: 999, background: "#f0c949", border: "3px solid #0d1430" }} />
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: AF_MUTED, marginTop: 10 }}>
             <span>Bas du secteur</span><span>Moyenne 54 %</span><span>Haut du secteur</span>
@@ -213,7 +213,7 @@ const AfCustomExport = () => {
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginTop: 16 }}>
             <span style={{ fontSize: 13, color: AF_MUTED }}>{sel.length} indicateur{sel.length > 1 ? "s" : ""} · comparaison N-1 incluse</span>
-            <span style={{ fontSize: 13, padding: "9px 14px", borderRadius: 9, background: sel.length ? "#f0c949" : "rgba(255,255,255,0.08)", color: sel.length ? "#0b0d14" : AF_MUTED, fontWeight: 600, whiteSpace: "nowrap" }}>{fmt === "mail" ? "Envoyer" : "Télécharger"}</span>
+            <span style={{ fontSize: 13, padding: "9px 14px", borderRadius: 9, background: sel.length ? "#f0c949" : "rgba(255,255,255,0.08)", color: sel.length ? "#0d1430" : AF_MUTED, fontWeight: 600, whiteSpace: "nowrap" }}>{fmt === "mail" ? "Envoyer" : "Télécharger"}</span>
           </div>
         </div>
       </div>
@@ -234,7 +234,7 @@ const AnalyseExplainer = () => (
       .af-seg { display: inline-flex; gap: 4px; padding: 4px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); margin: 28px 0 16px; }
       .af-segb { all: unset; cursor: pointer; padding: 8px 14px; border-radius: 9px; font-size: 13.5px; color: rgba(255,255,255,0.65); transition: background-color 160ms ease, color 160ms ease; }
       .af-segb:hover { color: #fff; }
-      .af-segb.on { background: #f0c949; color: #0b0d14; font-weight: 600; }
+      .af-segb.on { background: #f0c949; color: #0d1430; font-weight: 600; }
       .af-segb:focus-visible, .af-pillar:focus-visible, .af-check:focus-visible { outline: 2px solid rgba(240,201,73,0.6); outline-offset: 2px; }
       .af-flow { display: grid; grid-template-columns: minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr); align-items: center; }
       .af-arrow { height: 1px; background: linear-gradient(90deg, rgba(240,201,73,0.2), #f0c949); position: relative; }
@@ -247,7 +247,7 @@ const AnalyseExplainer = () => (
       .af-kpi { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
       .af-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 32px; }
       .af-check { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.07); font-size: 13.5px; color: rgba(255,255,255,0.85); }
-      .af-box { width: 18px; height: 18px; border-radius: 5px; flex-shrink: 0; display: grid; place-items: center; font-size: 11px; font-weight: 700; border: 1px solid rgba(255,255,255,0.25); color: #0b0d14; transition: background-color 140ms ease, border-color 140ms ease; }
+      .af-box { width: 18px; height: 18px; border-radius: 5px; flex-shrink: 0; display: grid; place-items: center; font-size: 11px; font-weight: 700; border: 1px solid rgba(255,255,255,0.25); color: #0d1430; transition: background-color 140ms ease, border-color 140ms ease; }
       .af-box.on { background: #f0c949; border-color: #f0c949; }
       @media (max-width: 960px) {
         .af-flow { grid-template-columns: 1fr; gap: 0; }

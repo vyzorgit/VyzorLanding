@@ -98,8 +98,8 @@ const ConseilFlow = () => {
         .cf-qs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
         .cf-q { font: inherit; font-size: 13.5px; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.10); border-radius: 999px; padding: 9px 15px; cursor: pointer; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; }
         .cf-q:hover { color: #fff; border-color: rgba(255,255,255,0.22); }
-        .cf-q.on { color: #0b0d14; background: #f0c949; border-color: #f0c949; font-weight: 600; }
-        .cf-board { display: flex; flex-direction: column; align-items: center; margin-top: 28px; padding: 36px clamp(16px, 3vw, 36px); border-radius: 20px; background: linear-gradient(180deg, #10131b 0%, #0b0d14 100%); border: 1px solid rgba(255,255,255,0.07); }
+        .cf-q.on { color: #0d1430; background: #f0c949; border-color: #f0c949; font-weight: 600; }
+        .cf-board { display: flex; flex-direction: column; align-items: center; margin-top: 28px; padding: 36px clamp(16px, 3vw, 36px); border-radius: 20px; background: linear-gradient(180deg, #121a3a 0%, #0d1430 100%); border: 1px solid rgba(255,255,255,0.07); }
         .cf-node { border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.025); transition: border-color 300ms ease, opacity 300ms ease, background-color 300ms ease; }
         .cf-user, .cf-answer { width: min(560px, 100%); padding: 16px 20px; display: flex; flex-direction: column; gap: 6px; text-align: center; }
         .cf-answer { border-color: rgba(240,201,73,0.3); background: rgba(240,201,73,0.04); }
@@ -192,7 +192,7 @@ const CC_ITEMS = [
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end", gap: 8, padding: "0 16px 14px" }}>
           <span style={{ fontSize: 12.5, padding: "7px 12px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.75)" }}>Modifier</span>
-          <span style={{ fontSize: 12.5, padding: "7px 12px", borderRadius: 8, background: "#f0c949", color: "#0b0d14", fontWeight: 600 }}>Envoyer</span>
+          <span style={{ fontSize: 12.5, padding: "7px 12px", borderRadius: 8, background: "#f0c949", color: "#0d1430", fontWeight: 600 }}>Envoyer</span>
         </div>
       </div>
     ) },
@@ -250,7 +250,7 @@ const ConseilCapabilities = () => {
         .cc-tab.on .cc-t, .cc-tab:hover .cc-t { color: #fff; }
         .cc-d { display: block; font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.5); margin-top: 4px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 300ms ease, opacity 300ms ease; }
         .cc-tab.on .cc-d { max-height: 60px; opacity: 1; }
-        .cc-panel { padding: 26px; border-radius: 20px; background: linear-gradient(180deg, #10131b 0%, #0b0d14 100%); border: 1px solid rgba(255,255,255,0.07); min-height: 360px; }
+        .cc-panel { padding: 26px; border-radius: 20px; background: linear-gradient(180deg, #121a3a 0%, #0d1430 100%); border: 1px solid rgba(255,255,255,0.07); min-height: 360px; }
         .cc-panel-label { font-size: 12.5px; color: rgba(255,255,255,0.45); margin-bottom: 14px; }
         .cc-ask { display: inline-block; padding: 10px 14px; border-radius: 14px 14px 4px 14px; background: rgba(255,255,255,0.06); font-size: 13.5px; color: #fff; }
         @media (max-width: 860px) { .cc-grid { grid-template-columns: 1fr; } .cc-panel { min-height: 0; } }

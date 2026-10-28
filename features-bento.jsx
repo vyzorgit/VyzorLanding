@@ -34,7 +34,7 @@ const FeaturesBento = () => {
         .vzb-card {
           position: relative; display: flex; flex-direction: column; justify-content: flex-end;
           overflow: hidden; border-radius: 18px; text-decoration: none; color: inherit;
-          background: linear-gradient(180deg, #10131b 0%, #0b0d14 100%);
+          background: linear-gradient(180deg, #121a3a 0%, #0d1430 100%);
           border: 1px solid rgba(255,255,255,0.07);
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
           transition: border-color 200ms ease;

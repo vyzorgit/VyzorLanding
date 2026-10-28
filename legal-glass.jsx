@@ -1,5 +1,5 @@
 // legal-glass.jsx — Pages légales VYZOR (Mentions légales / CGU + Confidentialité)
-// DA cohérente : fond #070a14, accent or #f0c949, surfaces glass, typo Inter + JetBrains Mono.
+// DA cohérente : fond #0a1026, accent or #f0c949, surfaces glass, typo Inter + JetBrains Mono.
 //
 // 14/10/2026 — chantier conformité web (brief audit/briefs/2026-10-14-conformite-web.md) :
 //   - mentions légales complétées selon l'article 6-III de la LCEN (loi 2004-575) ;

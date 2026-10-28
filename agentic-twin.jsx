@@ -8,7 +8,7 @@
 // en voix éditoriale « vous », et on déclenche la démo quand la section entre
 // dans le champ. Hauteur auto-ajustée via postMessage.
 //
-// Vocabulaire fidèle : or #f0c949, bleu nuit #070a14, verre.
+// Vocabulaire fidèle : or #f0c949, bleu nuit #0a1026, verre.
 
 // Révélation mot-à-mot pilotée au scroll (façon « text reveal by word »).
 // Chaque mot passe d'un état atténué à pleine opacité, de gauche à droite,

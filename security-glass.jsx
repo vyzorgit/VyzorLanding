@@ -119,7 +119,7 @@
       border-radius: 22px;
       border: 1px solid rgba(255,255,255,0.08);
       background:
-        linear-gradient(165deg, rgba(15,17,21,0.72), rgba(10,11,14,0.55));
+        linear-gradient(165deg, rgba(17,25,54,0.72), rgba(10,11,14,0.55));
       backdrop-filter: blur(18px) saturate(140%);
       -webkit-backdrop-filter: blur(18px) saturate(140%);
       overflow: hidden;
