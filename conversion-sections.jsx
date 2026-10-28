@@ -307,7 +307,7 @@ const TeamPageBody = ({ gold, muted }) => (
       </section>
       <style>{`
         @media (max-width: 920px) { .vz-team-grid { grid-template-columns: 1fr !important; } #nous-rejoindre { grid-template-columns: 1fr !important; } }
-        @media (max-width: 520px) { .vz-team-grid li { grid-template-columns: 1fr !important; } .vz-team-grid img { max-width: 220px; } }
+        
       `}</style>
     </div>
   </React.Fragment>

@@ -459,3 +459,26 @@ body::after {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 @media print { body::after { display: none; } }
+
+/* ============================================================
+   REFONTE 10/2026 — sections de conversion sur mobile (<= 720px)
+   ============================================================ */
+@media (max-width: 720px) {
+  /* « Trois questions » : le mini-écran passe au-dessus du texte au lieu d'être dessous */
+  .vz-out-card { min-height: 0 !important; justify-content: flex-start !important; }
+  .vz-out-bg { position: relative !important; inset: auto !important; height: 190px !important; }
+  /* Dernier appel : bouton pleine largeur, texte qui peut passer à la ligne */
+  .vz-final { padding: 48px 20px !important; margin-top: 80px !important; }
+  .vz-final .vz-btn-primary { white-space: normal !important; width: 100%; justify-content: center; text-align: center; }
+  /* Équipe : photo compacte à gauche du nom */
+  .vz-team-grid li { grid-template-columns: 96px 1fr !important; gap: 16px !important; padding: 16px !important; }
+  .vz-team-grid h2 { font-size: 19px !important; }
+  #nous-rejoindre { padding: 32px 20px !important; }
+  #nous-rejoindre a { justify-content: center; }
+  /* Offre : la valeur passe sous l'intitulé */
+  .vz-beta-grid li { flex-wrap: wrap; }
+  .vz-beta-grid li > span:nth-child(2) { flex: 1 1 calc(100% - 40px) !important; }
+  .vz-beta-grid li > span:last-child { margin-left: 34px; margin-top: -6px; }
+  /* Pied de page : liens sur deux colonnes */
+  .vz-footer-nav ul { display: grid !important; grid-template-columns: 1fr 1fr; gap: 2px 16px !important; }
+}
