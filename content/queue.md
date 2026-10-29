@@ -15,10 +15,10 @@ Catégories : Trésorerie · Rentabilité · Lecture des comptes · Fiscalité �
 
 - [x] 2026-10-27 · calcul-bfr · Trésorerie · calcul bfr (5 400 recherches/mois, SD 33)
 - [x] 2026-10-28 · seuil-de-rentabilite · Rentabilité · seuil de rentabilité (4 400/mois, SD 12)
+- [x] 2026-10-29 · calculer-une-marge-brute · Rentabilité · calculer une marge brute (3 600/mois, SD 10)
 
 ## À publier
 
-- [ ] Rentabilité · calculer une marge brute · marge brute, taux de marge et taux de marque, erreurs fréquentes, exemple chiffré · breakeven · score 9.0/10 · 3 600/mois SD 10 ; « marge brute calcul » 2 900 SD 18
 - [ ] Lecture des comptes · ebe calcul · EBE à partir du compte de résultat, EBE retraité, EBE vs EBITDA, EBE négatif · valorisation · score 8.8/10 · « ebe » 9 900/mois, « ebe calcul » 3 600 SD 18, « ebe définition » 3 600
 - [ ] Valorisation · valorisation entreprise · comment valoriser une PME (multiples d'EBITDA/EBE, DCF, patrimoniale), exemple chiffré · valorisation · score 8.6/10 · 880/mois SD 11 ; « valorisation entreprise calcul » 320 ; autocomplete « comment valoriser une entreprise » 10 sugg.
 - [ ] Fiscalité · acompte is · dates (15 décembre), seuil, calcul, exercice décalé ; saisonnier, à publier avant le 1er décembre · fiscal · score 8.0/10 · autocomplete 10 sugg. ; échéance de fin d'année
