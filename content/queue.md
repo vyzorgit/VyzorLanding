@@ -17,10 +17,10 @@ Catégories : Trésorerie · Rentabilité · Lecture des comptes · Fiscalité �
 - [x] 2026-10-28 · seuil-de-rentabilite · Rentabilité · seuil de rentabilité (4 400/mois, SD 12)
 - [x] 2026-10-29 · calculer-une-marge-brute · Rentabilité · calculer une marge brute (3 600/mois, SD 10)
 - [x] 2026-10-30 · ebe-calcul · Lecture des comptes · ebe calcul (3 600/mois, SD 18)
+- [x] 2026-10-31 · valorisation-entreprise · Valorisation · valorisation entreprise (880/mois, SD 11)
 
 ## À publier
 
-- [ ] Valorisation · valorisation entreprise · comment valoriser une PME (multiples d'EBITDA/EBE, DCF, patrimoniale), exemple chiffré · valorisation · score 8.6/10 · 880/mois SD 11 ; « valorisation entreprise calcul » 320 ; autocomplete « comment valoriser une entreprise » 10 sugg.
 - [ ] Fiscalité · acompte is · dates (15 décembre), seuil, calcul, exercice décalé ; saisonnier, à publier avant le 1er décembre · fiscal · score 8.0/10 · autocomplete 10 sugg. ; échéance de fin d'année
 - [ ] Fiscalité · sas ou sarl · comparatif fiscal et social du dirigeant en 2026, cas chiffrés · fiscal · score 8.0/10 · 2 900/mois SD 31 ; SERP chargée (legalstart, captain contrat)
 - [ ] Fiscalité · salaire ou dividendes sas · arbitrage chiffré 2026, débats du PLF 2027 sur la flat tax à suivre sans les présenter comme acquis · fiscal · score 7.9/10 · autocomplete 10 sugg. ; actualité flat tax (Meilleurtaux, 23/10/2026) — taux à vérifier sur source officielle
