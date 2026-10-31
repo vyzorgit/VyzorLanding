@@ -204,6 +204,7 @@
   <script type="text/babel" src="besoin-client.jsx"></script>
   <script type="text/babel" src="how-it-works.jsx"></script>
   <script type="text/babel" src="conversion-sections.jsx"></script>
+  <script type="text/babel" src="video-presentation.jsx"></script>
   <script type="text/babel" src="agentic-twin.jsx"></script>
   <script type="text/babel" src="features-glass.jsx"></script>
   <script type="text/babel" src="daf-coconception.jsx"></script>
@@ -350,8 +351,9 @@
             margin: "0 auto",
             padding: "0 clamp(24px, 6vw, 96px)",
           }}>
-            {/* Narratif (refonte 27/10/2026) : la preuve visuelle d'abord (démo), puis la douleur,
+            {/* Narratif (refonte 27/10/2026) : la preuve visuelle d'abord (vidéo, démo), puis la douleur,
                 la facilité (3 étapes), la crédibilité (DAF), enfin l'offre bêta. */}
+            <div className="vz-reveal"><VideoPresentationSection id="video" gold={gold} subtle={subtle} /></div>
             <AgenticTwinSection id="produit" gold={gold} text={text} muted={muted} subtle={subtle} />
             <div className="vz-reveal"><BesoinClientSection id="constat" gold={gold} text={text} muted={muted} subtle={subtle} audience="dirigeant" showBridge={false} /></div>
             <div className="vz-reveal"><OutcomesSection id="resultats" gold={gold} muted={muted} /></div>
