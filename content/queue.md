@@ -22,30 +22,33 @@ Catégories : Trésorerie · Rentabilité · Lecture des comptes · Fiscalité �
 
 ## À publier
 
-- [ ] Fiscalité · sas ou sarl · comparatif fiscal et social du dirigeant en 2026, cas chiffrés · fiscal · score 8.0/10 · 2 900/mois SD 31 ; SERP chargée (legalstart, captain contrat)
-- [ ] Fiscalité · salaire ou dividendes sas · arbitrage chiffré 2026, débats du PLF 2027 sur la flat tax à suivre sans les présenter comme acquis · fiscal · score 7.9/10 · autocomplete 10 sugg. ; actualité flat tax (Meilleurtaux, 23/10/2026) — taux à vérifier sur source officielle
-- [ ] Fiscalité · taux impôt sur les sociétés · taux normal et taux réduit PME (conditions, plafond), plafond débattu dans le PLF 2027 présenté comme non acquis · fiscal · score 7.8/10 · 1 300/mois SD 40 ; amendement plafond 49 000 € (fiscalonline, 09/10/2026)
-- [ ] Rentabilité · point mort calcul · point mort en jours et en mois, lien avec le seuil de rentabilité · breakeven · score 7.8/10 · autocomplete 10 sugg. (« en jour » en 2e)
-- [ ] Valorisation · multiple ebitda par secteur · fourchettes uniquement si source publiée et datée, sinon méthode pour trouver les comparables · valorisation · score 7.6/10 · autocomplete « par secteur 2026 » en 1re position ; SERP cabinets
-- [ ] Rentabilité · quel taux de marge pour être rentable · taux de marge cible selon les charges fixes, méthode plutôt que norme sectorielle inventée · breakeven · score 7.5/10 · autocomplete 10 sugg. ; SERP peu traitée
-- [ ] Actualité et réglementation · délais de paiement 2026 · rapport de l'Observatoire des délais de paiement, règles légales, actions · bfr · score 7.4/10 · Banque de France 24/09/2026 ; intérêt jusqu'à fin 2026
-- [ ] Trésorerie · bfr négatif · signification, quand c'est bon ou risqué, BFR en jours de CA · bfr · score 7.3/10 · 880/mois SD 32 ; « bfr en jours de ca » 10 sugg.
-- [ ] Pilotage · tableau de bord financier · exemple de tableau de bord PME en une page, les indicateurs utiles, modèle · reporting · score 7.2/10 · 390/mois SD 31 ; « tableau de bord financier exemple » 140 SD 14
-- [ ] Trésorerie · plan de trésorerie prévisionnel · construire un plan sur 13 semaines puis 12 mois, modèle de lignes · bfr · score 7.0/10 · « prévisionnel de trésorerie » 210/mois SD 25 ; autocomplete 10 sugg.
-- [ ] Actualité et réglementation · facturation électronique 2027 · émission obligatoire pour PME/TPE au 1er septembre 2027, check-list (sources impots.gouv / economie.gouv obligatoires) · — · score 7.0/10 · autocomplete 10 sugg. ; SERP officielle et éditeurs
-- [ ] Fiscalité · rémunération dirigeant sas · quel salaire se verser, cotisations, cas chiffrés · fiscal · score 6.9/10 · autocomplete 10 sugg.
-- [ ] Lecture des comptes · lire un bilan comptable · les 5 lignes à regarder en premier, exemple · reporting · score 6.9/10 · autocomplete « comment lire un bilan comptable » 1re position
-- [ ] Pilotage · reporting financier mensuel · structure en une page, qui le lit, modèle · reporting · score 6.8/10 · autocomplete 9-10 sugg. ; SERP faible
-- [ ] Rentabilité · marge sur coût variable · formule, taux, lien avec le point mort, exemple PME · breakeven · score 6.6/10 · autocomplete 10 sugg. (très scolaire)
-- [ ] Lecture des comptes · capacité d'autofinancement calcul · formule, interprétation, usage par la banque · — · score 6.5/10 · autocomplete 10 sugg.
-- [ ] Fiscalité · holding avantages · se rémunérer via une holding, régime mère-fille ; quote-part de frais débattue dans le PLF 2027 · fiscal · score 6.4/10 · autocomplete 9-10 sugg. ; SERP saturée
-- [ ] Lecture des comptes · fonds de roulement et bfr · FRNG, BFR, trésorerie nette, exemple · bfr · score 6.3/10 · autocomplete 10 sugg.
-- [ ] Trésorerie · comment améliorer sa trésorerie · 10 actions classées par effet en euros · bfr · score 6.2/10 · autocomplete 4 sugg.
-- [ ] Pilotage · kpi financiers · les indicateurs qu'un dirigeant suit chaque mois · reporting · score 6.1/10 · autocomplete 10 sugg.
-- [ ] Pennylane · export fec pennylane · exporter ses données comptables pour construire un tableau de bord · reporting · score 6.0/10 · autocomplete « pennylane export » 5 sugg. ; SERP faible hors pennylane.com
-- [ ] Lecture des comptes · compte de résultat · lecture en 10 minutes pour un dirigeant · — · score 5.9/10 · autocomplete 10 sugg.
-- [ ] Trésorerie · trésorerie négative · signification, causes, que faire · bfr · score 5.8/10 · autocomplete 4 sugg. ; SERP faible
-- [ ] Fiscalité · sasu ou eurl · comparatif chiffré (cible plutôt indépendants) · fiscal · score 5.7/10 · autocomplete 10 sugg. ; SERP forte
-- [ ] Actualité et réglementation · défaillances d'entreprises 2026 · chiffres Banque de France et causes liées à la trésorerie · bfr · score 5.6/10 · Banque de France 09/10/2026 ; SERP forte
-- [ ] Trésorerie · délai de paiement client · calcul du délai moyen (DSO), règles légales, relances · bfr · score 5.5/10 · autocomplete 10 sugg.
-- [ ] Trésorerie · prêt de trésorerie · prêt, découvert, affacturage : coût réel avec les taux de fin 2026 · bfr · score 5.2/10 · autocomplete 10 sugg. ; SERP banques
+- [ ] MAJ · ebe-calcul · ajouter la variante « excédent brut d'exploitation » dans le titre SEO, la description et un `##` (garder « ebe calcul » en principal) · variante 2,7 fois plus recherchée : 9 900/mois SD 37 contre 3 600 SD 18 (veille 02/11)
+- [ ] Fiscalité · flat tax dividendes · flat tax sur les dividendes du dirigeant en 2026 et arbitrage salaire ou dividendes avant le 31/12/2026 ; PLF 2027 (vote en 1re lecture le 17/11/2026) présenté comme non acquis, taux en vigueur vérifié sur source officielle · fiscal · score 8.0/10 · flat tax dividendes 480 SD 12 ; flat tax dividendes 2026 480 SD 12 ; taux flat tax 2026 1 000 SD 9 ; salaire ou dividendes 210 SD 17 ; actualité PFU (kohenavocats 22/10/2026)
+- [ ] Fiscalité · taux impôt sur les sociétés · taux normal et taux réduit PME (conditions, plafond) ; plafond à 49 000 € débattu dans le PLF 2027, non acquis avant promulgation (intérêt jusqu'à fin décembre 2026) · fiscal · score 7.2/10 · 1 300/mois SD 40 ; SERP blogs et cabinets (fiscaloo, clementine, hayot-expertise)
+- [ ] Rentabilité · calculer un taux de marge · fixer un prix de vente : taux de marge, taux de marque et coefficient, exemple de PME (ne pas doublonner calculer-une-marge-brute, lien croisé) · breakeven · score 8.2/10 · 6 600/mois SD 25 ; calculer le taux de marge 4 400 SD 26 ; taux de marge et taux de marque 1 000 SD 19 ; SERP blogs d'éditeurs
+- [ ] Rentabilité · calcul point mort · point mort en jours et en date, lien avec le seuil de rentabilité · breakeven · score 7.8/10 · calcul point mort 880 SD 11 ; calculer le point mort 1 000 SD 27 ; SERP dougs, agicap, finom
+- [ ] Actualité et réglementation · facturation électronique obligatoire · ce que la PME doit faire : réception depuis le 01/09/2026, émission au 01/09/2027, effet sur les délais de paiement (dates sur impots.gouv / economie.gouv obligatoires ; intérêt jusqu'à septembre 2027) · bfr · score 7.3/10 · facturation électronique obligatoire 6 600 SD 24 ; facturation électronique 2026 9 900 SD 42 ; demande surtout auto-entrepreneurs, viser la PME
+- [ ] Trésorerie · délai de paiement entre professionnels · règles LME (60 jours ou 45 jours fin de mois, à vérifier sur source officielle), retards des grands comptes, actions et effet sur le BFR ; intérêt jusqu'à fin 2026 · bfr · score 7.3/10 · délai de paiement 1 000 SD 32 (bruité : salaire, solde de tout compte) ; actualité Daf-mag 09/10/2026, OFE/Banque de France 26/10/2026
+- [ ] Trésorerie · plan de trésorerie · construire un plan sur 13 semaines puis 12 mois, exemple chiffré · bfr · score 7.3/10 · 1 000/mois SD 16 (contre 210 pour « prévisionnel de trésorerie »)
+- [ ] Trésorerie · bfr négatif · signification, quand c'est bon ou risqué, BFR en jours de CA · bfr · score 7.3/10 · 880/mois SD 32
+- [ ] Fiscalité · sas ou sarl · comparatif fiscal et social du dirigeant en 2026, cas chiffrés · fiscal · score 7.0/10 · 2 900/mois SD 31 ; SERP saturée (captaincontrat, legalvision, clementine, dougs, qonto, keobiz)
+- [ ] Pilotage · tableau de bord financier · exemple de tableau de bord PME en une page, les indicateurs utiles, modèle · reporting · score 7.0/10 · 390/mois SD 31 ; « tableau de bord financier exemple » 140 SD 14 ; SERP legalstart, tiime, capterra
+- [ ] Valorisation · multiple ebitda par secteur · fourchettes uniquement si source publiée et datée, sinon méthode pour trouver les comparables · valorisation · score 7.0/10 · autocomplete « par secteur 2026 » (27/10) ; valorisation entreprise ebitda 70 SD 9
+- [ ] Rentabilité · quel taux de marge pour être rentable · taux de marge cible selon les charges fixes, méthode plutôt que norme sectorielle inventée · breakeven · score 6.9/10 · autocomplete 10 sugg. (27/10) ; à lier au guide « calculer un taux de marge »
+- [ ] Fiscalité · rémunération dirigeant sas · quel salaire se verser, cotisations, cas chiffrés · fiscal · score 6.8/10 · rémunération dirigeant 260 SD 31 ; autocomplete 10 sugg. (27/10)
+- [ ] Lecture des comptes · lire un bilan comptable · les 5 lignes à regarder en premier, exemple · reporting · score 6.8/10 · autocomplete « comment lire un bilan comptable » 1re position (27/10)
+- [ ] Pilotage · reporting financier mensuel · structure en une page, qui le lit, modèle · reporting · score 6.7/10 · autocomplete 9-10 sugg. (27/10) ; SERP faible
+- [ ] Rentabilité · marge sur coût variable · formule, taux, lien avec le point mort, exemple PME · breakeven · score 6.6/10 · taux de marge sur coût variable 720 SD 24
+- [ ] Lecture des comptes · capacité d'autofinancement calcul · formule, interprétation, usage par la banque · — · score 6.5/10 · autocomplete 10 sugg. (27/10)
+- [ ] Actualité et réglementation · loi de finances 2027 pme · ce qui change au 1er janvier 2027 ; à publier seulement après adoption définitive (fin décembre 2026), jamais sur le projet · fiscal · score 6.4/10 · SERP active (mooncard 21/10, extencia, maxcompta) ; volume non mesuré
+- [ ] Fiscalité · holding avantages · se rémunérer via une holding, régime mère-fille ; quote-part de frais débattue dans le PLF 2027 · fiscal · score 6.3/10 · autocomplete 9-10 sugg. (27/10) ; SERP saturée
+- [ ] Lecture des comptes · fonds de roulement et bfr · FRNG, BFR, trésorerie nette, exemple · bfr · score 6.3/10 · autocomplete 10 sugg. (27/10)
+- [ ] Trésorerie · comment améliorer sa trésorerie · 10 actions classées par effet en euros · bfr · score 6.2/10 · autocomplete 4 sugg. (27/10)
+- [ ] Pilotage · kpi financiers · les indicateurs qu'un dirigeant suit chaque mois · reporting · score 6.1/10 · autocomplete 10 sugg. (27/10)
+- [ ] Pennylane · export fec pennylane · exporter ses données comptables pour construire un tableau de bord · reporting · score 6.0/10 · autocomplete « pennylane export » 5 sugg. (27/10) ; SERP faible hors pennylane.com
+- [ ] Lecture des comptes · compte de résultat · lecture en 10 minutes pour un dirigeant · — · score 5.9/10 · autocomplete 10 sugg. (27/10)
+- [ ] Actualité et réglementation · défaillances d'entreprises 2026 · chiffres Banque de France (68 602 en 2025, 70 077 sur 12 mois à fin mai 2026, rapport OFE 26/10/2026) et causes liées à la trésorerie · bfr · score 5.8/10 · actualité ; SERP forte
+- [ ] Trésorerie · trésorerie négative · signification, causes, que faire · bfr · score 5.8/10 · autocomplete 4 sugg. (27/10) ; SERP faible
+- [ ] Fiscalité · sasu ou eurl · comparatif chiffré (cible plutôt indépendants) · fiscal · score 5.7/10 · autocomplete 10 sugg. (27/10) ; SERP forte
+- [ ] Trésorerie · délai de paiement client · calcul du délai moyen (DSO), relances (fusionnable avec « délai de paiement entre professionnels ») · bfr · score 5.4/10 · autocomplete 10 sugg. (27/10)
+- [ ] Trésorerie · prêt de trésorerie · prêt, découvert, affacturage : coût réel avec les taux de fin 2026 · bfr · score 5.2/10 · autocomplete 10 sugg. (27/10) ; SERP banques
