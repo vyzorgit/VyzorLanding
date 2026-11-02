@@ -19,10 +19,10 @@ Catégories : Trésorerie · Rentabilité · Lecture des comptes · Fiscalité �
 - [x] 2026-10-30 · ebe-calcul · Lecture des comptes · ebe calcul (3 600/mois, SD 18)
 - [x] 2026-10-31 · valorisation-entreprise · Valorisation · valorisation entreprise (880/mois, SD 11)
 - [x] 2026-11-01 · acompte-is · Fiscalité · acompte is (2 400/mois, SD 17)
+- [x] 2026-11-02 · MAJ ebe-calcul · variante « excédent brut d'exploitation » (9 900/mois, SD 37) ajoutée au titre SEO, à la description, au premier paragraphe et à un titre `##` ; « ebe calcul » reste le mot-clé principal ; taux IS de l'exemple revérifiés sur impots.gouv.fr
 
 ## À publier
 
-- [ ] MAJ · ebe-calcul · ajouter la variante « excédent brut d'exploitation » dans le titre SEO, la description et un `##` (garder « ebe calcul » en principal) · variante 2,7 fois plus recherchée : 9 900/mois SD 37 contre 3 600 SD 18 (veille 02/11)
 - [ ] Fiscalité · flat tax dividendes · flat tax sur les dividendes du dirigeant en 2026 et arbitrage salaire ou dividendes avant le 31/12/2026 ; PLF 2027 (vote en 1re lecture le 17/11/2026) présenté comme non acquis, taux en vigueur vérifié sur source officielle · fiscal · score 8.0/10 · flat tax dividendes 480 SD 12 ; flat tax dividendes 2026 480 SD 12 ; taux flat tax 2026 1 000 SD 9 ; salaire ou dividendes 210 SD 17 ; actualité PFU (kohenavocats 22/10/2026)
 - [ ] Fiscalité · taux impôt sur les sociétés · taux normal et taux réduit PME (conditions, plafond) ; plafond à 49 000 € débattu dans le PLF 2027, non acquis avant promulgation (intérêt jusqu'à fin décembre 2026) · fiscal · score 7.2/10 · 1 300/mois SD 40 ; SERP blogs et cabinets (fiscaloo, clementine, hayot-expertise)
 - [ ] Rentabilité · calculer un taux de marge · fixer un prix de vente : taux de marge, taux de marque et coefficient, exemple de PME (ne pas doublonner calculer-une-marge-brute, lien croisé) · breakeven · score 8.2/10 · 6 600/mois SD 25 ; calculer le taux de marge 4 400 SD 26 ; taux de marge et taux de marque 1 000 SD 19 ; SERP blogs d'éditeurs

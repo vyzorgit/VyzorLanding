@@ -1,9 +1,10 @@
 ---
 title: "EBE : calcul à partir du compte de résultat, formule et exemple de PME"
-seo_title: "EBE calcul : formules, exemple de PME et EBE retraité"
-description: "EBE calcul pas à pas : formule depuis la valeur ajoutée, depuis le résultat d'exploitation ou le résultat net, exemple chiffré de PME et EBE retraité."
+seo_title: "EBE calcul : excédent brut d'exploitation, formule et exemple"
+description: "EBE calcul pas à pas : formule de l'excédent brut d'exploitation depuis la valeur ajoutée ou le résultat net, exemple de PME et EBE retraité."
 slug: ebe-calcul
 date: 2026-10-30
+updated: 2026-11-02
 category: Lecture des comptes
 keyword: "ebe calcul"
 tool: valorisation
@@ -29,13 +30,13 @@ sources:
     url: "https://bofip.impots.gouv.fr/bofip/6071-PGP.html/identifiant=BOI-ANNX-000403-20140707"
   - title: "Insee — Définition : excédent brut d'exploitation"
     url: "https://www.insee.fr/fr/metadonnees/definition/c1538"
-  - title: "impots.gouv.fr — Impôt sur les sociétés : taux normal et taux réduit (consulté le 30/10/2026)"
+  - title: "impots.gouv.fr — Impôt sur les sociétés : taux normal et taux réduit (consulté le 02/11/2026)"
     url: "https://www.impots.gouv.fr/international-professionnel/impot-sur-les-societes"
   - title: "Bpifrance Création — Soldes intermédiaires de gestion"
     url: "https://bpifrance-creation.fr/soldes-intermediaires-gestion"
 ---
 
-Votre résultat net varie d'une année à l'autre au gré des amortissements, des intérêts d'emprunt et des éléments exceptionnels. Pour savoir si votre activité elle-même gagne de l'argent, le bon indicateur est l'EBE. Ce guide détaille l'EBE calcul pas à pas, par les trois chemins possibles (depuis la valeur ajoutée, depuis le résultat d'exploitation, depuis le résultat net), avec un exemple chiffré complet de PME, puis montre comment le retraiter pour une valorisation.
+Votre résultat net varie d'une année à l'autre au gré des amortissements, des intérêts d'emprunt et des éléments exceptionnels. Pour savoir si votre activité elle-même gagne de l'argent, le bon indicateur est l'excédent brut d'exploitation (EBE). Ce guide détaille l'EBE calcul pas à pas, par les trois chemins possibles (depuis la valeur ajoutée, depuis le résultat d'exploitation, depuis le résultat net), avec un exemple chiffré complet de PME, puis montre comment le retraiter pour une valorisation.
 
 ## Qu'est-ce que l'EBE (excédent brut d'exploitation) ?
 
@@ -45,7 +46,7 @@ Il répond à une question simple : mon métier, tel que je l'exerce aujourd'hui
 
 Quand il est négatif, le tableau des soldes de gestion parle d'**insuffisance brute d'exploitation**.
 
-## EBE calcul : la formule à partir de la valeur ajoutée
+## EBE calcul : la formule de l'excédent brut d'exploitation
 
 La méthode de référence descend le compte de résultat, solde après solde. Les définitions ci-dessous reprennent celles du tableau des soldes de gestion publié au BOFiP.
 
