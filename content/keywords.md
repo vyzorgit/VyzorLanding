@@ -14,6 +14,7 @@ Budget Ubersuggest : la veille du lundi utilise 2 recherches au plus, la tâche 
 - **Concurrents** : « salaire ou dividendes » tenue par cabinets et simulateurs (hayot-expertise ×3 articles 2026, moicombien, l-expert-comptable, cleerly, keobiz) ; « calculer un taux de marge » par blogs d'éditeurs et calculateurs (legalnest, clementine, legalstart, omnicalculator, finom) = faisable ; « point mort » : dougs, agicap, finom, lecoindesentrepreneurs ; « taux IS » : fiscaloo, clementine, hayot-expertise, simulateurs ; « sas ou sarl » : saturée (captaincontrat, legalvision, dougs, qonto, clementine, keobiz) ; « tableau de bord financier » : legalstart, tiime, capterra, finalib.
 - **Mouvements de file** : « salaire ou dividendes sas » devient « flat tax dividendes » (volume supérieur) ; « prévisionnel de trésorerie » devient « plan de trésorerie » (1 000 contre 210) ; « point mort calcul » devient « calcul point mort » (880 SD 11 contre 390 SD 34) ; ajout « calculer un taux de marge » et « loi de finances 2027 pme » (après adoption seulement).
 - **Mises à jour demandées** : ebe-calcul (variante « excédent brut d'exploitation », 9 900/mois).
+- Relevé du 2026-11-03 (guide « flat tax dividendes ») : aucune recherche Ubersuggest, volumes déjà relevés par la veille du 02/11. Autocomplete Google indisponible ce jour (autorisation non accordée). SERP « flat tax dividendes » : legalplace, creerentreprise, leblogdudirigeant, dougs, corrigetonimpot ; plusieurs pages citent encore 30 %.
 
 ## 2026-10-27 — rapport initial
 
