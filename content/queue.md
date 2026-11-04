@@ -21,10 +21,10 @@ Catégories : Trésorerie · Rentabilité · Lecture des comptes · Fiscalité �
 - [x] 2026-11-01 · acompte-is · Fiscalité · acompte is (2 400/mois, SD 17)
 - [x] 2026-11-02 · MAJ ebe-calcul · variante « excédent brut d'exploitation » (9 900/mois, SD 37) ajoutée au titre SEO, à la description, au premier paragraphe et à un titre `##` ; « ebe calcul » reste le mot-clé principal ; taux IS de l'exemple revérifiés sur impots.gouv.fr
 - [x] 2026-11-03 · flat-tax-dividendes · Fiscalité · flat tax dividendes (480/mois, SD 12 ; variantes flat tax 2026 8 100 SD 20, taux flat tax 2026 1 000 SD 9)
+- [x] 2026-11-04 · taux-is · Fiscalité · taux is (2 400/mois, SD 23 ; variantes taux is 2026 1 000 SD 19, taux impôt sur les sociétés 1 300 SD 40, taux is réduit 210 SD 33)
 
 ## À publier
 
-- [ ] Fiscalité · taux impôt sur les sociétés · taux normal et taux réduit PME (conditions, plafond) ; plafond à 49 000 € débattu dans le PLF 2027, non acquis avant promulgation (intérêt jusqu'à fin décembre 2026) · fiscal · score 7.2/10 · 1 300/mois SD 40 ; SERP blogs et cabinets (fiscaloo, clementine, hayot-expertise)
 - [ ] Rentabilité · calculer un taux de marge · fixer un prix de vente : taux de marge, taux de marque et coefficient, exemple de PME (ne pas doublonner calculer-une-marge-brute, lien croisé) · breakeven · score 8.2/10 · 6 600/mois SD 25 ; calculer le taux de marge 4 400 SD 26 ; taux de marge et taux de marque 1 000 SD 19 ; SERP blogs d'éditeurs
 - [ ] Rentabilité · calcul point mort · point mort en jours et en date, lien avec le seuil de rentabilité · breakeven · score 7.8/10 · calcul point mort 880 SD 11 ; calculer le point mort 1 000 SD 27 ; SERP dougs, agicap, finom
 - [ ] Actualité et réglementation · facturation électronique obligatoire · ce que la PME doit faire : réception depuis le 01/09/2026, émission au 01/09/2027, effet sur les délais de paiement (dates sur impots.gouv / economie.gouv obligatoires ; intérêt jusqu'à septembre 2027) · bfr · score 7.3/10 · facturation électronique obligatoire 6 600 SD 24 ; facturation électronique 2026 9 900 SD 42 ; demande surtout auto-entrepreneurs, viser la PME
