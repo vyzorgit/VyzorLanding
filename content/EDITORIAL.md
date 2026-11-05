@@ -60,6 +60,13 @@ Unique objectif des guides (Antoine, 27/10/2026) : référencement de vyzor.fr e
 - Dénigrer un concurrent ou le nommer pour le comparer (Pennylane peut être cité comme logiciel comptable utilisé par le lecteur, sans jugement ; aucune affirmation sur ses fonctionnalités sans source).
 - Copier ou paraphraser de près un article existant (y compris eloQ, Agicap, Pennylane) : angle, plan et exemple propres à chaque guide.
 
+## Diffusion LinkedIn (décision d'Antoine, 05/11/2026)
+
+- **Page entreprise Vyzor** : sert la portée du site (trafic vers les guides et les calculateurs). Les profils personnels d'Antoine et Louis servent la marque et la prospection : deux usages distincts.
+- Format : **carrousel** (PDF de 6 à 8 slides, 1080 × 1350, charte Vyzor) tiré d'un guide, 3 fois par semaine ; **vidéo courte** (20 à 30 s, style de la vidéo de la landing) 1 fois par semaine. Bilan des deux formats après un mois (statistiques via Windsor.ai), on garde ce qui ramène le plus de clics vers les calculateurs.
+- Texte du post : le mot-clé du guide dès la première phrase, l'exemple chiffré du guide, le lien vers le guide ou le calculateur. Mêmes règles de vérité et mêmes interdits que les guides.
+- Publication via Typefully ; tant que le circuit n'est pas rodé, chaque post est préparé en brouillon et publié après accord d'Antoine.
+
 ## Concurrence observée (27/10/2026)
 
 eloQ (askeloq.com/blog) publie ~20 guides : indicateurs (EBE, BFR, DSO, marge, point mort, tableau de bord), trésorerie et prévisionnel, « IA et DAF », actualité (facturation électronique, défaillances). Conversion uniquement par prise de rendez-vous, aucun outil gratuit, aucune capture d'email. Notre différence : chaque guide mène à un calculateur gratuit, et un exemple chiffré recalculé dans chaque article.
