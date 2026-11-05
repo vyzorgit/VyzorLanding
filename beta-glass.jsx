@@ -233,7 +233,7 @@ const BetaModal = ({ open, onClose }) => {
   React.useEffect(() => setMounted(true), []);
 
   // Sur /cabinets, la modale sert à présenter un client : textes adaptés.
-  const isCabinet = mounted && /^\/cabinets/.test(window.location.pathname);
+  const isCabinet = mounted && /^\/cabinets/.test(window.VZ_FR_PATH || window.location.pathname);
   const WEB3FORMS_KEY = "9f003436-eba6-4543-b3ed-06c89a38a69c";
 
   const handleSubmit = async (e) => {
@@ -580,7 +580,10 @@ const BetaFormGlass = ({ modalOnly = false }) => {
             fontWeight: 600, lineHeight: 1.05, maxWidth: 760,
             color: "#fff",
           }}>
-            Devenez l'un des <span style={{ color: gold }}>{betaPlaces} premiers</span>
+            {vzL({
+              fr: () => <React.Fragment>Devenez l'un des <span style={{ color: gold }}>{betaPlaces} premiers</span></React.Fragment>,
+              en: () => <React.Fragment>Be one of the <span style={{ color: gold }}>first {betaPlaces}</span></React.Fragment>,
+            })}
             <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 400, fontStyle: "italic" }}> à façonner Vyzor.</span>
           </h2>
         </div>

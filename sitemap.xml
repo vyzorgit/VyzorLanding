@@ -39,6 +39,15 @@
   </url>
 
   <url>
+    <loc>https://www.vyzor.fr/integrations</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://www.vyzor.fr/integrations" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.vyzor.fr/integrations" />
+  </url>
+
+  <url>
     <loc>https://www.vyzor.fr/equipe</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>

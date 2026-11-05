@@ -20,6 +20,7 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
     { label: "Fonctionnalités", href: "/fonctionnalites" },
     { label: "Vyzor pour Pennylane", href: "/pennylane" },
     { label: "Experts-comptables", href: "/cabinets" },
+    { label: "Intégrations", href: "/integrations" },
     { label: "Sécurité & RGPD", href: "/securite" },
     { label: "Calculateurs gratuits", href: "/calculateurs" },
     { label: "Guides", href: "/guides" },
@@ -198,6 +199,9 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
         }}>
           <span>© 2026 Vyzor</span>
           <span>Données hébergées dans l'UE</span>
+          {(() => { const l = vzLangSwitch(); return (
+            <a href={l.href} hrefLang={l.code} lang={l.code} style={{ color: muted, textDecoration: "none" }}>{l.name}</a>
+          ); })()}
         </div>
 
         <div style={{ display: "flex", gap: 22, fontSize: 12, color: muted }}>

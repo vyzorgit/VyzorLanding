@@ -124,7 +124,7 @@ const VyzorFAQ = () => {
   const nq = vzfNorm(query.trim());
   const groups = VYZOR_FAQ_GROUPS.map((g) => ({
     ...g,
-    shown: nq ? g.items.filter((i) => vzfNorm(i.q + " " + i.a).includes(nq)) : g.items,
+    shown: nq ? g.items.filter((i) => vzfNorm(vzT(i.q) + " " + vzT(i.a)).includes(nq)) : g.items,
   }));
   const total = groups.reduce((n, g) => n + g.shown.length, 0);
 
@@ -151,7 +151,7 @@ const VyzorFAQ = () => {
         <div className="vzf-search">
           <input type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Rechercher une question…" aria-label="Rechercher dans la FAQ" />
           {query && <button type="button" className="vzf-clear" onClick={() => setQuery("")} aria-label="Effacer la recherche">×</button>}
-          <p className="vzf-sr" role="status">{nq ? (total === 0 ? "Aucune question trouvée" : total + (total > 1 ? " questions trouvées" : " question trouvée")) : ""}</p>
+          <p className="vzf-sr" role="status">{nq ? (total === 0 ? "Aucune question trouvée" : vzL({ fr: total + (total > 1 ? " questions trouvées" : " question trouvée"), en: total + (total > 1 ? " questions found" : " question found") })) : ""}</p>
         </div>
         <nav className="vzf-nav" aria-label="Thèmes de la FAQ">
           {groups.map((g, i) => (
@@ -166,7 +166,7 @@ const VyzorFAQ = () => {
 
       <div className="vzf-main">
         {total === 0 && (
-          <p className="vzf-empty">Aucune question ne correspond à « {query} ».<br />Écrivez-nous à <a href="mailto:admin@vyzor.fr">admin@vyzor.fr</a>, nous vous répondons rapidement.</p>
+          <p className="vzf-empty">{vzL({ fr: () => <React.Fragment>Aucune question ne correspond à « {query} ».</React.Fragment>, en: () => <React.Fragment>No questions match “{query}”.</React.Fragment> })}<br />Écrivez-nous à <a href="mailto:admin@vyzor.fr">admin@vyzor.fr</a>, nous vous répondons rapidement.</p>
         )}
         {groups.map((g, gi) => g.shown.length > 0 && (
           <div key={g.id} id={"faq-" + g.id} data-gid={g.id} className="vzf-group">

@@ -274,11 +274,6 @@ const CinematicHero = () => {
   const gold = "#f0c949";
   const text = "rgba(255,255,255,0.94)";
   const muted = "rgba(255,255,255,0.62)";
-  const proofs = [
-    "Compatible Pennylane",
-    "Lecture seule, rien n'est modifié",
-    "Données hébergées dans l'UE",
-  ];
   return (
     <section className="vz-hero-stage" style={{
       position: "relative", width: "100%",
@@ -296,23 +291,12 @@ const CinematicHero = () => {
         .vz-btn-ghost:hover { border-color: rgba(255,255,255,0.32) !important; background-color: rgba(255,255,255,0.04) !important; }
         .vz-hero-h1 { font-size: clamp(38px, 5.6vw, 76px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
         .vz-hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 0%, #1b2860 0%, #101a42 32%, rgba(10,16,38,0) 72%); }
-        .vz-hero-proofs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin: clamp(36px, 4vw, 48px) 0 0; padding: 0; list-style: none; }
-        .vz-hero-proofs li { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: rgba(255,255,255,0.7); }
         .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
         @media (max-width: 720px) { .vz-hero-stage { padding: 132px 0 48px !important; } }
         @media (prefers-reduced-motion: reduce) { .vz-hero-in { animation: none !important; } }
       `}</style>
       <span aria-hidden="true" className="vz-hero-glow" />
       <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 1040, padding: "0 24px" }}>
-        <p className="vz-hero-in" style={{
-          display: "inline-flex", alignItems: "center", gap: 9, margin: "0 0 28px",
-          padding: "7px 14px", borderRadius: 999,
-          border: "1px solid rgba(240,201,73,0.32)", background: "rgba(240,201,73,0.08)",
-          fontSize: 13.5, fontWeight: 500, color: gold,
-        }}>
-          <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: 999, background: gold }} />
-          Pour les dirigeants de PME sous Pennylane
-        </p>
         <h1 className="vz-hero-h1 vz-hero-in" style={{ animationDelay: "80ms" }}>
           Vous perdez de l'argent quelque part.{" "}
           <span style={{ color: gold, display: "block" }}>Vyzor vous montre où.</span>
@@ -347,17 +331,6 @@ const CinematicHero = () => {
             Voir la démo
           </a>
         </div>
-        <p className="vz-hero-in" style={{ margin: "14px 0 0", fontSize: 13, color: "rgba(255,255,255,0.5)", animationDelay: "300ms" }}>
-          Gratuit pendant la bêta · {(window.VZ_BETA && window.VZ_BETA.places) || 10} places · réponse sous 48 h
-        </p>
-        <ul className="vz-hero-proofs vz-hero-in" style={{ animationDelay: "340ms" }}>
-          {proofs.map((p) => (
-            <li key={p}>
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke={gold} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>
-              {p}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );

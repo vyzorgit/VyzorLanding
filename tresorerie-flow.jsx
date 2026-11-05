@@ -4,7 +4,10 @@ const TR_MUTED = "rgba(255,255,255,0.58)";
 const TR_LINE = "rgba(255,255,255,0.08)";
 const trPanel = { borderRadius: 20, background: "linear-gradient(180deg, #121a3a 0%, #0d1430 100%)", border: "1px solid rgba(255,255,255,0.07)" };
 const trBox = { borderRadius: 12, border: `1px solid ${TR_LINE}`, background: "rgba(255,255,255,0.025)" };
-const trNum = (v) => `${v > 0 ? "+" : ""}${v} k€`;
+const trNum = (v) => vzL({
+  fr: `${v > 0 ? "+" : ""}${v} k€`,
+  en: `${v > 0 ? "+" : v < 0 ? "-" : ""}€${Math.abs(v)}k`,
+});
 
 const TrHead = ({ t, d }) => (
   <div style={{ maxWidth: 680 }}>
@@ -66,6 +69,12 @@ const TR_SCEN = {
 const trVerdict = (rows, low) => {
   const neg = rows.find((r) => r.bal < 0);
   const m = (r) => r.m.toLowerCase() + ".";
+  if (window.VZ_LANG === "en") {
+    const M = (r) => vzT(r.m) + ".";
+    if (neg) return { ok: false, v: vzRaw(`Cash turns negative in ${M(neg)}, with a low point of ${trNum(low.bal)} in ${M(low)} Financing will be needed.`) };
+    if (low.bal < 30) return { ok: false, v: vzRaw(`Too tight: low point of ${trNum(low.bal)} in ${M(low)}`) };
+    return { ok: true, v: vzRaw(`The low point stays at ${trNum(low.bal)} in ${M(low)} Your cash can absorb this scenario.`) };
+  }
   if (neg) return { ok: false, v: `Trésorerie négative dès ${m(neg)}, point bas à ${trNum(low.bal)} en ${m(low)} Un financement est à prévoir.` };
   if (low.bal < 30) return { ok: false, v: `Trop juste : point bas à ${trNum(low.bal)} en ${m(low)}` };
   return { ok: true, v: `Le point bas reste à ${trNum(low.bal)} en ${m(low)} Votre trésorerie absorbe ce scénario.` };
@@ -97,7 +106,7 @@ const TrForecast = () => {
       </div>
       <div className="tr-fc" style={{ ...trPanel, padding: "24px clamp(16px, 3vw, 28px)" }}>
         <div style={{ minWidth: 0 }}>
-          <svg viewBox={`0 -14 ${W} ${BB + 34}`} style={{ width: "100%", height: "auto", display: "block" }} role="img" aria-label={`Prévision de trésorerie sur ${h} mois, scénario ${sc.l.toLowerCase()} : solde de fin de période ${trNum(rows[rows.length - 1].bal)}, point bas ${trNum(low.bal)} en ${low.m.toLowerCase()}.`}>
+          <svg viewBox={`0 -14 ${W} ${BB + 34}`} style={{ width: "100%", height: "auto", display: "block" }} role="img" aria-label={vzL({ fr: `Prévision de trésorerie sur ${h} mois, scénario ${sc.l.toLowerCase()} : solde de fin de période ${trNum(rows[rows.length - 1].bal)}, point bas ${trNum(low.bal)} en ${low.m.toLowerCase()}.`, en: `${h}-month cash forecast, scenario: ${vzT(sc.l).toLowerCase()}. Closing balance ${trNum(rows[rows.length - 1].bal)}, low point ${trNum(low.bal)} in ${vzT(low.m)}.` })}>
             <defs>
               <pattern id="trHatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
                 <rect width="4" height="4" fill="#f0905a" />
@@ -128,7 +137,7 @@ const TrForecast = () => {
           <span style={{ fontSize: 13, color: TR_MUTED }}>Solde fin de période</span>
           <span style={{ fontSize: 30, fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>{trNum(rows[rows.length - 1].bal)}</span>
           <span style={{ fontSize: 13, color: TR_MUTED, marginTop: 14 }}>Point bas</span>
-          <span style={{ fontSize: 20, fontWeight: 700, color: low.bal < 30 ? "#f0905a" : "#f0c949", fontVariantNumeric: "tabular-nums" }}>{trNum(low.bal)} <span style={{ fontSize: 13, fontWeight: 500, color: TR_MUTED }}>en {low.m.toLowerCase()}.</span></span>
+          <span style={{ fontSize: 20, fontWeight: 700, color: low.bal < 30 ? "#f0905a" : "#f0c949", fontVariantNumeric: "tabular-nums" }}>{trNum(low.bal)} <span style={{ fontSize: 13, fontWeight: 500, color: TR_MUTED }}>{vzL({ fr: () => <React.Fragment>en {low.m.toLowerCase()}.</React.Fragment>, en: () => <React.Fragment>in {vzT(low.m)}.</React.Fragment> })}</span></span>
           <div key={s + h} className="tr-fade" style={{ marginTop: "auto", paddingTop: 16, borderTop: `1px solid ${TR_LINE}`, fontSize: 13.5, lineHeight: 1.5, color: "rgba(255,255,255,0.85)" }}>
             <span style={{ display: "block", fontWeight: 600, color: vd.ok ? "#5fd4a8" : "#f0905a", marginBottom: 4 }}>{vd.ok ? "Viable" : "À risque"}</span>{vd.v}
           </div>
@@ -157,7 +166,7 @@ const TrReceivables = () => {
             <div key={c.f} className="tr-row">
               <span style={{ color: "#fff", fontWeight: 500 }}>{c.n}</span>
               <span style={{ color: TR_MUTED }}>{c.f}</span>
-              <span style={{ color: "#fff", fontVariantNumeric: "tabular-nums" }}>{c.m.toLocaleString("fr-FR")} €</span>
+              <span style={{ color: "#fff", fontVariantNumeric: "tabular-nums" }}>{vzL({ fr: c.m.toLocaleString("fr-FR") + " €", en: "€" + c.m.toLocaleString("en-US") })}</span>
               <span style={{ color: c.r > 30 ? "#f0905a" : "rgba(255,255,255,0.8)" }}>{c.r} jours</span>
               <span style={{ color: c.p === "Haute" ? "#f0905a" : c.p === "Moyenne" ? "#f0c949" : TR_MUTED }}>{c.p}</span>
               <span style={{ textAlign: "right" }}>
@@ -185,7 +194,7 @@ const TrAlerts = () => {
         <div style={{ ...trPanel, padding: 24 }}>
           <div style={{ fontSize: 15, fontWeight: 600, color: "#fff" }}>Seuil de sécurité</div>
           <div style={{ fontSize: 13.5, color: TR_MUTED, marginTop: 4 }}>M'alerter si la trésorerie prévue passe sous :</div>
-          <div style={{ fontSize: 36, fontWeight: 700, color: "#f0c949", letterSpacing: "-0.02em", margin: "18px 0 10px", fontVariantNumeric: "tabular-nums" }}>{th} k€</div>
+          <div style={{ fontSize: 36, fontWeight: 700, color: "#f0c949", letterSpacing: "-0.02em", margin: "18px 0 10px", fontVariantNumeric: "tabular-nums" }}>{vzL({ fr: `${th} k€`, en: `€${th}k` })}</div>
           <input className="tr-range" type="range" min="10" max="80" step="5" value={th} onChange={(e) => setTh(+e.target.value)} aria-label="Seuil de sécurité en k€" />
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: TR_MUTED, marginTop: 6 }}><span>10 k€</span><span>80 k€</span></div>
           <div style={{ marginTop: 18, paddingTop: 16, borderTop: `1px solid ${TR_LINE}`, fontSize: 13.5, color: "rgba(255,255,255,0.85)" }}>

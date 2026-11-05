@@ -214,7 +214,7 @@ const BesoinClientSection = ({ id = "constat", gold, text, muted, subtle, audien
         </h2>
 
         <p style={{ fontSize: 18, lineHeight: 1.65, color: muted, marginTop: 24, maxWidth: 640, textWrap: "pretty" }}>
-          Bilan annuel, tableurs, reporting à J+30{"\u00a0"}: la plupart des PME décident sur des chiffres déjà dépassés.
+          Bilan annuel, tableurs, reporting à J+30{vzL({ fr: "\u00a0", en: "" })}: la plupart des PME décident sur des chiffres déjà dépassés.
         </p>
       </div>
 

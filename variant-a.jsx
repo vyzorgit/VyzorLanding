@@ -327,11 +327,22 @@ const BetaForm = ({ variant = "dark" }) => {
   );
 };
 
+// Sélecteur de langue (version anglaise, 05/11/2026) : même page dans l'autre langue si elle existe
+// (VZ_ALT, posé par le build), sinon l'accueil de l'autre langue.
+const vzLangSwitch = () => {
+  const en = typeof window !== "undefined" && window.VZ_LANG === "en";
+  const href = (typeof window !== "undefined" && window.VZ_ALT) || (en ? "/" : "/en");
+  return en
+    ? { code: "fr", short: "FR", name: "Français", label: "Version française", href }
+    : { code: "en", short: "EN", name: "English", label: "English version", href };
+};
+
 // New top nav: floating centered pill, active indicator, scroll-aware compact mode
 const VyzorNav = ({ gold, text, muted, subtle }) => {
   const items = [
     { id: "produit", label: "Le produit", href: "/#produit", external: true, matchPath: /(^\/?$|index\.html?$)/i, anchor: "produit" },
     { id: "fonctionnalites", label: "Fonctionnalités", href: "/fonctionnalites", external: true, matchPath: /fonctionnalite(s|-[a-z-]+)(\.html?)?$/i },
+    { id: "integrations", label: "Intégrations", href: "/integrations", external: true, matchPath: /integrations(\.html?)?$/i },
     { id: "securite", label: "Sécurité", href: "/securite", external: true, matchPath: /securite(\.html?)?$/i },
     { id: "faq", label: "FAQ", href: "/faq", external: true, matchPath: /faq(\.html?)?$/i },
     { id: "equipe", label: "Équipe", href: "/equipe", external: true, matchPath: /equipe(\.html?)?$/i },
@@ -339,7 +350,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
   // Détermine la page courante au montage
   const initialActive = (() => {
     if (typeof window === "undefined") return "produit";
-    const p = window.location.pathname || "";
+    const p = window.VZ_FR_PATH || window.location.pathname || "";
     const found = items.find(it => it.matchPath && it.matchPath.test(p));
     return found ? found.id : "produit";
   })();
@@ -415,6 +426,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
   }, [active, hovered, scrolled]);
 
   const goldGrad = "linear-gradient(#f0c949,#f0c949)";
+  const lang = vzLangSwitch();
 
   return (
     <nav className="vz-nav-wrap" style={{
@@ -531,6 +543,14 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
 
         {/* CTA (l'accès à l'application n'est communiqué qu'aux clients) */}
         <div style={{ display: "flex", alignItems: "center", gap: 6, paddingLeft: 6 }}>
+          <a href={lang.href} hrefLang={lang.code} lang={lang.code} aria-label={lang.label} className="vz-nav-lang" style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 34, height: 32, padding: "0 10px",
+            borderRadius: 999, border: "1px solid rgba(255,255,255,0.12)", color: muted, fontSize: 12, fontWeight: 600,
+            letterSpacing: "0.04em", textDecoration: "none", transition: "color 220ms ease, border-color 220ms ease",
+          }}
+            onMouseOver={(e) => { e.currentTarget.style.color = text; e.currentTarget.style.borderColor = "rgba(240,201,73,0.35)"; }}
+            onMouseOut={(e) => { e.currentTarget.style.color = muted; e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; }}
+          >{lang.short}</a>
           <a href="/?contact=1#beta" data-contact className="vz-nav-cta" style={{
             display: "inline-flex", alignItems: "center", gap: 6,
             padding: scrolled ? "8px 14px" : "8px 16px",
@@ -629,6 +649,9 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
             {it.label}
           </a>
         ))}
+        <a href={lang.href} hrefLang={lang.code} lang={lang.code} onClick={() => setMenuOpen(false)} style={{
+          display: "block", padding: "13px 16px", borderRadius: 14, fontSize: 15, fontWeight: 500, color: muted, textDecoration: "none",
+        }}>{lang.name}</a>
       </div>
     </nav>
   );
@@ -1101,4 +1124,4 @@ const MethodFeatureIcon = ({ name, size = 17 }) => {
   document.head.appendChild(s);
 })();
 
-Object.assign(window, { VariantA, BetaForm, VyzorNav, MethodologySection, MethodPreview, MethodFeatureIcon });
+Object.assign(window, { vzLangSwitch, VariantA, BetaForm, VyzorNav, MethodologySection, MethodPreview, MethodFeatureIcon });

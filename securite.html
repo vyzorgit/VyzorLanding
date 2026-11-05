@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Sécurité et confidentialité des données — Vyzor</title>
-  <meta name="description" content="Sécurité, chiffrement et confidentialité des données — VYZOR sur infrastructure SOC 2 / ISO 27001." />
+  <meta name="description" content="Sécurité Vyzor : application et base de données hébergées à Paris, accès en lecture seule, chiffrement AES-256, isolation par société, données pseudonymisées avant l'IA." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Favicons + Open Graph (Vyzor ribbon) -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -23,10 +23,10 @@
   <meta property="og:image:alt" content="VYZOR" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:title" content="Sécurité et confidentialité des données — Vyzor" />
-  <meta property="og:description" content="Sécurité, chiffrement et confidentialité des données — VYZOR sur infrastructure SOC 2 / ISO 27001." />
+  <meta property="og:description" content="Sécurité Vyzor : application et base de données hébergées à Paris, accès en lecture seule, chiffrement AES-256, isolation par société, données pseudonymisées avant l'IA." />
   <meta property="og:url" content="https://www.vyzor.fr/securite" />
   <meta name="twitter:title" content="Sécurité et confidentialité des données — Vyzor" />
-  <meta name="twitter:description" content="Sécurité, chiffrement et confidentialité des données — VYZOR sur infrastructure SOC 2 / ISO 27001." />
+  <meta name="twitter:description" content="Sécurité Vyzor : application et base de données hébergées à Paris, accès en lecture seule, chiffrement AES-256, isolation par société, données pseudonymisées avant l'IA." />
   <link rel="canonical" href="https://www.vyzor.fr/securite" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -132,7 +132,7 @@
   <noscript>
     <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
       <h1 style="font-size:32px;margin:0 0 16px;">Sécurité &amp; confidentialité</h1>
-      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Sécurité, chiffrement et confidentialité des données — VYZOR sur infrastructure SOC 2 / ISO 27001.</p>
+      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Sécurité Vyzor : application et base de données hébergées à Paris, accès en lecture seule, chiffrement AES-256, isolation par société, données pseudonymisées avant l'IA.</p>
       <nav style="font-size:15px;font-weight:600;"><a href="/" style="color:#f0c949;margin-right:18px;">Accueil</a><a href="/fonctionnalites" style="color:#f0c949;margin-right:18px;">Fonctionnalités</a><a href="/calculateurs" style="color:#f0c949;margin-right:18px;">Calculateurs</a></nav>
     </div>
   </noscript>
@@ -141,9 +141,10 @@
   <script type="text/babel" src="glow-border.jsx"></script>
   <script type="text/babel" src="features-data.jsx"></script>
   <script type="text/babel" src="variant-a.jsx"></script>
-  <script type="text/babel" src="security-glass.jsx"></script>
-  <script type="text/babel" src="security-stack.jsx"></script>
+  <script type="text/babel" src="conversion-sections.jsx"></script>
+  <script type="text/babel" src="audience-pages.jsx"></script>
   <script type="text/babel" src="beta-glass.jsx"></script>
+  <script type="text/babel" src="trust-pages.jsx"></script>
   <script type="text/babel" src="footer-glass.jsx"></script>
 
   <script type="text/babel">
@@ -182,22 +183,7 @@
             paddingBottom: 56,
           }}>
             <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
-            <header className="pg-hero vz-reveal in">
-              <h1 className="pg-title">Une sécurité de <em>niveau bancaire</em>.</h1>
-              <p className="pg-lede">
-                Vos données financières sont chiffrées, isolées et hébergées chez les mêmes
-                partenaires d'infrastructure que les banques et fintechs régulées européennes.
-              </p>
-            </header>
-
-            <div className="vz-page-pad" style={{
-              maxWidth: 1180,
-              margin: "0 auto",
-              padding: "0 clamp(24px, 6vw, 96px)",
-            }}>
-              <div><SecuritySectionStacked /></div>
-              <div className="vz-reveal"><BetaFormGlass /></div>
-            </div>
+            <SecurityPageBody gold={gold} muted={muted} />
             </main>
 
             <div className="vz-reveal" style={{ marginTop: 96 }}>

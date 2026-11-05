@@ -146,9 +146,6 @@ const FinalCtaSection = ({ gold, muted }) => (
     <div style={{ position: "relative", marginTop: 32 }}>
       <VzCtaLink size="lg">Réserver ma place dans la bêta</VzCtaLink>
     </div>
-    <p style={{ position: "relative", margin: "14px 0 0", fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
-      Gratuit · sans engagement · réponse sous 48 h
-    </p>
   </section>
 );
 

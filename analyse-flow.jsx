@@ -99,7 +99,7 @@ const AfKpiViz = ({ view }) => {
     <div>{AF_SERIES.map(([y, v], k) => (
       <div key={y} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderTop: `1px solid ${AF_LINE}`, fontSize: 13.5 }}>
         <span style={{ color: AF_MUTED }}>{y}</span><span style={{ color: "#fff", fontVariantNumeric: "tabular-nums" }}>{v} %</span>
-        <span style={{ width: 60, textAlign: "right", color: k ? (v >= AF_SERIES[k - 1][1] ? "#5fd4a8" : "#f0905a") : AF_MUTED }}>{k ? `${v - AF_SERIES[k - 1][1] > 0 ? "+" : ""}${v - AF_SERIES[k - 1][1]} pt` : "—"}</span>
+        <span style={{ width: 60, textAlign: "right", color: k ? (v >= AF_SERIES[k - 1][1] ? "#5fd4a8" : "#f0905a") : AF_MUTED }}>{k ? vzRaw(`${v - AF_SERIES[k - 1][1] > 0 ? "+" : ""}${v - AF_SERIES[k - 1][1]} pt`) : "—"}</span>
       </div>
     ))}</div>
   );
