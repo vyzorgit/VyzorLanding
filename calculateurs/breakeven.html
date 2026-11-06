@@ -108,7 +108,7 @@
     },
     {
       "@type": "Question",
-      "name": "Le calculateur de breakeven VYZOR est-il gratuit ?",
+      "name": "Le calculateur de seuil de rentabilité Vyzor est-il gratuit ?",
       "acceptedAnswer": { "@type": "Answer", "text": "Oui, le simulateur de seuil de rentabilité VYZOR est entièrement gratuit et utilisable en ligne sans inscription. L'analyse détaillée approfondie est accessible après saisie de votre email." }
     }
   ]
@@ -186,7 +186,7 @@ function BreakevenSVG({ fixedCosts, variableCostUnit, priceUnit, breakEvenQty, c
     return `${i === 0 ? "M" : "L"}${x(q)},${y(fixedCosts + variableCostUnit * q)}`;
   }).join(" ");
   const fixedPath = `M${x(0)},${y(fixedCosts)} L${x(maxQty)},${y(fixedCosts)}`;
-  const fmt = (v) => v >= 1000000 ? `${(v / 1000000).toFixed(1)}M` : v >= 1000 ? `${(v / 1000).toFixed(0)}k` : v.toFixed(0);
+  const fmt = (v) => v >= 1000000 ? `${(v / 1000000).toFixed(1).replace(".", ",")}M` : v >= 1000 ? `${(v / 1000).toFixed(0)}k` : v.toFixed(0);
 
   // Profit zone
   const profitZone = breakEvenQty > 0 && breakEvenQty < maxQty ? (() => {
@@ -231,7 +231,7 @@ function BreakevenSVG({ fixedCosts, variableCostUnit, priceUnit, breakEvenQty, c
           <circle cx={x(breakEvenQty)} cy={y(priceUnit * breakEvenQty)} r="16" fill={T.brandGold} opacity="0.1" />
           <circle cx={x(breakEvenQty)} cy={y(priceUnit * breakEvenQty)} r="7" fill={T.bgBase} stroke={T.brandGold} strokeWidth="2.5" />
           <rect x={x(breakEvenQty) - 50} y={y(priceUnit * breakEvenQty) - 36} width="100" height="22" rx="5" fill={T.brandGold} />
-          <text x={x(breakEvenQty)} y={y(priceUnit * breakEvenQty) - 21} fill="#000" fontSize="11" fontFamily={T.mono} fontWeight="700" textAnchor="middle">BEP : {Math.round(breakEvenQty)} u.</text>
+          <text x={x(breakEvenQty)} y={y(priceUnit * breakEvenQty) - 21} fill="#000" fontSize="11" fontFamily={T.mono} fontWeight="700" textAnchor="middle">Point mort : {Math.round(breakEvenQty)}</text>
         </g>
       )}
       {currentQty > 0 && currentQty <= maxQty && (
@@ -342,14 +342,14 @@ function App() {
 
           <div style={{ filter: emailSubmitted ? "none" : "blur(8px)", transition: "filter 0.5s", pointerEvents: emailSubmitted ? "auto" : "none" }}>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
-              <KpiTile icon="target" label="Breakeven" color={T.brandGold} sub={`CA : ${breakEvenCA.toLocaleString("fr-FR")} €`}
-                value={breakEvenQty !== Infinity ? <AnimatedNumber value={showResults ? breakEvenQty : 0} suffix=" u." /> : "∞"} />
+              <KpiTile icon="target" label="Point mort" color={T.brandGold} sub={`CA : ${breakEvenCA.toLocaleString("fr-FR")} €`}
+                value={breakEvenQty !== Infinity ? <AnimatedNumber value={showResults ? breakEvenQty : 0} suffix=" ventes" /> : "∞"} />
               <KpiTile icon="trend" label="Résultat / mois"
                 color={profitOrLoss >= 0 ? T.success : T.error}
                 sub={profitOrLoss >= 0 ? "Profit" : "Perte"}
                 value={<AnimatedNumber value={showResults ? Math.abs(profitOrLoss) : 0} suffix=" €" />} />
               <KpiTile icon="scale" label="Marge de sécurité"
-                value={showResults ? `${safetyMarginPct}%` : "—"}
+                value={showResults ? `${String(safetyMarginPct).replace(".", ",")}\u00a0%` : "—"}
                 color={Number(safetyMarginPct) >= 20 ? T.success : Number(safetyMarginPct) >= 0 ? T.warning : T.error}
                 sub={Number(safetyMarginPct) >= 25 ? "Confortable" : Number(safetyMarginPct) >= 10 ? "Correcte" : Number(safetyMarginPct) >= 0 ? "Fragile" : "Danger"} />
             </div>
@@ -366,7 +366,7 @@ function App() {
                 }} />
                 <div>
                   <div style={{ color: isAboveBE ? T.success : T.error, fontSize: 14, fontWeight: 700 }}>
-                    {isAboveBE ? `Rentable — vous dépassez le breakeven de ${(currentQty - breakEvenQty).toLocaleString("fr-FR")} ventes` : `Pas encore rentable — il manque ${qtyToGo !== Infinity ? qtyToGo.toLocaleString("fr-FR") : "∞"} ventes`}
+                    {isAboveBE ? `Rentable — vous dépassez le point mort de ${(currentQty - breakEvenQty).toLocaleString("fr-FR")} ventes` : `Pas encore rentable — il manque ${qtyToGo !== Infinity ? qtyToGo.toLocaleString("fr-FR") : "∞"} ventes`}
                   </div>
                   <div style={{ color: T.textMuted, fontSize: 12, marginTop: 2 }}>
                     {isAboveBE ? `Chaque vente supplémentaire génère ${marginUnit.toLocaleString("fr-FR")} € de profit pur.` : `Votre marge unitaire de ${marginUnit.toLocaleString("fr-FR")} € doit absorber ${fixedCosts.toLocaleString("fr-FR")} € de coûts fixes.`}
@@ -376,7 +376,7 @@ function App() {
             </div>
           </div>
 
-          {!emailSubmitted && <EmailGate onSubmit={() => { setEmailSubmitted(true); setShowResults(true); }} icon="lock" title="Débloquez votre analyse breakeven" desc="Point mort exact, marge de sécurité et recommandations personnalisées." />}
+          {!emailSubmitted && <EmailGate onSubmit={() => { setEmailSubmitted(true); setShowResults(true); }} icon="lock" title="Débloquez votre analyse du point mort" desc="Point mort exact, marge de sécurité et recommandations personnalisées." />}
         </SlabCard>
 
         <CtaFooter />

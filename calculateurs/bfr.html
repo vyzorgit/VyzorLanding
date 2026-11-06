@@ -101,6 +101,7 @@
     box-shadow: 0 12px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08);
   }
   .topnav a {
+    white-space: nowrap;
     color: rgba(255,255,255,0.78); text-decoration: none;
     font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
     padding: 8px 14px; border-radius: 999px;
@@ -165,7 +166,7 @@
   .card-header .icon {
     width: 42px; height: 42px; border-radius: 12px;
     background: rgba(240,201,73,0.12); display: flex;
-    align-items: center; justify-content: center; font-size: 20px;
+    align-items: center; justify-content: center; font-size: 20px; color: var(--gold);
   }
   .card-header h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.5px; }
   .card-desc { color: #9a9aa3; font-size: 14px; margin-bottom: 32px; padding-left: 56px; }
@@ -239,7 +240,13 @@
   }
   .cycle-seg.dio { background: linear-gradient(90deg, rgba(139,92,246,0.5), rgba(139,92,246,0.7)); left: 0; }
   .cycle-seg.dso { background: linear-gradient(90deg, rgba(59,130,246,0.5), rgba(59,130,246,0.7)); }
-  .cycle-seg.dpo { background: linear-gradient(90deg, rgba(16,185,129,0.4), rgba(16,185,129,0.65)); }
+  .cycle-seg.dpo { background: linear-gradient(90deg, rgba(16,185,129,0.4), rgba(16,185,129,0.65)); left: 0; }
+  .cycle-seg.ccc { background: rgba(240,201,73,0.14); border: 1px dashed rgba(240,201,73,0.7); color: var(--gold); }
+  .cycle-seg { white-space: nowrap; overflow: hidden; padding: 0 8px; box-sizing: border-box; }
+  .cyc-row { margin-bottom: 14px; }
+  .cyc-row .cycle-bar-bg { margin-bottom: 0; }
+  .cyc-name { font-size: 12.5px; color: #9a9aa3; margin-bottom: 6px; }
+  .legend-dot.gold { background: rgba(240,201,73,0.7); }
 
   .cycle-legend {
     display: flex; gap: 24px; flex-wrap: wrap;
@@ -481,7 +488,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="badge">🔄 SIMULATEUR INTERACTIF</div>
+    <div class="badge">Simulateur gratuit</div>
     <h1>Maîtrisez votre <span class="gold">BFR</span><br>en temps réel</h1>
     <p>Visualisez votre <strong>cycle de conversion cash</strong>, identifiez les leviers d'optimisation et simulez l'impact sur votre trésorerie.</p>
   </section>
@@ -489,49 +496,49 @@
   <!-- ===== SECTION 1 : DONNÉES D'ENTRÉE ===== -->
   <div class="card">
     <div class="card-header">
-      <div class="icon">⚙️</div>
+      <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
       <h2>Vos données financières</h2>
     </div>
     <p class="card-desc">Saisissez vos chiffres — tout se recalcule instantanément</p>
 
     <div class="form-grid">
       <div class="field">
-        <label for="in-ca"><span class="label-icon" aria-hidden="true">💶</span>Chiffre d'affaires annuel HT</label>
+        <label for="in-ca">Chiffre d'affaires annuel HT</label>
         <div class="input-wrap">
           <input type="number" id="in-ca" value="2000000" data-recalc aria-describedby="u-ca">
           <span class="suffix" id="u-ca">€ / an</span>
         </div>
       </div>
       <div class="field">
-        <label for="in-achats"><span class="label-icon" aria-hidden="true">🛒</span>Achats annuels HT</label>
+        <label for="in-achats">Achats annuels HT</label>
         <div class="input-wrap">
           <input type="number" id="in-achats" value="800000" data-recalc aria-describedby="u-achats">
           <span class="suffix" id="u-achats">€ / an</span>
         </div>
       </div>
       <div class="field">
-        <label for="in-stock"><span class="label-icon" aria-hidden="true">📦</span>Stock moyen</label>
+        <label for="in-stock">Stock moyen</label>
         <div class="input-wrap">
           <input type="number" id="in-stock" value="120000" data-recalc aria-describedby="u-stock">
           <span class="suffix" id="u-stock">€</span>
         </div>
       </div>
       <div class="field">
-        <label for="in-creances"><span class="label-icon" aria-hidden="true">📄</span>Créances clients</label>
+        <label for="in-creances">Créances clients</label>
         <div class="input-wrap">
           <input type="number" id="in-creances" value="280000" data-recalc aria-describedby="u-creances">
           <span class="suffix" id="u-creances">€</span>
         </div>
       </div>
       <div class="field">
-        <label for="in-dettes"><span class="label-icon" aria-hidden="true">🏦</span>Dettes fournisseurs</label>
+        <label for="in-dettes">Dettes fournisseurs</label>
         <div class="input-wrap">
           <input type="number" id="in-dettes" value="110000" data-recalc aria-describedby="u-dettes">
           <span class="suffix" id="u-dettes">€</span>
         </div>
       </div>
       <div class="field">
-        <label for="in-growth"><span class="label-icon" aria-hidden="true">📈</span>Croissance CA prévue</label>
+        <label for="in-growth">Croissance CA prévue</label>
         <div class="input-wrap">
           <input type="number" id="in-growth" value="15" data-recalc aria-describedby="u-growth">
           <span class="suffix" id="u-growth">% / an</span>
@@ -545,7 +552,7 @@
     <div class="kpi gold-kpi">
       <div class="kpi-label">BFR</div>
       <div class="kpi-value" id="kpi-bfr">290 000 €</div>
-      <div class="kpi-sub" id="kpi-bfr-pct">14,5% du CA</div>
+      <div class="kpi-sub" id="kpi-bfr-pct">14,5 % du CA</div>
     </div>
     <div class="kpi blue-kpi">
       <div class="kpi-label">DSO — Délai clients</div>
@@ -572,31 +579,41 @@
   <!-- ===== SECTION 3 : CYCLE VISUEL ===== -->
   <div class="card">
     <div class="cycle-section">
-      <h3>🔄 Cycle de Conversion Cash</h3>
+      <h3>Cycle de conversion du cash</h3>
 
       <div class="cycle-track">
-        <div class="cycle-bar-bg">
-          <div class="cycle-seg dio" id="seg-dio">DIO</div>
-          <div class="cycle-seg dso" id="seg-dso">DSO</div>
-          <div class="cycle-seg dpo" id="seg-dpo" style="bottom:0; top: auto;">DPO</div>
+        <div class="cyc-row">
+          <div class="cyc-name">Vous avancez</div>
+          <div class="cycle-bar-bg">
+            <div class="cycle-seg dio" id="seg-dio"></div>
+            <div class="cycle-seg dso" id="seg-dso"></div>
+          </div>
+        </div>
+        <div class="cyc-row">
+          <div class="cyc-name">Vos fournisseurs vous financent</div>
+          <div class="cycle-bar-bg">
+            <div class="cycle-seg dpo" id="seg-dpo"></div>
+            <div class="cycle-seg ccc" id="seg-ccc"></div>
+          </div>
         </div>
 
         <div class="cycle-legend">
           <div class="legend-item"><div class="legend-dot purple"></div> Stocks (DIO)</div>
           <div class="legend-item"><div class="legend-dot blue"></div> Créances clients (DSO)</div>
-          <div class="legend-item"><div class="legend-dot green"></div> Dettes fournisseurs (DPO) — réduit le cycle</div>
+          <div class="legend-item"><div class="legend-dot green"></div> Dettes fournisseurs (DPO)</div>
+          <div class="legend-item"><div class="legend-dot gold"></div> Reste à financer par votre trésorerie (CCC)</div>
         </div>
 
         <div class="cycle-formula">
           <span style="color:#888;">CCC =</span>
-          <span class="val purple" id="f-dio">55j</span>
+          <span class="val purple" id="f-dio">55 j</span>
           <span class="op">+</span>
-          <span class="val blue" id="f-dso">51j</span>
+          <span class="val blue" id="f-dso">51 j</span>
           <span class="op">−</span>
-          <span class="val green" id="f-dpo">50j</span>
+          <span class="val green" id="f-dpo">50 j</span>
           <span class="op">=</span>
           <span class="val gold" id="f-ccc" style="font-size:18px;">56 jours</span>
-          <span style="color:#9a9aa3; margin-left:8px;">de cash immobilisé</span>
+          <span id="f-ccc-txt" style="color:#9a9aa3; margin-left:8px;">de cash immobilisé</span>
         </div>
       </div>
     </div>
@@ -605,24 +622,24 @@
   <!-- ===== SECTION 4 : OPTIMISATION ===== -->
   <div class="card">
     <div class="card-header">
-      <div class="icon" style="background: rgba(16,185,129,0.12);">🎯</div>
+      <div class="icon" style="background: rgba(16,185,129,0.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
       <h2>Simulez une optimisation</h2>
     </div>
     <p class="card-desc">Jouez avec les curseurs pour voir l'impact sur votre trésorerie</p>
 
     <div class="slider-group">
       <div class="slider-row">
-        <label for="opt-dso"><span aria-hidden="true">📄</span> Réduire DSO de</label>
+        <label for="opt-dso">Réduire DSO de</label>
         <input type="range" id="opt-dso" min="0" max="30" value="10" data-recalc aria-describedby="opt-dso-val">
         <div class="slider-val" id="opt-dso-val">−10 j</div>
       </div>
       <div class="slider-row">
-        <label for="opt-dio"><span aria-hidden="true">📦</span> Réduire DIO de</label>
+        <label for="opt-dio">Réduire DIO de</label>
         <input type="range" id="opt-dio" min="0" max="30" value="5" data-recalc aria-describedby="opt-dio-val">
         <div class="slider-val" id="opt-dio-val">−5 j</div>
       </div>
       <div class="slider-row">
-        <label for="opt-dpo"><span aria-hidden="true">🏦</span> Augmenter DPO de</label>
+        <label for="opt-dpo">Augmenter DPO de</label>
         <input type="range" id="opt-dpo" min="0" max="20" value="5" data-recalc aria-describedby="opt-dpo-val">
         <div class="slider-val" id="opt-dpo-val">+5 j</div>
       </div>
@@ -631,13 +648,13 @@
     <!-- Scenario comparison -->
     <div class="scenario-grid">
       <div class="scenario-col current">
-        <div class="scenario-title current-t">📍 Situation actuelle</div>
+        <div class="scenario-title current-t">Situation actuelle</div>
         <div class="scenario-line"><span class="s-label">DSO</span><span class="s-value" id="sc-dso-cur">51 j</span></div>
         <div class="scenario-line"><span class="s-label">DIO</span><span class="s-value" id="sc-dio-cur">55 j</span></div>
         <div class="scenario-line"><span class="s-label">DPO</span><span class="s-value" id="sc-dpo-cur">50 j</span></div>
         <div class="scenario-line"><span class="s-label">CCC</span><span class="s-value" id="sc-ccc-cur">56 j</span></div>
         <div class="scenario-total current-bg">
-          <div class="st-label">BFR Actuel</div>
+          <div class="st-label">BFR actuel</div>
           <div class="st-value" id="sc-bfr-cur" style="color: var(--gold);">290 000 €</div>
         </div>
       </div>
@@ -645,13 +662,13 @@
       <div class="scenario-divider">→</div>
 
       <div class="scenario-col optimized">
-        <div class="scenario-title opt-t">🎯 Scénario optimisé</div>
+        <div class="scenario-title opt-t">Scénario optimisé</div>
         <div class="scenario-line"><span class="s-label">DSO</span><span class="s-value" id="sc-dso-opt" style="color:var(--emerald);">41 j</span></div>
         <div class="scenario-line"><span class="s-label">DIO</span><span class="s-value" id="sc-dio-opt" style="color:var(--emerald);">50 j</span></div>
         <div class="scenario-line"><span class="s-label">DPO</span><span class="s-value" id="sc-dpo-opt" style="color:var(--emerald);">55 j</span></div>
         <div class="scenario-line"><span class="s-label">CCC</span><span class="s-value" id="sc-ccc-opt" style="color:var(--emerald);">36 j</span></div>
         <div class="scenario-total opt-bg">
-          <div class="st-label">BFR Optimisé</div>
+          <div class="st-label">BFR optimisé</div>
           <div class="st-value" id="sc-bfr-opt" style="color: var(--emerald);">197 000 €</div>
         </div>
       </div>
@@ -660,7 +677,7 @@
     <!-- Savings -->
     <div class="savings-banner" role="region" aria-label="Trésorerie libérée par l'optimisation" aria-live="polite">
       <div class="savings-left">
-        <div class="savings-title">💰 Trésorerie libérée</div>
+        <div class="savings-title">Trésorerie libérée</div>
         <div class="savings-amount" id="savings-amount">93 000 €</div>
       </div>
       <div class="savings-right">
@@ -669,11 +686,11 @@
           <div class="ss-label">Cycle cash</div>
         </div>
         <div class="savings-stat">
-          <div class="ss-val" id="savings-pct">−32%</div>
+          <div class="ss-val" id="savings-pct">−32 %</div>
           <div class="ss-label">Réduction BFR</div>
         </div>
         <div class="savings-stat">
-          <div class="ss-val" id="savings-ca-pct">4,7%</div>
+          <div class="ss-val" id="savings-ca-pct">4,7 %</div>
           <div class="ss-label">du CA libéré</div>
         </div>
       </div>
@@ -683,13 +700,13 @@
   <!-- ===== SECTION 5 : PROJECTION 12 MOIS ===== -->
   <div class="card">
     <div class="card-header">
-      <div class="icon" style="background: rgba(59,130,246,0.12);">📊</div>
+      <div class="icon" style="background: rgba(59,130,246,0.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
       <h2>Projection BFR sur 12 mois</h2>
     </div>
     <p class="card-desc">Évolution du BFR avec et sans optimisation, intégrant votre croissance</p>
 
     <div class="evo-chart">
-      <h3>BFR Mensuel — Actuel vs Optimisé</h3>
+      <h3>BFR mensuel : actuel et optimisé</h3>
       <div class="chart-area" id="chart-area" aria-hidden="true">
         <div class="y-label" id="y-max" style="top: 0;"></div>
         <div class="y-label" id="y-mid" style="top: 48%;"></div>
@@ -709,7 +726,7 @@
     </div>
 
     <div class="info-tip">
-      💡 La croissance augmente mécaniquement le BFR. Optimiser les délais maintenant limite l'effet boule de neige et préserve votre trésorerie.
+      La croissance augmente mécaniquement le BFR. Optimiser les délais maintenant limite l'effet boule de neige et préserve votre trésorerie.
     </div>
   </div>
 
@@ -726,6 +743,10 @@
   function fmt(n) {
     if (isNaN(n) || !isFinite(n)) return '—';
     return Math.round(n).toLocaleString('fr-FR') + ' €';
+  }
+  function pct(n) {
+    if (isNaN(n) || !isFinite(n)) return '—';
+    return n.toLocaleString('fr-FR', { maximumFractionDigits: 1, minimumFractionDigits: 1 }) + '\u00a0%';
   }
   function fmtK(n) {
     if (isNaN(n) || !isFinite(n)) return '—';
@@ -755,35 +776,34 @@
 
     // KPIs
     document.getElementById('kpi-bfr').textContent = fmt(bfr);
-    document.getElementById('kpi-bfr-pct').textContent = bfrPct.toFixed(1) + '% du CA';
+    document.getElementById('kpi-bfr-pct').textContent = pct(bfrPct) + ' du CA';
     document.getElementById('kpi-dso').textContent = Math.round(dso) + ' j';
     document.getElementById('kpi-dio').textContent = Math.round(dio) + ' j';
     document.getElementById('kpi-dpo').textContent = Math.round(dpo) + ' j';
     document.getElementById('kpi-ccc').textContent = Math.round(ccc) + ' j';
 
-    // Cycle visual
-    const totalSpan = dio + dso;
-    if (totalSpan > 0) {
-      const dioPct = (dio / totalSpan) * 100;
-      const dsoPct = (dso / totalSpan) * 100;
-      const dpoPct = Math.min((dpo / totalSpan) * 100, 100);
-
-      document.getElementById('seg-dio').style.width = dioPct + '%';
-      document.getElementById('seg-dio').textContent = Math.round(dio) + 'j DIO';
-
-      document.getElementById('seg-dso').style.left = dioPct + '%';
-      document.getElementById('seg-dso').style.width = dsoPct + '%';
-      document.getElementById('seg-dso').textContent = Math.round(dso) + 'j DSO';
-
-      document.getElementById('seg-dpo').style.width = dpoPct + '%';
-      document.getElementById('seg-dpo').textContent = Math.round(dpo) + 'j DPO';
-    }
+    // Cycle visual : deux lignes à la même échelle, sans chevauchement
+    const span = Math.max(dio + dso, dpo, 1);
+    const pctOf = (d) => Math.max(0, d) / span * 100;
+    const seg = (id, left, width, label) => {
+      const el = document.getElementById(id);
+      el.style.left = left + '%';
+      el.style.width = width + '%';
+      el.textContent = width >= 9 ? label : '';
+      el.title = label;
+    };
+    seg('seg-dio', 0, pctOf(dio), Math.round(dio) + ' j de stock');
+    seg('seg-dso', pctOf(dio), pctOf(dso), Math.round(dso) + ' j de délai client');
+    seg('seg-dpo', 0, pctOf(dpo), Math.round(dpo) + ' j de délai fournisseur');
+    const cccW = Math.max(0, pctOf(dio + dso) - pctOf(dpo));
+    seg('seg-ccc', pctOf(dpo), cccW, Math.round(ccc) + ' j à financer');
 
     // Formula
-    document.getElementById('f-dio').textContent = Math.round(dio) + 'j';
-    document.getElementById('f-dso').textContent = Math.round(dso) + 'j';
-    document.getElementById('f-dpo').textContent = Math.round(dpo) + 'j';
+    document.getElementById('f-dio').textContent = Math.round(dio) + ' j';
+    document.getElementById('f-dso').textContent = Math.round(dso) + ' j';
+    document.getElementById('f-dpo').textContent = Math.round(dpo) + ' j';
     document.getElementById('f-ccc').textContent = Math.round(ccc) + ' jours';
+    document.getElementById('f-ccc-txt').textContent = ccc < 0 ? "d'avance : vos fournisseurs financent tout votre cycle" : 'de cash immobilisé';
 
     // --- Optimization sliders ---
     const optDso = parseInt(document.getElementById('opt-dso').value);
@@ -826,8 +846,8 @@
 
     document.getElementById('savings-amount').textContent = fmt(saved);
     document.getElementById('savings-days').textContent = '−' + savedDays + ' j';
-    document.getElementById('savings-pct').textContent = '−' + Math.round(savedPct) + '%';
-    document.getElementById('savings-ca-pct').textContent = savedCaPct.toFixed(1) + '%';
+    document.getElementById('savings-pct').textContent = '−' + Math.round(savedPct) + '\u00a0%';
+    document.getElementById('savings-ca-pct').textContent = pct(savedCaPct);
 
     // --- 12-month projection ---
     buildChart(bfr, bfrOpt, growth);
