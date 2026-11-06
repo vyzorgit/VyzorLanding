@@ -22,7 +22,6 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
     { label: "Experts-comptables", href: "/cabinets" },
     { label: "Intégrations", href: "/integrations" },
     { label: "Sécurité & RGPD", href: "/securite" },
-    { label: "Calculateurs gratuits", href: "/calculateurs" },
     { label: "Guides", href: "/guides" },
     { label: "FAQ", href: "/faq" },
     { label: "L'équipe", href: "/equipe" },

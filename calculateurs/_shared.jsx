@@ -101,9 +101,12 @@ const liquidGlass = {
         padding: 6px 6px 6px 12px !important;
       }
       .vz-cnav-word, .vz-cnav-sep { display: none !important; }
-      .vz-cnav-link-produit { display: none !important; }
+      .vz-cnav-link-produit, .vz-cnav-link-fonctionnalites { display: none !important; }
       .vz-cnav-link { padding: 8px 10px !important; font-size: 12px !important; }
       .vz-cnav-cta { padding: 8px 14px !important; font-size: 12px !important; }
+    }
+    @media (max-width: 900px) {
+      .vz-cnav-link-integrations, .vz-cnav-link-securite { display: none !important; }
     }
     @media (max-width: 380px) {
       .vz-cnav-links { display: none !important; }
@@ -192,6 +195,9 @@ function VyzorTopNav({ current = "hub" }) {
 
   const items = [
     { id: "produit", label: "Le produit", href: "/#produit" },
+    { id: "fonctionnalites", label: "Fonctionnalités", href: "/fonctionnalites" },
+    { id: "integrations", label: "Intégrations", href: "/integrations" },
+    { id: "securite", label: "Sécurité", href: "/securite" },
     { id: "hub", label: "Calculateurs", href: "/calculateurs" },
     { id: "guides", label: "Guides", href: "/guides" },
   ];

@@ -111,6 +111,8 @@ function shell({ css, mark }, { title, description, canonical, ogType, jsonld, b
     <span class="nav-sep calc-nav-links"></span>
     <a class="nav-link calc-nav-links" href="/#produit">Le produit</a>
     <a class="nav-link calc-nav-links" href="/fonctionnalites">Fonctionnalités</a>
+    <a class="nav-link calc-nav-links" href="/integrations">Intégrations</a>
+    <a class="nav-link calc-nav-links" href="/securite">Sécurité</a>
     <a class="nav-link calc-nav-links" href="/calculateurs">Calculateurs</a>
     <a class="nav-link active calc-nav-links" href="/guides">Guides</a>
     <span class="nav-sep calc-nav-links"></span>
