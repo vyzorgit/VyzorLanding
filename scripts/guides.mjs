@@ -123,7 +123,7 @@ ${body}
     <footer class="gfoot">
       <div class="gfoot-cols">
         <div><div class="gfoot-h">Outils gratuits</div>${Object.values(TOOLS).map((t) => `<a href="${t.href}">${esc(t.name)}</a>`).join("")}</div>
-        <div><div class="gfoot-h">Vyzor</div><a href="/">Accueil</a><a href="/fonctionnalites">Fonctionnalités</a><a href="/guides">Guides</a><a href="/faq">FAQ</a><a href="/a-propos">À propos</a><a href="/securite">Sécurité</a></div>
+        <div><div class="gfoot-h">Vyzor</div><a href="/">Accueil</a><a href="/fonctionnalites">Fonctionnalités</a><a href="/guides">Guides</a><a href="/faq">FAQ</a><a href="/a-propos">À propos</a><a href="/securite">Sécurité</a><a href="https://www.linkedin.com/company/146903391/" rel="noopener" target="_blank">LinkedIn</a></div>
         <div><div class="gfoot-h">Légal</div><a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a><a href="mailto:admin@vyzor.fr">admin@vyzor.fr</a></div>
       </div>
       <div class="gfoot-b">© ${new Date().getFullYear()} Vyzor — pilotage financier des PME</div>
