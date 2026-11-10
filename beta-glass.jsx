@@ -138,26 +138,26 @@
     /* Questionnaire de rendez-vous */
     .beta-modal.lq-modal { max-width: 620px; }
     .lq-fs { border: 0; margin: 0; padding: 0; min-width: 0; }
-    .lq-label { display: block; padding: 0; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.62); text-transform: uppercase; margin-bottom: 8px; font-weight: 500; font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace; }
-    .lq-opt { text-transform: none; letter-spacing: 0; color: rgba(255,255,255,0.45); }
+    .lq-label { display: block; padding: 0; font-size: 15px; letter-spacing: -0.005em; line-height: 1.35; color: #fff; margin-bottom: 10px; font-weight: 600; font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .lq-opt { font-weight: 400; font-size: 13px; color: rgba(255,255,255,0.45); }
     .lq-input { width: 100%; padding: 12px 14px; box-sizing: border-box; background: rgba(255,255,255,0.04); color: #fff; border: 1px solid rgba(255,255,255,0.32); border-radius: 10px; font-size: 14px; outline: none; font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; transition: border-color 200ms, background 200ms; }
     .lq-input:focus { border-color: rgba(240,201,73,0.6); background: rgba(255,255,255,0.06); }
     .lq-input::placeholder { color: rgba(255,255,255,0.35); }
     .lq-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .lq-chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .lq-chip, .lq-card { position: relative; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.03); color: rgba(255,255,255,0.86); border-radius: 10px; transition: border-color 160ms, background 160ms; font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; }
-    .lq-chip { display: inline-flex; align-items: center; padding: 9px 13px; font-size: 13.5px; line-height: 1.3; }
+    .lq-chip { display: inline-flex; align-items: center; padding: 8px 12px; font-size: 13px; line-height: 1.3; color: rgba(255,255,255,0.72); }
     .lq-chip:hover, .lq-card:hover { border-color: rgba(240,201,73,0.45); }
     .lq-chip input, .lq-card input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
     .lq-chip.is-on, .lq-card.is-on { border-color: #f0c949; background: rgba(240,201,73,0.12); color: #fff; }
-    .lq-chip:focus-within, .lq-card:focus-within { outline: 2px solid #f0c949; outline-offset: 2px; }
+    .lq-chip:has(input:focus-visible), .lq-card:has(input:focus-visible) { outline: 2px solid #f0c949; outline-offset: 2px; }
     .lq-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .lq-card { display: flex; flex-direction: column; gap: 4px; padding: 13px 14px; }
-    .lq-card__t { font-size: 14px; font-weight: 600; line-height: 1.3; }
+    .lq-card__t { font-size: 14px; font-weight: 500; line-height: 1.3; }
     .lq-card__d { font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.4; }
     .lq-progress { height: 3px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
     .lq-progress > span { display: block; height: 100%; background: #f0c949; transition: width 300ms ease; }
-    .lq-step-title { margin: 12px 0 18px; font-size: 12.5px; color: rgba(255,255,255,0.55); outline: none; }
+    .lq-step-title { margin: 12px 0 22px; font-size: 13px; color: rgba(255,255,255,0.55); outline: none; }
     .lq-step-title strong { color: #fff; font-weight: 600; }
     .lq-error { font-size: 12.5px; color: #ffb4a8; background: rgba(255,99,71,0.08); border: 1px solid rgba(255,99,71,0.30); padding: 10px 12px; border-radius: 10px; line-height: 1.5; }
     .lq-actions { display: flex; gap: 10px; align-items: stretch; }
@@ -639,7 +639,7 @@ const BetaModal = ({ open, onClose }) => {
               <span aria-hidden="true"> · </span>
               <strong>{stepName}</strong>
             </div>
-            <form onSubmit={next} noValidate style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+            <form onSubmit={next} noValidate style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               {/* Honeypot Web3Forms — anti-spam */}
               <input type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
               {body}
