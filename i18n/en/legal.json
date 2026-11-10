@@ -37,7 +37,6 @@
   "(co-fondateur en charge de l'acquisition, également diplômé du MSc Data for Finance de Mines Paris–PSL, passé par Natixis CIB et Kano), associés. L'entreprise est une société par actions simplifiée (SAS) en cours de formation, établie en France.": "(co-founder in charge of acquisition, also an MSc Data for Finance graduate from Mines Paris–PSL, formerly at Natixis CIB and Kano), as partners. The company is a French simplified joint-stock company (SAS) in the process of formation, based in France.",
   "(États-Unis) : hébergement du Site et journaux techniques. Transfert hors UE encadré par les clauses contractuelles types de la Commission européenne": "(United States): hosting of the Site and technical logs. Transfers outside the EU are governed by the European Commission's standard contractual clauses",
   "(États-Unis) : uniquement si vous prenez rendez-vous, sur le site de Calendly.": "(United States): only if you book a meeting, on the Calendly website.",
-  "(formulaire « Réservez votre place ») : nom et prénom, adresse email professionnelle, nom de l'entreprise. Ces trois champs sont obligatoires ; aucun autre champ n'est collecté.": "(“Save my spot” form): first and last name, business email address, company name. These three fields are required; no other field is collected.",
   "(formulaire des pages Guides) : adresse email professionnelle et page d'origine.": "(form on the Guides pages): business email address and originating page.",
   "(journaux techniques) — base légale : intérêt légitime (article 6.1.f).": "(technical logs) — legal basis: legitimate interest (Article 6(1)(f)).",
   "(nouvel onglet)": "(opens in a new tab)",
@@ -171,5 +170,7 @@
   "Vyzor, avec un Z": "Vyzor, with a Z",
   "Web3Forms": "Web3Forms",
   "www.cnil.fr": "www.cnil.fr",
-  "www.vyzor.fr": "www.vyzor.fr"
+  "www.vyzor.fr": "www.vyzor.fr",
+  "Demande de rendez-vous et candidature à la bêta": "Meeting request and beta application",
+  "(questionnaire « Préparons votre rendez-vous ») : nom et prénom, adresse email professionnelle, téléphone (facultatif), nom de l'entreprise ou du cabinet, profil, puis des informations sur la structure et ses besoins (secteur, tranche de chiffre d'affaires, effectif, nombre de sociétés ou de dossiers, logiciel comptable, façon de suivre les chiffres, priorités, délai, texte libre facultatif, origine de la visite). Ces réponses servent à préparer le rendez-vous et à prioriser les demandes ; aucune décision automatique n'est prise à partir d'elles.": "(“Let's prepare your meeting” questionnaire): first and last name, business email address, phone number (optional), company or firm name, role, then information about the organisation and its needs (sector, revenue bracket, headcount, number of companies or client files, accounting software, how figures are tracked today, priorities, timeline, optional free text, how you found us). These answers are used to prepare the meeting and to prioritise requests; no automated decision is made from them."
 }

@@ -75,7 +75,7 @@ const VariantA = () => {
 
           {/* CTA */}
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 36 }}>
-            <a href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{
+            <a href="/?contact=1#beta" data-contact style={{
               display: "inline-flex", alignItems: "center", gap: 10,
               padding: "14px 22px", borderRadius: 12,
               backgroundImage: "linear-gradient(#f0c949,#f0c949)",

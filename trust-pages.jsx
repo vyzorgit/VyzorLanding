@@ -264,7 +264,7 @@ const IntegrationsPageBody = ({ gold, muted }) => (
             <p style={{ margin: "14px 0 0", fontSize: 16, lineHeight: 1.6, color: muted }}>Le FEC fonctionne avec tous les logiciels comptables. Pour le reste, dites-nous ce que vous utilisez : les prochains connecteurs suivent les demandes des utilisateurs de la bêta.</p>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "flex-end" }}>
-            <a href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{ display: "inline-flex", alignItems: "center", padding: "14px 20px", borderRadius: 10, background: gold, color: "#111", fontSize: 15, fontWeight: 600, textDecoration: "none" }}>Prendre rendez-vous</a>
+            <a href="/?contact=1#beta" data-contact style={{ display: "inline-flex", alignItems: "center", padding: "14px 20px", borderRadius: 10, background: gold, color: "#111", fontSize: 15, fontWeight: 600, textDecoration: "none" }}>Prendre rendez-vous</a>
             <a href="mailto:admin@vyzor.fr" style={{ display: "inline-flex", alignItems: "center", padding: "14px 20px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.16)", color: "#fff", fontSize: 15, fontWeight: 500, textDecoration: "none" }}>Nous écrire</a>
           </div>
         </div>
@@ -414,7 +414,7 @@ const SecurityPageBody = ({ gold, muted }) => {
           <p style={{ margin: "18px auto 0", maxWidth: 580, fontSize: 17, lineHeight: 1.6, color: muted }}>Nous répondons directement, avec le détail technique dont vous avez besoin.</p>
           <div style={{ marginTop: 28, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href="mailto:admin@vyzor.fr" style={{ display: "inline-flex", alignItems: "center", padding: "15px 22px", borderRadius: 10, background: gold, color: "#111", fontSize: 15.5, fontWeight: 600, textDecoration: "none" }}>Écrire à l'équipe</a>
-            <a href="https://calendly.com/admin-vyzor/30min" target="_blank" rel="noopener" style={{ display: "inline-flex", alignItems: "center", padding: "15px 22px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.16)", color: "#fff", fontSize: 15.5, fontWeight: 500, textDecoration: "none" }}>Prendre rendez-vous</a>
+            <a href="/?contact=1#beta" data-contact style={{ display: "inline-flex", alignItems: "center", padding: "15px 22px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.16)", color: "#fff", fontSize: 15.5, fontWeight: 500, textDecoration: "none" }}>Prendre rendez-vous</a>
           </div>
         </section>
         <BetaFormGlass modalOnly />

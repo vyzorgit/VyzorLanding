@@ -247,7 +247,7 @@ const PolitiqueConfidentialite = () => (
 
     <LegalArticle n="03" id="donnees" title="Données collectées sur le Site">
       <Bullets items={[
-        <span><Strong>Candidature à la bêta</Strong> (formulaire « Réservez votre place ») : nom et prénom, adresse email professionnelle, nom de l'entreprise. Ces trois champs sont obligatoires ; aucun autre champ n'est collecté.</span>,
+        <span><Strong>Demande de rendez-vous et candidature à la bêta</Strong> (questionnaire « Préparons votre rendez-vous ») : nom et prénom, adresse email professionnelle, téléphone (facultatif), nom de l'entreprise ou du cabinet, profil, puis des informations sur la structure et ses besoins (secteur, tranche de chiffre d'affaires, effectif, nombre de sociétés ou de dossiers, logiciel comptable, façon de suivre les chiffres, priorités, délai, texte libre facultatif, origine de la visite). Ces réponses servent à préparer le rendez-vous et à prioriser les demandes ; aucune décision automatique n'est prise à partir d'elles.</span>,
         <span><Strong>Demandes par courriel</Strong> adressées à admin@vyzor.fr : votre adresse email et le contenu de votre message.</span>,
         <span><Strong>Prise de rendez-vous</Strong> : après l'envoi du formulaire bêta, le lien « Choisir mon créneau » renvoie vers Calendly, service tiers qui collecte vos données sur son propre site, selon sa propre politique.</span>,
         <span><Strong>Journaux techniques de l'hébergeur</Strong> : adresse IP, type de navigateur, page demandée et horodatage, conservés par Vercel à des fins de sécurité et de fonctionnement du service.</span>,
