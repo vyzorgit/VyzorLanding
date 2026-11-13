@@ -1,9 +1,10 @@
 ---
 title: "Seuil de rentabilité : calcul, formule et exemple chiffré d'une PME"
-seo_title: "Seuil de rentabilité : calcul, formule et exemple de PME"
-description: "Seuil de rentabilité : formule, calcul en valeur et en quantité, point mort en jours et marge de sécurité, avec l'exemple chiffré d'une PME de services."
+seo_title: "Seuil de rentabilité et point mort : calcul et exemple de PME"
+description: "Seuil de rentabilité : formule, calcul en valeur et en quantité, calcul du point mort en jours et en date, marge de sécurité et exemple chiffré d'une PME."
 slug: seuil-de-rentabilite
 date: 2026-10-28
+updated: 2026-11-13
 category: Rentabilité
 keyword: "seuil de rentabilité"
 tool: breakeven
@@ -30,7 +31,7 @@ sources:
     url: "https://bpifrance-creation.fr/taux-marge-couts-variables"
 ---
 
-Votre chiffre d'affaires progresse, mais vous ne savez pas à partir de quel niveau l'entreprise commence vraiment à gagner de l'argent. C'est exactement ce que mesure le **seuil de rentabilité**. Ce guide détaille sa formule, le calcul du seuil de rentabilité en valeur et en quantité, le point mort en jours, puis l'utilise pour trancher trois décisions courantes : accorder une remise, embaucher, accepter une hausse de prix d'un sous-traitant.
+Votre chiffre d'affaires progresse, mais vous ne savez pas à partir de quel niveau l'entreprise commence vraiment à gagner de l'argent. C'est exactement ce que mesure le **seuil de rentabilité**. Ce guide détaille sa formule, le calcul du seuil de rentabilité en valeur et en quantité, la façon de calculer le point mort en jours et en date, puis l'utilise pour trancher trois décisions courantes : accorder une remise, embaucher, accepter une hausse de prix d'un sous-traitant.
 
 ## Qu'est-ce que le seuil de rentabilité ?
 
@@ -92,13 +93,34 @@ Le calcul donne :
 
 En rythme mensuel, les charges fixes représentent 93 750 € et le seuil mensuel 133 929 € de chiffre d'affaires. C'est le chiffre à comparer chaque mois à la facturation réelle.
 
+## Comment calculer le point mort en jours et en date ?
+
+Le calcul du point mort traduit le seuil de rentabilité en calendrier, en deux temps :
+
+1. **Point mort en jours** = seuil de rentabilité ÷ chiffre d'affaires annuel × 365. Pour le bureau d'études : 1 607 143 ÷ 1 800 000 × 365 = 325,9, soit le 326e jour de l'exercice.
+2. **Point mort en date** : comptez ce nombre de jours à partir du premier jour de l'exercice. Sur un exercice civil de 365 jours, le 326e jour tombe le 22 novembre. Pour un exercice décalé (du 1er juillet au 30 juin, par exemple), partez du 1er juillet.
+
+En mois, le calcul est le même avec 12 au lieu de 365 : 1 607 143 ÷ 1 800 000 × 12 = 10,7 mois.
+
+Cette méthode suppose une activité régulière. Si votre chiffre d'affaires est saisonnier, calculez le point mort sur le cumul mensuel : le point mort est atteint le mois où le chiffre d'affaires cumulé dépasse le seuil. Voici le même bureau d'études, toujours à 1 800 000 € sur l'année, mais avec un creux l'été :
+
+| Période | CA de la période | CA cumulé |
+|---|---|---|
+| Janvier à juin | 890 000 € | 890 000 € |
+| Juillet | 110 000 € | 1 000 000 € |
+| Août | 60 000 € | 1 060 000 € |
+| Septembre | 170 000 € | 1 230 000 € |
+| Octobre | 190 000 € | 1 420 000 € |
+| **Novembre** | **200 000 €** | **1 620 000 €** |
+| Décembre | 180 000 € | 1 800 000 € |
+
+Fin octobre, il manque encore 187 143 € pour atteindre le seuil. Novembre en apporte 200 000 € : le point mort tombe vers le 28 novembre si l'activité du mois est régulière, six jours plus tard que le calcul linéaire. Plus l'activité est concentrée en fin d'année, plus l'écart grandit.
+
 ## Comment interpréter la marge de sécurité ?
 
 La marge de sécurité dit de combien le chiffre d'affaires peut baisser avant que l'entreprise ne passe en perte. Ici, 10,7 % : si l'activité recule de plus de 10,7 % sur l'année, le résultat devient négatif.
 
 Il n'existe pas de norme universelle, car le bon niveau dépend de la régularité du chiffre d'affaires et du poids des charges fixes. La lecture utile est relative : votre marge de sécurité progresse-t-elle d'une année à l'autre, et résisterait-elle à la perte de votre premier client ?
-
-Le point mort calculé ci-dessus suppose une activité régulière sur l'année. Si votre chiffre d'affaires est saisonnier, cumulez le chiffre d'affaires mois par mois et repérez le mois où le cumul dépasse le seuil : c'est votre point mort réel.
 
 ## Quelles décisions le seuil de rentabilité permet-il de prendre ?
 
