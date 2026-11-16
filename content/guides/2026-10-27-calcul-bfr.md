@@ -1,9 +1,10 @@
 ---
 title: "Calcul du BFR : formule, exemple chiffré et 5 leviers pour le réduire"
-seo_title: "Calcul du BFR : formule, exemple chiffré et interprétation"
-description: "Calcul du BFR pas à pas : formule, BFR en jours de CA, exemple chiffré, BFR positif ou négatif, et 5 leviers pour libérer de la trésorerie."
+seo_title: "Calcul du BFR, besoin en fonds de roulement : formule, exemple"
+description: "Calcul du BFR, ou besoin en fonds de roulement : formule, BFR en jours de CA, exemple chiffré de PME et 5 leviers pour libérer de la trésorerie."
 slug: calcul-bfr
 date: 2026-10-27
+updated: 2026-11-16
 category: Trésorerie
 keyword: "calcul bfr"
 tool: bfr
@@ -13,7 +14,7 @@ essentiel:
   - "Un BFR qui grossit plus vite que le chiffre d'affaires est un signal d'alerte : la croissance consomme de la trésorerie au lieu d'en produire."
   - "Les trois leviers principaux sont les délais clients (DSO), les délais fournisseurs (DPO) et la rotation des stocks. Dans notre exemple, 15 jours de délai client en moins libèrent environ 118 000 €."
 faq:
-  - q: "Quelle est la formule du BFR ?"
+  - q: "Comment calculer les besoins en fonds de roulement ?"
     a: "BFR = stocks + créances clients + autres créances d'exploitation − dettes fournisseurs − autres dettes d'exploitation (TVA, dettes sociales). Toutes les valeurs se lisent au bilan, à une même date."
   - q: "Un BFR négatif, est-ce une bonne nouvelle ?"
     a: "Souvent oui : vos clients vous paient avant que vous ne payiez vos fournisseurs, comme dans la grande distribution ou certains modèles par abonnement payés d'avance. Le cycle d'exploitation finance alors la trésorerie au lieu de la consommer."
@@ -28,7 +29,7 @@ sources:
     url: "https://hauts-de-france.dreets.gouv.fr/sites/hauts-de-france.dreets.gouv.fr/IMG/pdf/lutte_contre_les_retards_de_paiement.pdf"
 ---
 
-Une entreprise rentable peut manquer de trésorerie. La raison tient presque toujours en trois lettres : **BFR**. Entre le moment où vous payez vos achats et celui où vos clients vous règlent, de l'argent reste bloqué dans votre cycle d'exploitation. Ce guide détaille le calcul du BFR à partir de votre bilan, comment le lire en jours de chiffre d'affaires, et où chercher pour le réduire.
+Une entreprise rentable peut manquer de trésorerie. La raison tient presque toujours en trois lettres : **BFR**. Entre le moment où vous payez vos achats et celui où vos clients vous règlent, de l'argent reste bloqué dans votre cycle d'exploitation. Ce guide détaille le calcul du BFR, le besoin en fonds de roulement, à partir de votre bilan, comment le lire en jours de chiffre d'affaires, et où chercher pour le réduire.
 
 ## Qu'est-ce que le besoin en fonds de roulement ?
 
@@ -40,7 +41,7 @@ Le besoin en fonds de roulement est l'argent dont l'entreprise a besoin en perma
 
 Le BFR est la différence entre ce qui est bloqué (stocks, créances) et ce qui vous est avancé (dettes fournisseurs, dettes fiscales et sociales d'exploitation). Tant que cette différence est positive, il faut la financer : par la trésorerie, par des capitaux stables ou par un découvert.
 
-## Calcul du BFR : la formule
+## Calcul du besoin en fonds de roulement (BFR) : la formule
 
 Au bilan, à une même date :
 
@@ -83,7 +84,7 @@ La lecture est immédiate : les clients paient en deux mois, les fournisseurs so
 
 **Un BFR qui suit la croissance** est le piège classique. Dans notre exemple, si le chiffre d'affaires augmente de 20 % à délais identiques, le BFR augmente lui aussi d'environ 20 %, soit **88 800 € de trésorerie à trouver**, avant même d'avoir encaissé le moindre euro de marge supplémentaire. C'est la raison pour laquelle des entreprises en forte croissance se retrouvent à court de cash.
 
-Le BFR se lit enfin avec le **fonds de roulement** : la trésorerie nette est égale au fonds de roulement moins le BFR. Si le BFR dépasse durablement le fonds de roulement, la différence est financée par le découvert.
+Le BFR se lit enfin avec le **fonds de roulement** : la trésorerie nette est égale au fonds de roulement moins le BFR. Si le BFR dépasse durablement le fonds de roulement, la différence est financée par le découvert. Le [guide du calcul de fonds de roulement](/guides/calcul-de-fonds-de-roulement) détaille ce second calcul, et le [guide du BFR négatif](/guides/bfr-negatif) les modèles où l'exploitation finance la trésorerie.
 
 ## 5 leviers pour réduire votre BFR
 
