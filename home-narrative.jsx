@@ -36,9 +36,10 @@ const GpsSchema = () => {
     </g>
   );
   const Panel = ({ gps }) => (
-    <figure style={{ margin: 0, borderRadius: 18, padding: "18px 18px 16px", background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)", border: `1px solid ${gps ? "rgba(240,201,73,0.32)" : "rgba(140,160,255,0.12)"}` }}>
+    <figure className="vz-gps-panel" style={{ margin: 0, borderRadius: 18, padding: "18px 18px 16px", background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)", border: `1px solid ${gps ? "rgba(240,201,73,0.32)" : "rgba(140,160,255,0.12)"}` }}>
       <div style={{ fontSize: 13.5, fontWeight: 600, color: gps ? VZH.gold : VZH.muted, marginBottom: 10 }}>
-        {gps ? "Le GPS : Vyzor" : "La carte papier : tableurs et exports"}
+        <span className="vz-gps-long">{gps ? "Le GPS : Vyzor" : "La carte papier : tableurs et exports"}</span>
+        <span className="vz-gps-short">{gps ? "GPS : Vyzor" : "Carte papier"}</span>
       </div>
       <svg viewBox="0 0 360 260" width="100%" role="img" aria-label={gps ? "Avec Vyzor, une seule route claire de A à B, les obstacles sont signalés" : "Sur la carte papier, un trajet sinueux entre de nombreux obstacles"} style={{ display: "block" }}>
         <rect x="0" y="0" width="360" height="260" rx="12" fill={gps ? "rgba(240,201,73,0.03)" : "rgba(255,255,255,0.015)"} />
@@ -48,11 +49,11 @@ const GpsSchema = () => {
           <g>
             <path d="M40 230 V46 Q40 30 56 30 H320" fill="none" stroke="rgba(240,201,73,0.25)" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M40 230 V46 Q40 30 56 30 H320" fill="none" stroke={VZH.gold} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-            <g transform="translate(180 54)">
+            <g className="vz-gps-chip" transform="translate(180 54)">
               <rect x="-50" y="-11" width="100" height="22" rx="11" fill={VZH.gold} />
               <text y="4" textAnchor="middle" fontSize="11" fontWeight="700" fill="#0d1430">Meilleure route</text>
             </g>
-            <g transform="translate(232 120)">
+            <g className="vz-gps-chip" transform="translate(232 120)">
               <rect x="-100" y="-12" width="200" height="24" rx="12" fill="#141c40" stroke="#fb7185" strokeWidth="1" />
               <text y="4" textAnchor="middle" fontSize="11" fill="#fff">Trésorerie tendue en mars : signalée</text>
             </g>
@@ -66,8 +67,8 @@ const GpsSchema = () => {
         {pin(40, 230, "A", "rgba(255,255,255,0.85)")}
         {pin(320, 30, "B", gps ? VZH.gold : "rgba(255,255,255,0.85)")}
       </svg>
-      <figcaption style={{ marginTop: 10, fontSize: 14, lineHeight: 1.5, color: gps ? "#fff" : VZH.muted }}>
-        {gps ? "Il repère les obstacles, fait les calculs et vous indique la meilleure route." : "Des détours, des calculs à refaire, et des obstacles découverts en chemin."}
+      <figcaption className="vz-gps-cap" style={{ marginTop: 10, fontSize: 14, lineHeight: 1.5, color: gps ? "#fff" : VZH.muted }}>
+        {gps ? "Les obstacles sont repérés, la meilleure route est calculée pour vous." : "Des détours, des calculs à refaire, des obstacles découverts en chemin."}
       </figcaption>
     </figure>
   );
@@ -75,6 +76,16 @@ const GpsSchema = () => {
     <div className="vz-gps-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
       <Panel />
       <Panel gps />
+      <style>{`
+        .vz-gps-short { display: none; }
+        @media (max-width: 640px) {
+          .vz-gps-grid { gap: 10px !important; }
+          .vz-gps-panel { padding: 12px 10px 12px !important; border-radius: 14px !important; }
+          .vz-gps-long, .vz-gps-chip { display: none; }
+          .vz-gps-short { display: inline; }
+          .vz-gps-cap { font-size: 12px !important; line-height: 1.4 !important; }
+        }
+      `}</style>
     </div>
   );
 };
@@ -82,20 +93,19 @@ const GpsSchema = () => {
 // —— 2. La douleur, et la métaphore ——
 const HomePain = ({ id = "constat" }) => (
   <section id={id} className="vz-hpain" style={{ position: "relative", marginBottom: 120 }}>
-    <div style={{ maxWidth: 860, marginBottom: 40 }}>
-      <h2 style={{ fontSize: 48, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.1, textWrap: "balance" }}>
-        <span style={{ display: "block" }}>Chaque analyse se construit à la main et prend des heures.</span>{" "}
-        <span style={{ display: "block", color: VZH.muted }}>Quand le temps manque ou qu'un nouveau scénario se présente, vos outils n'ont pas de réponse.</span>
+    <div style={{ maxWidth: 760, marginBottom: 32 }}>
+      <h2 style={{ fontSize: 40, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.12, textWrap: "balance" }}>
+        Chaque analyse se construit à la main et prend des heures.
       </h2>
-      <p style={{ fontSize: 18, lineHeight: 1.65, color: VZH.muted, margin: "26px 0 0", maxWidth: 700, textWrap: "pretty" }}>
-        Piloter une entreprise avec des tableurs revient à naviguer avec une carte papier : on atteint sa destination, à condition de savoir la lire. Mais le jour où la route change, la carte ne vous prévient pas.{" "}
+      <p style={{ fontSize: 18, lineHeight: 1.6, color: VZH.muted, margin: "18px 0 0", textWrap: "pretty" }}>
+        Piloter avec des tableurs revient à naviguer à la carte papier : le jour où la route change, elle ne vous prévient pas.{" "}
         <span style={{ color: "#fff", fontWeight: 600 }}>Vyzor est le GPS de vos finances.</span>
       </p>
     </div>
     <GpsSchema />
     <style>{`
-      @media (max-width: 920px) { .vz-hpain .vz-gps-grid { grid-template-columns: 1fr !important; } .vz-hpain h2 { font-size: 34px !important; } }
-      @media (max-width: 560px) { .vz-hpain h2 { font-size: 28px !important; } }
+      @media (max-width: 920px) { .vz-hpain h2 { font-size: 32px !important; } }
+      @media (max-width: 560px) { .vz-hpain h2 { font-size: 25px !important; } .vz-hpain p { font-size: 16px !important; } }
     `}</style>
   </section>
 );
@@ -115,7 +125,7 @@ const HomeDemo = ({ id = "produit" }) => (
     <GenUiDemo />
     <style>{`
       @media (max-width: 920px) { .vz-hdemo h2 { font-size: 34px !important; } }
-      @media (max-width: 560px) { .vz-hdemo h2 { font-size: 28px !important; } }
+      @media (max-width: 560px) { .vz-hdemo h2 { font-size: 26px !important; } .vz-hdemo p { font-size: 16px !important; } }
     `}</style>
   </section>
 );
@@ -142,7 +152,7 @@ const HomeProof = () => {
           </figure>
         ))}
       </div>
-      <style>{`@media (max-width: 860px) { .vz-hproof .vz-hproof-grid { grid-template-columns: 1fr !important; } }`}</style>
+      <style>{`@media (max-width: 860px) { .vz-hproof .vz-hproof-grid { grid-template-columns: 1fr !important; gap: 10px !important; } .vz-hproof figure { padding: 16px 18px !important; gap: 12px !important; } .vz-hproof blockquote { font-size: 15.5px !important; } }`}</style>
     </section>
   );
 };
@@ -174,7 +184,7 @@ const HomeSteps = ({ id = "comment" }) => {
           </li>
         ))}
       </ol>
-      <style>{`@media (max-width: 860px) { .vz-hsteps .vz-hsteps-row { grid-template-columns: 1fr !important; gap: 18px !important; } }`}</style>
+      <style>{`@media (max-width: 860px) { .vz-hsteps .vz-hsteps-row { grid-template-columns: 1fr !important; gap: 14px !important; } .vz-hsteps h2 { font-size: 22px !important; } }`}</style>
     </section>
   );
 };
