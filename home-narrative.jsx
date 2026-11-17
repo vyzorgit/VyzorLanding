@@ -6,10 +6,21 @@
 const VZH = { gold: "#f0c949", muted: "rgba(255,255,255,0.58)", line: "rgba(255,255,255,0.08)" };
 
 // —— Schéma : la carte papier et le GPS ——
+// Carte papier : rues denses, obstacles partout, un trajet qui serpente et des points d'interrogation.
+// GPS : la même ville estompée, obstacles signalés, une seule route nette de A à B.
+const VZ_GPS_OBSTACLES = [[80, 150], [160, 190], [240, 190], [240, 150], [160, 70], [80, 70], [280, 190]];
 const GpsSchema = () => {
-  const roads = (
-    <g stroke="rgba(255,255,255,0.09)" strokeWidth="10" strokeLinecap="round" fill="none">
-      <path d="M30 170 H330" /><path d="M30 90 H330" /><path d="M110 30 V230" /><path d="M250 30 V230" />
+  const xs = [40, 80, 120, 160, 200, 240, 280, 320], ys = [30, 70, 110, 150, 190, 230];
+  const streets = (op) => (
+    <g stroke={`rgba(255,255,255,${op})`} strokeWidth="7" strokeLinecap="round" fill="none">
+      {xs.map((x) => <path key={"x" + x} d={`M${x} 30 V230`} />)}
+      {ys.map((y) => <path key={"y" + y} d={`M40 ${y} H320`} />)}
+    </g>
+  );
+  const obstacle = (x, y, gps) => (
+    <g key={`${x}-${y}`} transform={`translate(${x} ${y})`}>
+      <rect x="-10" y="-10" width="20" height="20" rx="5" fill={gps ? "rgba(255,255,255,0.05)" : "rgba(251,113,133,0.2)"} stroke={gps ? "rgba(255,255,255,0.14)" : "#fb7185"} strokeWidth="1.3" />
+      <path d="M-4 -4 L4 4 M4 -4 L-4 4" stroke={gps ? "rgba(255,255,255,0.25)" : "#fb7185"} strokeWidth="1.8" strokeLinecap="round" />
     </g>
   );
   const pin = (x, y, label, color) => (
@@ -18,36 +29,45 @@ const GpsSchema = () => {
       <text x={x} y={y + 4} textAnchor="middle" fontSize="11" fontWeight="700" fill="#0d1430">{label}</text>
     </g>
   );
+  const ask = (x, y) => (
+    <g transform={`translate(${x} ${y})`}>
+      <circle r="9" fill="#141c40" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
+      <text y="4" textAnchor="middle" fontSize="11" fontWeight="700" fill="rgba(255,255,255,0.8)">?</text>
+    </g>
+  );
   const Panel = ({ gps }) => (
     <figure style={{ margin: 0, borderRadius: 18, padding: "18px 18px 16px", background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)", border: `1px solid ${gps ? "rgba(240,201,73,0.32)" : "rgba(140,160,255,0.12)"}` }}>
       <div style={{ fontSize: 13.5, fontWeight: 600, color: gps ? VZH.gold : VZH.muted, marginBottom: 10 }}>
         {gps ? "Le GPS : Vyzor" : "La carte papier : tableurs et exports"}
       </div>
-      <svg viewBox="0 0 360 260" width="100%" role="img" aria-label={gps ? "Vyzor signale l'obstacle et propose un nouvel itinéraire" : "Sur la carte papier, l'obstacle n'apparaît pas"} style={{ display: "block" }}>
+      <svg viewBox="0 0 360 260" width="100%" role="img" aria-label={gps ? "Avec Vyzor, une seule route claire de A à B, les obstacles sont signalés" : "Sur la carte papier, un trajet sinueux entre de nombreux obstacles"} style={{ display: "block" }}>
         <rect x="0" y="0" width="360" height="260" rx="12" fill={gps ? "rgba(240,201,73,0.03)" : "rgba(255,255,255,0.015)"} />
-        {roads}
-        {/* Itinéraire prévu : A → B par la route du bas */}
-        <path d="M110 230 V170 H250 V30" fill="none" stroke={gps ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.55)"} strokeWidth="3" strokeDasharray={gps ? "6 6" : "0"} strokeLinecap="round" />
-        {/* Obstacle sur la route */}
-        <g transform="translate(180 170)">
-          <rect x="-15" y="-15" width="30" height="30" rx="7" fill={gps ? "rgba(251,113,133,0.18)" : "rgba(255,255,255,0.04)"} stroke={gps ? "#fb7185" : "rgba(255,255,255,0.12)"} strokeWidth="1.5" />
-          <path d="M-6 -6 L6 6 M6 -6 L-6 6" stroke={gps ? "#fb7185" : "rgba(255,255,255,0.18)"} strokeWidth="2.2" strokeLinecap="round" />
-        </g>
+        {streets(gps ? 0.05 : 0.11)}
+        {VZ_GPS_OBSTACLES.map(([x, y]) => obstacle(x, y, gps))}
         {gps ? (
           <g>
-            {/* Nouvel itinéraire par la route du haut */}
-            <path d="M110 230 V90 H250 V30" fill="none" stroke={VZH.gold} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-            <g transform="translate(250 200)">
-              <rect x="-74" y="-13" width="148" height="26" rx="13" fill="#141c40" stroke="#fb7185" strokeWidth="1" />
-              <text x="0" y="4.5" textAnchor="middle" fontSize="11.5" fill="#fff">Trésorerie tendue en mars</text>
+            <path d="M40 230 V46 Q40 30 56 30 H320" fill="none" stroke="rgba(240,201,73,0.25)" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M40 230 V46 Q40 30 56 30 H320" fill="none" stroke={VZH.gold} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+            <g transform="translate(180 54)">
+              <rect x="-50" y="-11" width="100" height="22" rx="11" fill={VZH.gold} />
+              <text y="4" textAnchor="middle" fontSize="11" fontWeight="700" fill="#0d1430">Meilleure route</text>
+            </g>
+            <g transform="translate(232 120)">
+              <rect x="-100" y="-12" width="200" height="24" rx="12" fill="#141c40" stroke="#fb7185" strokeWidth="1" />
+              <text y="4" textAnchor="middle" fontSize="11" fill="#fff">Trésorerie tendue en mars : signalée</text>
             </g>
           </g>
-        ) : null}
-        {pin(110, 230, "A", "rgba(255,255,255,0.85)")}
-        {pin(250, 30, "B", gps ? VZH.gold : "rgba(255,255,255,0.85)")}
+        ) : (
+          <g>
+            <path d="M40 230 V190 H120 V230 H200 V150 H120 V110 H200 V70 H280 V110 H320 V30" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="7 5" />
+            {ask(120, 170)}{ask(200, 130)}{ask(280, 90)}
+          </g>
+        )}
+        {pin(40, 230, "A", "rgba(255,255,255,0.85)")}
+        {pin(320, 30, "B", gps ? VZH.gold : "rgba(255,255,255,0.85)")}
       </svg>
       <figcaption style={{ marginTop: 10, fontSize: 14, lineHeight: 1.5, color: gps ? "#fff" : VZH.muted }}>
-        {gps ? "Il repère l'obstacle, refait les calculs et vous indique la meilleure route." : "La route change : la carte ne vous prévient pas."}
+        {gps ? "Il repère les obstacles, fait les calculs et vous indique la meilleure route." : "Des détours, des calculs à refaire, et des obstacles découverts en chemin."}
       </figcaption>
     </figure>
   );
