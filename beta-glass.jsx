@@ -694,9 +694,10 @@ const BetaModal = ({ open, onClose }) => {
 // Les questions de qualification se posent pendant l'appel (ou en option dans Calendly).
 const VZ_CALENDLY = "https://calendly.com/admin-vyzor/30min";
 const QuickBookModal = ({ open, onClose }) => {
-  const [d, setD] = React.useState({ name: "", email: "", entreprise: "" });
+  const [d, setD] = React.useState({ profil: "", name: "", email: "", entreprise: "" });
   const [error, setError] = React.useState(null);
   const [done, setDone] = React.useState(false);
+  const profils = ["Chef d'entreprise", "Expert-comptable", "Directeur financier"];
   const [calUrl, setCalUrl] = React.useState(VZ_CALENDLY);
   const [mounted, setMounted] = React.useState(false);
   const dialogRef = React.useRef(null);
@@ -704,12 +705,12 @@ const QuickBookModal = ({ open, onClose }) => {
   closeRef.current = onClose;
   React.useEffect(() => setMounted(true), []);
   React.useEffect(() => {
-    if (!open) { setD({ name: "", email: "", entreprise: "" }); setError(null); setDone(false); return; }
+    if (!open) { setD({ profil: "", name: "", email: "", entreprise: "" }); setError(null); setDone(false); return; }
     const onKey = (e) => { if (e.key === "Escape") closeRef.current(); };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     const trigger = document.activeElement;
-    setTimeout(() => { const f = dialogRef.current && dialogRef.current.querySelector("#lq-name"); if (f) f.focus(); }, 30);
+    setTimeout(() => { const f = dialogRef.current && dialogRef.current.querySelector("input[name=lq-profil], #lq-name"); if (f) f.focus(); }, 30);
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
@@ -721,6 +722,7 @@ const QuickBookModal = ({ open, onClose }) => {
   const submit = (e) => {
     e.preventDefault();
     if (e.currentTarget.elements.botcheck && e.currentTarget.elements.botcheck.checked) return;
+    if (!d.profil) { setError("Dites-nous qui vous êtes."); return; }
     if (!d.name.trim()) { setError("Indiquez votre nom."); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email.trim())) { setError("Indiquez une adresse e-mail valide."); return; }
     if (!d.entreprise.trim()) { setError("Indiquez le nom de votre entreprise."); return; }
@@ -731,7 +733,8 @@ const QuickBookModal = ({ open, onClose }) => {
     // 2. Le contact part en parallèle.
     const fd = new FormData();
     fd.append("access_key", "9f003436-eba6-4543-b3ed-06c89a38a69c");
-    fd.append("subject", `[Rendez-vous] ${d.entreprise.trim()} — ${d.name.trim()}`);
+    fd.append("subject", `[Rendez-vous] ${d.profil} · ${d.entreprise.trim()} — ${d.name.trim()}`);
+    fd.append("Profil", d.profil);
     fd.append("from_name", "Vyzor — Rendez-vous");
     fd.append("name", d.name.trim());
     fd.append("email", d.email.trim());
@@ -746,9 +749,14 @@ const QuickBookModal = ({ open, onClose }) => {
   const muted = "rgba(255,255,255,0.55)";
   const overlay = (
     <div className="beta-modal-overlay" onClick={onClose}>
-      <div className="beta-modal lq-modal" ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="qb-title" tabIndex={-1}
+      <div className="beta-modal lq-modal qb-modal" ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="qb-title" tabIndex={-1}
         onClick={(e) => e.stopPropagation()} style={{ maxWidth: 460 }}>
         <button type="button" className="beta-modal__close" onClick={onClose} aria-label="Fermer">×</button>
+        <style>{`
+          .qb-modal .lq-chips { flex-wrap: nowrap; }
+          .qb-modal .lq-chip { flex: 1 1 0; justify-content: center; text-align: center; padding: 9px 6px; font-size: 12.5px; white-space: nowrap; }
+          @media (max-width: 400px) { .qb-modal .lq-chips { flex-wrap: wrap; } .qb-modal .lq-chip { flex: 1 1 40%; } }
+        `}</style>
         {!done ? (
           <React.Fragment>
             <h3 id="qb-title" style={{ fontFamily: LQ_FONT, fontWeight: 600, fontSize: 24, letterSpacing: "-0.015em", lineHeight: 1.15, margin: "0 40px 8px 0", color: "#fff" }}>
@@ -759,6 +767,7 @@ const QuickBookModal = ({ open, onClose }) => {
             </p>
             <form onSubmit={submit} noValidate style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               <input type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
+              <LqChips name="profil" label="Vous êtes" options={profils} value={d.profil} onChange={set("profil")} />
               <LqText id="name" label="Nom et prénom" value={d.name} onChange={set("name")} placeholder="Marie Durand" autoComplete="name" />
               <LqText id="email" type="email" label="E-mail professionnel" value={d.email} onChange={set("email")} placeholder="marie@entreprise.fr" autoComplete="email" />
               <LqText id="entreprise" label="Entreprise" value={d.entreprise} onChange={set("entreprise")} placeholder="ACME SAS" autoComplete="organization" />
