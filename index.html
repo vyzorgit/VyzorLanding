@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Vyzor — Logiciel de pilotage financier pour PME</title>
-  <meta name="description" content="Vyzor, logiciel de pilotage financier pour PME : reporting automatisé, prévision de trésorerie, indicateurs et alertes, depuis votre comptabilité." />
+  <meta name="description" content="Vyzor, logiciel de pilotage financier pour PME sous Pennylane : l'analyse d'un DAF, sans en recruter un. Où vous en êtes, ce qui arrive, quoi faire ensuite." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Favicons + Open Graph (Vyzor ribbon) -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -23,10 +23,10 @@
   <meta property="og:image:alt" content="VYZOR" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:title" content="Vyzor — Logiciel de pilotage financier pour PME" />
-  <meta property="og:description" content="Vyzor, logiciel de pilotage financier pour PME : reporting automatisé, prévision de trésorerie, indicateurs et alertes, depuis votre comptabilité." />
+  <meta property="og:description" content="Vyzor, logiciel de pilotage financier pour PME sous Pennylane : l'analyse d'un DAF, sans en recruter un. Où vous en êtes, ce qui arrive, quoi faire ensuite." />
   <meta property="og:url" content="https://www.vyzor.fr/" />
   <meta name="twitter:title" content="Vyzor — Logiciel de pilotage financier pour PME" />
-  <meta name="twitter:description" content="Vyzor, logiciel de pilotage financier pour PME : reporting automatisé, prévision de trésorerie, indicateurs et alertes, depuis votre comptabilité." />
+  <meta name="twitter:description" content="Vyzor, logiciel de pilotage financier pour PME sous Pennylane : l'analyse d'un DAF, sans en recruter un. Où vous en êtes, ce qui arrive, quoi faire ensuite." />
   <link rel="canonical" href="https://www.vyzor.fr/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -193,8 +193,8 @@
   <div id="root"></div>
   <noscript>
     <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
-      <h1 style="font-size:32px;margin:0 0 16px;">Vous perdez de l'argent quelque part. Vyzor vous montre où.</h1>
-      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Vyzor, le logiciel de pilotage financier pour PME, lit votre comptabilité Pennylane et vous dit où part votre argent, ce qu'il vous restera dans 12 mois et quoi faire en premier.</p>
+      <h1 style="font-size:32px;margin:0 0 16px;">L'analyse d'un DAF. Sans en recruter un.</h1>
+      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Vyzor se branche sur Pennylane et vos outils, et construit en quelques secondes l'analyse dont vous avez besoin : où vous en êtes, ce qui arrive, quoi faire ensuite.</p>
       <nav style="font-size:15px;font-weight:600;"><a href="/fonctionnalites" style="color:#f0c949;margin-right:18px;">Fonctionnalités</a><a href="/securite" style="color:#f0c949;margin-right:18px;">Sécurité</a></nav>
     </div>
   </noscript>
@@ -204,7 +204,7 @@
   <script type="text/babel" src="cinematic-hero-glass.jsx"></script>
   <script type="text/babel" src="features-data.jsx"></script>
   <script type="text/babel" src="variant-a.jsx"></script>
-  <script type="text/babel" src="besoin-client.jsx"></script>
+  <script type="text/babel" src="home-narrative.jsx"></script>
   <script type="text/babel" src="how-it-works.jsx"></script>
   <script type="text/babel" src="conversion-sections.jsx"></script>
   <script type="text/babel" src="video-presentation.jsx"></script>
@@ -314,7 +314,7 @@
       return (
         <React.Fragment>
           <VyzorNav gold={gold} text={text} muted={muted} subtle={subtle} />
-          <StickyBetaCta />
+          <StickyBetaCta label="Tester sur mes chiffres" />
           <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
             <CinematicHero />
             {/* Reste de la page : on réutilise les sections de la variante A après le hero cinématique */}
@@ -331,6 +331,40 @@
         </React.Fragment>
       );
     };
+
+    // —— Contenus propres à l'accueil (17/11/2026) : présent, futur, prochaine décision ——
+    const HOME_OUTCOMES = [
+      { slug: "analyse-financiere", q: "Où en suis-je ?", a: "Marges, coûts, rentabilité : votre situation lue poste par poste, avec ce qui a bougé depuis le mois dernier." },
+      { slug: "tresorerie", q: "Qu'est-ce qui arrive ?", a: "Votre trésorerie projetée sur 12 mois, le point bas daté, et la réponse à « et si j'embauche ? »." },
+      { slug: "alertes", q: "Que faire maintenant ?", a: "Les décisions à prendre, classées par impact en euros, chacune avec sa cause et l'action à mener." },
+    ];
+    // Le rendez-vous, tel qu'il se déroule vraiment (script de démo du document « Vyzor Pitches »).
+    const HOME_STEPS = [
+      {
+        title: "Vous prenez rendez-vous",
+        body: "Deux minutes de questions pour qu'on prépare l'échange, puis vous choisissez votre créneau.",
+        icon: (
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>
+          </svg>
+        ),
+      },
+      {
+        title: "On branche vos données ensemble",
+        body: "Pennylane en lecture seule, en quelques clics : Vyzor ne modifie jamais rien. Pas sous Pennylane ? Un export FEC suffit.",
+      },
+      {
+        title: "Vous repartez avec votre analyse",
+        body: "Vous dites ce dont vous avez besoin, Vyzor construit votre tableau de bord en direct. Ensuite, il se met à jour tout seul.",
+      },
+    ];
+    const HOME_OBJECTIONS = [
+      { q: "J'ai déjà Pennylane et un expert-comptable. Pourquoi Vyzor ?", a: "Vyzor ne remplace ni l'un ni l'autre : il se branche dessus. Votre logiciel comptable enregistre, votre cabinet produit les comptes ; Vyzor répond à vos questions de dirigeant, à partir de leur travail." },
+      { q: "Les chiffres sont-ils fiables ?", a: "L'IA ne fait jamais les calculs : chaque chiffre vient d'un moteur comptable et se retrace jusqu'à l'écriture d'origine. L'IA comprend votre question et met en forme la réponse." },
+      { q: "Mes données sont-elles en sécurité ?", a: "Vyzor accède à votre comptabilité en lecture seule : il ne modifie, n'écrit ni ne supprime rien. Les données sont chiffrées, hébergées dans l'Union européenne, et ne servent jamais à entraîner une IA. Vous coupez l'accès en un clic." },
+      { q: "Combien de temps ça me prend ?", a: "30 minutes, le temps du rendez-vous : on connecte vos données avec vous et vous repartez avec votre tableau de bord. Ensuite, vous n'avez rien à saisir." },
+      { q: "Et après la bêta, combien ça coûte ?", a: "La bêta est gratuite. Le tarif sera annoncé avant sa fin, et les bêta-testeurs gardent un tarif préférentiel à vie. Aucun engagement : vous partez quand vous voulez." },
+    ];
 
     // Wrapper that reuses VariantA sections AFTER the hero — we render VariantA but
     // hide its built-in hero by adjusting layout (cinematic hero replaces it).
@@ -354,17 +388,27 @@
             margin: "0 auto",
             padding: "0 clamp(24px, 6vw, 96px)",
           }}>
-            {/* Narratif (refonte 27/10/2026) : la preuve visuelle d'abord (vidéo, démo), puis la douleur,
-                la facilité (3 étapes), la crédibilité (DAF), enfin l'offre bêta. */}
+            {/* Narratif (refonte 17/11/2026, document « Vyzor Pitches ») : la preuve en 30 s, la douleur,
+                le déclic (carte papier / GPS), la réponse (démo, trois réponses), la preuve sociale (DAF),
+                le chemin vers l'action (rendez-vous), l'offre, les objections, le dernier appel.
+                Une seule action partout : prendre rendez-vous pour tester Vyzor sur ses chiffres. */}
             <div className="vz-reveal"><VideoPresentationSection id="video" gold={gold} subtle={subtle} /></div>
+            <div className="vz-reveal"><HomePain id="constat" gold={gold} muted={muted} /></div>
+            <div className="vz-reveal"><HomeGps id="gps" gold={gold} muted={muted} /></div>
             <AgenticTwinSection id="produit" gold={gold} text={text} muted={muted} subtle={subtle} />
-            <div className="vz-reveal"><BesoinClientSection id="constat" gold={gold} text={text} muted={muted} subtle={subtle} audience="dirigeant" showBridge={false} /></div>
-            <div className="vz-reveal"><OutcomesSection id="resultats" gold={gold} muted={muted} /></div>
-            <div className="vz-reveal"><HowItWorksSection id="comment" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
+            <div className="vz-reveal"><OutcomesSection id="resultats" gold={gold} muted={muted}
+              title="Où vous en êtes. Ce qui arrive."
+              subtitle="Et quoi faire ensuite."
+              items={HOME_OUTCOMES} /></div>
             <div className="vz-reveal"><DAFCoConception /></div>
-            <div className="vz-reveal"><BetaFormGlass /></div>
-            <div className="vz-reveal" style={{ marginTop: 120 }}><ObjectionsSection id="questions" gold={gold} muted={muted} /></div>
-            <div className="vz-reveal"><FinalCtaSection gold={gold} muted={muted} /></div>
+            <div className="vz-reveal"><HowItWorksSection id="comment" gold={gold} text={text} muted={muted} subtle={subtle}
+              title="Votre premier tableau de bord en 30 minutes."
+              subtitle="Avec nous, en visio."
+              steps={HOME_STEPS}
+              after={<div style={{ marginTop: 36, display: "flex", justifyContent: "center" }}><VzCtaLink size="lg">Tester Vyzor sur mes chiffres</VzCtaLink></div>} /></div>
+            <div className="vz-reveal"><BetaFormGlass ctaLabel="Tester Vyzor sur mes chiffres" /></div>
+            <div className="vz-reveal" style={{ marginTop: 120 }}><ObjectionsSection id="questions" gold={gold} muted={muted} items={HOME_OBJECTIONS} /></div>
+            <div className="vz-reveal"><HomeFinalCta gold={gold} muted={muted} /></div>
           </div>
         </div>
       );

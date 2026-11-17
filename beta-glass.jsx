@@ -688,7 +688,7 @@ const BetaModal = ({ open, onClose }) => {
   return ReactDOM.createPortal(overlay, document.body);
 };
 
-const BetaFormGlass = ({ modalOnly = false }) => {
+const BetaFormGlass = ({ modalOnly = false, ctaLabel = "Réserver ma place dans la bêta" }) => {
   const [open, setOpen] = React.useState(false);
 
   // Auto-ouverture de la modale "contact" :
@@ -881,7 +881,7 @@ const BetaFormGlass = ({ modalOnly = false }) => {
           className="vz-beta-cta"
           onClick={() => setOpen(true)}
         >
-          Réserver ma place dans la bêta
+          {ctaLabel}
           <span aria-hidden="true" style={{ fontSize: 16, marginLeft: 2 }}>→</span>
         </button>
         <p style={{ margin: 0, maxWidth: 560, fontSize: 14, lineHeight: 1.6, color: muted, textWrap: "pretty" }}>

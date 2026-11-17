@@ -19,20 +19,20 @@ const VzCtaLink = ({ children, size = "md", style }) => (
 );
 
 // —— 1. Ce que vous obtenez : trois réponses, avec les mini-écrans des pages fonctionnalités ——
-const OutcomesSection = ({ id = "resultats", gold, muted }) => {
+const OutcomesSection = ({ id = "resultats", gold, muted, items: customItems, title, subtitle }) => {
   const find = (slug) => (window.VZ_FEATURES || []).find((f) => f.slug === slug);
-  const items = [
+  const items = (customItems || [
     { slug: "analyse-financiere", q: "Où part mon argent ?", a: "Marges, coûts et dérives lus pour vous, poste par poste, avec ce qui a bougé depuis le mois dernier." },
     { slug: "tresorerie", q: "Combien il me restera ?", a: "Votre trésorerie projetée à 12 mois, le point bas daté, et la réponse à « et si j'embauche ? »." },
     { slug: "alertes", q: "Quoi faire en premier ?", a: "Des alertes classées par impact en euros, chacune avec sa cause et l'action à mener." },
-  ].map((it) => ({ ...it, f: find(it.slug) })).filter((it) => it.f);
+  ]).map((it) => ({ ...it, f: find(it.slug) })).filter((it) => it.f);
 
   return (
     <section id={id} className="vz-out" style={{ position: "relative", marginBottom: 120 }}>
       <div style={{ maxWidth: 820, marginBottom: 44 }}>
         <h2 style={{ fontSize: 52, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.08 }}>
-          <span style={{ display: "block" }}>Trois questions.</span>{" "}
-          <span style={{ display: "block", color: muted }}>Trois réponses, chaque semaine.</span>
+          <span style={{ display: "block" }}>{title || "Trois questions."}</span>{" "}
+          <span style={{ display: "block", color: muted }}>{subtitle || "Trois réponses, chaque semaine."}</span>
         </h2>
       </div>
       <div className="vz-out-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16 }}>
@@ -81,7 +81,7 @@ const VZ_OBJECTIONS = [
   { q: "Et après la bêta, combien ça coûte ?", a: "La bêta est gratuite. Le tarif sera annoncé avant sa fin, et les bêta-testeurs gardent un tarif préférentiel à vie. Aucun engagement : vous partez quand vous voulez." },
 ];
 
-const ObjectionsSection = ({ id = "questions", gold, muted }) => {
+const ObjectionsSection = ({ id = "questions", gold, muted, items = VZ_OBJECTIONS }) => {
   const [open, setOpen] = React.useState(0);
   return (
     <section id={id} className="vz-obj" style={{ position: "relative", marginBottom: 120 }}>
@@ -96,7 +96,7 @@ const ObjectionsSection = ({ id = "questions", gold, muted }) => {
           </p>
         </div>
         <ul style={{ listStyle: "none", margin: 0, padding: 0, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-          {VZ_OBJECTIONS.map((o, i) => {
+          {items.map((o, i) => {
             const on = open === i;
             return (
               <li key={o.q} style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
@@ -150,7 +150,7 @@ const FinalCtaSection = ({ gold, muted }) => (
 );
 
 // —— 4. CTA collant : apparaît une fois le hero passé, disparaît sur l'offre ——
-const StickyBetaCta = () => {
+const StickyBetaCta = ({ label = "Réserver ma place" }) => {
   const [show, setShow] = React.useState(false);
   React.useEffect(() => {
     let raf = 0;
@@ -170,7 +170,7 @@ const StickyBetaCta = () => {
   return (
     <div className="vz-sticky" data-show={show ? "true" : "false"} aria-hidden={!show}>
       <span className="vz-sticky-txt">Bêta gratuite · {VZ_BETA.places} places</span>
-      <a href="/?contact=1#beta" data-contact tabIndex={show ? 0 : -1}>Réserver ma place <span aria-hidden="true">→</span></a>
+      <a href="/?contact=1#beta" data-contact tabIndex={show ? 0 : -1}>{label} <span aria-hidden="true">→</span></a>
       <style>{`
         .vz-sticky { position: fixed; left: 50%; bottom: 18px; z-index: 900; display: flex; align-items: center; gap: 14px;
           padding: 8px 8px 8px 18px; border-radius: 999px; background: rgba(12,14,20,0.92);

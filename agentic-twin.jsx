@@ -15,8 +15,13 @@
 // à mesure que le titre traverse le viewport. Pas de framer-motion : scroll
 // natif + rAF, et bascule pleine opacité si prefers-reduced-motion.
 const TWIN_HEAD_WORDS = [
-  { t: "Le" }, { t: "pilotage" }, { t: "financier" }, { t: "d'un" }, { t: "grand" }, { t: "groupe," },
-  { t: "à", soft: true }, { t: "l'échelle", soft: true }, { t: "de", soft: true }, { t: "votre", soft: true }, { t: "PME.", soft: true },
+  { t: "Une" }, { t: "question." },
+  { t: "Une", soft: true }, { t: "analyse", soft: true }, { t: "sur", soft: true }, { t: "mesure.", soft: true },
+];
+// Version anglaise : l'ordre des mots change, on ne passe pas par le dictionnaire mot à mot.
+const TWIN_HEAD_WORDS_EN = [
+  { t: "One" }, { t: "question." },
+  { t: "One", soft: true }, { t: "tailored", soft: true }, { t: "analysis.", soft: true },
 ];
 
 // En-tête « word-appear » : à l'entrée en vue, chaque mot apparaît en fondu,
@@ -52,14 +57,16 @@ const RevealWordsHeader = ({ text, muted }) => {
         ? { animation: `twinWordAppear 0.72s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s both` }
         : { opacity: 0 };
 
-  const N = TWIN_HEAD_WORDS.length;
+  const isEn = typeof window !== "undefined" && window.VZ_LANG === "en";
+  const words = isEn ? TWIN_HEAD_WORDS_EN : TWIN_HEAD_WORDS;
+  const N = words.length;
 
   return (
     <div ref={ref} className="vz-vision-header" style={{ marginBottom: 40, maxWidth: 800 }}>
       <h2 style={{
         fontSize: 52, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.04, textWrap: "balance",
       }}>
-        {TWIN_HEAD_WORDS.map((w, i) => (
+        {words.map((w, i) => (
           <span
             key={i}
             style={{
@@ -72,7 +79,7 @@ const RevealWordsHeader = ({ text, muted }) => {
               ...appear(i * 0.085),
             }}
           >
-            {w.t}
+            {isEn && window.vzRaw ? window.vzRaw(w.t) : w.t}
           </span>
         )).reduce((acc, el, i) => (i ? [...acc, " ", el] : [el]), [])}
       </h2>
@@ -80,7 +87,10 @@ const RevealWordsHeader = ({ text, muted }) => {
         fontSize: 18, lineHeight: 1.6, color: muted, marginTop: 20, maxWidth: 720, textWrap: "pretty",
         ...appear(N * 0.085 + 0.06),
       }}>
-        Posez une question en français, Vyzor répond avec vos chiffres : <span style={{ color: text }}>trésorerie à 12 mois, dérives de marge, échéances à venir</span>. Chaque réponse est chiffrée, tracée jusqu'à l'écriture comptable et assortie d'une recommandation concrète. Essayez ci-dessous sur une PME fictive, sans inscription.
+        {vzL({
+          fr: () => <React.Fragment>Demandez «&nbsp;prépare mon rendez-vous avec mon banquier&nbsp;». Vyzor rassemble vos données, les analyse et construit <span style={{ color: text }}>le tableau de bord qu'il vous faut, en quelques secondes</span>. Les calculs sont faits par un moteur comptable, jamais par l'IA&nbsp;: chaque chiffre est tracé jusqu'à l'écriture. Essayez ci-dessous sur une PME fictive, sans inscription.</React.Fragment>,
+          en: () => <React.Fragment>Ask "prepare my meeting with my banker". Vyzor gathers your data, analyses it and builds <span style={{ color: text }}>the dashboard you need, in seconds</span>. The maths is done by an accounting engine, never by the AI: every figure traces back to its accounting entry. Try it below on a fictional SME, no sign-up required.</React.Fragment>,
+        })}
       </p>
     </div>
   );
@@ -207,7 +217,7 @@ const AgenticTwinSection = ({ id = "vision", gold, text, muted, subtle }) => {
           color: "#111", fontWeight: 600, fontSize: 14, textDecoration: "none", whiteSpace: "nowrap",
           boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
         }}>
-          Réserver ma place <span aria-hidden="true">→</span>
+          Tester sur mes chiffres <span aria-hidden="true">→</span>
         </a>
       </div>
 
