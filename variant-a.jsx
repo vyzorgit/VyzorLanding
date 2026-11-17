@@ -438,7 +438,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
         gap: scrolled ? 10 : 18,
         padding: scrolled ? "6px 6px 6px 14px" : "8px 8px 8px 18px",
         borderRadius: 999,
-        background: scrolled ? "rgba(17,25,54,0.78)" : "rgba(17,25,54,0.55)",
+        background: scrolled ? "rgba(17,25,54,0.97)" : "rgba(17,25,54,0.88)",
         backdropFilter: "blur(18px) saturate(140%)",
         WebkitBackdropFilter: "blur(18px) saturate(140%)",
         border: `1px solid ${scrolled ? "rgba(240,201,73,0.22)" : "rgba(255,255,255,0.10)"}`,
@@ -568,7 +568,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
               width: 6, height: 6, borderRadius: 999, background: "#1a1410",
               boxShadow: "0 0 0 2px rgba(26,20,16,0.15)",
             }}/>
-            Rejoindre la bêta
+            Prendre rendez-vous
           </a>
 
           {/* Burger — visible uniquement en mobile via CSS */}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Vyzor — Logiciel de pilotage financier pour PME</title>
-  <meta name="description" content="Vyzor, logiciel de pilotage financier pour PME : reporting automatisé, prévision de trésorerie, indicateurs et alertes, depuis votre comptabilité." />
+  <meta name="description" content="Vyzor, logiciel de pilotage financier pour PME : l'analyse d'un directeur financier, sans en recruter un. Où vous en êtes, ce qui arrive, quoi faire ensuite." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Favicons + Open Graph (Vyzor ribbon) -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -23,10 +23,10 @@
   <meta property="og:image:alt" content="VYZOR" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:title" content="Vyzor — Logiciel de pilotage financier pour PME" />
-  <meta property="og:description" content="Vyzor, logiciel de pilotage financier pour PME : reporting automatisé, prévision de trésorerie, indicateurs et alertes, depuis votre comptabilité." />
+  <meta property="og:description" content="Vyzor, logiciel de pilotage financier pour PME : l'analyse d'un directeur financier, sans en recruter un. Où vous en êtes, ce qui arrive, quoi faire ensuite." />
   <meta property="og:url" content="https://www.vyzor.fr/" />
   <meta name="twitter:title" content="Vyzor — Logiciel de pilotage financier pour PME" />
-  <meta name="twitter:description" content="Vyzor, logiciel de pilotage financier pour PME : reporting automatisé, prévision de trésorerie, indicateurs et alertes, depuis votre comptabilité." />
+  <meta name="twitter:description" content="Vyzor, logiciel de pilotage financier pour PME : l'analyse d'un directeur financier, sans en recruter un. Où vous en êtes, ce qui arrive, quoi faire ensuite." />
   <link rel="canonical" href="https://www.vyzor.fr/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -193,8 +193,8 @@
   <div id="root"></div>
   <noscript>
     <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
-      <h1 style="font-size:32px;margin:0 0 16px;">Vous perdez de l'argent quelque part. Vyzor vous montre où.</h1>
-      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Vyzor, le logiciel de pilotage financier pour PME, lit votre comptabilité Pennylane et vous dit où part votre argent, ce qu'il vous restera dans 12 mois et quoi faire en premier.</p>
+      <h1 style="font-size:32px;margin:0 0 16px;">L'analyse d'un directeur financier, sans en recruter un.</h1>
+      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Vyzor se branche sur les outils que vous utilisez déjà et construit en quelques secondes l'analyse dont vous avez besoin : où vous en êtes, ce qui arrive, quoi faire ensuite.</p>
       <nav style="font-size:15px;font-weight:600;"><a href="/fonctionnalites" style="color:#f0c949;margin-right:18px;">Fonctionnalités</a><a href="/securite" style="color:#f0c949;margin-right:18px;">Sécurité</a></nav>
     </div>
   </noscript>
@@ -204,14 +204,9 @@
   <script type="text/babel" src="cinematic-hero-glass.jsx"></script>
   <script type="text/babel" src="features-data.jsx"></script>
   <script type="text/babel" src="variant-a.jsx"></script>
-  <script type="text/babel" src="besoin-client.jsx"></script>
-  <script type="text/babel" src="how-it-works.jsx"></script>
+  <script type="text/babel" src="home-genui-demo.jsx"></script>
+  <script type="text/babel" src="home-narrative.jsx"></script>
   <script type="text/babel" src="conversion-sections.jsx"></script>
-  <script type="text/babel" src="video-presentation.jsx"></script>
-  <script type="text/babel" src="agentic-twin.jsx"></script>
-  <script type="text/babel" src="features-glass.jsx"></script>
-  <script type="text/babel" src="daf-coconception.jsx"></script>
-  <script type="text/babel" src="security-glass.jsx"></script>
   <script type="text/babel" src="beta-glass.jsx"></script>
   <script type="text/babel" src="footer-glass.jsx"></script>
 
@@ -314,7 +309,7 @@
       return (
         <React.Fragment>
           <VyzorNav gold={gold} text={text} muted={muted} subtle={subtle} />
-          <StickyBetaCta />
+          <StickyBetaCta label="Tester sur mes chiffres" />
           <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
             <CinematicHero />
             {/* Reste de la page : on réutilise les sections de la variante A après le hero cinématique */}
@@ -354,17 +349,14 @@
             margin: "0 auto",
             padding: "0 clamp(24px, 6vw, 96px)",
           }}>
-            {/* Narratif (refonte 27/10/2026) : la preuve visuelle d'abord (vidéo, démo), puis la douleur,
-                la facilité (3 étapes), la crédibilité (DAF), enfin l'offre bêta. */}
-            <div className="vz-reveal"><VideoPresentationSection id="video" gold={gold} subtle={subtle} /></div>
-            <AgenticTwinSection id="produit" gold={gold} text={text} muted={muted} subtle={subtle} />
-            <div className="vz-reveal"><BesoinClientSection id="constat" gold={gold} text={text} muted={muted} subtle={subtle} audience="dirigeant" showBridge={false} /></div>
-            <div className="vz-reveal"><OutcomesSection id="resultats" gold={gold} muted={muted} /></div>
-            <div className="vz-reveal"><HowItWorksSection id="comment" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
-            <div className="vz-reveal"><DAFCoConception /></div>
-            <div className="vz-reveal"><BetaFormGlass /></div>
-            <div className="vz-reveal" style={{ marginTop: 120 }}><ObjectionsSection id="questions" gold={gold} muted={muted} /></div>
-            <div className="vz-reveal"><FinalCtaSection gold={gold} muted={muted} /></div>
+            {/* Accueil (refonte validée le 17/11/2026, document « Vyzor Pitches ») : cinq blocs, une action.
+                Hero (tagline + visuel) → douleur et métaphore du GPS → démo de génération → comment tester → dernier appel. */}
+            <div className="vz-reveal"><HomePain id="constat" /></div>
+            <div className="vz-reveal"><HomeDemo id="produit" /></div>
+            <div className="vz-reveal"><HomeProof /></div>
+            <div className="vz-reveal"><HomeSteps id="comment" /></div>
+            <div className="vz-reveal"><HomeFinalCta /></div>
+            <BetaFormGlass modalOnly quick />
           </div>
         </div>
       );

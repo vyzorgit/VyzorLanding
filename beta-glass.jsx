@@ -688,7 +688,117 @@ const BetaModal = ({ open, onClose }) => {
   return ReactDOM.createPortal(overlay, document.body);
 };
 
-const BetaFormGlass = ({ modalOnly = false }) => {
+// —— Prise de rendez-vous express (accueil, 17/11/2026) ——
+// Trois champs, puis le calendrier s'ouvre tout de suite, pré-rempli. Le contact est
+// envoyé en parallèle : même si la personne ne choisit pas de créneau, on peut la rappeler.
+// Les questions de qualification se posent pendant l'appel (ou en option dans Calendly).
+const VZ_CALENDLY = "https://calendly.com/admin-vyzor/30min";
+const QuickBookModal = ({ open, onClose }) => {
+  const [d, setD] = React.useState({ profil: "", name: "", email: "", entreprise: "" });
+  const [error, setError] = React.useState(null);
+  const [done, setDone] = React.useState(false);
+  const profils = ["Chef d'entreprise", "Expert-comptable", "Directeur financier"];
+  const [calUrl, setCalUrl] = React.useState(VZ_CALENDLY);
+  const [mounted, setMounted] = React.useState(false);
+  const dialogRef = React.useRef(null);
+  const closeRef = React.useRef(onClose);
+  closeRef.current = onClose;
+  React.useEffect(() => setMounted(true), []);
+  React.useEffect(() => {
+    if (!open) { setD({ profil: "", name: "", email: "", entreprise: "" }); setError(null); setDone(false); return; }
+    const onKey = (e) => { if (e.key === "Escape") closeRef.current(); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    const trigger = document.activeElement;
+    setTimeout(() => { const f = dialogRef.current && dialogRef.current.querySelector("input[name=lq-profil], #lq-name"); if (f) f.focus(); }, 30);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+      if (trigger && typeof trigger.focus === "function" && document.contains(trigger)) trigger.focus();
+    };
+  }, [open]);
+  const set = (k) => (v) => { setD((p) => ({ ...p, [k]: v })); setError(null); };
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (e.currentTarget.elements.botcheck && e.currentTarget.elements.botcheck.checked) return;
+    if (!d.profil) { setError("Dites-nous qui vous êtes."); return; }
+    if (!d.name.trim()) { setError("Indiquez votre nom."); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email.trim())) { setError("Indiquez une adresse e-mail valide."); return; }
+    if (!d.entreprise.trim()) { setError("Indiquez le nom de votre entreprise."); return; }
+    // 1. Le calendrier s'ouvre tout de suite (dans le clic, pour ne pas être bloqué), pré-rempli.
+    const url = `${VZ_CALENDLY}?name=${encodeURIComponent(d.name.trim())}&email=${encodeURIComponent(d.email.trim())}&a1=${encodeURIComponent(d.entreprise.trim())}`;
+    setCalUrl(url);
+    window.open(url, "_blank", "noopener");
+    // 2. Le contact part en parallèle.
+    const fd = new FormData();
+    fd.append("access_key", "9f003436-eba6-4543-b3ed-06c89a38a69c");
+    fd.append("subject", `[Rendez-vous] ${d.profil} · ${d.entreprise.trim()} — ${d.name.trim()}`);
+    fd.append("Profil", d.profil);
+    fd.append("from_name", "Vyzor — Rendez-vous");
+    fd.append("name", d.name.trim());
+    fd.append("email", d.email.trim());
+    fd.append("Entreprise", d.entreprise.trim());
+    fd.append("Page", window.VZ_FR_PATH || window.location.pathname || "/");
+    fd.append("Langue", window.VZ_LANG === "en" ? "anglais" : "français");
+    fetch("https://api.web3forms.com/submit", { method: "POST", body: fd, keepalive: true }).catch(() => {});
+    setDone(true);
+  };
+
+  if (!open || !mounted) return null;
+  const muted = "rgba(255,255,255,0.55)";
+  const overlay = (
+    <div className="beta-modal-overlay" onClick={onClose}>
+      <div className="beta-modal lq-modal qb-modal" ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="qb-title" tabIndex={-1}
+        onClick={(e) => e.stopPropagation()} style={{ maxWidth: 460 }}>
+        <button type="button" className="beta-modal__close" onClick={onClose} aria-label="Fermer">×</button>
+        <style>{`
+          .qb-modal .lq-chips { flex-wrap: nowrap; }
+          .qb-modal .lq-chip { flex: 1 1 0; justify-content: center; text-align: center; padding: 9px 6px; font-size: 12.5px; white-space: nowrap; }
+          @media (max-width: 400px) { .qb-modal .lq-chips { flex-wrap: wrap; } .qb-modal .lq-chip { flex: 1 1 40%; } }
+        `}</style>
+        {!done ? (
+          <React.Fragment>
+            <h3 id="qb-title" style={{ fontFamily: LQ_FONT, fontWeight: 600, fontSize: 24, letterSpacing: "-0.015em", lineHeight: 1.15, margin: "0 40px 8px 0", color: "#fff" }}>
+              Testez Vyzor sur vos chiffres
+            </h3>
+            <p style={{ fontSize: 14, color: muted, lineHeight: 1.55, margin: "0 0 20px" }}>
+              30 minutes en visio : on connecte vos données ensemble et vous repartez avec votre premier tableau de bord.
+            </p>
+            <form onSubmit={submit} noValidate style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <input type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
+              <LqChips name="profil" label="Vous êtes" options={profils} value={d.profil} onChange={set("profil")} />
+              <LqText id="name" label="Nom et prénom" value={d.name} onChange={set("name")} placeholder="Marie Durand" autoComplete="name" />
+              <LqText id="email" type="email" label="E-mail professionnel" value={d.email} onChange={set("email")} placeholder="marie@entreprise.fr" autoComplete="email" />
+              <LqText id="entreprise" label="Entreprise" value={d.entreprise} onChange={set("entreprise")} placeholder="ACME SAS" autoComplete="organization" />
+              {error && <div role="alert" className="lq-error">{error}</div>}
+              <button type="submit" className="lq-next" style={{ marginTop: 6, fontSize: 15 }}>Choisir mon créneau <span aria-hidden="true">→</span></button>
+              <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.7)", textAlign: "center" }}>Gratuit pendant la bêta · sans engagement</div>
+              <div style={{ fontSize: 11, color: muted, textAlign: "center", lineHeight: 1.55 }}>
+                Ces informations servent uniquement à organiser le rendez-vous (conservées 3 ans au plus). Accès ou suppression : admin@vyzor.fr. Voir notre{" "}
+                <a href="/confidentialite" target="_blank" rel="noopener" style={{ color: "#f0c949", textDecoration: "underline", textUnderlineOffset: 2 }}>politique de confidentialité</a>.
+              </div>
+            </form>
+          </React.Fragment>
+        ) : (
+          <div role="status" style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 12, padding: "12px 0" }}>
+            <h3 id="qb-title" style={{ fontFamily: LQ_FONT, fontWeight: 600, fontSize: 22, margin: 0, color: "#fff" }}>Plus qu'à choisir votre créneau.</h3>
+            <p style={{ fontSize: 14, color: muted, lineHeight: 1.55, margin: 0, maxWidth: 340 }}>
+              Le calendrier s'est ouvert dans un nouvel onglet, avec vos informations déjà remplies.
+            </p>
+            <a href={calUrl} target="_blank" rel="noopener" className="lq-next" style={{ display: "inline-block", textDecoration: "none", padding: "12px 20px", marginTop: 4 }}>
+              Il ne s'est pas ouvert ? Ouvrir le calendrier <span aria-hidden="true">→</span>
+            </a>
+            <button type="button" onClick={onClose} className="lq-back" style={{ marginTop: 4 }}>Fermer</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+  return ReactDOM.createPortal(overlay, document.body);
+};
+
+const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
   const [open, setOpen] = React.useState(false);
 
   // Auto-ouverture de la modale "contact" :
@@ -764,7 +874,9 @@ const BetaFormGlass = ({ modalOnly = false }) => {
   ];
 
   // Mode « modale seule » : pages qui ont leur propre bloc d'offre (ex. /cabinets).
-  if (modalOnly) return <BetaModal open={open} onClose={() => setOpen(false)} />;
+  if (modalOnly) return quick
+    ? <QuickBookModal open={open} onClose={() => setOpen(false)} />
+    : <BetaModal open={open} onClose={() => setOpen(false)} />;
 
   return (
     <section id="beta" style={{ position: "relative", marginTop: 72 }}>
@@ -899,4 +1011,4 @@ const BetaFormGlass = ({ modalOnly = false }) => {
   );
 };
 
-Object.assign(window, { BetaFormGlass, BetaModal, BetaTiltCard });
+Object.assign(window, { BetaFormGlass, BetaModal, BetaTiltCard, QuickBookModal });

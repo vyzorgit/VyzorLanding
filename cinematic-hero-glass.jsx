@@ -266,10 +266,9 @@ const VzVelocityWords = ({ words, color, accent }) => (
   </React.Fragment>
 );
 
-// —— Hero v3 (refonte Hormozi, 27/10/2026) ——
-// Une cible (dirigeants de PME sous Pennylane), une promesse (savoir où part l'argent),
-// une action (réserver sa place dans la bêta). Titre fixe : plus de bandeau défilant,
-// le texte est lisible tel quel par Google et les moteurs IA.
+// —— Hero v4 (refonte proposition de valeur, 17/11/2026, brain « Vyzor Pitches ») ——
+// Une cible (dirigeants de PME sous Pennylane), une promesse (la tagline : l'analyse d'un directeur
+// financier, sans en recruter un), une action (prendre rendez-vous pour tester Vyzor sur ses chiffres).
 const CinematicHero = () => {
   const gold = "#f0c949";
   const text = "rgba(255,255,255,0.94)";
@@ -289,7 +288,7 @@ const CinematicHero = () => {
         .vz-btn-primary:hover { background-color: #f4d468 !important; }
         .vz-btn-ghost { transition: border-color 160ms ease, background-color 160ms ease; }
         .vz-btn-ghost:hover { border-color: rgba(255,255,255,0.32) !important; background-color: rgba(255,255,255,0.04) !important; }
-        .vz-hero-h1 { font-size: clamp(38px, 5.6vw, 76px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
+        .vz-hero-h1 { font-size: clamp(34px, 5vw, 68px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
         .vz-hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 0%, #1b2860 0%, #101a42 32%, rgba(10,16,38,0) 72%); }
         .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
         @media (max-width: 720px) { .vz-hero-stage { padding: 132px 0 48px !important; } }
@@ -298,17 +297,16 @@ const CinematicHero = () => {
       <span aria-hidden="true" className="vz-hero-glow" />
       <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 1040, padding: "0 24px" }}>
         <h1 className="vz-hero-h1 vz-hero-in" style={{ animationDelay: "80ms" }}>
-          Vous perdez de l'argent quelque part.{" "}
-          <span style={{ color: gold, display: "block" }}>Vyzor vous montre où.</span>
+          L'analyse d'un directeur financier,{" "}
+          <span style={{ color: gold, display: "block" }}>sans en recruter un.</span>
         </h1>
         <p className="vz-hero-in" style={{
           fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6, color: muted,
-          maxWidth: 680, margin: "clamp(24px, 3vw, 32px) auto 0", textWrap: "pretty",
+          maxWidth: 700, margin: "clamp(24px, 3vw, 32px) auto 0", textWrap: "pretty",
           animationDelay: "180ms",
         }}>
-          Vyzor, le logiciel de pilotage financier pour PME, lit votre comptabilité et vous dit{" "}
-          <span style={{ color: text }}>où part votre argent, ce qu'il vous restera dans 12 mois et quoi faire en premier</span>.
-          Sans tableur, sans attendre le bilan.
+          Vyzor se branche sur les outils que vous utilisez déjà et construit en quelques secondes l'analyse dont vous avez besoin :{" "}
+          <span style={{ color: text }}>où vous en êtes, ce qui arrive, quoi faire ensuite</span>.
         </p>
         <div className="vz-hero-cta-row vz-hero-in" style={{
           display: "flex", alignItems: "center", justifyContent: "center",
@@ -320,16 +318,15 @@ const CinematicHero = () => {
             backgroundColor: gold, color: "#0d1430",
             fontWeight: 600, fontSize: 15.5, textDecoration: "none",
           }}>
-            Réserver ma place dans la bêta <span aria-hidden="true">→</span>
+            Tester Vyzor sur mes chiffres <span aria-hidden="true">→</span>
           </a>
-          <a className="vz-hero-cta-ghost vz-btn-ghost" href="#produit" style={{
-            display: "inline-flex", alignItems: "center",
-            padding: "15px 22px", borderRadius: 10,
-            border: "1px solid rgba(255,255,255,0.16)", backgroundColor: "transparent",
-            color: text, fontSize: 15.5, fontWeight: 500, textDecoration: "none",
-          }}>
-            Voir la démo
-          </a>
+        </div>
+        <p className="vz-hero-in" style={{ margin: "18px 0 0", fontSize: 13.5, color: "rgba(255,255,255,0.5)", animationDelay: "320ms" }}>
+          Pour les dirigeants de PME sous Pennylane · Rendez-vous de 30 min en visio · Gratuit pendant la bêta
+        </p>
+        {/* Visuel produit : ce que le dirigeant obtient */}
+        <div className="vz-hero-in" style={{ marginTop: "clamp(44px, 5vw, 64px)", animationDelay: "380ms" }}>
+          <HeroProductShot />
         </div>
       </div>
     </section>
