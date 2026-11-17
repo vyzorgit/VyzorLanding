@@ -320,18 +320,19 @@ const CinematicHero = () => {
           }}>
             Tester Vyzor sur mes chiffres <span aria-hidden="true">→</span>
           </a>
-          <a className="vz-hero-cta-ghost vz-btn-ghost" href="#video" style={{
-            display: "inline-flex", alignItems: "center",
-            padding: "15px 22px", borderRadius: 10,
-            border: "1px solid rgba(255,255,255,0.16)", backgroundColor: "transparent",
-            color: text, fontSize: 15.5, fontWeight: 500, textDecoration: "none",
-          }}>
-            Voir Vyzor en 30 secondes
-          </a>
         </div>
         <p className="vz-hero-in" style={{ margin: "18px 0 0", fontSize: 13.5, color: "rgba(255,255,255,0.5)", animationDelay: "320ms" }}>
           Pour les dirigeants de PME sous Pennylane · Rendez-vous de 30 min en visio · Gratuit pendant la bêta
         </p>
+        {/* Preuve juste sous l'action : la probabilité perçue (équation de valeur), au moment de cliquer */}
+        <figure className="vz-hero-in" style={{ margin: "clamp(36px, 4vw, 48px) auto 0", maxWidth: 620, animationDelay: "380ms" }}>
+          <blockquote style={{ margin: 0, fontSize: 16, lineHeight: 1.55, color: "rgba(255,255,255,0.78)", fontStyle: "italic", textWrap: "pretty" }}>
+            «{vzL({ fr: "\u00a0", en: "" })}Exactement ce dont un DAF a besoin pour gagner du temps dès l'onboarding.{vzL({ fr: "\u00a0", en: "" })}»
+          </blockquote>
+          <figcaption style={{ marginTop: 10, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
+            Benoît Gros, DAF externalisé, testeur de Vyzor
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
