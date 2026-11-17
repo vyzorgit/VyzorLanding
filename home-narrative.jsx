@@ -120,6 +120,33 @@ const HomeDemo = ({ id = "produit" }) => (
   </section>
 );
 
+// —— Preuve : ce qu'en disent les directeurs financiers qui testent Vyzor (extraits fidèles des verbatims) ——
+const HomeProof = () => {
+  const items = [
+    { q: "Une solution comme Vyzor a énormément de sens pour les PME.", name: "Benoit Gros", role: "Directeur financier externalisé, CoPilot Performance", photo: "/verbatim-benoit-gros.png", url: "https://www.linkedin.com/in/benoitgrosdafexternalise/" },
+    { q: "Vyzor permet aux PME […] de bénéficier d'une visibilité beaucoup plus fréquente sur leurs indicateurs clés.", name: "Alexis Duquesne", role: "Directeur financier de transition", photo: "/verbatim-alexis-duquesne.png", url: "https://www.linkedin.com/in/alexisduquesne/" },
+  ];
+  return (
+    <section className="vz-hproof" aria-label="Témoignages" style={{ marginBottom: 28 }}>
+      <div className="vz-hproof-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        {items.map((t) => (
+          <figure key={t.name} style={{ margin: 0, padding: "22px 24px", borderRadius: 18, background: "rgba(255,255,255,0.025)", border: "1px solid rgba(140,160,255,0.12)", display: "flex", flexDirection: "column", gap: 16 }}>
+            <blockquote style={{ margin: 0, fontSize: 17, lineHeight: 1.5, color: "#fff", letterSpacing: "-0.01em", textWrap: "pretty" }}>« {t.q} »</blockquote>
+            <figcaption style={{ display: "flex", alignItems: "center", gap: 12, marginTop: "auto" }}>
+              <img src={t.photo} alt="" width="40" height="40" loading="lazy" style={{ width: 40, height: 40, borderRadius: 99, objectFit: "cover", flexShrink: 0 }} />
+              <span style={{ display: "flex", flexDirection: "column" }}>
+                <a href={t.url} target="_blank" rel="noopener" style={{ fontSize: 14, fontWeight: 600, color: "#fff", textDecoration: "none" }}>{t.name}</a>
+                <span style={{ fontSize: 12.5, color: VZH.muted }}>{t.role}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <style>{`@media (max-width: 860px) { .vz-hproof .vz-hproof-grid { grid-template-columns: 1fr !important; } }`}</style>
+    </section>
+  );
+};
+
 // —— 4. Comment tester : trois étapes sur une ligne ——
 const HomeSteps = ({ id = "comment" }) => {
   const steps = [
@@ -173,4 +200,4 @@ const HomeFinalCta = () => (
   </section>
 );
 
-Object.assign(window, { HomePain, HomeDemo, HomeSteps, HomeFinalCta, GpsSchema });
+Object.assign(window, { HomePain, HomeDemo, HomeProof, HomeSteps, HomeFinalCta, GpsSchema });
