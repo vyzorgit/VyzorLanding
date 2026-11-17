@@ -39,7 +39,7 @@ const GpsSchema = () => {
     <figure className="vz-gps-panel" style={{ margin: 0, borderRadius: 18, padding: "18px 18px 16px", background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)", border: `1px solid ${gps ? "rgba(240,201,73,0.32)" : "rgba(140,160,255,0.12)"}` }}>
       <div style={{ fontSize: 13.5, fontWeight: 600, color: gps ? VZH.gold : VZH.muted, marginBottom: 10 }}>
         <span className="vz-gps-long">{gps ? "Le GPS : Vyzor" : "La carte papier : tableurs et exports"}</span>
-        <span className="vz-gps-short">{gps ? "GPS : Vyzor" : "Carte papier"}</span>
+        <span className="vz-gps-short">{gps ? "Le GPS : Vyzor" : "La carte : tableurs"}</span>
       </div>
       <svg viewBox="0 0 360 260" width="100%" role="img" aria-label={gps ? "Avec Vyzor, une seule route claire de A à B, les obstacles sont signalés" : "Sur la carte papier, un trajet sinueux entre de nombreux obstacles"} style={{ display: "block" }}>
         <rect x="0" y="0" width="360" height="260" rx="12" fill={gps ? "rgba(240,201,73,0.03)" : "rgba(255,255,255,0.015)"} />
@@ -68,7 +68,7 @@ const GpsSchema = () => {
         {pin(320, 30, "B", gps ? VZH.gold : "rgba(255,255,255,0.85)")}
       </svg>
       <figcaption className="vz-gps-cap" style={{ marginTop: 10, fontSize: 14, lineHeight: 1.5, color: gps ? "#fff" : VZH.muted }}>
-        {gps ? "Les obstacles sont repérés, la meilleure route est calculée pour vous." : "Des détours, des calculs à refaire, des obstacles découverts en chemin."}
+        {gps ? "Tensions de trésorerie et dérives de marge signalées à l'avance, la décision chiffrée pour vous." : "Des calculs refaits à la main, des imprévus de trésorerie découverts trop tard."}
       </figcaption>
     </figure>
   );
@@ -133,26 +133,33 @@ const HomeDemo = ({ id = "produit" }) => (
 // —— Preuve : ce qu'en disent les directeurs financiers qui testent Vyzor (extraits fidèles des verbatims) ——
 const HomeProof = () => {
   const items = [
-    { q: "Une solution comme Vyzor a énormément de sens pour les PME.", name: "Benoit Gros", role: "Directeur financier externalisé, CoPilot Performance", photo: "/verbatim-benoit-gros.png", url: "https://www.linkedin.com/in/benoitgrosdafexternalise/" },
+    { q: "Une solution comme Vyzor a énormément de sens pour les PME.", name: "Benoit Gros", role: "Directeur financier externalisé", photo: "/verbatim-benoit-gros.png", url: "https://www.linkedin.com/in/benoitgrosdafexternalise/" },
     { q: "Vyzor permet aux PME […] de bénéficier d'une visibilité beaucoup plus fréquente sur leurs indicateurs clés.", name: "Alexis Duquesne", role: "Directeur financier de transition", photo: "/verbatim-alexis-duquesne.png", url: "https://www.linkedin.com/in/alexisduquesne/" },
   ];
   return (
-    <section className="vz-hproof" aria-label="Témoignages" style={{ marginBottom: 28 }}>
-      <div className="vz-hproof-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+    <section className="vz-hproof" aria-label="Témoignages" style={{ marginBottom: 20 }}>
+      <div className="vz-hproof-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
         {items.map((t) => (
-          <figure key={t.name} style={{ margin: 0, padding: "22px 24px", borderRadius: 18, background: "rgba(255,255,255,0.025)", border: "1px solid rgba(140,160,255,0.12)", display: "flex", flexDirection: "column", gap: 16 }}>
-            <blockquote style={{ margin: 0, fontSize: 17, lineHeight: 1.5, color: "#fff", letterSpacing: "-0.01em", textWrap: "pretty" }}>« {t.q} »</blockquote>
-            <figcaption style={{ display: "flex", alignItems: "center", gap: 12, marginTop: "auto" }}>
-              <img src={t.photo} alt="" width="40" height="40" loading="lazy" style={{ width: 40, height: 40, borderRadius: 99, objectFit: "cover", flexShrink: 0 }} />
-              <span style={{ display: "flex", flexDirection: "column" }}>
-                <a href={t.url} target="_blank" rel="noopener" style={{ fontSize: 14, fontWeight: 600, color: "#fff", textDecoration: "none" }}>{t.name}</a>
-                <span style={{ fontSize: 12.5, color: VZH.muted }}>{t.role}</span>
-              </span>
+          <figure key={t.name} style={{ margin: 0, padding: "16px 18px", borderRadius: 14, background: "rgba(255,255,255,0.025)", border: "1px solid rgba(140,160,255,0.12)", display: "flex", flexDirection: "column", gap: 12 }}>
+            <blockquote style={{ margin: 0, fontSize: 15, lineHeight: 1.5, color: "#fff", textWrap: "pretty" }}>« {t.q} »</blockquote>
+            <figcaption style={{ display: "flex", alignItems: "center", gap: 10, marginTop: "auto" }}>
+              <img src={t.photo} alt="" width="32" height="32" loading="lazy" style={{ width: 32, height: 32, borderRadius: 99, objectFit: "cover", flexShrink: 0 }} />
+              <div style={{ minWidth: 0, lineHeight: 1.3 }}>
+                <a className="vz-hproof-name" href={t.url} target="_blank" rel="noopener" style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#fff", textDecoration: "none" }}>{t.name}</a>
+                <div className="vz-hproof-role" style={{ fontSize: 12, color: VZH.muted }}>{t.role}</div>
+              </div>
             </figcaption>
           </figure>
         ))}
       </div>
-      <style>{`@media (max-width: 860px) { .vz-hproof .vz-hproof-grid { grid-template-columns: 1fr !important; gap: 10px !important; } .vz-hproof figure { padding: 16px 18px !important; gap: 12px !important; } .vz-hproof blockquote { font-size: 15.5px !important; } }`}</style>
+      <style>{`@media (max-width: 640px) {
+        .vz-hproof .vz-hproof-grid { gap: 8px !important; }
+        .vz-hproof figure { padding: 12px !important; gap: 10px !important; border-radius: 12px !important; }
+        .vz-hproof blockquote { font-size: 12.5px !important; line-height: 1.45 !important; }
+        .vz-hproof img { display: none; }
+        .vz-hproof-name { font-size: 12px !important; min-height: 0 !important; padding: 0 !important; display: block !important; }
+        .vz-hproof-role { font-size: 10.5px !important; }
+      }`}</style>
     </section>
   );
 };
@@ -166,25 +173,32 @@ const HomeSteps = ({ id = "comment" }) => {
   ];
   return (
     <section id={id} className="vz-hsteps" style={{
-      position: "relative", marginBottom: 40, padding: "34px clamp(20px, 4vw, 40px)", borderRadius: 22,
+      position: "relative", marginBottom: 40, padding: "24px clamp(16px, 3vw, 32px)", borderRadius: 18,
       background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)", border: "1px solid rgba(140,160,255,0.14)",
     }}>
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, flexWrap: "wrap", marginBottom: 26 }}>
-        <h2 style={{ margin: 0, fontSize: 28, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Testez Vyzor en 30 minutes, avec nous.</h2>
-        <span style={{ fontSize: 14, color: VZH.muted }}>En visio · gratuit pendant la bêta · l'IA ne fait jamais les calculs</span>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 18 }}>
+        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Testez Vyzor en 30 minutes, avec nous.</h2>
+        <span className="vz-hsteps-sub" style={{ fontSize: 13.5, color: VZH.muted }}>En visio · gratuit pendant la bêta · l'IA ne fait jamais les calculs</span>
       </div>
-      <ol className="vz-hsteps-row" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 16, position: "relative" }}>
+      <ol className="vz-hsteps-row" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 14 }}>
         {steps.map((s, i) => (
-          <li key={s.t} style={{ display: "grid", gridTemplateColumns: "40px 1fr", gap: 14, alignItems: "start" }}>
-            <span style={{ width: 40, height: 40, borderRadius: 99, display: "grid", placeItems: "center", fontWeight: 700, fontSize: 15, color: "#0d1430", background: VZH.gold }}>{i + 1}</span>
+          <li key={s.t} className="vz-hstep" style={{ display: "grid", gridTemplateColumns: "30px 1fr", gap: 10, alignItems: "start" }}>
+            <span style={{ width: 30, height: 30, borderRadius: 99, display: "grid", placeItems: "center", fontWeight: 700, fontSize: 13.5, color: "#0d1430", background: VZH.gold }}>{i + 1}</span>
             <span>
-              <span style={{ display: "block", fontSize: 16.5, fontWeight: 600, color: "#fff", letterSpacing: "-0.01em" }}>{s.t}</span>
-              <span style={{ display: "block", fontSize: 14, lineHeight: 1.5, color: VZH.muted, marginTop: 4 }}>{s.d}</span>
+              <span className="vz-hstep-t" style={{ display: "block", fontSize: 15, fontWeight: 600, color: "#fff", lineHeight: 1.3 }}>{s.t}</span>
+              <span className="vz-hstep-d" style={{ display: "block", fontSize: 13, lineHeight: 1.45, color: VZH.muted, marginTop: 3 }}>{s.d}</span>
             </span>
           </li>
         ))}
       </ol>
-      <style>{`@media (max-width: 860px) { .vz-hsteps .vz-hsteps-row { grid-template-columns: 1fr !important; gap: 14px !important; } .vz-hsteps h2 { font-size: 22px !important; } }`}</style>
+      <style>{`@media (max-width: 640px) {
+        .vz-hsteps h2 { font-size: 18px !important; }
+        .vz-hsteps-sub { font-size: 12px !important; }
+        .vz-hsteps .vz-hsteps-row { gap: 8px !important; }
+        .vz-hstep { grid-template-columns: 1fr !important; justify-items: center; text-align: center; gap: 6px !important; }
+        .vz-hstep-t { font-size: 12.5px !important; }
+        .vz-hstep-d { display: none !important; }
+      }`}</style>
     </section>
   );
 };
