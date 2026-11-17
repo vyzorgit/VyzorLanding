@@ -126,35 +126,38 @@ const HeroProductShot = () => (
   </div>
 );
 
-// —— Démo : vidéo réelle de la génération d'une page ——
+// —— Démo : vidéo montée de la génération d'une page (lecture au clic, puis en boucle) ——
 const GenUiVideo = () => {
   const ref = React.useRef(null);
   const [playing, setPlaying] = React.useState(false);
-  React.useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
-    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver((es) => es.forEach((e) => {
-      if (e.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause();
-    }), { threshold: 0.4 });
-    io.observe(v);
-    return () => io.disconnect();
-  }, []);
   const toggle = () => { const v = ref.current; if (!v) return; if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); };
   return (
     <div>
       <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(140,160,255,0.22)", boxShadow: "0 40px 90px -38px rgba(0,0,0,0.85), 0 0 60px -30px rgba(240,201,73,0.22)", background: "#0b1026" }}>
         <video ref={ref} src="/vyzor-demo-generation.mp4" poster="/vyzor-demo-generation-poster.jpg" width="1920" height="1080"
-          muted loop playsInline preload="metadata" aria-label="Démonstration : création d'un rapport investisseur dans Vyzor, ajout d'un module et export en PDF"
+          muted loop playsInline preload="none" aria-label="Démonstration : création d'un rapport investisseur dans Vyzor, ajout d'un module et export en PDF"
           onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onClick={toggle}
           style={{ display: "block", width: "100%", height: "auto", cursor: "pointer" }} />
+        <button type="button" onClick={toggle} aria-label={playing ? "Mettre en pause" : "Lancer la démo"} className="vzg-play"
+          style={{ opacity: playing ? 0 : 1, pointerEvents: playing ? "none" : "auto" }}>
+          <span className="vzg-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30"><path d="M8 5.5v13l11-6.5z" fill="#0d1430" /></svg>
+          </span>
+          <span className="vzg-play-label">Voir la démo · 18 s</span>
+        </button>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginTop: 14, flexWrap: "wrap" }}>
         <span style={{ fontSize: 12.5, color: VZG.muted }}>L'application réelle, avec des données de démonstration.</span>
-        <button type="button" onClick={toggle} className="vzg-replay">{playing ? "Mettre en pause" : "Lire la vidéo"}</button>
+        {playing ? <button type="button" onClick={toggle} className="vzg-replay">Mettre en pause</button> : null}
       </div>
       <style>{`
+        .vzg-play { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: transparent; border: 0; cursor: pointer; transition: opacity 200ms ease; }
+        .vzg-play-btn { width: 84px; height: 84px; border-radius: 99px; display: grid; place-items: center; background: #f0c949; box-shadow: 0 0 0 12px rgba(240,201,73,0.22), 0 18px 40px rgba(0,0,0,0.45); transition: transform 180ms ease; }
+        .vzg-play:hover .vzg-play-btn { transform: scale(1.06); }
+        .vzg-play-btn svg { margin-left: 4px; }
+        .vzg-play-label { font: 600 14px "Inter", system-ui, sans-serif; color: #fff; background: rgba(13,20,48,0.75); padding: 6px 14px; border-radius: 999px; }
+        .vzg-play:focus-visible .vzg-play-btn { outline: 3px solid #fff; outline-offset: 4px; }
+        @media (max-width: 560px) { .vzg-play-btn { width: 60px; height: 60px; box-shadow: 0 0 0 8px rgba(240,201,73,0.22); } .vzg-play-btn svg { width: 22px; height: 22px; } .vzg-play-label { font-size: 12px; } }
         .vzg-replay { background: transparent; border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.85); border-radius: 999px; padding: 8px 16px; font: 600 13px "Inter", system-ui, sans-serif; cursor: pointer; }
         .vzg-replay:hover { border-color: rgba(240,201,73,0.45); color: #f0c949; }
         .vzg-replay:focus-visible { outline: 2px solid #f0c949; outline-offset: 2px; }
