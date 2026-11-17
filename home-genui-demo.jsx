@@ -72,7 +72,7 @@ const VzSpark = ({ data, w = 520, h = 120 }) => {
 };
 
 // —— Une page Vyzor ; `shown` = nombre de blocs visibles (animation de composition) ——
-const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = false, kpis = VZ_DEMO_KPIS, points = VZ_DEMO_POINTS, chartTitle = "Chiffre d'affaires mensuel (k€)" }) => {
+const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = false, hidePointsMobile = false, kpis = VZ_DEMO_KPIS, points = VZ_DEMO_POINTS, chartTitle = "Chiffre d'affaires mensuel (k€)" }) => {
   const block = (i) => ({
     opacity: shown > i ? 1 : 0,
     transform: shown > i ? "none" : "translateY(10px)",
@@ -101,7 +101,7 @@ const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = fals
           <div style={{ fontSize: 11.5, color: VZG.muted, marginBottom: 8 }}>{chartTitle}</div>
           <VzSpark data={VZ_DEMO_SERIES} h={compact ? 84 : 104} />
         </div>
-        <div style={{ padding: 12, borderRadius: 10, background: VZG.panel, border: `1px solid ${VZG.line}`, ...block(2) }}>
+        <div className={hidePointsMobile ? "vzg-hide-m" : undefined} style={{ padding: 12, borderRadius: 10, background: VZG.panel, border: `1px solid ${VZG.line}`, ...block(2) }}>
           <div style={{ fontSize: 11.5, color: VZG.muted, marginBottom: 8 }}>Points clés</div>
           <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 7 }}>
             {points.map((p) => (
@@ -122,7 +122,7 @@ const HeroProductShot = () => (
   <div className="vz-hero-shot" style={{ position: "relative", maxWidth: 940, margin: "0 auto" }}>
     <span aria-hidden="true" style={{ position: "absolute", inset: "-40px 10% auto", height: 200, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(240,201,73,0.16), transparent 70%)", filter: "blur(24px)", pointerEvents: "none" }} />
     <VzAppFrame title="Vyzor · Tableau de bord" style={{ position: "relative" }}>
-      <VzDashPreview title="Tableau de bord" subtitle="Mis à jour ce matin depuis Pennylane · données fictives" shown={3} />
+      <VzDashPreview title="Tableau de bord" subtitle="Mis à jour ce matin depuis Pennylane · données fictives" shown={3} hidePointsMobile />
     </VzAppFrame>
   </div>
 );
@@ -255,6 +255,7 @@ const GenUiDemo = () => {
           .vzg-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
           .vzg-row { grid-template-columns: 1fr !important; }
           .vzg-stage { min-height: 560px !important; }
+          .vzg-hide-m { display: none; }
         }
         @media (prefers-reduced-motion: reduce) { .vzg-caret, .vzg-spin { animation: none !important; } }
       `}</style>
