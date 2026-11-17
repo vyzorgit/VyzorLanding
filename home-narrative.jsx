@@ -41,7 +41,7 @@ const GpsSchema = () => {
         <span className="vz-gps-long">{gps ? "Le GPS : Vyzor" : "La carte papier : tableurs et exports"}</span>
         <span className="vz-gps-short">{gps ? "Le GPS : Vyzor" : "La carte : tableurs"}</span>
       </div>
-      <svg viewBox="0 0 360 260" width="100%" role="img" aria-label={gps ? "Avec Vyzor, une seule route claire de A à B, les obstacles sont signalés" : "Sur la carte papier, un trajet sinueux entre de nombreux obstacles"} style={{ display: "block" }}>
+      <svg viewBox="0 0 360 260" width="100%" role="img" aria-label={gps ? "Avec Vyzor, un chemin direct de A à B" : "Avec des tableurs, un chemin sinueux entre de nombreux obstacles"} style={{ display: "block" }}>
         <rect x="0" y="0" width="360" height="260" rx="12" fill={gps ? "rgba(240,201,73,0.03)" : "rgba(255,255,255,0.015)"} />
         {streets(gps ? 0.05 : 0.11)}
         {VZ_GPS_OBSTACLES.map(([x, y]) => obstacle(x, y, gps))}
@@ -51,11 +51,7 @@ const GpsSchema = () => {
             <path d="M40 230 V46 Q40 30 56 30 H320" fill="none" stroke={VZH.gold} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
             <g className="vz-gps-chip" transform="translate(180 54)">
               <rect x="-50" y="-11" width="100" height="22" rx="11" fill={VZH.gold} />
-              <text y="4" textAnchor="middle" fontSize="11" fontWeight="700" fill="#0d1430">Meilleure route</text>
-            </g>
-            <g className="vz-gps-chip" transform="translate(232 120)">
-              <rect x="-100" y="-12" width="200" height="24" rx="12" fill="#141c40" stroke="#fb7185" strokeWidth="1" />
-              <text y="4" textAnchor="middle" fontSize="11" fill="#fff">Trésorerie tendue en mars : signalée</text>
+              <text y="4" textAnchor="middle" fontSize="11" fontWeight="700" fill="#0d1430">Chemin direct</text>
             </g>
           </g>
         ) : (
@@ -68,7 +64,7 @@ const GpsSchema = () => {
         {pin(320, 30, "B", gps ? VZH.gold : "rgba(255,255,255,0.85)")}
       </svg>
       <figcaption className="vz-gps-cap" style={{ marginTop: 10, fontSize: 14, lineHeight: 1.5, color: gps ? "#fff" : VZH.muted }}>
-        {gps ? "Tensions de trésorerie et dérives de marge signalées à l'avance, la décision chiffrée pour vous." : "Des calculs refaits à la main, des imprévus de trésorerie découverts trop tard."}
+        {gps ? "Le chemin direct vers votre analyse financière." : "Un chemin long et sinueux vers votre analyse financière."}
       </figcaption>
     </figure>
   );

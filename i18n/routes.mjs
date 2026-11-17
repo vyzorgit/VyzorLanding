@@ -8,6 +8,7 @@ const FEATURES = [
   ["alertes", "alerts"],
   ["juridique", "legal"],
   ["multi-societes", "multi-entity"],
+  ["budget", "budget"],
 ];
 
 export const PAGES = [
