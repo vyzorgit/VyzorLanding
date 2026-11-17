@@ -2,8 +2,8 @@
 // Rôle : faire tomber le délai et l'effort perçus (équation de valeur de Hormozi).
 // Trois étapes, même vocabulaire visuel que les cartes du constat : verre sombre, or.
 
-const HowItWorksSection = ({ id = "comment", gold, text, muted, subtle, steps: customSteps, title, subtitle, after }) => {
-  const defaultSteps = [
+const HowItWorksSection = ({ id = "comment", gold, text, muted, subtle }) => {
+  const steps = [
     {
       title: "Connectez Pennylane",
       body: "Accès en lecture seule : Vyzor ne modifie jamais rien. Pas sous Pennylane ? Un export FEC suffit, on s'en occupe avec vous.",
@@ -32,14 +32,13 @@ const HowItWorksSection = ({ id = "comment", gold, text, muted, subtle, steps: c
       ),
     },
   ];
-  const steps = (customSteps || defaultSteps).map((st, i) => ({ icon: defaultSteps[i % defaultSteps.length].icon, ...st }));
 
   return (
     <section id={id} className="vz-how" style={{ position: "relative", marginBottom: 120 }}>
       <div style={{ maxWidth: 820, marginBottom: 44 }}>
         <h2 style={{ fontSize: 52, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.08 }}>
-          <span style={{ display: "block" }}>{title || "Opérationnel en quelques minutes."}</span>{" "}
-          <span style={{ display: "block", color: muted }}>{subtitle || "Sans ressaisie, sans tableur."}</span>
+          <span style={{ display: "block" }}>Opérationnel en quelques minutes.</span>{" "}
+          <span style={{ display: "block", color: muted }}>Sans ressaisie, sans tableur.</span>
         </h2>
       </div>
 
@@ -67,7 +66,6 @@ const HowItWorksSection = ({ id = "comment", gold, text, muted, subtle, steps: c
           </li>
         ))}
       </ol>
-      {after || null}
 
       <style>{`
         @media (max-width: 920px) {

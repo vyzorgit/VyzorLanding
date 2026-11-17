@@ -267,8 +267,8 @@ const VzVelocityWords = ({ words, color, accent }) => (
 );
 
 // —— Hero v4 (refonte proposition de valeur, 17/11/2026, brain « Vyzor Pitches ») ——
-// Une cible (dirigeants de PME sous Pennylane), une promesse (la tagline : l'analyse d'un DAF
-// sans en recruter un), une action (prendre rendez-vous pour tester Vyzor sur ses chiffres).
+// Une cible (dirigeants de PME sous Pennylane), une promesse (la tagline : l'analyse d'un directeur
+// financier, sans en recruter un), une action (prendre rendez-vous pour tester Vyzor sur ses chiffres).
 const CinematicHero = () => {
   const gold = "#f0c949";
   const text = "rgba(255,255,255,0.94)";
@@ -288,7 +288,7 @@ const CinematicHero = () => {
         .vz-btn-primary:hover { background-color: #f4d468 !important; }
         .vz-btn-ghost { transition: border-color 160ms ease, background-color 160ms ease; }
         .vz-btn-ghost:hover { border-color: rgba(255,255,255,0.32) !important; background-color: rgba(255,255,255,0.04) !important; }
-        .vz-hero-h1 { font-size: clamp(38px, 5.6vw, 76px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
+        .vz-hero-h1 { font-size: clamp(34px, 5vw, 68px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
         .vz-hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 0%, #1b2860 0%, #101a42 32%, rgba(10,16,38,0) 72%); }
         .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
         @media (max-width: 720px) { .vz-hero-stage { padding: 132px 0 48px !important; } }
@@ -297,15 +297,15 @@ const CinematicHero = () => {
       <span aria-hidden="true" className="vz-hero-glow" />
       <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 1040, padding: "0 24px" }}>
         <h1 className="vz-hero-h1 vz-hero-in" style={{ animationDelay: "80ms" }}>
-          L'analyse d'un DAF.{" "}
-          <span style={{ color: gold, display: "block" }}>Sans en recruter un.</span>
+          L'analyse d'un directeur financier,{" "}
+          <span style={{ color: gold, display: "block" }}>sans en recruter un.</span>
         </h1>
         <p className="vz-hero-in" style={{
           fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6, color: muted,
           maxWidth: 700, margin: "clamp(24px, 3vw, 32px) auto 0", textWrap: "pretty",
           animationDelay: "180ms",
         }}>
-          Vyzor se branche sur Pennylane et vos outils, et construit en quelques secondes l'analyse dont vous avez besoin :{" "}
+          Vyzor se branche sur les outils que vous utilisez déjà et construit en quelques secondes l'analyse dont vous avez besoin :{" "}
           <span style={{ color: text }}>où vous en êtes, ce qui arrive, quoi faire ensuite</span>.
         </p>
         <div className="vz-hero-cta-row vz-hero-in" style={{
@@ -324,15 +324,10 @@ const CinematicHero = () => {
         <p className="vz-hero-in" style={{ margin: "18px 0 0", fontSize: 13.5, color: "rgba(255,255,255,0.5)", animationDelay: "320ms" }}>
           Pour les dirigeants de PME sous Pennylane · Rendez-vous de 30 min en visio · Gratuit pendant la bêta
         </p>
-        {/* Preuve juste sous l'action : la probabilité perçue (équation de valeur), au moment de cliquer */}
-        <figure className="vz-hero-in" style={{ margin: "clamp(36px, 4vw, 48px) auto 0", maxWidth: 620, animationDelay: "380ms" }}>
-          <blockquote style={{ margin: 0, fontSize: 16, lineHeight: 1.55, color: "rgba(255,255,255,0.78)", fontStyle: "italic", textWrap: "pretty" }}>
-            «{vzL({ fr: "\u00a0", en: "" })}Exactement ce dont un DAF a besoin pour gagner du temps dès l'onboarding.{vzL({ fr: "\u00a0", en: "" })}»
-          </blockquote>
-          <figcaption style={{ marginTop: 10, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
-            Benoît Gros, DAF externalisé, testeur de Vyzor
-          </figcaption>
-        </figure>
+        {/* Visuel produit : ce que le dirigeant obtient */}
+        <div className="vz-hero-in" style={{ marginTop: "clamp(44px, 5vw, 64px)", animationDelay: "380ms" }}>
+          <HeroProductShot />
+        </div>
       </div>
     </section>
   );
