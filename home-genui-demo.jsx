@@ -144,8 +144,8 @@ const GenUiVideo = () => {
   const toggle = () => { const v = ref.current; if (!v) return; if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); };
   return (
     <div>
-      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(140,160,255,0.22)", boxShadow: "0 40px 90px -38px rgba(0,0,0,0.85), 0 0 60px -30px rgba(240,201,73,0.22)", background: "#f4f5f8" }}>
-        <video ref={ref} src="/vyzor-demo-generation.mp4" poster="/vyzor-demo-generation-poster.jpg" width="1920" height="1012"
+      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(140,160,255,0.22)", boxShadow: "0 40px 90px -38px rgba(0,0,0,0.85), 0 0 60px -30px rgba(240,201,73,0.22)", background: "#0b1026" }}>
+        <video ref={ref} src="/vyzor-demo-generation.mp4" poster="/vyzor-demo-generation-poster.jpg" width="1920" height="1080"
           muted loop playsInline preload="metadata" aria-label="Démonstration : création d'un rapport investisseur dans Vyzor, ajout d'un module et export en PDF"
           onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onClick={toggle}
           style={{ display: "block", width: "100%", height: "auto", cursor: "pointer" }} />
