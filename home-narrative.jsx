@@ -35,7 +35,7 @@ const HomeDemo = ({ id = "produit" }) => (
         Décrivez ce dont vous avez besoin. Vyzor collecte vos données, les analyse et compose la page en quelques secondes, prête à exporter ou à personnaliser.
       </p>
     </div>
-    <GenUiDemo />
+    <GenUiVideo />
     <style>{`
       @media (max-width: 920px) { .vz-hdemo h2 { font-size: 34px !important; } }
       @media (max-width: 560px) { .vz-hdemo h2 { font-size: 26px !important; } .vz-hdemo p { font-size: 16px !important; } }
