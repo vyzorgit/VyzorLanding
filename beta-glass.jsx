@@ -874,9 +874,10 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
   ];
 
   // Mode « modale seule » : pages qui ont leur propre bloc d'offre (ex. /cabinets).
-  if (modalOnly) return quick
-    ? <QuickBookModal open={open} onClose={() => setOpen(false)} />
-    : <BetaModal open={open} onClose={() => setOpen(false)} />;
+  // Prise de rendez-vous express partout, sauf sur la page Cabinets (questionnaire adapté aux experts-comptables).
+  const onCabinets = typeof window !== "undefined" && /^\/(en\/)?(cabinets|accounting-firms)/.test(window.VZ_FR_PATH || window.location.pathname);
+  const Modal = quick || !onCabinets ? QuickBookModal : BetaModal;
+  if (modalOnly) return <Modal open={open} onClose={() => setOpen(false)} />;
 
   return (
     <section id="beta" style={{ position: "relative", marginTop: 72 }}>
@@ -1006,7 +1007,7 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
         </p>
       </div>
 
-      <BetaModal open={open} onClose={() => setOpen(false)} />
+      <Modal open={open} onClose={() => setOpen(false)} />
     </section>
   );
 };

@@ -272,13 +272,13 @@ const VZ_FEATURES = [
       ["Action proposée", "Chaque alerte arrive avec la marche à suivre."],
       ["Historique", "Toutes vos alertes passées restent consultables et traçables."],
     ] },
-  { slug: "budget", soon: true, icon: "budget", name: "Budget & analyse des coûts", desc: "Budget face au réel, dérives détectées poste par poste.", Visual: VisBudget,
+  { slug: "budget", icon: "budget", name: "Budget & analyse des coûts", desc: "Budget face au réel, dérives détectées poste par poste.", Visual: VisBudget,
     lead: "Construisez votre budget, comparez-le au réel chaque mois et identifiez les postes qui dérivent avant qu'ils ne pèsent sur l'année.",
     points: [
       ["Budget prévisionnel", "Construit à partir de votre historique, ajustable en quelques minutes."],
       ["Budget vs réel", "Écarts calculés automatiquement à chaque clôture."],
       ["Analyse des coûts", "Vos plus gros postes de dépense et leur évolution."],
-      ["Pistes d'économies", "Hausses fournisseurs et doublons repérés pour vous."],
+      ["Point mort", "Le chiffre d'affaires à atteindre pour couvrir vos coûts, suivi chaque mois."],
     ] },
 ];
 

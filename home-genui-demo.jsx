@@ -117,15 +117,45 @@ const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = fals
   );
 };
 
-// —— Visuel du hero : une page Vyzor finie ——
+// —— Visuel du hero : capture réelle de l'app (page « Rapport investisseur », données de démonstration) ——
 const HeroProductShot = () => (
-  <div className="vz-hero-shot" style={{ position: "relative", maxWidth: 940, margin: "0 auto" }}>
-    <span aria-hidden="true" style={{ position: "absolute", inset: "-40px 10% auto", height: 200, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(240,201,73,0.16), transparent 70%)", filter: "blur(24px)", pointerEvents: "none" }} />
-    <VzAppFrame title="Vyzor · Tableau de bord" style={{ position: "relative" }}>
-      <VzDashPreview title="Tableau de bord" subtitle="Mis à jour ce matin depuis Pennylane · données fictives" shown={3} hidePointsMobile />
-    </VzAppFrame>
+  <div className="vz-hero-shot" style={{ position: "relative", maxWidth: 1000, margin: "0 auto" }}>
+    <span aria-hidden="true" style={{ position: "absolute", inset: "-40px 10% auto", height: 220, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(240,201,73,0.18), transparent 70%)", filter: "blur(24px)", pointerEvents: "none" }} />
+    <img src="/vyzor-app-rapport.webp" width="1600" height="843" alt="Une page Vyzor : chiffre d'affaires, marge, résultat, performance financière et score de santé"
+      style={{ position: "relative", display: "block", width: "100%", height: "auto", borderRadius: 14, border: "1px solid rgba(140,160,255,0.22)", boxShadow: "0 40px 90px -38px rgba(0,0,0,0.85), 0 0 60px -30px rgba(240,201,73,0.25)" }} />
   </div>
 );
+
+// —— Démo : vidéo montée de la génération d'une page (lecture au clic, puis en boucle) ——
+const GenUiVideo = () => {
+  const ref = React.useRef(null);
+  const [playing, setPlaying] = React.useState(false);
+  const toggle = () => { const v = ref.current; if (!v) return; if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); };
+  return (
+    <div>
+      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(140,160,255,0.22)", boxShadow: "0 40px 90px -38px rgba(0,0,0,0.85), 0 0 60px -30px rgba(240,201,73,0.22)", background: "#0b1026" }}>
+        <video ref={ref} src="/vyzor-demo-generation.mp4" poster="/vyzor-demo-generation-poster.jpg" width="1920" height="1080"
+          muted loop playsInline preload="none" aria-label="Démonstration : création d'un rapport investisseur dans Vyzor, ajout d'un module et export en PDF"
+          onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onClick={toggle}
+          style={{ display: "block", width: "100%", height: "auto", cursor: "pointer" }} />
+        {/* Le bouton lecture est dessiné dans la miniature ; ce bouton couvre l'image pour lancer la vidéo au clic. */}
+        <button type="button" onClick={toggle} aria-label="Lancer la démo" className="vzg-play"
+          style={{ display: playing ? "none" : "block" }} />
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginTop: 14, flexWrap: "wrap" }}>
+        <span style={{ fontSize: 12.5, color: VZG.muted }}>L'application réelle, avec des données de démonstration.</span>
+        <button type="button" onClick={toggle} className="vzg-replay">{playing ? "Mettre en pause" : "Lire la vidéo"}</button>
+      </div>
+      <style>{`
+        .vzg-play { position: absolute; inset: 0; background: transparent; border: 0; cursor: pointer; }
+        .vzg-play:focus-visible { outline: 3px solid #f0c949; outline-offset: -3px; }
+        .vzg-replay { background: transparent; border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.85); border-radius: 999px; padding: 8px 16px; font: 600 13px "Inter", system-ui, sans-serif; cursor: pointer; }
+        .vzg-replay:hover { border-color: rgba(240,201,73,0.45); color: #f0c949; }
+        .vzg-replay:focus-visible { outline: 2px solid #f0c949; outline-offset: 2px; }
+      `}</style>
+    </div>
+  );
+};
 
 // —— Démo de génération ——
 const VZ_DEMO_PROMPT = "Prépare-moi un rapport pour un investisseur";
@@ -266,4 +296,4 @@ const GenUiDemo = () => {
 // Texte saisi : déjà dans la bonne langue, on ne le repasse pas au dictionnaire.
 const vzRawSafe = (s) => (typeof window !== "undefined" && window.vzRaw ? window.vzRaw(s) : s);
 
-Object.assign(window, { VzAppFrame, VzDashPreview, HeroProductShot, GenUiDemo });
+Object.assign(window, { VzAppFrame, VzDashPreview, HeroProductShot, GenUiDemo, GenUiVideo });
