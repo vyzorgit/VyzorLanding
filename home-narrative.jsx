@@ -1,7 +1,7 @@
 // home-narrative.jsx — Sections de l'accueil (refonte du 17/11/2026, validée par Antoine).
 // Phrases reprises du document « Vyzor Pitches » (brain/) : douleur,
 // fonctionnalité clé, script du rendez-vous, ligne rouge « l'IA ne fait jamais les calculs ».
-// Cinq blocs, une seule action : tester Vyzor sur ses chiffres.
+// Cinq blocs, une seule action : essayer son directeur financier.
 
 const VZH = { gold: "#f0c949", muted: "rgba(255,255,255,0.58)", line: "rgba(255,255,255,0.08)" };
 
@@ -10,10 +10,10 @@ const HomePain = ({ id = "constat" }) => (
   <section id={id} className="vz-hpain" style={{ position: "relative", marginBottom: 96 }}>
     <div style={{ maxWidth: 760 }}>
       <h2 style={{ fontSize: 40, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.12, textWrap: "balance" }}>
-        Chaque analyse se construit à la main et prend des heures.
+        Les PME n'ont pas les moyens d'un directeur financier d'exception.
       </h2>
       <p style={{ fontSize: 18, lineHeight: 1.6, color: VZH.muted, margin: "18px 0 0", textWrap: "pretty" }}>
-        Quand le temps manque ou qu'un nouveau scénario se présente, vos outils n'ont pas de réponse.
+        Résultat : elles ne savent jamais vraiment quel levier actionner pour améliorer leur activité.
       </p>
     </div>
     <style>{`
@@ -32,7 +32,7 @@ const HomeDemo = ({ id = "produit" }) => (
         <span style={{ display: "block", color: VZH.gold }}>Un tableau de bord sur mesure.</span>
       </h2>
       <p style={{ fontSize: 18, lineHeight: 1.65, color: VZH.muted, margin: "22px 0 0", maxWidth: 680, textWrap: "pretty" }}>
-        Décrivez ce dont vous avez besoin. Vyzor collecte vos données, les analyse et compose la page en quelques secondes, prête à exporter ou à personnaliser.
+        Demandez à votre directeur financier les indicateurs dont vous avez besoin. Votre tableau de bord se construit en temps réel, avec les actions à mener, et arrive dans votre boîte mail chaque matin.
       </p>
     </div>
     <GenUiVideo />
@@ -50,11 +50,13 @@ const HomeProof = () => {
     { q: "Vyzor permet aux PME […] de bénéficier d'une visibilité beaucoup plus fréquente sur leurs indicateurs clés.", name: "Alexis Duquesne", role: "Directeur financier de transition", photo: "/verbatim-alexis-duquesne.png", url: "https://www.linkedin.com/in/alexisduquesne/" },
   ];
   return (
-    <section className="vz-hproof" aria-label="Témoignages" style={{ marginBottom: 20 }}>
-      <div className="vz-hproof-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+    <section className="vz-hproof" aria-label="Témoignages" style={{ marginBottom: 72 }}>
+      <div className="vz-hproof-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40 }}>
         {items.map((t) => (
-          <figure key={t.name} style={{ margin: 0, padding: "16px 18px", borderRadius: 14, background: "rgba(255,255,255,0.025)", border: "1px solid rgba(140,160,255,0.12)", display: "flex", flexDirection: "column", gap: 12 }}>
-            <blockquote style={{ margin: 0, fontSize: 15, lineHeight: 1.5, color: "#fff", textWrap: "pretty" }}>« {t.q} »</blockquote>
+          <figure key={t.name} style={{ margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+            <blockquote style={{ margin: 0, fontSize: 16, lineHeight: 1.5, color: "#fff", textWrap: "pretty" }}>
+              <span aria-hidden="true" style={{ color: VZH.gold, fontWeight: 700, marginRight: 4 }}>«</span>{t.q}<span aria-hidden="true" style={{ color: VZH.gold, fontWeight: 700, marginLeft: 4 }}>»</span>
+            </blockquote>
             <figcaption style={{ display: "flex", alignItems: "center", gap: 10, marginTop: "auto" }}>
               <img src={t.photo} alt="" width="32" height="32" loading="lazy" style={{ width: 32, height: 32, borderRadius: 99, objectFit: "cover", flexShrink: 0 }} />
               <div style={{ minWidth: 0, lineHeight: 1.3 }}>
@@ -66,8 +68,8 @@ const HomeProof = () => {
         ))}
       </div>
       <style>{`@media (max-width: 640px) {
-        .vz-hproof .vz-hproof-grid { gap: 8px !important; }
-        .vz-hproof figure { padding: 12px !important; gap: 10px !important; border-radius: 12px !important; }
+        .vz-hproof .vz-hproof-grid { gap: 16px !important; }
+        .vz-hproof figure { gap: 8px !important; }
         .vz-hproof blockquote { font-size: 12.5px !important; line-height: 1.45 !important; }
         .vz-hproof img { display: none; }
         .vz-hproof-name { font-size: 12px !important; min-height: 0 !important; padding: 0 !important; display: block !important; }
@@ -85,12 +87,9 @@ const HomeSteps = ({ id = "comment" }) => {
     { t: "Votre tableau de bord, en direct", d: "Construit devant vous, selon vos besoins." },
   ];
   return (
-    <section id={id} className="vz-hsteps" style={{
-      position: "relative", marginBottom: 40, padding: "24px clamp(16px, 3vw, 32px)", borderRadius: 18,
-      background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)", border: "1px solid rgba(140,160,255,0.14)",
-    }}>
+    <section id={id} className="vz-hsteps" style={{ position: "relative", marginBottom: 56 }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 18 }}>
-        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Testez Vyzor en 30 minutes, avec nous.</h2>
+        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Essayez votre directeur financier en 30 minutes, avec nous.</h2>
         <span className="vz-hsteps-sub" style={{ fontSize: 13.5, color: VZH.muted }}>En visio · gratuit pendant la bêta · l'IA ne fait jamais les calculs</span>
       </div>
       <ol className="vz-hsteps-row" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 14 }}>
@@ -125,14 +124,14 @@ const HomeFinalCta = () => (
     border: "1px solid rgba(140,160,255,0.18)",
   }}>
     <h2 style={{ position: "relative", margin: "0 auto", maxWidth: 820, fontSize: "clamp(30px, 4.2vw, 50px)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff", textWrap: "balance" }}>
-      Quelle décision devez-vous prendre ce mois-ci ?{" "}
-      <span style={{ color: VZH.gold }}>Posez la question à Vyzor, sur vos propres chiffres.</span>
+      Quel levier actionner ce mois-ci ?{" "}
+      <span style={{ color: VZH.gold }}>Posez la question à votre directeur financier, sur vos propres chiffres.</span>
     </h2>
     <p style={{ position: "relative", margin: "22px auto 0", maxWidth: 560, fontSize: 17, lineHeight: 1.6, color: VZH.muted }}>
       En 30 minutes, vous repartez avec votre premier tableau de bord. Gratuit pendant la bêta.
     </p>
     <div style={{ position: "relative", marginTop: 32 }}>
-      <VzCtaLink size="lg">Tester Vyzor sur mes chiffres</VzCtaLink>
+      <VzCtaLink size="lg">Essayer mon directeur financier</VzCtaLink>
     </div>
   </section>
 );

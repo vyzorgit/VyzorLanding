@@ -139,7 +139,7 @@ const ConseilFlow = () => {
 // —— « Ce que le conseil sait faire » : onglets + exemple concret ——
 const ccRow = { display: "flex", justifyContent: "space-between", gap: 12, padding: "10px 0", borderTop: "1px solid rgba(255,255,255,0.07)", fontSize: 13.5 };
 const CC_ITEMS = [
-  { t: "Analyses détaillées", d: "Une lecture complète de vos chiffres, expliquée poste par poste.",
+  { t: "Analyse vos chiffres en détail", d: "Une lecture complète de vos chiffres, expliquée poste par poste.",
     ex: () => (
       <div>
         <div className="cc-ask">Pourquoi ma marge a baissé ce trimestre ?</div>
@@ -153,7 +153,7 @@ const CC_ITEMS = [
         ))}
       </div>
     ) },
-  { t: "Recherche instantanée", d: "Une facture, un montant, une clause : retrouvés en quelques secondes.",
+  { t: "Retrouve une information en quelques secondes", d: "Une facture, un montant, une clause : retrouvés en quelques secondes.",
     ex: () => (
       <div>
         <div className="cc-ask">Combien ai-je payé à Texol depuis janvier ?</div>
@@ -164,7 +164,7 @@ const CC_ITEMS = [
         ))}
       </div>
     ) },
-  { t: "Simulations", d: "Tous les scénarios testés sur vos propres chiffres, avec leur viabilité.",
+  { t: "Simule vos scénarios", d: "Tous les scénarios testés sur vos propres chiffres, avec leur viabilité.",
     ex: () => (
       <div>
         <div className="cc-ask">J'investis 120 k€ dans une machine : cash ou emprunt ?</div>
@@ -181,7 +181,7 @@ const CC_ITEMS = [
         <div style={{ fontSize: 13.5, color: "rgba(255,255,255,0.75)", marginTop: 14 }}>Recommandation : emprunt sur 5 ans, la trésorerie reste confortable toute l'année.</div>
       </div>
     ) },
-  { t: "E-mails", d: "Relances clients, fournisseurs, comptable : rédigées et prêtes à partir.",
+  { t: "Rédige vos e-mails", d: "Relances clients, fournisseurs, comptable : rédigées et prêtes à partir.",
     ex: () => (
       <div style={{ borderRadius: 12, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", overflow: "hidden" }}>
         {[["À", "compta@batisseurs-sarl.fr"], ["Objet", "Facture F-2026-098 : 5 200 € en attente"]].map(([k, v]) => (
@@ -196,7 +196,7 @@ const CC_ITEMS = [
         </div>
       </div>
     ) },
-  { t: "Documents financiers", d: "Dossiers pour la banque, les partenaires ou les investisseurs.",
+  { t: "Génère vos documents financiers", d: "Dossiers pour la banque, les partenaires ou les investisseurs.",
     ex: () => (
       <div>
         <div className="cc-ask">Prépare un dossier de financement pour ma banque.</div>
