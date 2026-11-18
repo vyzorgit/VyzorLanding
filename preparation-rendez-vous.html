@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Préparer notre rendez-vous — Vyzor</title>
+  <meta name="description" content="Quelques questions pour préparer notre rendez-vous : 3 minutes, aucune réponse obligatoire." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/svg+xml" href="vyzor-mark.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#0a1026" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <style>
+    :root {
+      --bg: #0a1026; --bg2: #121a3a; --card: #121a3a; --line: #26305a;
+      --ink: #f4f1e8; --muted: #b9bfd3; --gold: #f0c949; --gold2: #c5a059;
+      --chip: #172150; --chip-on: #f0c949; --chip-on-ink: #0a1026;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { background: var(--bg); color: var(--ink); font-family: Inter, "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; line-height: 1.55; padding: 0 16px 64px; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    header { display: flex; align-items: center; gap: 10px; padding: 24px 0 8px; }
+    header img { width: 28px; height: 28px; }
+    header span { font-weight: 700; font-size: 18px; letter-spacing: .2px; }
+    .hero { padding: 28px 0 8px; }
+    .kicker { color: var(--gold); font-weight: 600; font-size: 13px; letter-spacing: .8px; text-transform: uppercase; }
+    h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -.5px; margin-top: 10px; text-wrap: balance; }
+    .lead { color: var(--muted); margin-top: 12px; font-size: 17px; max-width: 60ch; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .meta span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: var(--muted); }
+    .progress { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 14px 0 10px; }
+    .bar { height: 6px; border-radius: 3px; background: var(--chip); overflow: hidden; }
+    .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--gold2), var(--gold)); transition: width .35s ease; }
+    .bar-label { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    fieldset { border: 0; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px; margin-top: 16px; }
+    .card h2 { font-size: 13px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .q { margin-top: 18px; }
+    .q:first-of-type { margin-top: 8px; }
+    .q > label, .q > legend { display: block; font-weight: 600; font-size: 16px; margin-bottom: 10px; }
+    .hint { font-weight: 400; color: var(--muted); font-size: 14px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips input { position: absolute; opacity: 0; pointer-events: none; }
+    .chips label { cursor: pointer; background: var(--chip); border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; font-size: 15px; line-height: 1.2; user-select: none; transition: background .15s, color .15s, border-color .15s; }
+    .chips input:checked + label { background: var(--chip-on); color: var(--chip-on-ink); border-color: var(--chip-on); font-weight: 600; }
+    .chips input:focus-visible + label { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .profile .chips label { padding: 14px 18px; font-size: 16px; border-radius: 14px; flex: 1 1 240px; text-align: center; }
+    input[type=text], input[type=email], textarea { width: 100%; background: #0d1431; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font: inherit; }
+    input[type=text]:focus, input[type=email]:focus, textarea:focus { outline: 2px solid var(--gold2); outline-offset: 1px; border-color: transparent; }
+    textarea { min-height: 84px; resize: vertical; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+    .branch[hidden] { display: none !important; }
+    .actions { margin-top: 22px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+    button { cursor: pointer; background: var(--gold); color: var(--chip-on-ink); border: 0; border-radius: 12px; padding: 14px 26px; font: inherit; font-weight: 700; font-size: 16px; }
+    button:disabled { opacity: .6; cursor: default; }
+    .legal { font-size: 13px; color: var(--muted); max-width: 62ch; }
+    .legal a { color: var(--muted); }
+    .msg { font-size: 15px; color: var(--muted); }
+    .done { text-align: center; padding: 48px 20px; }
+    .done h2 { font-size: 26px; color: var(--ink); text-transform: none; letter-spacing: -.3px; margin-bottom: 10px; }
+    .trap { position: absolute; left: -9999px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header><img src="vyzor-mark.svg" alt="" /><span>Vyzor</span></header>
+
+  <div class="hero">
+    <p class="kicker">Préparer notre rendez-vous</p>
+    <h1>Quelques questions pour que notre échange vous soit vraiment utile</h1>
+    <p class="lead">Vos réponses nous permettent de venir préparés et de passer le rendez-vous sur ce qui compte pour vous. Répondez à ce que vous voulez : rien n’est obligatoire.</p>
+    <div class="meta"><span>2 à 3 minutes</span><span>Aucune question obligatoire</span><span>Réponses lues uniquement par notre équipe</span></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><div class="bar"><i id="bar"></i></div><p class="bar-label" id="bar-label">0 question renseignée</p></div>
+
+  <form id="vz-prep" novalidate>
+    <input type="checkbox" name="botcheck" class="trap" tabindex="-1" autocomplete="off" />
+
+    <section class="card profile">
+      <h2>Vous</h2>
+      <fieldset class="q">
+        <legend>Vous êtes…</legend>
+        <div class="chips">
+          <input type="radio" id="p-ceo" name="profil" value="Dirigeant" /><label for="p-ceo">Dirigeant d’entreprise</label>
+          <input type="radio" id="p-cfo" name="profil" value="Finance ou cabinet" /><label for="p-cfo">Directeur financier, DAF ou expert-comptable</label>
+        </div>
+      </fieldset>
+      <div class="q grid2">
+        <div><label for="f-nom">Prénom et nom</label><input type="text" id="f-nom" name="nom" autocomplete="name" /></div>
+        <div><label for="f-ent">Entreprise ou cabinet</label><input type="text" id="f-ent" name="entreprise" autocomplete="organization" /></div>
+      </div>
+      <div class="q"><label for="f-mail">E-mail <span class="hint">(pour vous envoyer le récapitulatif)</span></label><input type="email" id="f-mail" name="email" autocomplete="email" /></div>
+    </section>
+
+    <!-- Dirigeant -->
+    <div class="branch" data-branch="Dirigeant" hidden>
+      <section class="card">
+        <h2>Votre entreprise</h2>
+        <fieldset class="q"><legend>Effectif</legend><div class="chips">
+          <input type="radio" id="d-eff1" name="d_effectif" value="1 à 9" /><label for="d-eff1">1 à 9</label>
+          <input type="radio" id="d-eff2" name="d_effectif" value="10 à 49" /><label for="d-eff2">10 à 49</label>
+          <input type="radio" id="d-eff3" name="d_effectif" value="50 à 249" /><label for="d-eff3">50 à 249</label>
+          <input type="radio" id="d-eff4" name="d_effectif" value="250 et plus" /><label for="d-eff4">250 et plus</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>Chiffre d’affaires annuel</legend><div class="chips">
+          <input type="radio" id="d-ca1" name="d_ca" value="Moins de 1 M€" /><label for="d-ca1">Moins de 1 M€</label>
+          <input type="radio" id="d-ca2" name="d_ca" value="1 à 5 M€" /><label for="d-ca2">1 à 5 M€</label>
+          <input type="radio" id="d-ca3" name="d_ca" value="5 à 20 M€" /><label for="d-ca3">5 à 20 M€</label>
+          <input type="radio" id="d-ca4" name="d_ca" value="Plus de 20 M€" /><label for="d-ca4">Plus de 20 M€</label>
+        </div></fieldset>
+        <div class="q"><label for="d-sect">Votre secteur d’activité</label><input type="text" id="d-sect" name="d_secteur" /></div>
+        <fieldset class="q"><legend>Votre comptabilité est tenue sur <span class="hint">(plusieurs choix possibles)</span></legend><div class="chips">
+          <input type="checkbox" id="d-o1" name="d_outils" value="Pennylane" /><label for="d-o1">Pennylane</label>
+          <input type="checkbox" id="d-o2" name="d_outils" value="Un autre logiciel" /><label for="d-o2">Un autre logiciel</label>
+          <input type="checkbox" id="d-o3" name="d_outils" value="Par mon expert-comptable, je ne sais pas" /><label for="d-o3">Par mon expert-comptable, je ne sais pas</label>
+          <input type="checkbox" id="d-o4" name="d_outils" value="Qonto" /><label for="d-o4">Banque Qonto</label>
+        </div></fieldset>
+      </section>
+      <section class="card">
+        <h2>Votre pilotage</h2>
+        <fieldset class="q"><legend>Aujourd’hui, vous suivez vos chiffres avec <span class="hint">(plusieurs choix possibles)</span></legend><div class="chips">
+          <input type="checkbox" id="d-s1" name="d_suivi" value="Les documents de mon expert-comptable" /><label for="d-s1">Les documents de mon expert-comptable</label>
+          <input type="checkbox" id="d-s2" name="d_suivi" value="Un tableur maison" /><label for="d-s2">Un tableur maison</label>
+          <input type="checkbox" id="d-s3" name="d_suivi" value="Un logiciel de tableau de bord" /><label for="d-s3">Un logiciel de tableau de bord</label>
+          <input type="checkbox" id="d-s4" name="d_suivi" value="Mon compte bancaire" /><label for="d-s4">Mon compte bancaire</label>
+          <input type="checkbox" id="d-s5" name="d_suivi" value="Le bilan annuel seulement" /><label for="d-s5">Le bilan annuel seulement</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>À quelle fréquence regardez-vous vos chiffres ?</legend><div class="chips">
+          <input type="radio" id="d-f1" name="d_frequence" value="Chaque semaine" /><label for="d-f1">Chaque semaine</label>
+          <input type="radio" id="d-f2" name="d_frequence" value="Chaque mois" /><label for="d-f2">Chaque mois</label>
+          <input type="radio" id="d-f3" name="d_frequence" value="Chaque trimestre" /><label for="d-f3">Chaque trimestre</label>
+          <input type="radio" id="d-f4" name="d_frequence" value="À la clôture" /><label for="d-f4">À la clôture</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>Les chiffres qui comptent le plus pour vous <span class="hint">(3 au plus)</span></legend><div class="chips" data-max="3">
+          <input type="checkbox" id="d-k1" name="d_indicateurs" value="Trésorerie" /><label for="d-k1">Trésorerie</label>
+          <input type="checkbox" id="d-k2" name="d_indicateurs" value="Chiffre d’affaires" /><label for="d-k2">Chiffre d’affaires</label>
+          <input type="checkbox" id="d-k3" name="d_indicateurs" value="Marges" /><label for="d-k3">Marges</label>
+          <input type="checkbox" id="d-k4" name="d_indicateurs" value="Rentabilité par activité ou client" /><label for="d-k4">Rentabilité par activité ou client</label>
+          <input type="checkbox" id="d-k5" name="d_indicateurs" value="Délais de paiement clients" /><label for="d-k5">Délais de paiement clients</label>
+          <input type="checkbox" id="d-k6" name="d_indicateurs" value="Charges et coûts" /><label for="d-k6">Charges et coûts</label>
+          <input type="checkbox" id="d-k7" name="d_indicateurs" value="Budget et prévisionnel" /><label for="d-k7">Budget et prévisionnel</label>
+        </div></fieldset>
+      </section>
+      <section class="card">
+        <h2>Vos décisions</h2>
+        <fieldset class="q"><legend>Une décision à prendre dans les 6 prochains mois ? <span class="hint">(plusieurs choix possibles)</span></legend><div class="chips">
+          <input type="checkbox" id="d-dc1" name="d_decisions" value="Recruter" /><label for="d-dc1">Recruter</label>
+          <input type="checkbox" id="d-dc2" name="d_decisions" value="Investir" /><label for="d-dc2">Investir</label>
+          <input type="checkbox" id="d-dc3" name="d_decisions" value="Emprunter ou lever des fonds" /><label for="d-dc3">Emprunter ou lever des fonds</label>
+          <input type="checkbox" id="d-dc4" name="d_decisions" value="Revoir mes prix" /><label for="d-dc4">Revoir mes prix</label>
+          <input type="checkbox" id="d-dc5" name="d_decisions" value="Lancer une activité" /><label for="d-dc5">Lancer une activité</label>
+          <input type="checkbox" id="d-dc6" name="d_decisions" value="Céder ou racheter" /><label for="d-dc6">Céder ou racheter</label>
+        </div></fieldset>
+        <div class="q"><label for="d-frus">Ce qui vous manque le plus aujourd’hui pour piloter</label><textarea id="d-frus" name="d_manque" placeholder="Par exemple : savoir combien je peux me verser, voir ma trésorerie à 3 mois…"></textarea></div>
+        <div class="q"><label for="d-cfo">Si vous aviez un directeur financier demain, quelle serait votre première question ?</label><textarea id="d-cfo" name="d_question_cfo"></textarea></div>
+      </section>
+    </div>
+
+    <!-- Finance / cabinet -->
+    <div class="branch" data-branch="Finance ou cabinet" hidden>
+      <section class="card">
+        <h2>Votre activité</h2>
+        <fieldset class="q"><legend>Votre rôle</legend><div class="chips">
+          <input type="radio" id="c-r1" name="c_role" value="DAF ou CFO en entreprise" /><label for="c-r1">DAF ou CFO en entreprise</label>
+          <input type="radio" id="c-r2" name="c_role" value="DAF à temps partagé ou externalisé" /><label for="c-r2">DAF à temps partagé ou externalisé</label>
+          <input type="radio" id="c-r3" name="c_role" value="Expert-comptable associé" /><label for="c-r3">Expert-comptable associé</label>
+          <input type="radio" id="c-r4" name="c_role" value="Collaborateur de cabinet" /><label for="c-r4">Collaborateur de cabinet</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>Combien de sociétés ou de dossiers suivez-vous ?</legend><div class="chips">
+          <input type="radio" id="c-n1" name="c_dossiers" value="1" /><label for="c-n1">1</label>
+          <input type="radio" id="c-n2" name="c_dossiers" value="2 à 10" /><label for="c-n2">2 à 10</label>
+          <input type="radio" id="c-n3" name="c_dossiers" value="11 à 50" /><label for="c-n3">11 à 50</label>
+          <input type="radio" id="c-n4" name="c_dossiers" value="Plus de 50" /><label for="c-n4">Plus de 50</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>Vos outils <span class="hint">(plusieurs choix possibles)</span></legend><div class="chips">
+          <input type="checkbox" id="c-o1" name="c_outils" value="Pennylane" /><label for="c-o1">Pennylane</label>
+          <input type="checkbox" id="c-o2" name="c_outils" value="Cegid" /><label for="c-o2">Cegid</label>
+          <input type="checkbox" id="c-o3" name="c_outils" value="Sage" /><label for="c-o3">Sage</label>
+          <input type="checkbox" id="c-o4" name="c_outils" value="Tableur" /><label for="c-o4">Tableur</label>
+          <input type="checkbox" id="c-o5" name="c_outils" value="Outil de trésorerie" /><label for="c-o5">Outil de trésorerie</label>
+          <input type="checkbox" id="c-o6" name="c_outils" value="Autre" /><label for="c-o6">Autre</label>
+        </div></fieldset>
+      </section>
+      <section class="card">
+        <h2>Votre suivi aujourd’hui</h2>
+        <fieldset class="q"><legend>À quelle fréquence produisez-vous un reporting ou un tableau de bord ?</legend><div class="chips">
+          <input type="radio" id="c-f1" name="c_frequence" value="Chaque semaine" /><label for="c-f1">Chaque semaine</label>
+          <input type="radio" id="c-f2" name="c_frequence" value="Chaque mois" /><label for="c-f2">Chaque mois</label>
+          <input type="radio" id="c-f3" name="c_frequence" value="Chaque trimestre" /><label for="c-f3">Chaque trimestre</label>
+          <input type="radio" id="c-f4" name="c_frequence" value="À la clôture" /><label for="c-f4">À la clôture</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>Le temps que cela vous prend chaque mois</legend><div class="chips">
+          <input type="radio" id="c-t1" name="c_temps" value="Moins d’une journée" /><label for="c-t1">Moins d’une journée</label>
+          <input type="radio" id="c-t2" name="c_temps" value="1 à 3 jours" /><label for="c-t2">1 à 3 jours</label>
+          <input type="radio" id="c-t3" name="c_temps" value="3 à 5 jours" /><label for="c-t3">3 à 5 jours</label>
+          <input type="radio" id="c-t4" name="c_temps" value="Plus de 5 jours" /><label for="c-t4">Plus de 5 jours</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>Ce que vos clients ou votre direction vous demandent le plus <span class="hint">(3 au plus)</span></legend><div class="chips" data-max="3">
+          <input type="checkbox" id="c-d1" name="c_demandes" value="Trésorerie prévisionnelle" /><label for="c-d1">Trésorerie prévisionnelle</label>
+          <input type="checkbox" id="c-d2" name="c_demandes" value="Rentabilité et marges" /><label for="c-d2">Rentabilité et marges</label>
+          <input type="checkbox" id="c-d3" name="c_demandes" value="Scénarios avant une décision" /><label for="c-d3">Scénarios avant une décision</label>
+          <input type="checkbox" id="c-d4" name="c_demandes" value="Budget et écarts" /><label for="c-d4">Budget et écarts</label>
+          <input type="checkbox" id="c-d5" name="c_demandes" value="Questions fiscales" /><label for="c-d5">Questions fiscales</label>
+          <input type="checkbox" id="c-d6" name="c_demandes" value="Situations intermédiaires" /><label for="c-d6">Situations intermédiaires</label>
+        </div></fieldset>
+        <fieldset class="q"><legend>Ce travail de pilotage est-il facturé aujourd’hui ?</legend><div class="chips">
+          <input type="radio" id="c-b1" name="c_facture" value="Oui" /><label for="c-b1">Oui</label>
+          <input type="radio" id="c-b2" name="c_facture" value="En partie" /><label for="c-b2">En partie</label>
+          <input type="radio" id="c-b3" name="c_facture" value="Non" /><label for="c-b3">Non</label>
+          <input type="radio" id="c-b4" name="c_facture" value="Pas concerné" /><label for="c-b4">Pas concerné</label>
+        </div></fieldset>
+      </section>
+      <section class="card">
+        <h2>Vos attentes</h2>
+        <div class="q"><label for="c-prop">Ce que vous aimeriez proposer, sans en avoir le temps aujourd’hui</label><textarea id="c-prop" name="c_proposer"></textarea></div>
+        <fieldset class="q"><legend>Ce qui vous freinerait avec un nouvel outil <span class="hint">(plusieurs choix possibles)</span></legend><div class="chips">
+          <input type="checkbox" id="c-fr1" name="c_freins" value="Le temps de mise en place" /><label for="c-fr1">Le temps de mise en place</label>
+          <input type="checkbox" id="c-fr2" name="c_freins" value="La sécurité des données" /><label for="c-fr2">La sécurité des données</label>
+          <input type="checkbox" id="c-fr3" name="c_freins" value="Le coût" /><label for="c-fr3">Le coût</label>
+          <input type="checkbox" id="c-fr4" name="c_freins" value="L’adoption par mes clients ou mes équipes" /><label for="c-fr4">L’adoption par mes clients ou mes équipes</label>
+          <input type="checkbox" id="c-fr5" name="c_freins" value="Rien de particulier" /><label for="c-fr5">Rien de particulier</label>
+        </div></fieldset>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Pour finir</h2>
+      <div class="q"><label for="f-sujet">Un sujet que vous voulez absolument aborder pendant le rendez-vous ?</label><textarea id="f-sujet" name="sujet"></textarea></div>
+      <div class="actions">
+        <button type="submit" id="vz-send">Envoyer mes réponses</button>
+        <p class="msg" id="vz-msg" role="status" aria-live="polite"></p>
+        <p class="legal">Vos réponses servent uniquement à préparer notre rendez-vous et sont envoyées à l’équipe Vyzor (admin@vyzor.fr) par le service web3forms. Elles ne sont ni revendues ni utilisées pour de la publicité. <a href="/confidentialite">Politique de confidentialité</a>.</p>
+      </div>
+    </section>
+  </form>
+
+  <section class="card done" id="vz-done" hidden>
+    <h2>Merci, c’est bien reçu</h2>
+    <p class="lead" style="margin: 0 auto">Nous préparons notre échange à partir de vos réponses. À très vite.</p>
+  </section>
+</div>
+<script src="js/questionnaire.js" defer></script>
+</body>
+</html>

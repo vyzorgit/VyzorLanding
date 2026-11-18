@@ -327,7 +327,7 @@ const PolitiqueConfidentialite = () => (
         partage traçant). Inventaire des ressources tierces chargées par le Site :
       </P>
       <Bullets items={[
-        <span><Strong>api.web3forms.com</Strong> : appelé uniquement lorsque vous envoyez le formulaire de candidature bêta ou une adresse email sur un calculateur ou une page Guides.</span>,
+        <span><Strong>api.web3forms.com</Strong> : appelé uniquement lorsque vous envoyez le formulaire de candidature bêta, le questionnaire de préparation d'un rendez-vous, ou une adresse email sur un calculateur ou une page Guides.</span>,
         <span><Strong>calendly.com, linkedin.com</Strong> : simples liens sortants, aucun script de ces services n'est chargé sur le Site.</span>,
       ]} />
       <P>
