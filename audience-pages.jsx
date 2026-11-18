@@ -60,7 +60,7 @@ const PennylanePageBody = ({ gold, text, muted, subtle }) => (
       title="Pennylane tient vos comptes."
       accent="Vyzor vous dit quoi en faire."
       lede="Avec Pennylane, vos données sont propres et à jour. Il manque la lecture. Vyzor s'y connecte en lecture seule et transforme vos écritures en réponses : où part votre argent, ce qu'il vous restera dans 12 mois, quoi faire en premier."
-      cta="Tester Vyzor sur mes chiffres"
+      cta="Essayer mon directeur financier"
       note="Rendez-vous de 30 min en visio · Gratuit pendant la bêta"
     />
     <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>

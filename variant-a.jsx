@@ -597,13 +597,13 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
       </div>
 
       <style>{`
-        .vz-nav-dd-panel { position: absolute; top: calc(100% + 14px); left: 50%; width: 620px; transform: translate(-50%, 6px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms; padding: 10px; border-radius: 18px; background: rgba(12,14,20,0.96); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.10); box-shadow: 0 24px 60px rgba(0,0,0,0.55); }
+        .vz-nav-dd-panel { position: absolute; top: calc(100% + 14px); left: 50%; width: 620px; transform: translate(-50%, 6px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms; padding: 10px; border-radius: 18px; background: #111936; border: 1px solid rgba(140,160,255,0.18); box-shadow: 0 24px 60px rgba(0,0,0,0.55); }
         .vz-nav-dd-panel::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
         .vz-nav-dd[data-open="true"] .vz-nav-dd-panel { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; transition: opacity 160ms ease, transform 160ms ease, visibility 0s; }
         @media (prefers-reduced-motion: reduce) { .vz-nav-dd-panel { transition: none !important; } }
         .vz-nav-dd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
         .vz-nav-dd-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border-radius: 12px; text-decoration: none; transition: background-color 140ms ease; }
-        .vz-nav-dd-item:hover { background: rgba(255,255,255,0.05); }
+        .vz-nav-dd-item:hover { background: rgba(140,160,255,0.10); }
         .vz-nav-dd-item.soon { cursor: default; opacity: 0.6; }
         .vz-nav-dd-item.soon:hover { background: transparent; }
         .vz-nav-dd-ic { width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0; display: grid; place-items: center; color: #f0c949; background: rgba(240,201,73,0.06); border: 1px solid rgba(240,201,73,0.2); }

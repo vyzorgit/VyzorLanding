@@ -760,7 +760,7 @@ const QuickBookModal = ({ open, onClose }) => {
         {!done ? (
           <React.Fragment>
             <h3 id="qb-title" style={{ fontFamily: LQ_FONT, fontWeight: 600, fontSize: 24, letterSpacing: "-0.015em", lineHeight: 1.15, margin: "0 40px 8px 0", color: "#fff" }}>
-              Testez Vyzor sur vos chiffres
+              Essayez votre directeur financier
             </h3>
             <p style={{ fontSize: 14, color: muted, lineHeight: 1.55, margin: "0 0 20px" }}>
               30 minutes en visio : on connecte vos données ensemble et vous repartez avec votre premier tableau de bord.

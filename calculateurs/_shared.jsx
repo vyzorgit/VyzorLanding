@@ -282,7 +282,7 @@ function VyzorTopNav({ current = "hub" }) {
           borderRadius: 999,
           whiteSpace: "nowrap",
           boxShadow: "0 1px 2px rgba(0,0,0,0.3)",
-        }}>Rejoindre la bêta</a>
+        }}>Prendre rendez-vous</a>
       </div>
     </nav>
   );

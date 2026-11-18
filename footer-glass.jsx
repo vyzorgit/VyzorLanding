@@ -96,106 +96,65 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
         pointerEvents: "none",
       }} />
 
-      {/* Bloc principal — 4 colonnes */}
+      {/* Bloc principal compact : logo + phrase, liens sur 3 colonnes, réseaux */}
       <div className="vz-footer-main" style={{
         position: "relative",
-        padding: "56px 56px 40px",
+        padding: "32px 56px 26px",
         display: "grid",
-        gridTemplateColumns: "1.5fr 1.6fr",
-        gap: 56,
+        gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.6fr) auto",
+        gap: 40,
+        alignItems: "start",
       }}>
-        {/* Colonne marque */}
         <div>
-          <div style={{ marginBottom: 22 }}>
-            <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: "0.18em", color: "#fff" }}>VYZOR</div>
-            
-          </div>
-
-          <p style={{
-            fontSize: 14, lineHeight: 1.65, color: muted, maxWidth: 380, margin: 0, textWrap: "pretty",
-          }}>
-            Un directeur financier d'exception, sans en recruter un. Pour les dirigeants de PME, avec leurs directeurs financiers à temps partagé et leurs experts-comptables.
+          <a href="/" aria-label="Vyzor, accueil" style={{ display: "inline-flex" }}>
+            <VyzorLogo size={30} color={gold} bg="transparent" />
+          </a>
+          <p style={{ fontSize: 13, lineHeight: 1.55, color: muted, maxWidth: 300, margin: "12px 0 0", textWrap: "pretty" }}>
+            Un directeur financier d'exception, sans en recruter un.
           </p>
         </div>
 
-        {/* Colonnes : liens utiles + suivez-nous + newsletter */}
-        <div className="vz-footer-nav" style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 32,
-        }}>
-          {/* Liens utiles */}
-          <div>
-            <ColTitle>Liens utiles</ColTitle>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
-              {usefulLinks.map((l) => (
-                <li key={l.label}>
-                  <a href={l.href} style={linkRow}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = gold;
-                      const a = e.currentTarget.querySelector(".arrow");
-                      if (a) { a.style.opacity = "1"; a.style.transform = "translateX(2px)"; }
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.color = text;
-                      const a = e.currentTarget.querySelector(".arrow");
-                      if (a) { a.style.opacity = "0"; a.style.transform = "translateX(-4px)"; }
-                    }}
-                  >
-                    {l.label}
-                    <span className="arrow" style={{ fontSize: 12, opacity: 0, transform: "translateX(-4px)", transition: "opacity 220ms ease, transform 220ms ease" }}>→</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <nav aria-label="Liens utiles">
+          <ul className="vz-footer-links" style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gridTemplateColumns: "repeat(4, minmax(0, auto))", gap: "9px 28px" }}>
+            {usefulLinks.map((l) => (
+              <li key={l.label}>
+                <a href={l.href} style={{ ...linkRow, fontSize: 13.5 }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = gold; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = text; }}
+                >{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-          {/* Suivez-nous */}
-          <div>
-            <ColTitle>Suivez-nous</ColTitle>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-              {socials.map((s) => {
-                const external = /^https?:/i.test(s.href);
-                return (
-                  <li key={s.label}>
-                    <a href={s.href} aria-label={s.label}
-                      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      style={linkRow}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.color = gold;
-                        const ic = e.currentTarget.querySelector(".soc-ic");
-                        if (ic) { ic.style.borderColor = "rgba(240,201,73,0.45)"; ic.style.background = "rgba(240,201,73,0.08)"; ic.style.color = gold; }
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.color = text;
-                        const ic = e.currentTarget.querySelector(".soc-ic");
-                        if (ic) { ic.style.borderColor = subtle; ic.style.background = "rgba(255,255,255,0.04)"; ic.style.color = muted; }
-                      }}
-                    >
-                      <span className="soc-ic" style={{
-                        width: 34, height: 34, borderRadius: 9, flexShrink: 0,
-                        display: "inline-flex", alignItems: "center", justifyContent: "center",
-                        background: "rgba(255,255,255,0.04)", border: `1px solid ${subtle}`,
-                        color: muted, transition: "color 220ms, border-color 220ms, background 220ms",
-                      }}>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{s.icon}</svg>
-                      </span>
-                      <span style={{ fontSize: 13.5 }}>{s.label}</span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
+        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", gap: 10 }}>
+          {socials.map((s) => {
+            const external = /^https?:/i.test(s.href);
+            return (
+              <li key={s.label}>
+                <a href={s.href} aria-label={s.label} title={s.label}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="vz-footer-soc"
+                  style={{
+                    width: 34, height: 34, borderRadius: 9,
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    background: "rgba(255,255,255,0.04)", border: `1px solid ${subtle}`,
+                    color: muted, transition: "color 220ms, border-color 220ms, background 220ms",
+                  }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{s.icon}</svg>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
 
       {/* Bandeau bas — status + contact (sans liens morts) */}
       <div className="vz-footer-bottom" style={{
         position: "relative",
         borderTop: `1px solid ${subtle}`,
-        padding: "20px 56px",
-        display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24,
+        padding: "14px 56px",
+        display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap",
         background: "rgba(255,255,255,0.015)",
       }}>
         <div aria-hidden="true" style={{
@@ -239,6 +198,12 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
           to   { opacity: 1; transform: scale(1); }
         }
         .vz-footer-main input::placeholder { color: rgba(255,255,255,0.40); }
+        .vz-footer-soc:hover { color: #f0c949 !important; border-color: rgba(240,201,73,0.45) !important; background: rgba(240,201,73,0.08) !important; }
+        @media (max-width: 900px) {
+          .vz-footer-main { grid-template-columns: 1fr !important; gap: 22px !important; padding: 26px 24px 20px !important; }
+          .vz-footer-links { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+          .vz-footer-bottom { padding: 14px 24px !important; }
+        }
       `}</style>
     </footer>
   );

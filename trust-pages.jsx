@@ -196,7 +196,7 @@ const IntegrationsPageBody = ({ gold, muted }) => (
       title="Branché sur vos outils."
       accent="Sans rien ressaisir."
       lede="Vyzor lit la comptabilité que votre cabinet tient déjà, avec vos comptes bancaires via Pennylane, puis la croise avec vos ventes et vos encaissements. Toujours en lecture seule : Vyzor n'écrit jamais dans vos logiciels."
-      cta="Tester Vyzor sur mes chiffres"
+      cta="Essayer mon directeur financier"
       note="Connexion en quelques minutes"
     />
     <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
@@ -338,7 +338,7 @@ const SecurityPageBody = ({ gold, muted }) => {
         title="Vos chiffres restent les vôtres."
         accent="Et vous savez où ils sont."
         lede="Vyzor lit des données sensibles : votre comptabilité, votre trésorerie, vos clients. Voici précisément où elles sont, comment elles sont protégées et ce que l'IA en voit."
-        cta="Tester Vyzor sur mes chiffres"
+        cta="Essayer mon directeur financier"
         note="Une question ? admin@vyzor.fr"
       />
       <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>

@@ -150,7 +150,7 @@ const FinalCtaSection = ({ gold, muted }) => (
 );
 
 // —— 4. CTA collant : apparaît une fois le hero passé, disparaît sur l'offre ——
-const StickyBetaCta = ({ label = "Réserver ma place" }) => {
+const StickyBetaCta = ({ label = "Essayer gratuitement" }) => {
   const [show, setShow] = React.useState(false);
   React.useEffect(() => {
     let raf = 0;
