@@ -267,8 +267,8 @@ const VzVelocityWords = ({ words, color, accent }) => (
 );
 
 // —— Hero v4 (refonte proposition de valeur, 17/11/2026, brain « Vyzor Pitches ») ——
-// Une cible (dirigeants de PME sous Pennylane), une promesse (la tagline : l'analyse d'un directeur
-// financier, sans en recruter un), une action (prendre rendez-vous pour tester Vyzor sur ses chiffres).
+// Une cible (dirigeants de PME sous Pennylane), une promesse (la tagline : un directeur
+// financier d'exception, sans en recruter un), une action (prendre rendez-vous pour tester Vyzor sur ses chiffres).
 const CinematicHero = () => {
   const gold = "#f0c949";
   const text = "rgba(255,255,255,0.94)";
@@ -297,7 +297,7 @@ const CinematicHero = () => {
       <span aria-hidden="true" className="vz-hero-glow" />
       <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 1040, padding: "0 24px" }}>
         <h1 className="vz-hero-h1 vz-hero-in" style={{ animationDelay: "80ms" }}>
-          L'analyse d'un directeur financier,{" "}
+          Un directeur financier d'exception,{" "}
           <span style={{ color: gold, display: "block" }}>sans en recruter un.</span>
         </h1>
         <p className="vz-hero-in" style={{
@@ -305,8 +305,8 @@ const CinematicHero = () => {
           maxWidth: 700, margin: "clamp(24px, 3vw, 32px) auto 0", textWrap: "pretty",
           animationDelay: "180ms",
         }}>
-          Vyzor se branche sur les outils que vous utilisez déjà et construit en quelques secondes l'analyse dont vous avez besoin :{" "}
-          <span style={{ color: text }}>où vous en êtes, ce qui arrive, quoi faire ensuite</span>.
+          Vyzor se branche sur vos données : il les analyse en temps réel, automatise vos tâches financières{" "}
+          <span style={{ color: text }}>et vous dit quel levier actionner aujourd'hui</span>.
         </p>
         <div className="vz-hero-cta-row vz-hero-in" style={{
           display: "flex", alignItems: "center", justifyContent: "center",

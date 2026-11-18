@@ -192,9 +192,9 @@ const StickyBetaCta = ({ label = "Réserver ma place" }) => {
 
 // —— 5. Qui est derrière : des visages, une raison, un engagement ——
 const VZ_FOUNDERS = [
-  { name: "Antoine Cayer", role: "Co-fondateur, CEO", img: "/img/fondateur-antoine.webp",
+  { name: "Antoine Cayer", role: "Co-fondateur", img: "/img/fondateur-antoine.webp",
     bio: "MSc Data for Finance, Mines Paris–PSL. Passé par Air Liquide et LVMH." },
-  { name: "Louis Chevalier", role: "Co-fondateur, acquisition", img: "/img/fondateur-louis.webp",
+  { name: "Louis Chevalier", role: "Co-fondateur", img: "/img/fondateur-louis.webp",
     bio: "MSc Data for Finance, Mines Paris–PSL. Passé par Natixis CIB et Kano." },
 ];
 

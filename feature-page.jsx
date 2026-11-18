@@ -116,7 +116,9 @@ const FeaturePage = () => {
             </div>
           </section>
 
-          <div className="vz-reveal"><BetaFormGlass /></div>
+          <div className="vz-reveal" style={{ marginTop: 120 }}><HomeSteps /></div>
+              <div className="vz-reveal"><HomeFinalCta /></div>
+              <BetaFormGlass modalOnly />
         </div>
         </main>
         <div className="vz-reveal" style={{ marginTop: 96 }}><VyzorFooterGlass fullWidth /></div>

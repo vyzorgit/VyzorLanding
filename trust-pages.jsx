@@ -196,7 +196,7 @@ const IntegrationsPageBody = ({ gold, muted }) => (
       title="Branché sur vos outils."
       accent="Sans rien ressaisir."
       lede="Vyzor lit la comptabilité que votre cabinet tient déjà, avec vos comptes bancaires via Pennylane, puis la croise avec vos ventes et vos encaissements. Toujours en lecture seule : Vyzor n'écrit jamais dans vos logiciels."
-      cta="Rejoindre la bêta"
+      cta="Tester Vyzor sur mes chiffres"
       note="Connexion en quelques minutes"
     />
     <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
@@ -270,6 +270,8 @@ const IntegrationsPageBody = ({ gold, muted }) => (
         </div>
         <p style={{ margin: "18px 0 0", fontSize: 14, color: muted }}>Comment vos accès sont protégés : <a className="vzt-link" href="/securite">notre approche sécurité <span aria-hidden="true">→</span></a></p>
       </section>
+      <div className="vz-reveal"><HomeSteps /></div>
+      <div className="vz-reveal"><HomeFinalCta /></div>
       <BetaFormGlass modalOnly />
     </div>
   </React.Fragment>
@@ -336,7 +338,7 @@ const SecurityPageBody = ({ gold, muted }) => {
         title="Vos chiffres restent les vôtres."
         accent="Et vous savez où ils sont."
         lede="Vyzor lit des données sensibles : votre comptabilité, votre trésorerie, vos clients. Voici précisément où elles sont, comment elles sont protégées et ce que l'IA en voit."
-        cta="Rejoindre la bêta"
+        cta="Tester Vyzor sur mes chiffres"
         note="Une question ? admin@vyzor.fr"
       />
       <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
@@ -417,6 +419,8 @@ const SecurityPageBody = ({ gold, muted }) => {
             <a href="/?contact=1#beta" data-contact style={{ display: "inline-flex", alignItems: "center", padding: "15px 22px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.16)", color: "#fff", fontSize: 15.5, fontWeight: 500, textDecoration: "none" }}>Prendre rendez-vous</a>
           </div>
         </section>
+        <div className="vz-reveal" style={{ marginTop: 80 }}><HomeSteps /></div>
+        <div className="vz-reveal"><HomeFinalCta /></div>
         <BetaFormGlass modalOnly />
       </div>
     </React.Fragment>

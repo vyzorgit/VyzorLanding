@@ -114,7 +114,7 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
           <p style={{
             fontSize: 14, lineHeight: 1.65, color: muted, maxWidth: 380, margin: 0, textWrap: "pretty",
           }}>
-            Vyzor donne aux dirigeants de PME, DAF et experts-comptables une lecture limpide de leur santé financière — passé, présent, futur — au sein d'un cockpit unique.
+            Un directeur financier d'exception, sans en recruter un. Pour les dirigeants de PME, avec leurs directeurs financiers à temps partagé et leurs experts-comptables.
           </p>
         </div>
 

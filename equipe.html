@@ -147,6 +147,7 @@
   <script type="text/babel" src="conversion-sections.jsx"></script>
   <script type="text/babel" src="audience-pages.jsx"></script>
   <script type="text/babel" src="beta-glass.jsx"></script>
+  <script type="text/babel" src="home-narrative.jsx"></script>
   <script type="text/babel" src="footer-glass.jsx"></script>
 
   <script type="text/babel">
@@ -187,6 +188,10 @@
           }}>
             <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
             <TeamPageBody gold={gold} muted={muted} />
+            <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
+              <div className="vz-reveal" style={{ marginTop: 40 }}><HomeSteps /></div>
+              <div className="vz-reveal"><HomeFinalCta /></div>
+            </div>
             <BetaFormGlass modalOnly />
             </main>
 

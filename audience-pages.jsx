@@ -60,8 +60,8 @@ const PennylanePageBody = ({ gold, text, muted, subtle }) => (
       title="Pennylane tient vos comptes."
       accent="Vyzor vous dit quoi en faire."
       lede="Avec Pennylane, vos données sont propres et à jour. Il manque la lecture. Vyzor s'y connecte en lecture seule et transforme vos écritures en réponses : où part votre argent, ce qu'il vous restera dans 12 mois, quoi faire en premier."
-      cta="Réserver ma place dans la bêta"
-      note={`Gratuit · ${(window.VZ_BETA && window.VZ_BETA.places) || 10} places · connecté en quelques minutes`}
+      cta="Tester Vyzor sur mes chiffres"
+      note="Rendez-vous de 30 min en visio · Gratuit pendant la bêta"
     />
     <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
       <section className="vz-reveal" style={{ marginBottom: 120 }}>
@@ -81,10 +81,10 @@ const PennylanePageBody = ({ gold, text, muted, subtle }) => (
         />
       </section>
       <div className="vz-reveal"><OutcomesSection id="resultats" gold={gold} muted={muted} /></div>
-      <div className="vz-reveal"><HowItWorksSection id="comment" gold={gold} text={text} muted={muted} subtle={subtle} /></div>
-      <div className="vz-reveal"><BetaFormGlass /></div>
-      <div className="vz-reveal" style={{ marginTop: 120 }}><ObjectionsSection id="questions" gold={gold} muted={muted} /></div>
-      <div className="vz-reveal"><FinalCtaSection gold={gold} muted={muted} /></div>
+      <div className="vz-reveal"><ObjectionsSection id="questions" gold={gold} muted={muted} /></div>
+      <div className="vz-reveal" style={{ marginTop: 120 }}><HomeSteps /></div>
+      <div className="vz-reveal"><HomeFinalCta /></div>
+      <BetaFormGlass modalOnly />
     </div>
   </React.Fragment>
 );

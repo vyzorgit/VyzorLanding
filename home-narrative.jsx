@@ -10,10 +10,10 @@ const HomePain = ({ id = "constat" }) => (
   <section id={id} className="vz-hpain" style={{ position: "relative", marginBottom: 96 }}>
     <div style={{ maxWidth: 760 }}>
       <h2 style={{ fontSize: 40, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.12, textWrap: "balance" }}>
-        Chaque analyse se construit à la main et prend des heures.
+        Les PME n'ont pas les moyens d'un directeur financier d'exception.
       </h2>
       <p style={{ fontSize: 18, lineHeight: 1.6, color: VZH.muted, margin: "18px 0 0", textWrap: "pretty" }}>
-        Quand le temps manque ou qu'un nouveau scénario se présente, vos outils n'ont pas de réponse.
+        Résultat : elles ne savent jamais vraiment quel levier actionner pour améliorer leur activité.
       </p>
     </div>
     <style>{`
@@ -32,7 +32,7 @@ const HomeDemo = ({ id = "produit" }) => (
         <span style={{ display: "block", color: VZH.gold }}>Un tableau de bord sur mesure.</span>
       </h2>
       <p style={{ fontSize: 18, lineHeight: 1.65, color: VZH.muted, margin: "22px 0 0", maxWidth: 680, textWrap: "pretty" }}>
-        Décrivez ce dont vous avez besoin. Vyzor collecte vos données, les analyse et compose la page en quelques secondes, prête à exporter ou à personnaliser.
+        Demandez à votre directeur financier les indicateurs dont vous avez besoin. Votre tableau de bord se construit en temps réel, avec les actions à mener, et arrive dans votre boîte mail chaque matin.
       </p>
     </div>
     <GenUiVideo />
@@ -125,7 +125,7 @@ const HomeFinalCta = () => (
     border: "1px solid rgba(140,160,255,0.18)",
   }}>
     <h2 style={{ position: "relative", margin: "0 auto", maxWidth: 820, fontSize: "clamp(30px, 4.2vw, 50px)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff", textWrap: "balance" }}>
-      Quelle décision devez-vous prendre ce mois-ci ?{" "}
+      Quel levier actionner ce mois-ci ?{" "}
       <span style={{ color: VZH.gold }}>Posez la question à Vyzor, sur vos propres chiffres.</span>
     </h2>
     <p style={{ position: "relative", margin: "22px auto 0", maxWidth: 560, fontSize: 17, lineHeight: 1.6, color: VZH.muted }}>
