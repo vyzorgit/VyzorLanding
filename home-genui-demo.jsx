@@ -118,78 +118,86 @@ const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = fals
 };
 
 // —— Visuel du hero : capture réelle de l'app (page « Rapport investisseur », données de démonstration) ——
-// —— Illustration du hero (19/11/2026) : le levier. Une petite force, au bon endroit,
-// soulève beaucoup. Illustration pure, sans chiffres ni écran de l'app.
-const HeroProductShot = () => (
-  <div className="vz-lever" aria-hidden="true">
-    <style>{`
-      .vz-lever { position: relative; width: 100%; max-width: 520px; margin: 0 auto; }
-      .vz-lever svg { display: block; width: 100%; height: auto; overflow: visible; }
-      @keyframes vzLeverTilt { 0%, 100% { transform: rotate(-9deg); } 50% { transform: rotate(-12.5deg); } }
-      @keyframes vzLeverLift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-      @keyframes vzLeverPush { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
-      @keyframes vzLeverSpark { 0%, 100% { opacity: 0.25; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1); } }
-      .vz-lever .beam { transform-origin: 250px 318px; animation: vzLeverTilt 4.8s ease-in-out infinite; }
-      .vz-lever .load { animation: vzLeverLift 4.8s ease-in-out infinite; }
-      .vz-lever .push { animation: vzLeverPush 4.8s ease-in-out infinite; }
-      .vz-lever .spark { transform-box: fill-box; transform-origin: center; animation: vzLeverSpark 2.4s ease-in-out infinite; }
-      .vz-lever .spark.s2 { animation-delay: 0.8s; } .vz-lever .spark.s3 { animation-delay: 1.6s; }
-      @media (prefers-reduced-motion: reduce) { .vz-lever .beam, .vz-lever .load, .vz-lever .push, .vz-lever .spark { animation: none !important; } .vz-lever .beam { transform: rotate(-10deg); } }
-    `}</style>
-    <svg viewBox="0 0 520 420" role="presentation">
-      <defs>
-        <radialGradient id="vzlGlow" cx="50%" cy="48%" r="50%">
-          <stop offset="0" stopColor="#f0c949" stopOpacity="0.20" />
-          <stop offset="0.55" stopColor="#3b4fb8" stopOpacity="0.10" />
-          <stop offset="1" stopColor="#0a1026" stopOpacity="0" />
-        </radialGradient>
-        <linearGradient id="vzlGold" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#f6d978" />
-          <stop offset="1" stopColor="#c99a2e" />
-        </linearGradient>
-        <linearGradient id="vzlBar" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#f6d978" />
-          <stop offset="1" stopColor="#f0c949" stopOpacity="0.35" />
-        </linearGradient>
-        <linearGradient id="vzlBeam" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0" stopColor="#2a3a86" />
-          <stop offset="1" stopColor="#3d52b5" />
-        </linearGradient>
-      </defs>
-      <circle cx="260" cy="210" r="188" fill="url(#vzlGlow)" />
-      <g stroke="rgba(140,160,255,0.10)" strokeWidth="1">
-        <path d="M40 120H480M40 200H480M40 280H480" strokeDasharray="2 8" />
-      </g>
-      <line x1="40" y1="372" x2="480" y2="372" stroke="rgba(140,160,255,0.22)" strokeWidth="1.5" />
-      <ellipse cx="250" cy="372" rx="120" ry="6" fill="rgba(0,0,0,0.35)" />
-      {/* Point d'appui */}
-      <path d="M250 318 L292 372 H208 Z" fill="#121a42" stroke="url(#vzlGold)" strokeWidth="2.5" strokeLinejoin="round" />
-      <circle cx="250" cy="318" r="7" fill="#0a1026" stroke="#f0c949" strokeWidth="2.5" />
-      {/* Le levier */}
-      <g className="beam">
-        <rect x="56" y="309" width="388" height="18" rx="9" fill="url(#vzlBeam)" stroke="rgba(160,180,255,0.35)" strokeWidth="1.2" />
-        {/* Petite force à gauche */}
-        <g className="push">
-          <rect x="74" y="268" width="40" height="40" rx="9" fill="url(#vzlGold)" />
-          <path d="M94 248 V262 M87 255 L94 262 L101 255" fill="none" stroke="#f0c949" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+// —— Illustration du hero (19/11/2026) : le directeur financier « en boîte ».
+// À gauche vos données (comptabilité, banque, factures) ; on branche la boîte ; à droite ce
+// qu'elle rend, dans l'ordre du sous-titre : analyse en temps réel, tâches automatisées,
+// levier à actionner. Illustration pure, sans chiffres ni écran de l'app.
+const VZB_SRC = [140, 215, 290];
+const HeroProductShot = () => {
+  const g = "#f0c949";
+  const ic = { fill: "none", stroke: "rgba(255,255,255,0.85)", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" };
+  const tile = (x, y, children, cls = "") => (
+    <g className={cls} transform={`translate(${x - 28} ${y - 28})`}>
+      <rect width="56" height="56" rx="14" fill="#121a42" stroke="rgba(140,160,255,0.28)" strokeWidth="1.2" />
+      <g transform="translate(16 16)">{children}</g>
+    </g>
+  );
+  return (
+    <div className="vz-box" aria-hidden="true">
+      <style>{`
+        .vz-box { position: relative; width: 100%; max-width: 540px; margin: 0 auto; }
+        .vz-box svg { display: block; width: 100%; height: auto; overflow: visible; }
+        @keyframes vzbFlow { from { stroke-dashoffset: 120; } to { stroke-dashoffset: 0; } }
+        @keyframes vzbGlow { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+        @keyframes vzbOut { 0%, 12% { opacity: 0.25; } 22%, 78% { opacity: 1; } 90%, 100% { opacity: 0.25; } }
+        @keyframes vzbRay { 0%, 12% { stroke-opacity: 0.12; } 22%, 78% { stroke-opacity: 0.9; } 90%, 100% { stroke-opacity: 0.12; } }
+        .vz-box .flow { stroke-dasharray: 6 14; animation: vzbFlow 1.6s linear infinite; }
+        .vz-box .core { animation: vzbGlow 3.6s ease-in-out infinite; }
+        .vz-box .out { animation: vzbOut 4.8s ease-in-out infinite; }
+        .vz-box .ray { animation: vzbRay 4.8s ease-in-out infinite; }
+        .vz-box .d2 { animation-delay: 0.6s; } .vz-box .d3 { animation-delay: 1.2s; }
+        @media (prefers-reduced-motion: reduce) { .vz-box .flow, .vz-box .core, .vz-box .out, .vz-box .ray { animation: none !important; } }
+      `}</style>
+      <svg viewBox="0 0 540 420" role="presentation">
+        <defs>
+          <radialGradient id="vzbHalo" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stopColor="#f0c949" stopOpacity="0.30" />
+            <stop offset="1" stopColor="#f0c949" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="vzbTop" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#f8df8a" /><stop offset="1" stopColor="#e2b444" /></linearGradient>
+          <linearGradient id="vzbLeft" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#d7a83a" /><stop offset="1" stopColor="#a27a22" /></linearGradient>
+          <linearGradient id="vzbRight" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#b98c2b" /><stop offset="1" stopColor="#7e5d17" /></linearGradient>
+        </defs>
+        <circle className="core" cx="290" cy="210" r="150" fill="url(#vzbHalo)" />
+
+        {/* Vos données → un seul câble → la prise */}
+        {VZB_SRC.map((y, i) => (
+          <g key={y}>
+            <path d={`M78 ${y} C130 ${y}, 140 232, 186 232`} fill="none" stroke="rgba(140,160,255,0.25)" strokeWidth="2" />
+            <path className="flow" d={`M78 ${y} C130 ${y}, 140 232, 186 232`} fill="none" stroke={g} strokeWidth="2" style={{ animationDelay: `${i * 0.25}s` }} />
+          </g>
+        ))}
+        <path d="M186 232 H214" stroke="#2c3b86" strokeWidth="7" strokeLinecap="round" />
+        <rect x="212" y="221" width="22" height="22" rx="5" fill="#26346f" stroke="rgba(160,180,255,0.5)" strokeWidth="1.2" />
+        <path d="M234 227 H244 M234 237 H244" stroke={g} strokeWidth="3" strokeLinecap="round" />
+
+        {tile(50, VZB_SRC[0], <g {...ic}><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" /><path d="M14 2v6h6M8 13h8M8 17h5" /></g>)}
+        {tile(50, VZB_SRC[1], <g {...ic}><path d="M3 21h18M5 21V10M10 21V10M14 21V10M19 21V10M2 9l10-6 10 6z" /></g>)}
+        {tile(50, VZB_SRC[2], <g {...ic}><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M15 8.5a3.5 3.5 0 1 0 0 7M8 11h5M8 13.5h5" /></g>)}
+
+        {/* La boîte */}
+        <path d="M290 132 L362 172 L290 212 L218 172 Z" fill="url(#vzbTop)" />
+        <path d="M218 172 L290 212 L290 296 L218 256 Z" fill="url(#vzbLeft)" />
+        <path d="M290 212 L362 172 L362 256 L290 296 Z" fill="url(#vzbRight)" />
+        <path d="M290 132 L362 172 L290 212 L218 172 Z M290 212 V296" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.2" strokeLinejoin="round" />
+        <g transform="translate(290 172) scale(1 0.5556) rotate(45) translate(-25 -25)">
+          <rect width="50" height="50" rx="10" fill="rgba(13,20,48,0.10)" />
+          <g transform="translate(9 9) rotate(-45 16 16)"><VyzorLogo size={32} color="#0d1430" /></g>
         </g>
-        {/* Ce que le levier soulève : une courbe de croissance */}
-        <g className="load">
-          <rect x="318" y="262" width="22" height="46" rx="5" fill="url(#vzlBar)" />
-          <rect x="348" y="236" width="22" height="72" rx="5" fill="url(#vzlBar)" />
-          <rect x="378" y="204" width="22" height="104" rx="5" fill="url(#vzlBar)" />
-          <rect x="408" y="166" width="22" height="142" rx="5" fill="url(#vzlBar)" />
-          <path d="M312 238 C340 226 356 214 376 192 S412 150 436 132" fill="none" stroke="#fff" strokeOpacity="0.85" strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M424 128 L438 130 L434 144" fill="none" stroke="#fff" strokeOpacity="0.85" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-        </g>
-      </g>
-      {/* Étincelles */}
-      <path className="spark" d="M470 92 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" fill="#f6d978" />
-      <path className="spark s2" d="M128 150 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#f6d978" />
-      <path className="spark s3" d="M384 64 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z" fill="#ffffff" fillOpacity="0.8" />
-    </svg>
-  </div>
-);
+
+        {/* Ce qu'elle rend */}
+        {[[140, ""], [215, "d2"], [290, "d3"]].map(([y, d]) => (
+          <path key={y} className={`ray ${d}`} d={`M364 214 C400 214, 410 ${y}, 462 ${y}`} fill="none" stroke={g} strokeWidth="2" strokeLinecap="round" />
+        ))}
+        {tile(490, 140, <g {...ic} stroke={g}><path d="M2 12h4l3-8 4 16 3-8h6" /></g>, "out")}
+        {tile(490, 215, <g {...ic} stroke={g}><path d="M4 12l5 5L20 6" /><path d="M4 20h16" strokeOpacity="0.5" /></g>, "out d2")}
+        {tile(490, 290, <g {...ic} stroke={g}><path d="M3 18h18M7 18l10-8" /><path d="M14 6h6v6" /><circle cx="7" cy="18" r="1.6" /></g>, "out d3")}
+
+        <ellipse cx="290" cy="318" rx="92" ry="8" fill="rgba(0,0,0,0.35)" />
+      </svg>
+    </div>
+  );
+};
 
 // —— Démo (19/11/2026) : composer une page, la lire, programmer son envoi du matin ——
 // Boucle muette de 15 s qui se lance seule quand elle est à l'écran (en pause sinon) ;
