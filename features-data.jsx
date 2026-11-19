@@ -56,11 +56,11 @@ const VisTresorerie = () => {
 };
 
 const VZF_DOCS = [
-  { n: "PV d'AG 2025", b: "Approbation des comptes, affectation du résultat. À déposer avant le 31/07." },
-  { n: "Statuts SAS", b: "Version à jour après l'augmentation de capital de mars." },
-  { n: "Bail commercial", b: "Révision triennale du loyer prévue en septembre." },
-  { n: "Pacte d'associés", b: "Clause de sortie conjointe, préemption et good leaver." },
-  { n: "Extrait Kbis", b: "Généré il y a 12 jours. Validité de 3 mois pour vos dossiers." },
+  { n: "PV d'AG 2025", b: "Approbation des comptes et affectation du résultat, résumées." },
+  { n: "Statuts", b: "Version déposée au registre, lue même quand elle est scannée." },
+  { n: "Comptes annuels 2025", b: "Importés automatiquement dans votre analyse financière." },
+  { n: "Annonce BODACC", b: "Dépôt des comptes publié, avec sa date." },
+  { n: "Bénéficiaires effectifs", b: "Tels qu'ils sont publiés au registre national." },
 ];
 const VisJuridique = () => (
   <div className="vzf-marquee" style={{ paddingTop: 26, overflow: "hidden" }}>
@@ -88,7 +88,7 @@ const VisJuridiqueDetail = () => {
       <div>
         <div style={lbl}><span>Documents publics centralisés</span><span style={{ color: VZF_GOLD, textTransform: "none", letterSpacing: 0 }}>→ agents juridique & fiscal</span></div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-          {["Statuts", "PV d'AG", "Comptes annuels", "Kbis", "Bénéficiaires effectifs"].map((t) => (
+          {["Statuts", "PV d'AG", "Comptes annuels", "Annonces BODACC", "Bénéficiaires effectifs"].map((t) => (
             <span key={t} style={{ ...vzfCard, display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 9px", fontSize: 12, color: "#fff" }}>
               <span style={{ color: VZF_GOLD, display: "grid", placeItems: "center" }}><VzfIcon name="juridique" size={13} /></span>{t}
             </span>
@@ -102,10 +102,10 @@ const VisJuridiqueDetail = () => {
           <div style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }}></div>
           <div style={{ width: "68%", height: 1, background: "rgba(255,255,255,0.2)" }}></div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: 8, width: "100%" }}>
-            {[["Atelier Nord", "100 %"], ["Studio Sud", "80 %"], ["SCI Quais", "60 %"]].map(([n, s]) => (
+            {[["Atelier Nord", "Filiale"], ["Studio Sud", "Filiale"], ["SCI Quais", "Société liée"]].map(([n, s]) => (
               <div key={n} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <div style={{ width: 1, height: 10, background: "rgba(255,255,255,0.2)" }}></div>
-                <div style={{ width: "100%" }}>{node(n, "Détenue à " + s)}</div>
+                <div style={{ width: "100%" }}>{node(n, s)}</div>
               </div>
             ))}
           </div>
@@ -114,7 +114,7 @@ const VisJuridiqueDetail = () => {
       <div>
         <div style={lbl}><span>Calendrier des échéances</span></div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          {[["30/06", "AG d'approbation · Holding Martin", "J-12", "#f0905a"], ["31/07", "Dépôt des comptes · Studio Sud", "J-43", VZF_GOLD], ["15/09", "Révision du bail · SCI Quais", "J-89", VZF_MUTED]].map(([dt, t, j, c]) => (
+          {[["30/06", "AG d'approbation · Holding Martin", "J-12", "#f0905a"], ["31/07", "Dépôt des comptes · Studio Sud", "J-43", VZF_GOLD], ["15/09", "Acompte d'IS · Holding Martin", "J-89", VZF_MUTED]].map(([dt, t, j, c]) => (
             <div key={t} style={{ ...vzfCard, display: "flex", alignItems: "center", gap: 12, padding: "7px 12px" }}>
               <span style={{ width: 42, fontSize: 12.5, fontWeight: 700, color: "#fff", fontVariantNumeric: "tabular-nums" }}>{dt}</span>
               <span style={{ flex: 1, minWidth: 0, fontSize: 13, color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t}</span>
@@ -223,45 +223,45 @@ const VZ_FEATURES = [
     lead: "Un interlocuteur financier disponible à tout moment. Vyzor répond à vos questions à partir de vos données comptables réelles, avec les chiffres, la source et la recommandation.",
     points: [
       ["Analyse vos chiffres en détail", "Marges, rentabilité, évolution des coûts : une lecture complète, expliquée poste par poste."],
-      ["Retrouve une information en quelques secondes", "Une facture, un montant, une clause ou une échéance."],
+      ["Vous propose un plan d'action", "Priorités, effet attendu chiffré, et actions prêtes à lancer : rien ne part sans votre clic."],
       ["Simule vos scénarios", "Sur vos propres chiffres, pour vérifier qu'ils sont viables dans votre situation."],
-      ["Rédige vos e-mails", "Relances clients, échanges fournisseurs, demandes à votre comptable : prêts à envoyer."],
-      ["Génère vos documents financiers", "Dossiers pour votre banque, vos partenaires ou vos investisseurs, à partir de vos données."],
+      ["Rédige vos e-mails", "Relances de factures et de devis, que vous relisez avant de les envoyer depuis votre Gmail."],
+      ["Génère vos documents", "Dossier pour la banque, synthèse financière, courrier de relance, note juridique : en Word ou en PDF."],
     ] },
   { slug: "tresorerie", icon: "tresorerie", name: "Trésorerie", desc: "Prévoit votre trésorerie à 12 mois et anticipe le point bas.", Visual: VisTresorerie,
-    lead: "Sachez à tout moment où en sera votre trésorerie dans 3, 6 ou 12 mois, testez vos décisions avant de les prendre et récupérez plus vite ce qui vous est dû.",
+    lead: "Sachez ce que vous avez en banque, ce que vous aurez dans 13 semaines comme dans 12 mois, testez vos décisions avant de les prendre et récupérez plus vite ce qui vous est dû.",
     points: [
       ["Prévoit votre trésorerie en continu", "Projection mise à jour à chaque synchronisation comptable."],
       ["Anticipe le point bas", "Les tensions repérées plusieurs mois à l'avance."],
-      ["Suit vos encaissements", "Retards clients et relances prioritaires classés par montant."],
-      ["Compare vos scénarios", "Plusieurs hypothèses de croissance ou d'investissement, côte à côte."],
+      ["Vous dit qui vous doit de l'argent", "Factures en retard par client, depuis combien de temps, et brouillon de relance prêt à relire."],
+      ["Teste vos décisions", "Embauche, investissement, emprunt, retard client, baisse du chiffre d'affaires : votre trésorerie avec et sans."],
     ] },
   { slug: "juridique", icon: "juridique", DetailVisual: VisJuridiqueDetail,
-    steps: [["Vyzor rassemble", "Statuts, PV d'AG, comptes annuels et actes publics récupérés et classés pour chaque société."], ["Les agents s'en nourrissent", "Vos agents juridique et fiscaliste s'appuient sur ces documents pour répondre avec précision."], ["Vous gardez le cap", "Le calendrier des échéances vous prévient à temps, société par société."]],
-    name: "Juridique", desc: "Centralise vos documents juridiques, le montage du groupe et vos échéances.", Visual: VisJuridique,
-    lead: "Vyzor centralise tous les documents juridiques publics de vos sociétés (comptes, PV d'AG, statuts…) pour nourrir directement vos agents juridique et fiscaliste.",
+    steps: [["Vyzor rassemble", "Statuts, PV d'AG, comptes annuels et annonces légales récupérés aux registres publics pour chaque société."], ["Les agents s'en nourrissent", "Vos agents juridique et fiscaliste s'appuient sur ces documents pour répondre avec précision."], ["Vous gardez le cap", "Le calendrier des échéances vous prévient à temps, société par société."]],
+    name: "Juridique", desc: "Récupère vos documents officiels, calcule vos échéances fiscales et repère vos optimisations.", Visual: VisJuridique,
+    lead: "Vyzor récupère les documents officiels de vos sociétés aux registres publics (INPI, BODACC, annuaire des entreprises), calcule votre calendrier fiscal et social, et nourrit vos agents juridique et fiscaliste.",
     points: [
-      ["Centralise vos documents juridiques", "Statuts, PV d'AG, comptes annuels, Kbis et actes publics réunis au même endroit."],
-      ["Alimente les agents juridique et fiscal", "Leurs réponses s'appuient sur vos vrais actes."],
-      ["Cartographie le montage du groupe", "Sociétés reliées, participations et informations juridiques de chacune."],
-      ["Vous rappelle vos échéances", "AG, dépôts des comptes, révisions de bail et formalités, à temps."],
+      ["Récupère vos documents officiels", "Statuts, actes, comptes déposés et annonces BODACC, lus et résumés, même scannés."],
+      ["Répond avec les textes officiels", "Vos questions juridiques et fiscales, réponses sourcées et liens vers les textes."],
+      ["Repère vos optimisations fiscales", "Opportunités et points de vigilance selon votre régime, à valider avec votre expert-comptable."],
+      ["Vous rappelle vos échéances", "TVA, URSSAF, IS, dépôt des comptes : calendrier calculé pour votre société, rappel 7 jours puis 1 jour avant."],
     ] },
   { slug: "analyse-financiere", icon: "analyse", name: "Analyse financière", desc: "Calcule et explique vos marges, votre EBITDA, votre BFR et votre rentabilité.", Visual: VisAnalyse,
     lead: "Vos indicateurs clés calculés à partir de vos données comptables, organisés en quatre piliers, expliqués et comparés à votre secteur.",
     points: [
       ["Calcule vos indicateurs clés", "Marge brute, EBITDA, BFR, rentabilité par activité."],
       ["Explique chaque écart", "Chaque variation est rattachée aux postes qui la provoquent."],
-      ["Compare vos périodes", "Mois par mois, année sur année, ou face à votre budget."],
+      ["Produit vos états financiers", "Bilan, compte de résultat et flux de trésorerie, exportables en PDF ou en Word."],
       ["Note votre santé financière", "Le Vyzor Score, une note synthétique suivie dans le temps."],
     ] },
   { slug: "multi-societes", icon: "cabinet",
-    steps: [["Ajoutez vos sociétés", "Connectez la comptabilité de chaque entité du groupe."], ["Vyzor calcule", "Indicateurs par société et score de santé global du groupe."], ["Vous pilotez", "Une seule vue pour suivre l'ensemble et intervenir là où il faut."]], name: "Multi-sociétés", desc: "Réunit toutes vos sociétés dans une vue groupe, avec un score de santé global.", Visual: VisCabinet,
-    lead: "Holding, filiales, sociétés sœurs : suivez toutes vos entités depuis une seule vue, avec un score de santé global du groupe et le détail de chaque société.",
+    steps: [["Ajoutez vos sociétés", "Holding, filiales : chacune avec sa comptabilité, connectée ou importée."], ["Vyzor calcule", "Indicateurs, trésorerie et échéances pour chaque société, strictement séparés."], ["Vous pilotez", "Vous passez d'une société à l'autre en un clic, et votre cabinet suit celles que vous partagez."]], name: "Multi-sociétés", desc: "Suit toutes vos sociétés, et passe de l'une à l'autre en un clic.", Visual: VisCabinet,
+    lead: "Holding, filiales, sociétés sœurs : chaque société a ses propres chiffres, et vous passez de l'une à l'autre en un clic. Les cabinets retrouvent tous leurs dossiers clients dans un portefeuille.",
     points: [
-      ["Réunit toutes vos sociétés", "Un même tableau de bord pour tout le groupe."],
-      ["Calcule un score de santé global", "Une note unique pour le groupe, pondérée par le poids de chaque société."],
-      ["Repère la société qui décroche", "Et vous dit pourquoi."],
-      ["Consolide vos comptes (bientôt)", "Comptes consolidés du groupe, éliminations intragroupe comprises."],
+      ["Réunit toutes vos sociétés", "Un sélecteur en haut de l'écran pour passer d'une société à l'autre."],
+      ["Partage avec votre cabinet", "Vous choisissez, société par société, ce que votre expert-comptable voit."],
+      ["Donne un portefeuille aux cabinets", "Tous les dossiers clients, leur état et leurs chiffres, au même endroit."],
+      ["Cloisonne chaque dossier", "Les chiffres d'une société ne se mélangent jamais avec ceux d'une autre."],
     ] },
   { slug: "alertes", icon: "alertes",
     steps: [["Vyzor surveille", "Trésorerie, marges, retards clients et échéances suivis en continu."], ["Un signal apparaît", "Vous êtes prévenu avec la cause précise et les chiffres concernés."], ["Vous agissez", "Chaque alerte propose l'action à mener, prête à être lancée."]], name: "Notifications & alertes", desc: "Vous prévient des retards, tensions et échéances avant qu'il soit trop tard.", Visual: VisAlertes,
@@ -269,16 +269,16 @@ const VZ_FEATURES = [
     points: [
       ["Surveille vos chiffres en continu", "Trésorerie, marges, retards clients et échéances fiscales."],
       ["S'adapte à vos seuils", "Vous définissez ce qui déclenche une alerte."],
-      ["Propose l'action à mener", "Chaque alerte arrive avec la marche à suivre."],
-      ["Garde l'historique", "Toutes vos alertes passées restent consultables et traçables."],
+      ["Vous prévient où vous voulez", "Cloche, récapitulatif par e-mail, e-mail immédiat pour l'urgent, notification sur téléphone."],
+      ["Garde l'historique", "Toutes vos alertes, filtrées par type, gravité et société."],
     ] },
   { slug: "budget", icon: "budget", name: "Budget & analyse des coûts", desc: "Compare votre budget au réel et détecte les dérives poste par poste.", Visual: VisBudget,
     lead: "Construisez votre budget, comparez-le au réel chaque mois et identifiez les postes qui dérivent avant qu'ils ne pèsent sur l'année.",
     points: [
       ["Construit votre budget prévisionnel", "À partir de votre historique, ajustable en quelques minutes."],
-      ["Compare budget et réel", "Écarts calculés automatiquement à chaque clôture."],
+      ["Compare budget et réel", "Poste par poste, avec les dépenses qui dérapent signalées en premier."],
       ["Analyse vos coûts", "Vos plus gros postes de dépense et leur évolution."],
-      ["Suit votre point mort", "Le chiffre d'affaires à atteindre pour couvrir vos coûts, chaque mois."],
+      ["Calcule votre point mort", "Le chiffre d'affaires à atteindre pour couvrir vos coûts, et votre marge de sécurité."],
     ] },
 ];
 

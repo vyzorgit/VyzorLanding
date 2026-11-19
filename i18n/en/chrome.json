@@ -576,5 +576,19 @@
   "Toutes les réponses sur VYZOR : fonctionnement, import du FEC, sécurité des données (SOC 2 / ISO 27001) et accès anticipé.": "All the answers about VYZOR: how it works, FEC import, data security (SOC 2 / ISO 27001) and early access.",
   "Traiter votre demande d'accès anticipé et vous recontacter": "Process your early access request and get back to you",
   "Vous utilisez Pennylane ? Vyzor s'y connecte en lecture seule : marges, trésorerie à 12 mois et alertes, depuis votre comptabilité. Accès anticipé offert.": "Using Pennylane? Vyzor connects to it read-only: margins, 12-month cash and alerts, straight from your accounts. Early access on us.",
-  "Vyzor est né d'un hackathon avec Google. Depuis, il est accompagné par l'incubateur Prodiges et construit avec un panel de DAF qui le testent sur leurs propres chiffres. Nos premiers clients parlent directement aux fondateurs.": "Vyzor was born at a hackathon with Google. Since then, it has been backed by the Prodiges incubator and built with a panel of CFOs who test it on their own figures. Our first clients talk directly to the founders."
+  "Vyzor est né d'un hackathon avec Google. Depuis, il est accompagné par l'incubateur Prodiges et construit avec un panel de DAF qui le testent sur leurs propres chiffres. Nos premiers clients parlent directement aux fondateurs.": "Vyzor was born at a hackathon with Google. Since then, it has been backed by the Prodiges incubator and built with a panel of CFOs who test it on their own figures. Our first clients talk directly to the founders.",
+  "Vous dit qui vous doit de l'argent": "Tells you who owes you money",
+  "Factures en retard par client, depuis combien de temps, et brouillon de relance prêt à relire.": "Overdue invoices by client, how long they've been late, and a reminder draft ready to review.",
+  "Teste vos décisions": "Tests your decisions",
+  "Embauche, investissement, emprunt, retard client, baisse du chiffre d'affaires : votre trésorerie avec et sans.": "Hiring, investment, loan, late-paying client, drop in revenue: your cash with and without.",
+  "Vous propose un plan d'action": "Proposes an action plan",
+  "Priorités, effet attendu chiffré, et actions prêtes à lancer : rien ne part sans votre clic.": "Priorities, quantified expected impact and actions ready to launch: nothing goes out without your click.",
+  "Relances de factures et de devis, que vous relisez avant de les envoyer depuis votre Gmail.": "Invoice and quote reminders that you review before sending them from your Gmail.",
+  "Génère vos documents": "Generates your documents",
+  "Dossier pour la banque, synthèse financière, courrier de relance, note juridique : en Word ou en PDF.": "Bank file, financial summary, reminder letter, legal memo: in Word or PDF.",
+  "Produit vos états financiers": "Produces your financial statements",
+  "Bilan, compte de résultat et flux de trésorerie, exportables en PDF ou en Word.": "Balance sheet, income statement and cash flow, exportable to PDF or Word.",
+  "Dossier pour la banque généré, en Word ou en PDF.": "Bank file generated, in Word or PDF.",
+  "Prévisionnel sur 12 mois": "12-month forecast",
+  "Dossier de 14 pages prêt : synthèse, prévisionnel 12 mois, capacité de remboursement.": "14-page file ready: summary, 12-month forecast, repayment capacity."
 }
