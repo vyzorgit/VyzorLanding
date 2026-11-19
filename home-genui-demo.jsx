@@ -121,7 +121,7 @@ const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = fals
 const HeroProductShot = () => (
   <div className="vz-hero-shot" style={{ position: "relative", maxWidth: 1000, margin: "0 auto" }}>
     <span aria-hidden="true" style={{ position: "absolute", inset: "-40px 10% auto", height: 220, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(240,201,73,0.18), transparent 70%)", filter: "blur(24px)", pointerEvents: "none" }} />
-    <img src="/vyzor-app-rapport.webp" width="1600" height="843" alt="Une page Vyzor : chiffre d'affaires, marge, résultat, performance financière et score de santé"
+    <img src="/vyzor-app-tableau-de-bord.webp" width="1376" height="560" alt="Le tableau de bord Vyzor : marge, capacité d'autofinancement, score de santé et évolution du chiffre d'affaires et des résultats"
       style={{ position: "relative", display: "block", width: "100%", height: "auto", borderRadius: 14, border: "1px solid rgba(140,160,255,0.22)", boxShadow: "0 40px 90px -38px rgba(0,0,0,0.85), 0 0 60px -30px rgba(240,201,73,0.25)" }} />
   </div>
 );
@@ -153,9 +153,9 @@ const GenUiVideo = () => {
   return (
     <div>
       <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(140,160,255,0.22)", boxShadow: "0 40px 90px -38px rgba(0,0,0,0.85), 0 0 60px -30px rgba(240,201,73,0.22)", background: "#0b1026" }}>
-        <video ref={ref} src="/vyzor-demo-generation.mp4" poster="/vyzor-demo-generation-poster.jpg" width="1600" height="1000"
+        <video ref={ref} src="/vyzor-demo-generation.mp4" poster="/vyzor-demo-generation-poster.jpg" width="1456" height="834"
           muted loop playsInline preload="metadata"
-          aria-label="Démonstration : on décrit la page voulue, Vyzor la compose avec la trésorerie, la capacité d'emprunt et les clients en retard, puis on programme son envoi par e-mail chaque matin"
+          aria-label="Démonstration : on décrit la page voulue, Vyzor la compose avec la trésorerie et la capacité de remboursement, puis on choisit de la recevoir par e-mail chaque matin"
           onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
           style={{ display: "block", width: "100%", height: "auto" }} />
         <button type="button" onClick={toggle} className="vzg-toggle" aria-label={playing ? "Mettre la démo en pause" : "Lire la démo"}>
@@ -164,7 +164,7 @@ const GenUiVideo = () => {
             : <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>}
         </button>
       </div>
-      <p style={{ margin: "12px 0 0", fontSize: 12.5, color: VZG.muted }}>Interface Vyzor, données de démonstration.</p>
+      <p style={{ margin: "12px 0 0", fontSize: 12.5, color: VZG.muted }}>Enregistrement de l'application, sur un dossier de test anonymisé.</p>
       <style>{`
         .vzg-toggle { position: absolute; right: 12px; bottom: 12px; width: 34px; height: 34px; border-radius: 999px; display: grid; place-items: center; background: rgba(10,16,38,0.72); border: 1px solid rgba(255,255,255,0.18); color: #fff; cursor: pointer; }
         .vzg-toggle:hover { border-color: rgba(240,201,73,0.6); color: #f0c949; }
@@ -314,103 +314,5 @@ const GenUiDemo = () => {
 const vzRawSafe = (s) => (typeof window !== "undefined" && window.vzRaw ? window.vzRaw(s) : s);
 
 
-// —— Visuel du hero (19/11/2026) : le point du matin que le directeur financier envoie ——
-// Reprend des fonctions réelles : envoi programmé d'une page par e-mail le matin, argent en
-// banque, 13 prochaines semaines, « Qui me doit », action prioritaire avec relance à relire.
-// Données de démonstration.
-const VZ_BRIEF_WEEKS = [184, 176, 181, 169, 158, 163, 151, 147, 139, 144, 152, 148, 143];
-const HeroBrief = () => {
-  const g = VZG.gold;
-  const w = 300, h = 64;
-  const min = 130, max = 190;
-  const pts = VZ_BRIEF_WEEKS.map((v, i) => [(i / (VZ_BRIEF_WEEKS.length - 1)) * w, h - ((v - min) / (max - min)) * h]);
-  const d = pts.map((p, i) => `${i ? "L" : "M"}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(" ");
-  const low = pts[8];
-  const kpi = (k, v, sub, subColor) => (
-    <div className="vzb-kpi" style={{ padding: "12px 13px", borderRadius: 12, background: "rgba(255,255,255,0.035)", border: `1px solid ${VZG.line}`, minWidth: 0 }}>
-      <div style={{ fontSize: 11.5, color: VZG.muted, whiteSpace: "nowrap" }}>{k}</div>
-      <div className="vzb-kpi-v" style={{ fontSize: 21, fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", marginTop: 4, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>{v}</div>
-      <div className="vzb-kpi-s" style={{ fontSize: 11.5, lineHeight: 1.35, color: subColor || VZG.muted, marginTop: 3 }}>{sub}</div>
-    </div>
-  );
-  return (
-    <div className="vzb-wrap" style={{ position: "relative", width: "100%", maxWidth: 540, margin: "0 auto", textAlign: "left" }}>
-      <style>{`
-        @keyframes vzbIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-        @keyframes vzbGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(240,201,73,0); } 50% { box-shadow: 0 0 0 6px rgba(240,201,73,0.10); } }
-        .vzb-card { animation: vzbIn 800ms cubic-bezier(0.22,1,0.36,1) 300ms both; }
-        .vzb-act { animation: vzbGlow 2.4s ease-in-out 1.4s 2; }
-        .vzb-tag { animation: vzbIn 700ms cubic-bezier(0.22,1,0.36,1) 900ms both; }
-        @media (max-width: 560px) {
-          .vzb-chart { display: none !important; }
-          .vzb-kpi { padding: 9px 9px !important; }
-          .vzb-kpi-v { font-size: 16px !important; }
-          .vzb-kpi-s { display: none !important; }
-          .vzb-body { padding: 14px !important; gap: 10px !important; }
-        }
-        @media (prefers-reduced-motion: reduce) { .vzb-card, .vzb-act, .vzb-tag { animation: none !important; } }
-      `}</style>
-      <span aria-hidden="true" style={{ position: "absolute", inset: "8% -6% -4% 6%", borderRadius: 28, background: "radial-gradient(closest-side, rgba(240,201,73,0.16), rgba(240,201,73,0))", filter: "blur(10px)" }} />
-      <div className="vzb-card" style={{
-        position: "relative", borderRadius: 20, overflow: "hidden",
-        background: "linear-gradient(180deg, #121a3d 0%, #0c1230 100%)",
-        border: "1px solid rgba(140,160,255,0.18)",
-        boxShadow: "0 40px 90px -40px rgba(0,0,0,0.9)",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 18px", borderBottom: `1px solid ${VZG.line}` }}>
-          <span style={{ width: 34, height: 34, borderRadius: 10, display: "grid", placeItems: "center", background: "rgba(240,201,73,0.10)", border: "1px solid rgba(240,201,73,0.28)", flexShrink: 0 }}>
-            <VyzorLogo size={20} color={g} />
-          </span>
-          <div style={{ minWidth: 0, flex: 1 }}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>Votre directeur financier</div>
-            <div style={{ fontSize: 12, color: VZG.muted, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Votre point du jeudi · page « Synthèse »</div>
-          </div>
-          <span style={{ fontSize: 12, color: VZG.muted, fontVariantNumeric: "tabular-nums" }}>7:30</span>
-        </div>
-        <div className="vzb-body" style={{ display: "flex", flexDirection: "column", gap: 12, padding: 18 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: 8 }}>
-            {kpi("En banque", "184 320 €", "+12,4 k€ en 7 jours", VZG.up)}
-            {kpi("Dans 13 semaines", "143 000 €", "Point bas le 15 janv.")}
-            {kpi("Qui vous doit", "46 900 €", "18 400 € en retard", "#f0905a")}
-          </div>
-          <div className="vzb-chart" style={{ padding: "12px 14px 10px", borderRadius: 12, background: "rgba(255,255,255,0.025)", border: `1px solid ${VZG.line}` }}>
-            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11.5, color: VZG.muted, marginBottom: 8 }}>
-              <span>Mes 13 prochaines semaines</span><span style={{ color: "rgba(255,255,255,0.75)" }}>Point bas : 139 k€</span>
-            </div>
-            <svg viewBox={`-4 -6 ${w + 8} ${h + 12}`} width="100%" height={h + 12} preserveAspectRatio="none" aria-hidden="true" style={{ display: "block" }}>
-              <defs>
-                <linearGradient id="vzbFill" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0" stopColor={g} stopOpacity="0.26" />
-                  <stop offset="1" stopColor={g} stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path d={`${d} L${w},${h} L0,${h} Z`} fill="url(#vzbFill)" />
-              <path d={d} fill="none" stroke={g} strokeWidth="2" vectorEffect="non-scaling-stroke" />
-              <circle cx={low[0]} cy={low[1]} r="3.6" fill="#0c1230" stroke={g} strokeWidth="2" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-          <div className="vzb-act" style={{ padding: "14px 15px", borderRadius: 14, background: "rgba(240,201,73,0.07)", border: "1px solid rgba(240,201,73,0.42)" }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: g }}>Action prioritaire</div>
-            <div style={{ fontSize: 15, lineHeight: 1.45, color: "#fff", marginTop: 6 }}>
-              Relancer Bâtisseurs SARL : <span style={{ fontWeight: 700 }}>18 400 €</span> en retard depuis 32 jours.
-            </div>
-            <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
-              <span style={{ padding: "8px 13px", borderRadius: 9, background: g, color: "#0d1430", fontSize: 13, fontWeight: 600 }}>Préparer la relance</span>
-              <span style={{ padding: "8px 13px", borderRadius: 9, border: "1px solid rgba(255,255,255,0.16)", color: "rgba(255,255,255,0.8)", fontSize: 13 }}>Voir les factures</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="vzb-tag" style={{
-        position: "absolute", left: -18, bottom: -16, display: "inline-flex", alignItems: "center", gap: 8,
-        padding: "8px 12px", borderRadius: 999, background: "#111936", border: "1px solid rgba(140,160,255,0.22)",
-        fontSize: 12.5, color: "rgba(255,255,255,0.85)", boxShadow: "0 14px 30px -14px rgba(0,0,0,0.8)",
-      }}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={g} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
-        Dans votre boîte mail, chaque matin
-      </div>
-    </div>
-  );
-};
 
-Object.assign(window, { HeroBrief, VzAppFrame, VzDashPreview, HeroProductShot, GenUiDemo, GenUiVideo });
+Object.assign(window, { VzAppFrame, VzDashPreview, HeroProductShot, GenUiDemo, GenUiVideo });
