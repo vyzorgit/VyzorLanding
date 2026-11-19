@@ -12,8 +12,8 @@ const CF_QUESTIONS = [
     a: "Oui. Trésorerie positive sur 12 mois, point bas à +38 k€ en novembre. 8 400 € d'aides à l'embauche déjà intégrées." },
   { q: "Relance mes clients en retard de paiement.", agents: ["treso"], action: "3 e-mails de relance rédigés, montants et factures joints.",
     a: "15 750 € à récupérer sur 3 clients. Relances prêtes, à valider avant envoi." },
-  { q: "Prépare un dossier de financement pour ma banque.", agents: ["analyste", "treso", "juridique"], action: "Dossier PDF généré : comptes, prévisionnel, Kbis et statuts.",
-    a: "Dossier de 14 pages prêt : synthèse, prévisionnel 24 mois, capacité de remboursement." },
+  { q: "Prépare un dossier de financement pour ma banque.", agents: ["analyste", "treso", "juridique"], action: "Dossier pour la banque généré, en Word ou en PDF.",
+    a: "Dossier de 14 pages prêt : synthèse, prévisionnel 12 mois, capacité de remboursement." },
   { q: "Puis-je verser un dividende cette année ?", agents: ["juridique", "fiscal", "analyste"], action: null,
     a: "Oui, jusqu'à 42 k€ de bénéfice distribuable. Comparatif dividende / rémunération fourni." },
 ];
@@ -208,7 +208,7 @@ const CC_ITEMS = [
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>Dossier de financement 2026.pdf</div>
             <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.5)", marginBottom: 8 }}>14 pages</div>
-            {["Synthèse de l'activité", "Comptes des 3 derniers exercices", "Prévisionnel sur 24 mois", "Capacité de remboursement"].map((s) => (
+            {["Synthèse de l'activité", "Comptes des 3 derniers exercices", "Prévisionnel sur 12 mois", "Capacité de remboursement"].map((s) => (
               <div key={s} style={{ ...ccRow, padding: "7px 0", fontSize: 13, color: "rgba(255,255,255,0.8)" }}>{s}</div>
             ))}
           </div>
