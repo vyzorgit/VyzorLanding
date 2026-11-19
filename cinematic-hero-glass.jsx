@@ -288,7 +288,7 @@ const CinematicHero = () => {
         .vz-btn-primary:hover { background-color: #f4d468 !important; }
         .vz-btn-ghost { transition: border-color 160ms ease, background-color 160ms ease; }
         .vz-btn-ghost:hover { border-color: rgba(255,255,255,0.32) !important; background-color: rgba(255,255,255,0.04) !important; }
-        .vz-hero-grid { position: relative; z-index: 1; width: 100%; max-width: 1240px; padding: 0 clamp(20px, 4vw, 56px); display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(28px, 4vw, 64px); align-items: center; text-align: left; }
+        .vz-hero-grid { position: relative; z-index: 1; width: 100%; max-width: 1240px; padding: 0 clamp(20px, 4vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 64px); align-items: center; text-align: left; }
         .vz-hero-sub { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; color: rgba(255,255,255,0.62); max-width: 560px; margin: clamp(20px, 2.4vw, 28px) 0 0; text-wrap: pretty; }
         .vz-hero-cta-row { display: flex; align-items: center; gap: 12px; margin-top: clamp(26px, 2.6vw, 34px); flex-wrap: wrap; }
         .vz-hero-micro { margin: 16px 0 0; font-size: 13.5px; color: rgba(255,255,255,0.5); text-wrap: balance; }
@@ -298,8 +298,8 @@ const CinematicHero = () => {
           .vz-hero-cta-row { justify-content: center; }
           .vz-hero-visual { order: -1; max-width: 300px; width: 70%; margin: 0 auto; }
         }
-        @media (max-width: 560px) { .vz-hero-visual { max-width: 220px; } .vz-hero-sub { font-size: 15.5px; } }
-        .vz-hero-h1 { font-size: clamp(34px, 4.1vw, 58px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
+        @media (max-width: 560px) { .vz-hero-visual { max-width: 370px; width: 100%; } .vz-hero-sub { font-size: 15.5px; } }
+        .vz-hero-h1 { font-size: clamp(34px, 3.7vw, 54px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
         .vz-hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 0%, #1b2860 0%, #101a42 32%, rgba(10,16,38,0) 72%); }
         .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
         @media (max-width: 720px) { .vz-hero-stage { padding: 96px 0 44px !important; } }

@@ -118,78 +118,83 @@ const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = fals
 };
 
 // —— Visuel du hero : capture réelle de l'app (page « Rapport investisseur », données de démonstration) ——
-// —— Illustration du hero (19/11/2026) : le levier. Une petite force, au bon endroit,
-// soulève beaucoup. Illustration pure, sans chiffres ni écran de l'app.
-const HeroProductShot = () => (
-  <div className="vz-lever" aria-hidden="true">
-    <style>{`
-      .vz-lever { position: relative; width: 100%; max-width: 520px; margin: 0 auto; }
-      .vz-lever svg { display: block; width: 100%; height: auto; overflow: visible; }
-      @keyframes vzLeverTilt { 0%, 100% { transform: rotate(-9deg); } 50% { transform: rotate(-12.5deg); } }
-      @keyframes vzLeverLift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-      @keyframes vzLeverPush { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
-      @keyframes vzLeverSpark { 0%, 100% { opacity: 0.25; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1); } }
-      .vz-lever .beam { transform-origin: 250px 318px; animation: vzLeverTilt 4.8s ease-in-out infinite; }
-      .vz-lever .load { animation: vzLeverLift 4.8s ease-in-out infinite; }
-      .vz-lever .push { animation: vzLeverPush 4.8s ease-in-out infinite; }
-      .vz-lever .spark { transform-box: fill-box; transform-origin: center; animation: vzLeverSpark 2.4s ease-in-out infinite; }
-      .vz-lever .spark.s2 { animation-delay: 0.8s; } .vz-lever .spark.s3 { animation-delay: 1.6s; }
-      @media (prefers-reduced-motion: reduce) { .vz-lever .beam, .vz-lever .load, .vz-lever .push, .vz-lever .spark { animation: none !important; } .vz-lever .beam { transform: rotate(-10deg); } }
-    `}</style>
-    <svg viewBox="0 0 520 420" role="presentation">
-      <defs>
-        <radialGradient id="vzlGlow" cx="50%" cy="48%" r="50%">
-          <stop offset="0" stopColor="#f0c949" stopOpacity="0.20" />
-          <stop offset="0.55" stopColor="#3b4fb8" stopOpacity="0.10" />
-          <stop offset="1" stopColor="#0a1026" stopOpacity="0" />
-        </radialGradient>
-        <linearGradient id="vzlGold" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#f6d978" />
-          <stop offset="1" stopColor="#c99a2e" />
-        </linearGradient>
-        <linearGradient id="vzlBar" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#f6d978" />
-          <stop offset="1" stopColor="#f0c949" stopOpacity="0.35" />
-        </linearGradient>
-        <linearGradient id="vzlBeam" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0" stopColor="#2a3a86" />
-          <stop offset="1" stopColor="#3d52b5" />
-        </linearGradient>
-      </defs>
-      <circle cx="260" cy="210" r="188" fill="url(#vzlGlow)" />
-      <g stroke="rgba(140,160,255,0.10)" strokeWidth="1">
-        <path d="M40 120H480M40 200H480M40 280H480" strokeDasharray="2 8" />
-      </g>
-      <line x1="40" y1="372" x2="480" y2="372" stroke="rgba(140,160,255,0.22)" strokeWidth="1.5" />
-      <ellipse cx="250" cy="372" rx="120" ry="6" fill="rgba(0,0,0,0.35)" />
-      {/* Point d'appui */}
-      <path d="M250 318 L292 372 H208 Z" fill="#121a42" stroke="url(#vzlGold)" strokeWidth="2.5" strokeLinejoin="round" />
-      <circle cx="250" cy="318" r="7" fill="#0a1026" stroke="#f0c949" strokeWidth="2.5" />
-      {/* Le levier */}
-      <g className="beam">
-        <rect x="56" y="309" width="388" height="18" rx="9" fill="url(#vzlBeam)" stroke="rgba(160,180,255,0.35)" strokeWidth="1.2" />
-        {/* Petite force à gauche */}
-        <g className="push">
-          <rect x="74" y="268" width="40" height="40" rx="9" fill="url(#vzlGold)" />
-          <path d="M94 248 V262 M87 255 L94 262 L101 255" fill="none" stroke="#f0c949" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+// —— Illustration du hero (19/11/2026) : le texte du hero, mis en image.
+// Au centre, votre directeur financier ; à gauche, vos données, branchées sur lui ; autour, ce
+// qu'il fait : il analyse en temps réel, automatise vos tâches, vous dit quel levier actionner.
+const VzCfoIcon = ({ name }) => {
+  const p = { width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "#f0c949", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true };
+  if (name === "pulse") return <svg {...p}><path d="M2 12h4l3-8 4 16 3-8h6" /></svg>;
+  if (name === "auto") return <svg {...p}><path d="M21 12a9 9 0 1 1-3-6.7" /><path d="M21 4v5h-5" /><path d="M8.5 12.5l2.5 2.5 4.5-5" /></svg>;
+  if (name === "lever") return <svg {...p}><path d="M3 17l6-6 4 4 8-8" /><path d="M15 7h6v6" /></svg>;
+  return <svg {...p}><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" /></svg>;
+};
+const HeroProductShot = () => {
+  const card = (cls, icon, title, sub, hi) => (
+    <div className={`vzc-card ${cls}`} style={hi ? { borderColor: "rgba(240,201,73,0.55)", background: "rgba(240,201,73,0.08)" } : null}>
+      <span className="vzc-ic"><VzCfoIcon name={icon} /></span>
+      <span><span className="vzc-t">{title}</span>{sub ? <span className="vzc-s">{sub}</span> : null}</span>
+    </div>
+  );
+  return (
+    <div className="vzc" aria-hidden="true">
+      <style>{`
+        .vzc { position: relative; width: 100%; max-width: 520px; aspect-ratio: 520 / 430; margin: 0 auto; font-family: "Inter", system-ui, sans-serif; text-align: left; }
+        .vzc > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+        .vzc-card { position: absolute; display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 10px; border-radius: 14px; background: #111936; border: 1px solid rgba(140,160,255,0.22); box-shadow: 0 18px 40px -18px rgba(0,0,0,0.85); white-space: nowrap; }
+        .vzc-ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: rgba(240,201,73,0.10); flex-shrink: 0; }
+        .vzc-t { display: block; font-size: 14px; font-weight: 600; color: #fff; }
+        .vzc-s { display: block; font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 1px; }
+        .vzc .c-data { left: 0; top: 50%; transform: translateY(-50%); }
+        .vzc .c-ana { right: 0; top: 6%; }
+        .vzc .c-auto { right: -2%; top: 43%; }
+        .vzc .c-lev { right: 4%; bottom: 4%; }
+        .vzc-live { width: 7px; height: 7px; border-radius: 99px; background: #2dd4bf; display: inline-block; margin-left: 7px; vertical-align: 1px; }
+        @keyframes vzcIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        @keyframes vzcFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+        @keyframes vzcLive { 0%, 100% { box-shadow: 0 0 0 0 rgba(45,212,191,0.55); } 70% { box-shadow: 0 0 0 7px rgba(45,212,191,0); } }
+        @keyframes vzcFlow { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
+        .vzc .c-ana, .vzc .c-auto, .vzc .c-lev { animation: vzcIn 600ms cubic-bezier(0.22,1,0.36,1) both, vzcFloat 5s ease-in-out infinite; }
+        .vzc .c-ana { animation-delay: 700ms, 1.4s; } .vzc .c-auto { animation-delay: 950ms, 2.2s; } .vzc .c-lev { animation-delay: 1200ms, 3s; }
+        .vzc-live { animation: vzcLive 1.8s ease-out infinite; }
+        .vzc .flow { stroke-dasharray: 4 12; animation: vzcFlow 1.4s linear infinite; }
+        @media (max-width: 560px) { .vzc-t { font-size: 11.5px; } .vzc-s { display: none; } .vzc-ic { width: 28px; height: 28px; } .vzc-card { padding: 7px 10px 7px 7px; gap: 7px; } }
+        @media (prefers-reduced-motion: reduce) { .vzc * { animation: none !important; } }
+      `}</style>
+      <svg viewBox="0 0 520 430" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient id="vzcHalo" cx="50%" cy="50%" r="50%"><stop offset="0" stopColor="#f0c949" stopOpacity="0.28" /><stop offset="1" stopColor="#f0c949" stopOpacity="0" /></radialGradient>
+          <linearGradient id="vzcRing" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#f8df8a" /><stop offset="1" stopColor="#c99a2e" /></linearGradient>
+          <linearGradient id="vzcSuit" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#8a6624" /><stop offset="1" stopColor="#4f3a12" /></linearGradient>
+          <radialGradient id="vzcHead" cx="40%" cy="35%" r="70%"><stop offset="0" stopColor="#e6c98a" /><stop offset="1" stopColor="#b98d3e" /></radialGradient>
+          <clipPath id="vzcClip"><circle cx="250" cy="215" r="84" /></clipPath>
+        </defs>
+        {/* Câble : vos données → votre directeur financier */}
+        <path d="M118 215 H166" stroke="rgba(140,160,255,0.3)" strokeWidth="2.5" />
+        <path className="flow" d="M118 215 H166" stroke="#f0c949" strokeWidth="2.5" />
+        {/* Liens vers ce qu'il fait */}
+        {["M318 170 C350 120, 370 70, 392 62", "M334 215 C360 215, 372 220, 392 222", "M318 262 C350 300, 368 350, 392 360"].map((d, i) => (
+          <g key={i}><path d={d} fill="none" stroke="rgba(240,201,73,0.35)" strokeWidth="2" /><path className="flow" d={d} fill="none" stroke="#f0c949" strokeWidth="2" style={{ animationDelay: `${i * 0.3}s` }} /></g>
+        ))}
+        {/* Votre directeur financier */}
+        <circle cx="250" cy="215" r="140" fill="url(#vzcHalo)" />
+        <circle cx="250" cy="215" r="90" fill="#141d47" stroke="url(#vzcRing)" strokeWidth="4" />
+        <g clipPath="url(#vzcClip)">
+          <circle cx="250" cy="215" r="84" fill="#1a2557" />
+          {/* Le conseiller Vyzor : la tête, et le V du logo comme col et revers */}
+          <path d="M160 312 C164 262, 198 236, 250 234 C302 236, 336 262, 340 312 Z" fill="url(#vzcSuit)" />
+          <circle cx="250" cy="184" r="27" fill="url(#vzcHead)" />
+          <g transform="translate(173 168)"><VyzorLogo size={154} color="#f0c949" /></g>
         </g>
-        {/* Ce que le levier soulève : une courbe de croissance */}
-        <g className="load">
-          <rect x="318" y="262" width="22" height="46" rx="5" fill="url(#vzlBar)" />
-          <rect x="348" y="236" width="22" height="72" rx="5" fill="url(#vzlBar)" />
-          <rect x="378" y="204" width="22" height="104" rx="5" fill="url(#vzlBar)" />
-          <rect x="408" y="166" width="22" height="142" rx="5" fill="url(#vzlBar)" />
-          <path d="M312 238 C340 226 356 214 376 192 S412 150 436 132" fill="none" stroke="#fff" strokeOpacity="0.85" strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M424 128 L438 130 L434 144" fill="none" stroke="#fff" strokeOpacity="0.85" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-        </g>
-      </g>
-      {/* Étincelles */}
-      <path className="spark" d="M470 92 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" fill="#f6d978" />
-      <path className="spark s2" d="M128 150 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#f6d978" />
-      <path className="spark s3" d="M384 64 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z" fill="#ffffff" fillOpacity="0.8" />
-    </svg>
-  </div>
-);
+        <circle cx="166" cy="215" r="9" fill="#0d1430" stroke="#f0c949" strokeWidth="2.5" />
+        <path d="M162 212 V218 M170 212 V218" stroke="#f0c949" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+      {card("c-data", "data", "Vos données", "Compta, banque")}
+      {card("c-ana", "pulse", <>Analyse en temps réel<span className="vzc-live" /></>, null)}
+      {card("c-auto", "auto", "Tâches automatisées", null)}
+      {card("c-lev", "lever", "Le levier du jour", "Quoi faire, maintenant", true)}
+    </div>
+  );
+};
 
 // —— Démo (19/11/2026) : composer une page, la lire, programmer son envoi du matin ——
 // Boucle muette de 15 s qui se lance seule quand elle est à l'écran (en pause sinon) ;
