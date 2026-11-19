@@ -137,7 +137,7 @@ const HeroProductShot = () => {
   return (
     <div className="vz-knot" aria-hidden="true">
       <style>{`
-        .vz-knot { position: relative; width: 100%; max-width: 540px; margin: 0 auto; }
+        .vz-knot { position: relative; width: 100%; max-width: 600px; margin: 0 auto; }
         .vz-knot svg { display: block; width: 100%; height: auto; overflow: visible; }
         @keyframes vzkPlug { from { transform: translateX(-26px); } to { transform: none; } }
         @keyframes vzkFlash { 0% { opacity: 0; transform: scale(0.6); } 40% { opacity: 1; } 100% { opacity: 0.55; transform: scale(1); } }
@@ -154,7 +154,7 @@ const HeroProductShot = () => {
         .vz-knot .end { transform-box: fill-box; transform-origin: center; animation: vzkPop 400ms cubic-bezier(0.22,1,0.36,1) both; }
         @media (prefers-reduced-motion: reduce) { .vz-knot * { animation: none !important; } }
       `}</style>
-      <svg viewBox="0 0 540 420" role="presentation">
+      <svg viewBox="0 70 540 280" role="presentation">
         <defs>
           <radialGradient id="vzkHalo" cx="50%" cy="50%" r="50%">
             <stop offset="0" stopColor="#f0c949" stopOpacity="0.45" />
