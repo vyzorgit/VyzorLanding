@@ -178,13 +178,10 @@ const HeroProductShot = () => {
         <circle cx="250" cy="215" r="90" fill="#141d47" stroke="url(#vzcRing)" strokeWidth="4" />
         <g clipPath="url(#vzcClip)">
           <circle cx="250" cy="215" r="84" fill="#1a2557" />
-          <path d="M170 320 C176 262, 210 244, 250 244 C290 244, 324 262, 330 320 Z" fill="#26346f" />
-          <path d="M232 246 L250 284 L268 246 Z" fill="#eef1ff" />
-          <path d="M246 252 L254 252 L257 286 L250 296 L243 286 Z" fill="#f0c949" />
-          <path d="M226 246 L250 300 L232 312 L214 252 Z M274 246 L250 300 L268 312 L286 252 Z" fill="#1d2a60" />
-          <rect x="240" y="212" width="20" height="36" rx="9" fill="#d9deef" />
-          <ellipse cx="250" cy="192" rx="28" ry="32" fill="#e7eaf7" />
-          <path d="M221 186 C219 164, 234 156, 251 156 C270 156, 281 168, 279 186 C273 176, 262 172, 250 174 C238 172, 228 176, 221 186 Z" fill="#2a2f45" />
+          {/* Le conseiller Vyzor : la tête, et le V du logo comme col et revers */}
+          <path d="M160 312 C164 262, 198 236, 250 234 C302 236, 336 262, 340 312 Z" fill="#26346f" />
+          <circle cx="250" cy="184" r="27" fill="#e7eaf7" />
+          <g transform="translate(173 168)"><VyzorLogo size={154} color="#f0c949" /></g>
         </g>
         <circle cx="166" cy="215" r="9" fill="#0d1430" stroke="#f0c949" strokeWidth="2.5" />
         <path d="M162 212 V218 M170 212 V218" stroke="#f0c949" strokeWidth="2" strokeLinecap="round" />
