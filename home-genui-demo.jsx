@@ -118,82 +118,88 @@ const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = fals
 };
 
 // —— Visuel du hero : capture réelle de l'app (page « Rapport investisseur », données de démonstration) ——
-// —— Illustration du hero (19/11/2026) : le directeur financier « en boîte ».
-// À gauche vos données (comptabilité, banque, factures) ; on branche la boîte ; à droite ce
-// qu'elle rend, dans l'ordre du sous-titre : analyse en temps réel, tâches automatisées,
-// levier à actionner. Illustration pure, sans chiffres ni écran de l'app.
-const VZB_SRC = [140, 215, 290];
+// —— Illustration du hero (19/11/2026) : du casse-tête au fluide.
+// À gauche, vos données emmêlées (les nœuds) ; au centre, on branche Vyzor ; à droite, des flux
+// lisses qui montent : les leviers, des tâches fluides, de meilleures décisions. Le branchement
+// se joue une fois à l'arrivée (environ 1 s), puis les flux de droite circulent en continu.
+const VZK_KNOT = [
+  "M14 150 C78 150, 118 112, 160 168 S118 262, 88 222 S150 136, 200 198 S214 214, 226 210",
+  "M14 212 C72 212, 108 286, 150 244 S204 150, 130 158 S108 254, 182 252 S214 210, 226 210",
+  "M14 274 C92 274, 174 304, 172 232 S88 168, 118 138 S212 168, 190 222 S214 206, 226 210",
+];
+const VZK_FLOW = [
+  "M318 210 C380 210, 420 150, 526 118",
+  "M318 210 C384 210, 430 196, 526 188",
+  "M318 210 C380 210, 424 262, 526 262",
+];
 const HeroProductShot = () => {
   const g = "#f0c949";
-  const ic = { fill: "none", stroke: "rgba(255,255,255,0.85)", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" };
-  const tile = (x, y, children, cls = "") => (
-    <g className={cls} transform={`translate(${x - 28} ${y - 28})`}>
-      <rect width="56" height="56" rx="14" fill="#121a42" stroke="rgba(140,160,255,0.28)" strokeWidth="1.2" />
-      <g transform="translate(16 16)">{children}</g>
-    </g>
-  );
   return (
-    <div className="vz-box" aria-hidden="true">
+    <div className="vz-knot" aria-hidden="true">
       <style>{`
-        .vz-box { position: relative; width: 100%; max-width: 540px; margin: 0 auto; }
-        .vz-box svg { display: block; width: 100%; height: auto; overflow: visible; }
-        @keyframes vzbFlow { from { stroke-dashoffset: 120; } to { stroke-dashoffset: 0; } }
-        @keyframes vzbGlow { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
-        @keyframes vzbOut { 0%, 12% { opacity: 0.25; } 22%, 78% { opacity: 1; } 90%, 100% { opacity: 0.25; } }
-        @keyframes vzbRay { 0%, 12% { stroke-opacity: 0.12; } 22%, 78% { stroke-opacity: 0.9; } 90%, 100% { stroke-opacity: 0.12; } }
-        .vz-box .flow { stroke-dasharray: 6 14; animation: vzbFlow 1.6s linear infinite; }
-        .vz-box .core { animation: vzbGlow 3.6s ease-in-out infinite; }
-        .vz-box .out { animation: vzbOut 4.8s ease-in-out infinite; }
-        .vz-box .ray { animation: vzbRay 4.8s ease-in-out infinite; }
-        .vz-box .d2 { animation-delay: 0.6s; } .vz-box .d3 { animation-delay: 1.2s; }
-        @media (prefers-reduced-motion: reduce) { .vz-box .flow, .vz-box .core, .vz-box .out, .vz-box .ray { animation: none !important; } }
+        .vz-knot { position: relative; width: 100%; max-width: 540px; margin: 0 auto; }
+        .vz-knot svg { display: block; width: 100%; height: auto; overflow: visible; }
+        @keyframes vzkPlug { from { transform: translateX(-26px); } to { transform: none; } }
+        @keyframes vzkFlash { 0% { opacity: 0; transform: scale(0.6); } 40% { opacity: 1; } 100% { opacity: 0.55; transform: scale(1); } }
+        @keyframes vzkDraw { from { stroke-dashoffset: 260; } to { stroke-dashoffset: 0; } }
+        @keyframes vzkFlow { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
+        @keyframes vzkMess { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -60; } }
+        @keyframes vzkPop { 0% { opacity: 0; transform: scale(0.4); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes vzkBreath { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.9; } }
+        .vz-knot .plug { animation: vzkPlug 650ms cubic-bezier(0.22,1,0.36,1) 400ms both; }
+        .vz-knot .halo { transform-box: fill-box; transform-origin: center; animation: vzkFlash 900ms ease-out 1000ms both, vzkBreath 3.6s ease-in-out 2s infinite; }
+        .vz-knot .draw { stroke-dasharray: 260; animation: vzkDraw 900ms cubic-bezier(0.22,1,0.36,1) both; }
+        .vz-knot .flow { stroke-dasharray: 4 16; animation: vzkFlow 1.2s linear infinite; }
+        .vz-knot .mess { stroke-dasharray: 3 9; animation: vzkMess 3s linear infinite; }
+        .vz-knot .end { transform-box: fill-box; transform-origin: center; animation: vzkPop 400ms cubic-bezier(0.22,1,0.36,1) both; }
+        @media (prefers-reduced-motion: reduce) { .vz-knot * { animation: none !important; } }
       `}</style>
       <svg viewBox="0 0 540 420" role="presentation">
         <defs>
-          <radialGradient id="vzbHalo" cx="50%" cy="50%" r="50%">
-            <stop offset="0" stopColor="#f0c949" stopOpacity="0.30" />
+          <radialGradient id="vzkHalo" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stopColor="#f0c949" stopOpacity="0.45" />
             <stop offset="1" stopColor="#f0c949" stopOpacity="0" />
           </radialGradient>
-          <linearGradient id="vzbTop" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#f8df8a" /><stop offset="1" stopColor="#e2b444" /></linearGradient>
-          <linearGradient id="vzbLeft" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#d7a83a" /><stop offset="1" stopColor="#a27a22" /></linearGradient>
-          <linearGradient id="vzbRight" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#b98c2b" /><stop offset="1" stopColor="#7e5d17" /></linearGradient>
+          <linearGradient id="vzkCore" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#f8df8a" /><stop offset="1" stopColor="#c99a2e" /></linearGradient>
+          <linearGradient id="vzkFade" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stopColor="#f0c949" stopOpacity="0.95" /><stop offset="1" stopColor="#f6d978" stopOpacity="1" /></linearGradient>
         </defs>
-        <circle className="core" cx="290" cy="210" r="150" fill="url(#vzbHalo)" />
 
-        {/* Vos données → un seul câble → la prise */}
-        {VZB_SRC.map((y, i) => (
-          <g key={y}>
-            <path d={`M78 ${y} C130 ${y}, 140 232, 186 232`} fill="none" stroke="rgba(140,160,255,0.25)" strokeWidth="2" />
-            <path className="flow" d={`M78 ${y} C130 ${y}, 140 232, 186 232`} fill="none" stroke={g} strokeWidth="2" style={{ animationDelay: `${i * 0.25}s` }} />
+        {/* Le casse-tête : des données emmêlées, des nœuds */}
+        {VZK_KNOT.map((d, i) => (
+          <g key={i}>
+            <path d={d} fill="none" stroke="rgba(150,165,220,0.42)" strokeWidth="2" strokeLinecap="round" />
+            <path className="mess" d={d} fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2" strokeLinecap="round" style={{ animationDelay: `${i * 0.4}s` }} />
           </g>
         ))}
-        <path d="M186 232 H214" stroke="#2c3b86" strokeWidth="7" strokeLinecap="round" />
-        <rect x="212" y="221" width="22" height="22" rx="5" fill="#26346f" stroke="rgba(160,180,255,0.5)" strokeWidth="1.2" />
-        <path d="M234 227 H244 M234 237 H244" stroke={g} strokeWidth="3" strokeLinecap="round" />
-
-        {tile(50, VZB_SRC[0], <g {...ic}><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" /><path d="M14 2v6h6M8 13h8M8 17h5" /></g>)}
-        {tile(50, VZB_SRC[1], <g {...ic}><path d="M3 21h18M5 21V10M10 21V10M14 21V10M19 21V10M2 9l10-6 10 6z" /></g>)}
-        {tile(50, VZB_SRC[2], <g {...ic}><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M15 8.5a3.5 3.5 0 1 0 0 7M8 11h5M8 13.5h5" /></g>)}
-
-        {/* La boîte */}
-        <path d="M290 132 L362 172 L290 212 L218 172 Z" fill="url(#vzbTop)" />
-        <path d="M218 172 L290 212 L290 296 L218 256 Z" fill="url(#vzbLeft)" />
-        <path d="M290 212 L362 172 L362 256 L290 296 Z" fill="url(#vzbRight)" />
-        <path d="M290 132 L362 172 L290 212 L218 172 Z M290 212 V296" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.2" strokeLinejoin="round" />
-        <g transform="translate(290 172) scale(1 0.5556) rotate(45) translate(-25 -25)">
-          <rect width="50" height="50" rx="10" fill="rgba(13,20,48,0.10)" />
-          <g transform="translate(9 9) rotate(-45 16 16)"><VyzorLogo size={32} color="#0d1430" /></g>
-        </g>
-
-        {/* Ce qu'elle rend */}
-        {[[140, ""], [215, "d2"], [290, "d3"]].map(([y, d]) => (
-          <path key={y} className={`ray ${d}`} d={`M364 214 C400 214, 410 ${y}, 462 ${y}`} fill="none" stroke={g} strokeWidth="2" strokeLinecap="round" />
+        {[[146, 196], [122, 218], [172, 238], [160, 160]].map(([x, y], i) => (
+          <g key={i} stroke="#f0905a" strokeWidth="2.2" strokeLinecap="round" opacity="0.85">
+            <path d={`M${x - 5} ${y - 5} L${x + 5} ${y + 5} M${x + 5} ${y - 5} L${x - 5} ${y + 5}`} />
+          </g>
         ))}
-        {tile(490, 140, <g {...ic} stroke={g}><path d="M2 12h4l3-8 4 16 3-8h6" /></g>, "out")}
-        {tile(490, 215, <g {...ic} stroke={g}><path d="M4 12l5 5L20 6" /><path d="M4 20h16" strokeOpacity="0.5" /></g>, "out d2")}
-        {tile(490, 290, <g {...ic} stroke={g}><path d="M3 18h18M7 18l10-8" /><path d="M14 6h6v6" /><circle cx="7" cy="18" r="1.6" /></g>, "out d3")}
 
-        <ellipse cx="290" cy="318" rx="92" ry="8" fill="rgba(0,0,0,0.35)" />
+        {/* On branche Vyzor */}
+        <circle className="halo" cx="280" cy="210" r="96" fill="url(#vzkHalo)" />
+        <g className="plug">
+          <path d="M224 210 H246" stroke="#2c3b86" strokeWidth="8" strokeLinecap="round" />
+          <rect x="242" y="199" width="12" height="22" rx="4" fill={g} />
+          <path d="M254 203 H260 M254 217 H260" stroke={g} strokeWidth="3" strokeLinecap="round" />
+        </g>
+        <circle cx="282" cy="210" r="30" fill="url(#vzkCore)" stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" />
+        <g transform="translate(266 194)"><VyzorLogo size={32} color="#0d1430" /></g>
+
+        {/* Le fluide : des flux lisses qui montent */}
+        {VZK_FLOW.map((d, i) => (
+          <g key={i}>
+            <path className="draw" d={d} fill="none" stroke="url(#vzkFade)" strokeWidth="2.6" strokeLinecap="round" style={{ animationDelay: `${1.25 + i * 0.12}s` }} />
+            <path className="flow" d={d} fill="none" stroke="#fff" strokeOpacity="0.75" strokeWidth="2.6" strokeLinecap="round" style={{ animationDelay: `${2.2 + i * 0.15}s` }} />
+          </g>
+        ))}
+        <g className="end" style={{ animationDelay: "2.05s" }}>
+          <path d="M512 112 L528 117 L522 132" fill="none" stroke={g} strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+        {[[526, 188], [526, 262]].map(([x, y], i) => (
+          <circle key={i} className="end" cx={x} cy={y} r="5.5" fill="#0d1430" stroke={g} strokeWidth="2.6" style={{ animationDelay: `${2.15 + i * 0.1}s` }} />
+        ))}
       </svg>
     </div>
   );
