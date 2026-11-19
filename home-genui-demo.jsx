@@ -118,40 +118,122 @@ const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = fals
 };
 
 // —— Visuel du hero : capture réelle de l'app (page « Rapport investisseur », données de démonstration) ——
+// —— Illustration du hero (19/11/2026) : le levier. Une petite force, au bon endroit,
+// soulève beaucoup. Illustration pure, sans chiffres ni écran de l'app.
 const HeroProductShot = () => (
-  <div className="vz-hero-shot" style={{ position: "relative", maxWidth: 1000, margin: "0 auto" }}>
-    <span aria-hidden="true" style={{ position: "absolute", inset: "-40px 10% auto", height: 220, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(240,201,73,0.18), transparent 70%)", filter: "blur(24px)", pointerEvents: "none" }} />
-    <img src="/vyzor-app-rapport.webp" width="1600" height="843" alt="Une page Vyzor : chiffre d'affaires, marge, résultat, performance financière et score de santé"
-      style={{ position: "relative", display: "block", width: "100%", height: "auto", borderRadius: 14, border: "1px solid rgba(140,160,255,0.22)", boxShadow: "0 40px 90px -38px rgba(0,0,0,0.85), 0 0 60px -30px rgba(240,201,73,0.25)" }} />
+  <div className="vz-lever" aria-hidden="true">
+    <style>{`
+      .vz-lever { position: relative; width: 100%; max-width: 520px; margin: 0 auto; }
+      .vz-lever svg { display: block; width: 100%; height: auto; overflow: visible; }
+      @keyframes vzLeverTilt { 0%, 100% { transform: rotate(-9deg); } 50% { transform: rotate(-12.5deg); } }
+      @keyframes vzLeverLift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+      @keyframes vzLeverPush { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+      @keyframes vzLeverSpark { 0%, 100% { opacity: 0.25; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1); } }
+      .vz-lever .beam { transform-origin: 250px 318px; animation: vzLeverTilt 4.8s ease-in-out infinite; }
+      .vz-lever .load { animation: vzLeverLift 4.8s ease-in-out infinite; }
+      .vz-lever .push { animation: vzLeverPush 4.8s ease-in-out infinite; }
+      .vz-lever .spark { transform-box: fill-box; transform-origin: center; animation: vzLeverSpark 2.4s ease-in-out infinite; }
+      .vz-lever .spark.s2 { animation-delay: 0.8s; } .vz-lever .spark.s3 { animation-delay: 1.6s; }
+      @media (prefers-reduced-motion: reduce) { .vz-lever .beam, .vz-lever .load, .vz-lever .push, .vz-lever .spark { animation: none !important; } .vz-lever .beam { transform: rotate(-10deg); } }
+    `}</style>
+    <svg viewBox="0 0 520 420" role="presentation">
+      <defs>
+        <radialGradient id="vzlGlow" cx="50%" cy="48%" r="50%">
+          <stop offset="0" stopColor="#f0c949" stopOpacity="0.20" />
+          <stop offset="0.55" stopColor="#3b4fb8" stopOpacity="0.10" />
+          <stop offset="1" stopColor="#0a1026" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="vzlGold" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#f6d978" />
+          <stop offset="1" stopColor="#c99a2e" />
+        </linearGradient>
+        <linearGradient id="vzlBar" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#f6d978" />
+          <stop offset="1" stopColor="#f0c949" stopOpacity="0.35" />
+        </linearGradient>
+        <linearGradient id="vzlBeam" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stopColor="#2a3a86" />
+          <stop offset="1" stopColor="#3d52b5" />
+        </linearGradient>
+      </defs>
+      <circle cx="260" cy="210" r="188" fill="url(#vzlGlow)" />
+      <g stroke="rgba(140,160,255,0.10)" strokeWidth="1">
+        <path d="M40 120H480M40 200H480M40 280H480" strokeDasharray="2 8" />
+      </g>
+      <line x1="40" y1="372" x2="480" y2="372" stroke="rgba(140,160,255,0.22)" strokeWidth="1.5" />
+      <ellipse cx="250" cy="372" rx="120" ry="6" fill="rgba(0,0,0,0.35)" />
+      {/* Point d'appui */}
+      <path d="M250 318 L292 372 H208 Z" fill="#121a42" stroke="url(#vzlGold)" strokeWidth="2.5" strokeLinejoin="round" />
+      <circle cx="250" cy="318" r="7" fill="#0a1026" stroke="#f0c949" strokeWidth="2.5" />
+      {/* Le levier */}
+      <g className="beam">
+        <rect x="56" y="309" width="388" height="18" rx="9" fill="url(#vzlBeam)" stroke="rgba(160,180,255,0.35)" strokeWidth="1.2" />
+        {/* Petite force à gauche */}
+        <g className="push">
+          <rect x="74" y="268" width="40" height="40" rx="9" fill="url(#vzlGold)" />
+          <path d="M94 248 V262 M87 255 L94 262 L101 255" fill="none" stroke="#f0c949" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+        {/* Ce que le levier soulève : une courbe de croissance */}
+        <g className="load">
+          <rect x="318" y="262" width="22" height="46" rx="5" fill="url(#vzlBar)" />
+          <rect x="348" y="236" width="22" height="72" rx="5" fill="url(#vzlBar)" />
+          <rect x="378" y="204" width="22" height="104" rx="5" fill="url(#vzlBar)" />
+          <rect x="408" y="166" width="22" height="142" rx="5" fill="url(#vzlBar)" />
+          <path d="M312 238 C340 226 356 214 376 192 S412 150 436 132" fill="none" stroke="#fff" strokeOpacity="0.85" strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M424 128 L438 130 L434 144" fill="none" stroke="#fff" strokeOpacity="0.85" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+      </g>
+      {/* Étincelles */}
+      <path className="spark" d="M470 92 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" fill="#f6d978" />
+      <path className="spark s2" d="M128 150 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#f6d978" />
+      <path className="spark s3" d="M384 64 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z" fill="#ffffff" fillOpacity="0.8" />
+    </svg>
   </div>
 );
 
-// —— Démo : vidéo montée de la génération d'une page (lecture au clic, puis en boucle) ——
+// —— Démo (19/11/2026) : composer une page, la lire, programmer son envoi du matin ——
+// Boucle muette de 15 s qui se lance seule quand elle est à l'écran (en pause sinon) ;
+// reduced-motion : rien ne démarre seul, le bouton lance la lecture.
 const GenUiVideo = () => {
   const ref = React.useRef(null);
   const [playing, setPlaying] = React.useState(false);
-  const toggle = () => { const v = ref.current; if (!v) return; if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause(); };
+  const userPaused = React.useRef(false);
+  React.useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting && !userPaused.current) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+      else if (!e.isIntersecting) v.pause();
+    }), { threshold: 0.4 });
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
+  const toggle = () => {
+    const v = ref.current; if (!v) return;
+    if (v.paused) { userPaused.current = false; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+    else { userPaused.current = true; v.pause(); }
+  };
   return (
     <div>
       <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(140,160,255,0.22)", boxShadow: "0 40px 90px -38px rgba(0,0,0,0.85), 0 0 60px -30px rgba(240,201,73,0.22)", background: "#0b1026" }}>
-        <video ref={ref} src="/vyzor-demo-generation.mp4" poster="/vyzor-demo-generation-poster.jpg" width="1920" height="1080"
-          muted loop playsInline preload="none" aria-label="Démonstration : création d'un rapport investisseur dans Vyzor, ajout d'un module et export en PDF"
-          onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onClick={toggle}
-          style={{ display: "block", width: "100%", height: "auto", cursor: "pointer" }} />
-        {/* Le bouton lecture est dessiné dans la miniature ; ce bouton couvre l'image pour lancer la vidéo au clic. */}
-        <button type="button" onClick={toggle} aria-label="Lancer la démo" className="vzg-play"
-          style={{ display: playing ? "none" : "block" }} />
+        <video ref={ref} src="/vyzor-demo-generation.mp4" poster="/vyzor-demo-generation-poster.jpg" width="1456" height="834"
+          muted loop playsInline preload="metadata"
+          aria-label="Démonstration : on décrit la page voulue, Vyzor la compose avec la trésorerie et la capacité de remboursement, puis on choisit de la recevoir par e-mail chaque matin"
+          onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
+          style={{ display: "block", width: "100%", height: "auto" }} />
+        <button type="button" onClick={toggle} className="vzg-toggle" aria-label={playing ? "Mettre la démo en pause" : "Lire la démo"}>
+          {playing
+            ? <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+            : <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>}
+        </button>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginTop: 14, flexWrap: "wrap" }}>
-        <span style={{ fontSize: 12.5, color: VZG.muted }}>L'application réelle, avec des données de démonstration.</span>
-        <button type="button" onClick={toggle} className="vzg-replay">{playing ? "Mettre en pause" : "Lire la vidéo"}</button>
-      </div>
+      <p style={{ margin: "12px 0 0", fontSize: 12.5, color: VZG.muted }}>Enregistrement de l'application, sur un dossier de test anonymisé.</p>
       <style>{`
-        .vzg-play { position: absolute; inset: 0; background: transparent; border: 0; cursor: pointer; }
-        .vzg-play:focus-visible { outline: 3px solid #f0c949; outline-offset: -3px; }
-        .vzg-replay { background: transparent; border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.85); border-radius: 999px; padding: 8px 16px; font: 600 13px "Inter", system-ui, sans-serif; cursor: pointer; }
-        .vzg-replay:hover { border-color: rgba(240,201,73,0.45); color: #f0c949; }
-        .vzg-replay:focus-visible { outline: 2px solid #f0c949; outline-offset: 2px; }
+        .vzg-toggle { position: absolute; right: 12px; bottom: 12px; width: 34px; height: 34px; border-radius: 999px; display: grid; place-items: center; background: rgba(10,16,38,0.72); border: 1px solid rgba(255,255,255,0.18); color: #fff; cursor: pointer; }
+        .vzg-toggle:hover { border-color: rgba(240,201,73,0.6); color: #f0c949; }
+        .vzg-toggle:focus-visible { outline: 2px solid #f0c949; outline-offset: 2px; }
       `}</style>
     </div>
   );
@@ -295,5 +377,7 @@ const GenUiDemo = () => {
 
 // Texte saisi : déjà dans la bonne langue, on ne le repasse pas au dictionnaire.
 const vzRawSafe = (s) => (typeof window !== "undefined" && window.vzRaw ? window.vzRaw(s) : s);
+
+
 
 Object.assign(window, { VzAppFrame, VzDashPreview, HeroProductShot, GenUiDemo, GenUiVideo });
