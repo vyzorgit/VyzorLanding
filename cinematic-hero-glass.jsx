@@ -322,7 +322,7 @@ const CinematicHero = () => {
           </a>
         </div>
         <p className="vz-hero-in" style={{ margin: "18px 0 0", fontSize: 13.5, color: "rgba(255,255,255,0.5)", animationDelay: "320ms" }}>
-          Pour les dirigeants de PME sous Pennylane · Rendez-vous de 30 min en visio · Gratuit pendant la bêta
+          Pour les dirigeants de PME sous Pennylane · Rendez-vous de 30 min en visio · Accès anticipé offert
         </p>
         {/* Visuel produit : ce que le dirigeant obtient */}
         <div className="vz-hero-in" style={{ marginTop: "clamp(44px, 5vw, 64px)", animationDelay: "380ms" }}>

@@ -773,7 +773,7 @@ const QuickBookModal = ({ open, onClose }) => {
               <LqText id="entreprise" label="Entreprise" value={d.entreprise} onChange={set("entreprise")} placeholder="ACME SAS" autoComplete="organization" />
               {error && <div role="alert" className="lq-error">{error}</div>}
               <button type="submit" className="lq-next" style={{ marginTop: 6, fontSize: 15 }}>Choisir mon créneau <span aria-hidden="true">→</span></button>
-              <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.7)", textAlign: "center" }}>Gratuit pendant la bêta · sans engagement</div>
+              <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.7)", textAlign: "center" }}>Accès anticipé offert · sans engagement</div>
               <div style={{ fontSize: 11, color: muted, textAlign: "center", lineHeight: 1.55 }}>
                 Ces informations servent uniquement à organiser le rendez-vous (conservées 3 ans au plus). Accès ou suppression : admin@vyzor.fr. Voir notre{" "}
                 <a href="/confidentialite" target="_blank" rel="noopener" style={{ color: "#f0c949", textDecoration: "underline", textUnderlineOffset: 2 }}>politique de confidentialité</a>.
@@ -869,8 +869,8 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
     { t: "Un diagnostic financier complet de votre entreprise, au premier rendez-vous", v: "≈ 400 €" },
     { t: "Votre reporting, votre trésorerie à 12 mois et vos alertes, tenus à jour par Vyzor", v: "≈ 750 € / mois" },
     { t: "Vos données branchées avec vous, en visio", v: "Inclus" },
-    { t: "Une ligne directe avec les fondateurs, vos retours dans la roadmap", v: "Inclus" },
-    { t: "Votre tarif préférentiel bloqué à vie après la bêta", v: "Inclus" },
+    { t: "Une ligne directe avec les fondateurs", v: "Inclus" },
+    { t: "Votre tarif préférentiel bloqué à vie", v: "Inclus" },
   ];
 
   // Mode « modale seule » : pages qui ont leur propre bloc d'offre (ex. /cabinets).
@@ -898,7 +898,7 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
               fr: () => <React.Fragment>Devenez l'un des <span style={{ color: gold }}>{betaPlaces} premiers</span></React.Fragment>,
               en: () => <React.Fragment>Be one of the <span style={{ color: gold }}>first {betaPlaces}</span></React.Fragment>,
             })}
-            <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 400, fontStyle: "italic" }}> à façonner Vyzor.</span>
+            <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 400, fontStyle: "italic" }}> à profiter de Vyzor.</span>
           </h2>
         </div>
       </div>
@@ -920,7 +920,7 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
             Un DAF à temps partagé coûte à une PME 1 200 à 5 000 € HT par mois.
           </div>
           <div style={{ fontSize: 14, lineHeight: 1.65, color: muted }}>
-            Vyzor fait une bonne partie de ce travail de lecture. Pendant la bêta, c'est gratuit.
+            Vyzor fait une bonne partie de ce travail de lecture. Pour nos premiers clients, c'est offert.
           </div>
           <div style={{ fontSize: 14, lineHeight: 1.65, color: muted }}>
             Pourquoi gratuit ? Vos retours nous aident à finir le produit.
@@ -938,7 +938,7 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
             }}>{betaPlaces}</div>
             <div style={{
               fontSize: 15, color: muted, lineHeight: 1.4,
-            }}>places ouvertes.<br/>Une fois attribuées, la bêta ferme.</div>
+            }}>places ouvertes.<br/>Une fois attribuées, l'accès anticipé ferme.</div>
           </div>
         </BetaTiltCard>
 
@@ -978,7 +978,7 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
             display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12,
             paddingTop: 16, borderTop: `1px solid rgba(240,201,73,0.3)`,
           }}>
-            <span style={{ fontSize: 15, fontWeight: 600, color: "#fff" }}>Votre prix pendant la bêta</span>
+            <span style={{ fontSize: 15, fontWeight: 600, color: "#fff" }}>Votre prix pendant l'accès anticipé</span>
             <span style={{ fontSize: 34, fontWeight: 700, color: gold, letterSpacing: "-0.03em", lineHeight: 1 }}>0 €</span>
           </div>
         </BetaTiltCard>
@@ -994,7 +994,7 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
           className="vz-beta-cta"
           onClick={() => setOpen(true)}
         >
-          Réserver ma place dans la bêta
+          Essayer mon directeur financier
           <span aria-hidden="true" style={{ fontSize: 16, marginLeft: 2 }}>→</span>
         </button>
         <p style={{ margin: 0, maxWidth: 560, fontSize: 14, lineHeight: 1.6, color: muted, textWrap: "pretty" }}>

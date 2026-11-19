@@ -9,7 +9,7 @@ const VYZOR_FAQ_GROUPS = [
       { q: "À qui s'adresse VYZOR ?", a: "Avant tout aux dirigeants de PME qui utilisent Pennylane et veulent piloter sans être financiers. Vyzor sert aussi les DAF — internes, externalisés ou à temps partagé — qui veulent gagner du temps sur le reporting, et les experts-comptables qui veulent offrir un vrai pilotage financier à leurs clients." },
       { q: "Faut-il être expert en finance pour l'utiliser ?", a: "Non. Le Vyzor Score résume la santé financière de l'entreprise en une note sur 100, les alertes sont classées par impact en euros pour savoir quoi traiter en premier, et l'assistant IA répond à vos questions en langage courant." },
       { q: "VYZOR remplace-t-il mon expert-comptable ?", a: "Non. VYZOR ne tient pas votre comptabilité : il s'appuie sur celle produite par votre cabinet pour la transformer en outil de pilotage. Il est d'ailleurs co-conçu avec des professionnels du chiffre pour enrichir la relation de conseil entre le cabinet et ses clients." },
-      { q: "Comment accéder à VYZOR ?", a: "VYZOR est en accès anticipé (bêta), co-construit avec ses premiers utilisateurs : vous profitez des nouveautés en avant-première et vos retours orientent directement le produit. Demandez votre accès via le formulaire en bas de page." },
+      { q: "Comment accéder à VYZOR ?", a: "Vyzor ouvre un accès anticipé à un nombre limité d'entreprises : vous l'essayez gratuitement, en visio avec nous, sur vos propres chiffres. Prenez rendez-vous avec le bouton en bas de page." },
     ],
   },
   {

@@ -220,7 +220,7 @@ const IntegrationsPageBody = ({ gold, muted }) => (
       <section className="vzt-sec vz-reveal" aria-label="Liste des intégrations">
         <VzSectionHead a="Toutes nos intégrations," b="et où elles en sont." muted={muted} />
         <p style={{ margin: "-16px 0 36px", fontSize: 15, lineHeight: 1.6, color: muted, maxWidth: 760 }}>
-          <strong style={{ color: "#fff", fontWeight: 600 }}>Disponible</strong> : ouvert à tous. <strong style={{ color: "#fff", fontWeight: 600 }}>Sur demande</strong> : activé pour votre société pendant la bêta, sur simple demande. <strong style={{ color: "#fff", fontWeight: 600 }}>Bientôt</strong> : en préparation.
+          <strong style={{ color: "#fff", fontWeight: 600 }}>Disponible</strong> : ouvert à tous. <strong style={{ color: "#fff", fontWeight: 600 }}>Sur demande</strong> : activé pour votre société sur simple demande. <strong style={{ color: "#fff", fontWeight: 600 }}>Bientôt</strong> : en préparation.
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: 44 }}>
           {VZT_INTEGRATIONS.map((g) => (
@@ -261,7 +261,7 @@ const IntegrationsPageBody = ({ gold, muted }) => (
         <div className="vzt-2col" style={{ ...vztCard, padding: "36px 36px", display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 32, alignItems: "center", border: "1px solid rgba(240,201,73,0.22)" }}>
           <div>
             <h2 style={{ margin: 0, fontSize: 32, fontWeight: 600, letterSpacing: "-0.025em", lineHeight: 1.15, color: "#fff" }}>Votre logiciel n'est pas dans la liste ?</h2>
-            <p style={{ margin: "14px 0 0", fontSize: 16, lineHeight: 1.6, color: muted }}>Le FEC fonctionne avec tous les logiciels comptables. Pour le reste, dites-nous ce que vous utilisez : les prochains connecteurs suivent les demandes des utilisateurs de la bêta.</p>
+            <p style={{ margin: "14px 0 0", fontSize: 16, lineHeight: 1.6, color: muted }}>Le FEC fonctionne avec tous les logiciels comptables. Pour le reste, dites-nous ce que vous utilisez : les prochains connecteurs suivent les demandes de nos clients.</p>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "flex-end" }}>
             <a href="/?contact=1#beta" data-contact style={{ display: "inline-flex", alignItems: "center", padding: "14px 20px", borderRadius: 10, background: gold, color: "#111", fontSize: 15, fontWeight: 600, textDecoration: "none" }}>Prendre rendez-vous</a>
