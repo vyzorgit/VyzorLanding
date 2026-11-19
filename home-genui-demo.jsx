@@ -164,6 +164,8 @@ const HeroProductShot = () => {
         <defs>
           <radialGradient id="vzcHalo" cx="50%" cy="50%" r="50%"><stop offset="0" stopColor="#f0c949" stopOpacity="0.28" /><stop offset="1" stopColor="#f0c949" stopOpacity="0" /></radialGradient>
           <linearGradient id="vzcRing" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#f8df8a" /><stop offset="1" stopColor="#c99a2e" /></linearGradient>
+          <linearGradient id="vzcSuit" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#8a6624" /><stop offset="1" stopColor="#4f3a12" /></linearGradient>
+          <radialGradient id="vzcHead" cx="40%" cy="35%" r="70%"><stop offset="0" stopColor="#e6c98a" /><stop offset="1" stopColor="#b98d3e" /></radialGradient>
           <clipPath id="vzcClip"><circle cx="250" cy="215" r="84" /></clipPath>
         </defs>
         {/* Câble : vos données → votre directeur financier */}
@@ -179,8 +181,8 @@ const HeroProductShot = () => {
         <g clipPath="url(#vzcClip)">
           <circle cx="250" cy="215" r="84" fill="#1a2557" />
           {/* Le conseiller Vyzor : la tête, et le V du logo comme col et revers */}
-          <path d="M160 312 C164 262, 198 236, 250 234 C302 236, 336 262, 340 312 Z" fill="#26346f" />
-          <circle cx="250" cy="184" r="27" fill="#e7eaf7" />
+          <path d="M160 312 C164 262, 198 236, 250 234 C302 236, 336 262, 340 312 Z" fill="url(#vzcSuit)" />
+          <circle cx="250" cy="184" r="27" fill="url(#vzcHead)" />
           <g transform="translate(173 168)"><VyzorLogo size={154} color="#f0c949" /></g>
         </g>
         <circle cx="166" cy="215" r="9" fill="#0d1430" stroke="#f0c949" strokeWidth="2.5" />
