@@ -118,89 +118,81 @@ const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = fals
 };
 
 // —— Visuel du hero : capture réelle de l'app (page « Rapport investisseur », données de démonstration) ——
-// —— Illustration du hero (19/11/2026) : du casse-tête au fluide.
-// À gauche, vos données emmêlées (les nœuds) ; au centre, on branche Vyzor ; à droite, des flux
-// lisses qui montent : les leviers, des tâches fluides, de meilleures décisions. Le branchement
-// se joue une fois à l'arrivée (environ 1 s), puis les flux de droite circulent en continu.
-const VZK_KNOT = [
-  "M14 150 C78 150, 118 112, 160 168 S118 262, 88 222 S150 136, 200 198 S214 214, 226 210",
-  "M14 212 C72 212, 108 286, 150 244 S204 150, 130 158 S108 254, 182 252 S214 210, 226 210",
-  "M14 274 C92 274, 174 304, 172 232 S88 168, 118 138 S212 168, 190 222 S214 206, 226 210",
-];
-const VZK_FLOW = [
-  "M318 210 C380 210, 420 150, 526 118",
-  "M318 210 C384 210, 430 196, 526 188",
-  "M318 210 C380 210, 424 262, 526 262",
-];
+// —— Illustration du hero (19/11/2026) : le texte du hero, mis en image.
+// Au centre, votre directeur financier ; à gauche, vos données, branchées sur lui ; autour, ce
+// qu'il fait : il analyse en temps réel, automatise vos tâches, vous dit quel levier actionner.
+const VzCfoIcon = ({ name }) => {
+  const p = { width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "#f0c949", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true };
+  if (name === "pulse") return <svg {...p}><path d="M2 12h4l3-8 4 16 3-8h6" /></svg>;
+  if (name === "auto") return <svg {...p}><path d="M21 12a9 9 0 1 1-3-6.7" /><path d="M21 4v5h-5" /><path d="M8.5 12.5l2.5 2.5 4.5-5" /></svg>;
+  if (name === "lever") return <svg {...p}><path d="M3 17l6-6 4 4 8-8" /><path d="M15 7h6v6" /></svg>;
+  return <svg {...p}><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" /></svg>;
+};
 const HeroProductShot = () => {
-  const g = "#f0c949";
+  const card = (cls, icon, title, sub, hi) => (
+    <div className={`vzc-card ${cls}`} style={hi ? { borderColor: "rgba(240,201,73,0.55)", background: "rgba(240,201,73,0.08)" } : null}>
+      <span className="vzc-ic"><VzCfoIcon name={icon} /></span>
+      <span><span className="vzc-t">{title}</span>{sub ? <span className="vzc-s">{sub}</span> : null}</span>
+    </div>
+  );
   return (
-    <div className="vz-knot" aria-hidden="true">
+    <div className="vzc" aria-hidden="true">
       <style>{`
-        .vz-knot { position: relative; width: 100%; max-width: 600px; margin: 0 auto; }
-        .vz-knot svg { display: block; width: 100%; height: auto; overflow: visible; }
-        @keyframes vzkPlug { from { transform: translateX(-26px); } to { transform: none; } }
-        @keyframes vzkFlash { 0% { opacity: 0; transform: scale(0.6); } 40% { opacity: 1; } 100% { opacity: 0.55; transform: scale(1); } }
-        @keyframes vzkDraw { from { stroke-dashoffset: 260; } to { stroke-dashoffset: 0; } }
-        @keyframes vzkFlow { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
-        @keyframes vzkMess { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -60; } }
-        @keyframes vzkPop { 0% { opacity: 0; transform: scale(0.4); } 100% { opacity: 1; transform: scale(1); } }
-        @keyframes vzkBreath { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.9; } }
-        .vz-knot .plug { animation: vzkPlug 650ms cubic-bezier(0.22,1,0.36,1) 400ms both; }
-        .vz-knot .halo { transform-box: fill-box; transform-origin: center; animation: vzkFlash 900ms ease-out 1000ms both, vzkBreath 3.6s ease-in-out 2s infinite; }
-        .vz-knot .draw { stroke-dasharray: 260; animation: vzkDraw 900ms cubic-bezier(0.22,1,0.36,1) both; }
-        .vz-knot .flow { stroke-dasharray: 4 16; animation: vzkFlow 1.2s linear infinite; }
-        .vz-knot .mess { stroke-dasharray: 3 9; animation: vzkMess 3s linear infinite; }
-        .vz-knot .end { transform-box: fill-box; transform-origin: center; animation: vzkPop 400ms cubic-bezier(0.22,1,0.36,1) both; }
-        @media (prefers-reduced-motion: reduce) { .vz-knot * { animation: none !important; } }
+        .vzc { position: relative; width: 100%; max-width: 520px; aspect-ratio: 520 / 430; margin: 0 auto; font-family: "Inter", system-ui, sans-serif; text-align: left; }
+        .vzc > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+        .vzc-card { position: absolute; display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 10px; border-radius: 14px; background: #111936; border: 1px solid rgba(140,160,255,0.22); box-shadow: 0 18px 40px -18px rgba(0,0,0,0.85); white-space: nowrap; }
+        .vzc-ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: rgba(240,201,73,0.10); flex-shrink: 0; }
+        .vzc-t { display: block; font-size: 14px; font-weight: 600; color: #fff; }
+        .vzc-s { display: block; font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 1px; }
+        .vzc .c-data { left: 0; top: 50%; transform: translateY(-50%); }
+        .vzc .c-ana { right: 0; top: 6%; }
+        .vzc .c-auto { right: -2%; top: 43%; }
+        .vzc .c-lev { right: 4%; bottom: 4%; }
+        .vzc-live { width: 7px; height: 7px; border-radius: 99px; background: #2dd4bf; display: inline-block; margin-left: 7px; vertical-align: 1px; }
+        @keyframes vzcIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        @keyframes vzcFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+        @keyframes vzcLive { 0%, 100% { box-shadow: 0 0 0 0 rgba(45,212,191,0.55); } 70% { box-shadow: 0 0 0 7px rgba(45,212,191,0); } }
+        @keyframes vzcFlow { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
+        .vzc .c-ana, .vzc .c-auto, .vzc .c-lev { animation: vzcIn 600ms cubic-bezier(0.22,1,0.36,1) both, vzcFloat 5s ease-in-out infinite; }
+        .vzc .c-ana { animation-delay: 700ms, 1.4s; } .vzc .c-auto { animation-delay: 950ms, 2.2s; } .vzc .c-lev { animation-delay: 1200ms, 3s; }
+        .vzc-live { animation: vzcLive 1.8s ease-out infinite; }
+        .vzc .flow { stroke-dasharray: 4 12; animation: vzcFlow 1.4s linear infinite; }
+        @media (max-width: 560px) { .vzc-t { font-size: 11.5px; } .vzc-s { display: none; } .vzc-ic { width: 28px; height: 28px; } .vzc-card { padding: 7px 10px 7px 7px; gap: 7px; } }
+        @media (prefers-reduced-motion: reduce) { .vzc * { animation: none !important; } }
       `}</style>
-      <svg viewBox="0 70 540 280" role="presentation">
+      <svg viewBox="0 0 520 430" preserveAspectRatio="xMidYMid meet">
         <defs>
-          <radialGradient id="vzkHalo" cx="50%" cy="50%" r="50%">
-            <stop offset="0" stopColor="#f0c949" stopOpacity="0.45" />
-            <stop offset="1" stopColor="#f0c949" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id="vzkCore" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#f8df8a" /><stop offset="1" stopColor="#c99a2e" /></linearGradient>
-          <linearGradient id="vzkFade" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stopColor="#f0c949" stopOpacity="0.95" /><stop offset="1" stopColor="#f6d978" stopOpacity="1" /></linearGradient>
+          <radialGradient id="vzcHalo" cx="50%" cy="50%" r="50%"><stop offset="0" stopColor="#f0c949" stopOpacity="0.28" /><stop offset="1" stopColor="#f0c949" stopOpacity="0" /></radialGradient>
+          <linearGradient id="vzcRing" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#f8df8a" /><stop offset="1" stopColor="#c99a2e" /></linearGradient>
+          <clipPath id="vzcClip"><circle cx="250" cy="215" r="84" /></clipPath>
         </defs>
-
-        {/* Le casse-tête : des données emmêlées, des nœuds */}
-        {VZK_KNOT.map((d, i) => (
-          <g key={i}>
-            <path d={d} fill="none" stroke="rgba(150,165,220,0.42)" strokeWidth="2" strokeLinecap="round" />
-            <path className="mess" d={d} fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2" strokeLinecap="round" style={{ animationDelay: `${i * 0.4}s` }} />
-          </g>
+        {/* Câble : vos données → votre directeur financier */}
+        <path d="M118 215 H166" stroke="rgba(140,160,255,0.3)" strokeWidth="2.5" />
+        <path className="flow" d="M118 215 H166" stroke="#f0c949" strokeWidth="2.5" />
+        {/* Liens vers ce qu'il fait */}
+        {["M318 170 C350 120, 370 70, 392 62", "M334 215 C360 215, 372 220, 392 222", "M318 262 C350 300, 368 350, 392 360"].map((d, i) => (
+          <g key={i}><path d={d} fill="none" stroke="rgba(240,201,73,0.35)" strokeWidth="2" /><path className="flow" d={d} fill="none" stroke="#f0c949" strokeWidth="2" style={{ animationDelay: `${i * 0.3}s` }} /></g>
         ))}
-        {[[146, 196], [122, 218], [172, 238], [160, 160]].map(([x, y], i) => (
-          <g key={i} stroke="#f0905a" strokeWidth="2.2" strokeLinecap="round" opacity="0.85">
-            <path d={`M${x - 5} ${y - 5} L${x + 5} ${y + 5} M${x + 5} ${y - 5} L${x - 5} ${y + 5}`} />
-          </g>
-        ))}
-
-        {/* On branche Vyzor */}
-        <circle className="halo" cx="280" cy="210" r="96" fill="url(#vzkHalo)" />
-        <g className="plug">
-          <path d="M224 210 H246" stroke="#2c3b86" strokeWidth="8" strokeLinecap="round" />
-          <rect x="242" y="199" width="12" height="22" rx="4" fill={g} />
-          <path d="M254 203 H260 M254 217 H260" stroke={g} strokeWidth="3" strokeLinecap="round" />
+        {/* Votre directeur financier */}
+        <circle cx="250" cy="215" r="140" fill="url(#vzcHalo)" />
+        <circle cx="250" cy="215" r="90" fill="#141d47" stroke="url(#vzcRing)" strokeWidth="4" />
+        <g clipPath="url(#vzcClip)">
+          <circle cx="250" cy="215" r="84" fill="#1a2557" />
+          <path d="M170 320 C176 262, 210 244, 250 244 C290 244, 324 262, 330 320 Z" fill="#26346f" />
+          <path d="M232 246 L250 284 L268 246 Z" fill="#eef1ff" />
+          <path d="M246 252 L254 252 L257 286 L250 296 L243 286 Z" fill="#f0c949" />
+          <path d="M226 246 L250 300 L232 312 L214 252 Z M274 246 L250 300 L268 312 L286 252 Z" fill="#1d2a60" />
+          <rect x="240" y="212" width="20" height="36" rx="9" fill="#d9deef" />
+          <ellipse cx="250" cy="192" rx="28" ry="32" fill="#e7eaf7" />
+          <path d="M221 186 C219 164, 234 156, 251 156 C270 156, 281 168, 279 186 C273 176, 262 172, 250 174 C238 172, 228 176, 221 186 Z" fill="#2a2f45" />
         </g>
-        <circle cx="282" cy="210" r="30" fill="url(#vzkCore)" stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" />
-        <g transform="translate(266 194)"><VyzorLogo size={32} color="#0d1430" /></g>
-
-        {/* Le fluide : des flux lisses qui montent */}
-        {VZK_FLOW.map((d, i) => (
-          <g key={i}>
-            <path className="draw" d={d} fill="none" stroke="url(#vzkFade)" strokeWidth="2.6" strokeLinecap="round" style={{ animationDelay: `${1.25 + i * 0.12}s` }} />
-            <path className="flow" d={d} fill="none" stroke="#fff" strokeOpacity="0.75" strokeWidth="2.6" strokeLinecap="round" style={{ animationDelay: `${2.2 + i * 0.15}s` }} />
-          </g>
-        ))}
-        <g className="end" style={{ animationDelay: "2.05s" }}>
-          <path d="M512 112 L528 117 L522 132" fill="none" stroke={g} strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
-        </g>
-        {[[526, 188], [526, 262]].map(([x, y], i) => (
-          <circle key={i} className="end" cx={x} cy={y} r="5.5" fill="#0d1430" stroke={g} strokeWidth="2.6" style={{ animationDelay: `${2.15 + i * 0.1}s` }} />
-        ))}
+        <circle cx="166" cy="215" r="9" fill="#0d1430" stroke="#f0c949" strokeWidth="2.5" />
+        <path d="M162 212 V218 M170 212 V218" stroke="#f0c949" strokeWidth="2" strokeLinecap="round" />
       </svg>
+      {card("c-data", "data", "Vos données", "Compta, banque")}
+      {card("c-ana", "pulse", <>Analyse en temps réel<span className="vzc-live" /></>, null)}
+      {card("c-auto", "auto", "Tâches automatisées", null)}
+      {card("c-lev", "lever", "Le levier du jour", "Quoi faire, maintenant", true)}
     </div>
   );
 };

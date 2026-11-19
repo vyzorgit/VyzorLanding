@@ -298,7 +298,7 @@ const CinematicHero = () => {
           .vz-hero-cta-row { justify-content: center; }
           .vz-hero-visual { order: -1; max-width: 300px; width: 70%; margin: 0 auto; }
         }
-        @media (max-width: 560px) { .vz-hero-visual { max-width: 290px; width: 85%; } .vz-hero-sub { font-size: 15.5px; } }
+        @media (max-width: 560px) { .vz-hero-visual { max-width: 370px; width: 100%; } .vz-hero-sub { font-size: 15.5px; } }
         .vz-hero-h1 { font-size: clamp(34px, 3.7vw, 54px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
         .vz-hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 0%, #1b2860 0%, #101a42 32%, rgba(10,16,38,0) 72%); }
         .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
