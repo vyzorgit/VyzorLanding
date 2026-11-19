@@ -116,7 +116,7 @@ function shell({ css, mark }, { title, description, canonical, ogType, jsonld, b
     <a class="nav-link calc-nav-links" href="/calculateurs">Calculateurs</a>
     <a class="nav-link active calc-nav-links" href="/guides">Guides</a>
     <span class="nav-sep calc-nav-links"></span>
-    <a class="nav-cta" href="/?contact=1#beta" data-contact>Rejoindre la bêta</a>
+    <a class="nav-cta" href="/?contact=1#beta" data-contact>Prendre rendez-vous</a>
   </nav>
   <div class="shell calc-shell">
     <main id="contenu" tabindex="-1">

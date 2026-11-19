@@ -78,7 +78,7 @@ const VZ_OBJECTIONS = [
   { q: "Est-ce que ça remplace mon expert-comptable ?", a: "Non. Vyzor ne tient pas votre comptabilité : il lit le travail de votre cabinet et le transforme en décisions. Votre comptable garde son rôle, vous gagnez la lecture." },
   { q: "Mes données sont-elles en sécurité ?", a: "Vyzor accède à votre comptabilité en lecture seule : il ne modifie, n'écrit ni ne supprime rien. Les données sont chiffrées, hébergées dans l'Union européenne, et ne servent jamais à entraîner une IA. Vous coupez l'accès en un clic." },
   { q: "Combien de temps ça me prend ?", a: "Quelques minutes pour connecter Pennylane, et on le fait avec vous au premier rendez-vous. Ensuite, Vyzor travaille seul : vous n'avez rien à saisir." },
-  { q: "Et après la bêta, combien ça coûte ?", a: "La bêta est gratuite. Le tarif sera annoncé avant sa fin, et les bêta-testeurs gardent un tarif préférentiel à vie. Aucun engagement : vous partez quand vous voulez." },
+  { q: "Et après l'accès anticipé, combien ça coûte ?", a: "L'accès anticipé est offert. Le tarif sera annoncé avant sa fin, et nos premiers clients gardent un tarif préférentiel à vie. Aucun engagement : vous partez quand vous voulez." },
 ];
 
 const ObjectionsSection = ({ id = "questions", gold, muted, items = VZ_OBJECTIONS }) => {
@@ -144,7 +144,7 @@ const FinalCtaSection = ({ gold, muted }) => (
       Vyzor ouvre {VZ_BETA.places} places de bêta : gratuit, avec vos vrais chiffres et une ligne directe avec les fondateurs.
     </p>
     <div style={{ position: "relative", marginTop: 32 }}>
-      <VzCtaLink size="lg">Réserver ma place dans la bêta</VzCtaLink>
+      <VzCtaLink size="lg">Essayer mon directeur financier</VzCtaLink>
     </div>
   </section>
 );
@@ -169,7 +169,7 @@ const StickyBetaCta = ({ label = "Essayer gratuitement" }) => {
   }, []);
   return (
     <div className="vz-sticky" data-show={show ? "true" : "false"} aria-hidden={!show}>
-      <span className="vz-sticky-txt">Bêta gratuite · {VZ_BETA.places} places</span>
+      <span className="vz-sticky-txt">Accès anticipé · {VZ_BETA.places} places</span>
       <a href="/?contact=1#beta" data-contact tabIndex={show ? 0 : -1}>{label} <span aria-hidden="true">→</span></a>
       <style>{`
         .vz-sticky { position: fixed; left: 50%; bottom: 18px; z-index: 900; display: flex; align-items: center; gap: 14px;
@@ -193,7 +193,7 @@ const StickyBetaCta = ({ label = "Essayer gratuitement" }) => {
 // —— 5. Qui est derrière : des visages, une raison, un engagement ——
 const VZ_FOUNDERS = [
   { name: "Antoine Cayer", role: "Co-fondateur", img: "/img/fondateur-antoine.webp",
-    bio: "MSc Data for Finance, Mines Paris–PSL. Passé par Air Liquide et LVMH." },
+    bio: "MSc Data for Finance, Mines Paris–PSL. Passé par Air Liquide, LVMH et le ministère des Armées. Militaire dans les troupes de marine." },
   { name: "Louis Chevalier", role: "Co-fondateur", img: "/img/fondateur-louis.webp",
     bio: "MSc Data for Finance, Mines Paris–PSL. Passé par Natixis CIB et Kano." },
 ];
@@ -209,7 +209,7 @@ const FoundersSection = ({ id = "fondateurs", gold, muted }) => (
     }}>
       <div>
         <h2 style={{ fontSize: 40, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.1, color: "#fff" }}>
-          Pendant la bêta, <span style={{ color: gold }}>c'est nous que vous avez au téléphone.</span>
+          Avec nous, <span style={{ color: gold }}>ce sont les fondateurs que vous avez au téléphone.</span>
         </h2>
         <p style={{ margin: "20px 0 0", fontSize: 16, lineHeight: 1.65, color: muted, maxWidth: 480, textWrap: "pretty" }}>
           Les grands groupes ont des équipes entières pour lire leurs chiffres. Les PME ont un bilan par an.
@@ -276,7 +276,7 @@ const TeamPageBody = ({ gold, muted }) => (
         <p style={{ margin: "18px 0 0", fontSize: 17, lineHeight: 1.7, color: muted }}>
           Vyzor est né d'un hackathon avec Google. Depuis, il est accompagné par l'incubateur Prodiges
           et construit avec un panel de DAF qui le testent sur leurs propres chiffres.
-          Pendant la bêta, les premiers utilisateurs parlent directement aux fondateurs.
+          Nos premiers clients parlent directement aux fondateurs.
         </p>
       </section>
 

@@ -186,7 +186,7 @@ const MentionsLegales = () => (
       <P>
         Les informations contenues sur ce Site sont aussi précises que possible et le Site est périodiquement remis à jour.
         Toutefois, il peut contenir des inexactitudes, des omissions ou des lacunes. Les services de VYZOR (notamment en
-        phase de Bêta) constituent des outils d'aide à la décision. L'Utilisateur, particulièrement s'il agit en tant que
+        phase d'accès anticipé) constituent des outils d'aide à la décision. L'Utilisateur, particulièrement s'il agit en tant que
         professionnel du chiffre, conserve l'entière responsabilité de l'exploitation des données et des conseils financiers
         prodigués à ses propres clients.
       </P>
@@ -247,9 +247,9 @@ const PolitiqueConfidentialite = () => (
 
     <LegalArticle n="03" id="donnees" title="Données collectées sur le Site">
       <Bullets items={[
-        <span><Strong>Demande de rendez-vous et candidature à la bêta</Strong> (questionnaire « Préparons votre rendez-vous ») : nom et prénom, adresse email professionnelle, téléphone (facultatif), nom de l'entreprise ou du cabinet, profil, puis des informations sur la structure et ses besoins (secteur, tranche de chiffre d'affaires, effectif, nombre de sociétés ou de dossiers, logiciel comptable, façon de suivre les chiffres, priorités, délai, texte libre facultatif, origine de la visite). Ces réponses servent à préparer le rendez-vous et à prioriser les demandes ; aucune décision automatique n'est prise à partir d'elles.</span>,
+        <span><Strong>Demande de rendez-vous et d'accès anticipé</Strong> (questionnaire « Préparons votre rendez-vous ») : nom et prénom, adresse email professionnelle, téléphone (facultatif), nom de l'entreprise ou du cabinet, profil, puis des informations sur la structure et ses besoins (secteur, tranche de chiffre d'affaires, effectif, nombre de sociétés ou de dossiers, logiciel comptable, façon de suivre les chiffres, priorités, délai, texte libre facultatif, origine de la visite). Ces réponses servent à préparer le rendez-vous et à prioriser les demandes ; aucune décision automatique n'est prise à partir d'elles.</span>,
         <span><Strong>Demandes par courriel</Strong> adressées à admin@vyzor.fr : votre adresse email et le contenu de votre message.</span>,
-        <span><Strong>Prise de rendez-vous</Strong> : après l'envoi du formulaire bêta, le lien « Choisir mon créneau » renvoie vers Calendly, service tiers qui collecte vos données sur son propre site, selon sa propre politique.</span>,
+        <span><Strong>Prise de rendez-vous</Strong> : après l'envoi du formulaire, le lien « Choisir mon créneau » renvoie vers Calendly, service tiers qui collecte vos données sur son propre site, selon sa propre politique.</span>,
         <span><Strong>Journaux techniques de l'hébergeur</Strong> : adresse IP, type de navigateur, page demandée et horodatage, conservés par Vercel à des fins de sécurité et de fonctionnement du service.</span>,
         <span><Strong>Calculateurs</Strong> : les valeurs saisies sont traitées dans votre navigateur et ne sont pas transmises à VYZOR. Pour afficher le résultat détaillé, votre adresse email professionnelle est demandée ; seuls l'email et la page d'origine sont enregistrés.</span>,
         <span><Strong>Inscription aux guides</Strong> (formulaire des pages Guides) : adresse email professionnelle et page d'origine.</span>,
@@ -261,7 +261,7 @@ const PolitiqueConfidentialite = () => (
 
     <LegalArticle n="04" id="finalites" title="Finalités et bases légales">
       <Bullets items={[
-        <span><Strong>Traiter votre candidature à la bêta et vous recontacter</Strong> — base légale : mesures précontractuelles prises à votre demande (article 6.1.b du RGPD).</span>,
+        <span><Strong>Traiter votre demande d'accès anticipé et vous recontacter</Strong> — base légale : mesures précontractuelles prises à votre demande (article 6.1.b du RGPD).</span>,
         <span><Strong>Répondre à vos demandes</Strong> envoyées par courriel — base légale : mesures précontractuelles ou intérêt légitime de VYZOR à répondre aux personnes qui la sollicitent (article 6.1.f).</span>,
         <span><Strong>Assurer la sécurité et le bon fonctionnement du Site</Strong> (journaux techniques) — base légale : intérêt légitime (article 6.1.f).</span>,
         <span><Strong>Afficher le Site</Strong> (chargement des polices) — base légale : intérêt légitime (article 6.1.f).</span>,
@@ -273,7 +273,7 @@ const PolitiqueConfidentialite = () => (
       <P>Les données du Site sont accessibles à l'équipe fondatrice de VYZOR et aux prestataires suivants :</P>
       <Bullets items={[
         <span><Strong>Vercel, Inc.</Strong> (États-Unis) : hébergement du Site et journaux techniques. Transfert hors UE encadré par les clauses contractuelles types de la Commission européenne <Todo>À CONFIRMER : certification Data Privacy Framework</Todo>.</span>,
-        <span><Strong>Web3Forms</Strong> <Todo>À REMPLIR : raison sociale, pays</Todo> : acheminement des candidatures bêta et des adresses laissées sur les calculateurs et les guides vers la boîte email de VYZOR, sans exploitation pour son propre compte. <Todo>À CONFIRMER : localisation des serveurs et garanties de transfert</Todo>.</span>,
+        <span><Strong>Web3Forms</Strong> <Todo>À REMPLIR : raison sociale, pays</Todo> : acheminement des demandes de rendez-vous et des adresses laissées sur les calculateurs et les guides vers la boîte email de VYZOR, sans exploitation pour son propre compte. <Todo>À CONFIRMER : localisation des serveurs et garanties de transfert</Todo>.</span>,
         <span><Strong>Calendly, LLC</Strong> (États-Unis) : uniquement si vous prenez rendez-vous, sur le site de Calendly.</span>,
         <span><Strong>Fournisseur de messagerie de VYZOR</Strong> <Todo>À REMPLIR : nom du service de messagerie recevant admin@vyzor.fr</Todo> : réception et stockage des candidatures et des courriels.</span>,
       ]} />
@@ -285,9 +285,9 @@ const PolitiqueConfidentialite = () => (
 
     <LegalArticle n="06" id="durees" title="Durées de conservation">
       <Bullets items={[
-        <span><Strong>Candidatures bêta et échanges par courriel</Strong> : 3 ans à compter du dernier contact de votre part, puis suppression.</span>,
+        <span><Strong>Demandes de rendez-vous et échanges par courriel</Strong> : 3 ans à compter du dernier contact de votre part, puis suppression.</span>,
         <span><Strong>Inscrits aux guides</Strong> : jusqu'à votre opposition, ou 3 ans sans contact de votre part, puis suppression.</span>,
-        <span><Strong>Comptes créés à l'issue de la bêta</Strong> : durées définies par la politique de confidentialité de l'application.</span>,
+        <span><Strong>Comptes créés dans l'application</Strong> : durées définies par la politique de confidentialité de l'application.</span>,
         <span><Strong>Journaux techniques de l'hébergeur</Strong> : 12 mois au plus <Todo>À CONFIRMER : durée de rétention effective chez Vercel</Todo>.</span>,
       ]} />
     </LegalArticle>
@@ -327,7 +327,7 @@ const PolitiqueConfidentialite = () => (
         partage traçant). Inventaire des ressources tierces chargées par le Site :
       </P>
       <Bullets items={[
-        <span><Strong>api.web3forms.com</Strong> : appelé uniquement lorsque vous envoyez le formulaire de candidature bêta, le questionnaire de préparation d'un rendez-vous, ou une adresse email sur un calculateur ou une page Guides.</span>,
+        <span><Strong>api.web3forms.com</Strong> : appelé uniquement lorsque vous envoyez le formulaire de rendez-vous, le questionnaire de préparation d'un rendez-vous, ou une adresse email sur un calculateur ou une page Guides.</span>,
         <span><Strong>calendly.com, linkedin.com</Strong> : simples liens sortants, aucun script de ces services n'est chargé sur le Site.</span>,
       ]} />
       <P>

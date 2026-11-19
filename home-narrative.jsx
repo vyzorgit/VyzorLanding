@@ -51,9 +51,9 @@ const HomeProof = () => {
   ];
   return (
     <section className="vz-hproof" aria-label="Témoignages" style={{ marginBottom: 72 }}>
-      <div className="vz-hproof-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40 }}>
+      <div className="vz-hproof-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
         {items.map((t) => (
-          <figure key={t.name} style={{ margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+          <figure key={t.name} style={{ margin: 0, padding: "20px 22px", borderRadius: 16, background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)", border: "1px solid rgba(140,160,255,0.14)", display: "flex", flexDirection: "column", gap: 14 }}>
             <blockquote style={{ margin: 0, fontSize: 16, lineHeight: 1.5, color: "#fff", textWrap: "pretty" }}>
               <span aria-hidden="true" style={{ color: VZH.gold, fontWeight: 700, marginRight: 4 }}>«</span>{t.q}<span aria-hidden="true" style={{ color: VZH.gold, fontWeight: 700, marginLeft: 4 }}>»</span>
             </blockquote>
@@ -68,8 +68,8 @@ const HomeProof = () => {
         ))}
       </div>
       <style>{`@media (max-width: 640px) {
-        .vz-hproof .vz-hproof-grid { gap: 16px !important; }
-        .vz-hproof figure { gap: 8px !important; }
+        .vz-hproof .vz-hproof-grid { gap: 8px !important; }
+        .vz-hproof figure { padding: 12px !important; gap: 10px !important; border-radius: 12px !important; }
         .vz-hproof blockquote { font-size: 12.5px !important; line-height: 1.45 !important; }
         .vz-hproof img { display: none; }
         .vz-hproof-name { font-size: 12px !important; min-height: 0 !important; padding: 0 !important; display: block !important; }
@@ -90,7 +90,7 @@ const HomeSteps = ({ id = "comment" }) => {
     <section id={id} className="vz-hsteps" style={{ position: "relative", marginBottom: 56 }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 18 }}>
         <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Essayez votre directeur financier en 30 minutes, avec nous.</h2>
-        <span className="vz-hsteps-sub" style={{ fontSize: 13.5, color: VZH.muted }}>En visio · gratuit pendant la bêta · l'IA ne fait jamais les calculs</span>
+        <span className="vz-hsteps-sub" style={{ fontSize: 13.5, color: VZH.muted }}>En visio · accès anticipé offert · l'IA ne fait jamais les calculs</span>
       </div>
       <ol className="vz-hsteps-row" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 14 }}>
         {steps.map((s, i) => (
@@ -119,19 +119,19 @@ const HomeSteps = ({ id = "comment" }) => {
 const HomeFinalCta = () => (
   <section className="vz-final" style={{
     position: "relative", overflow: "hidden", textAlign: "center",
-    margin: "0 0 40px", padding: "72px clamp(20px, 5vw, 64px)", borderRadius: 28,
+    margin: "0 0 40px", padding: "52px clamp(20px, 5vw, 56px)", borderRadius: 24,
     background: "radial-gradient(ellipse 70% 90% at 50% 0%, #1a2656 0%, #0f1636 45%, #0a0f24 100%)",
     border: "1px solid rgba(140,160,255,0.18)",
   }}>
-    <h2 style={{ position: "relative", margin: "0 auto", maxWidth: 820, fontSize: "clamp(30px, 4.2vw, 50px)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff", textWrap: "balance" }}>
+    <h2 style={{ position: "relative", margin: "0 auto", maxWidth: 820, fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, letterSpacing: "-0.025em", lineHeight: 1.15, color: "#fff", textWrap: "balance" }}>
       Quel levier actionner ce mois-ci ?{" "}
       <span style={{ color: VZH.gold }}>Posez la question à votre directeur financier, sur vos propres chiffres.</span>
     </h2>
     <p style={{ position: "relative", margin: "22px auto 0", maxWidth: 560, fontSize: 17, lineHeight: 1.6, color: VZH.muted }}>
-      En 30 minutes, vous repartez avec votre premier tableau de bord. Gratuit pendant la bêta.
+      En 30 minutes, vous repartez avec votre premier tableau de bord. L'accès anticipé vous est offert.
     </p>
     <div style={{ position: "relative", marginTop: 32 }}>
-      <VzCtaLink size="lg">Essayer mon directeur financier</VzCtaLink>
+      <VzCtaLink>Essayer mon directeur financier</VzCtaLink>
     </div>
   </section>
 );
