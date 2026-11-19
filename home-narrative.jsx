@@ -35,7 +35,7 @@ const HomeDemo = ({ id = "produit" }) => (
         Demandez à votre directeur financier les indicateurs dont vous avez besoin. Votre tableau de bord se construit en temps réel, avec les actions à mener, et arrive dans votre boîte mail chaque matin.
       </p>
     </div>
-    <GenUiVideo />
+    <div style={{ maxWidth: 920, margin: "0 auto" }}><GenUiVideo /></div>
     <style>{`
       @media (max-width: 920px) { .vz-hdemo h2 { font-size: 34px !important; } }
       @media (max-width: 560px) { .vz-hdemo h2 { font-size: 26px !important; } .vz-hdemo p { font-size: 16px !important; } }
