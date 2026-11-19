@@ -279,7 +279,7 @@ const CinematicHero = () => {
       background: "#0a1026", color: text,
       fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif',
       display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-      textAlign: "center", padding: "150px 0 56px", overflow: "hidden",
+      textAlign: "center", padding: "132px 0 72px", overflow: "hidden",
     }}>
       <style>{`
         @keyframes vzHeroIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -288,45 +288,55 @@ const CinematicHero = () => {
         .vz-btn-primary:hover { background-color: #f4d468 !important; }
         .vz-btn-ghost { transition: border-color 160ms ease, background-color 160ms ease; }
         .vz-btn-ghost:hover { border-color: rgba(255,255,255,0.32) !important; background-color: rgba(255,255,255,0.04) !important; }
-        .vz-hero-h1 { font-size: clamp(34px, 5vw, 68px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
+        .vz-hero-grid { position: relative; z-index: 1; width: 100%; max-width: 1320px; padding: 0 clamp(20px, 4vw, 56px); display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); gap: clamp(36px, 5vw, 72px); align-items: center; text-align: left; }
+        .vz-hero-sub { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; color: rgba(255,255,255,0.62); max-width: 560px; margin: clamp(20px, 2.4vw, 28px) 0 0; text-wrap: pretty; }
+        .vz-hero-cta-row { display: flex; align-items: center; gap: 12px; margin-top: clamp(26px, 2.6vw, 34px); flex-wrap: wrap; }
+        .vz-hero-micro { margin: 16px 0 0; font-size: 13.5px; color: rgba(255,255,255,0.5); text-wrap: balance; }
+        @media (max-width: 980px) {
+          .vz-hero-grid { grid-template-columns: minmax(0,1fr); text-align: center; gap: 40px; }
+          .vz-hero-sub { margin-left: auto; margin-right: auto; }
+          .vz-hero-cta-row { justify-content: center; }
+          .vz-hero-visual { max-width: 520px; width: 100%; margin: 0 auto; }
+        }
+        @media (max-width: 560px) {
+          .vz-hero-grid { gap: 28px; }
+          .vz-hero-sub { font-size: 15.5px; margin-top: 16px; }
+          .vz-hero-cta-row { margin-top: 20px; }
+          .vz-hero-micro { font-size: 12.5px; margin-top: 12px; }
+        }
+        .vz-hero-h1 { font-size: clamp(34px, 4vw, 58px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 0; color: #fff; text-wrap: balance; }
         .vz-hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 75% 70% at 50% 0%, #1b2860 0%, #101a42 32%, rgba(10,16,38,0) 72%); }
         .vz-hero-stage a:focus-visible { outline: 2px solid #f0c949; outline-offset: 3px; }
-        @media (max-width: 720px) { .vz-hero-stage { padding: 132px 0 48px !important; } }
+        @media (max-width: 720px) { .vz-hero-stage { padding: 108px 0 48px !important; } }
         @media (prefers-reduced-motion: reduce) { .vz-hero-in { animation: none !important; } }
       `}</style>
       <span aria-hidden="true" className="vz-hero-glow" />
-      <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 1040, padding: "0 24px" }}>
-        <h1 className="vz-hero-h1 vz-hero-in" style={{ animationDelay: "80ms" }}>
-          Un directeur financier d'exception,{" "}
-          <span style={{ color: gold, display: "block" }}>sans en recruter un.</span>
-        </h1>
-        <p className="vz-hero-in" style={{
-          fontSize: "clamp(17px, 1.6vw, 20px)", lineHeight: 1.6, color: muted,
-          maxWidth: 700, margin: "clamp(24px, 3vw, 32px) auto 0", textWrap: "pretty",
-          animationDelay: "180ms",
-        }}>
-          Votre directeur financier se branche sur vos données : il les analyse en temps réel, automatise vos tâches financières{" "}
-          <span style={{ color: text }}>et vous dit quel levier actionner aujourd'hui</span>.
-        </p>
-        <div className="vz-hero-cta-row vz-hero-in" style={{
-          display: "flex", alignItems: "center", justifyContent: "center",
-          gap: 12, marginTop: "clamp(30px, 3vw, 38px)", flexWrap: "wrap", animationDelay: "260ms",
-        }}>
-          <a className="vz-hero-cta-primary vz-btn-primary" href="/?contact=1#beta" data-contact style={{
-            display: "inline-flex", alignItems: "center", gap: 10,
-            padding: "15px 26px", borderRadius: 10,
-            backgroundColor: gold, color: "#0d1430",
-            fontWeight: 600, fontSize: 15.5, textDecoration: "none",
-          }}>
-            Essayer mon directeur financier <span aria-hidden="true">→</span>
-          </a>
+      <div className="vz-hero-grid">
+        <div className="vz-hero-copy">
+          <h1 className="vz-hero-h1 vz-hero-in" style={{ animationDelay: "80ms" }}>
+            Un directeur financier d'exception,{" "}
+            <span style={{ color: gold, display: "block" }}>sans en recruter un.</span>
+          </h1>
+          <p className="vz-hero-sub vz-hero-in" style={{ animationDelay: "180ms" }}>
+            Votre directeur financier se branche sur vos données : il les analyse en temps réel, automatise vos tâches financières{" "}
+            <span style={{ color: text }}>et vous dit quel levier actionner aujourd'hui</span>.
+          </p>
+          <div className="vz-hero-cta-row vz-hero-in" style={{ animationDelay: "260ms" }}>
+            <a className="vz-hero-cta-primary vz-btn-primary" href="/?contact=1#beta" data-contact style={{
+              display: "inline-flex", alignItems: "center", gap: 10,
+              padding: "15px 26px", borderRadius: 10,
+              backgroundColor: gold, color: "#0d1430",
+              fontWeight: 600, fontSize: 15.5, textDecoration: "none",
+            }}>
+              Essayer mon directeur financier <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p className="vz-hero-micro vz-hero-in" style={{ animationDelay: "320ms" }}>
+            Pour les dirigeants de PME sous Pennylane · Rendez-vous de 30 min en visio · Accès anticipé offert
+          </p>
         </div>
-        <p className="vz-hero-in" style={{ margin: "18px 0 0", fontSize: 13.5, color: "rgba(255,255,255,0.5)", animationDelay: "320ms" }}>
-          Pour les dirigeants de PME sous Pennylane · Rendez-vous de 30 min en visio · Accès anticipé offert
-        </p>
-        {/* Visuel produit : ce que le dirigeant obtient */}
-        <div className="vz-hero-in" style={{ marginTop: "clamp(44px, 5vw, 64px)", animationDelay: "380ms" }}>
-          <HeroProductShot />
+        <div className="vz-hero-visual vz-hero-in" style={{ animationDelay: "380ms" }}>
+          <HeroBrief />
         </div>
       </div>
     </section>
