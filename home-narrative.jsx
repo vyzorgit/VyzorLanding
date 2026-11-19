@@ -32,7 +32,7 @@ const HomeDemo = ({ id = "produit" }) => (
         <span style={{ display: "block", color: VZH.gold }}>Un tableau de bord sur mesure.</span>
       </h2>
       <p style={{ fontSize: 18, lineHeight: 1.65, color: VZH.muted, margin: "22px 0 0", maxWidth: 680, textWrap: "pretty" }}>
-        Demandez à votre directeur financier les indicateurs dont vous avez besoin. Votre tableau de bord se construit en temps réel, avec les actions à mener, et part par e-mail en un clic.
+        Demandez à votre directeur financier les indicateurs dont vous avez besoin. Votre tableau de bord se construit en temps réel, avec les actions à mener, et arrive dans votre boîte mail chaque matin.
       </p>
     </div>
     <GenUiVideo />
