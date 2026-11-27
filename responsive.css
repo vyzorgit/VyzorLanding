@@ -484,3 +484,6 @@ body::after {
   /* Pied de page : liens sur deux colonnes */
   .vz-footer-nav ul { display: grid !important; grid-template-columns: 1fr 1fr; gap: 2px 16px !important; }
 }
+
+/* Téléphones étroits : le logo seul, sans le mot VYZOR coupé par le bouton */
+@media (max-width: 440px) { .vz-nav-word { display: none !important; } }
