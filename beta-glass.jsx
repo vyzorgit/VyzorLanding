@@ -697,7 +697,7 @@ const QuickBookModal = ({ open, onClose }) => {
   const [d, setD] = React.useState({ profil: "", name: "", email: "", entreprise: "" });
   const [error, setError] = React.useState(null);
   const [done, setDone] = React.useState(false);
-  const profils = ["Chef d'entreprise", "Expert-comptable", "Directeur financier"];
+  const profils = ["Dirigeant", "Directeur financier", "Cabinet comptable", "Fonds d'investissement", "Autre"];
   const [calUrl, setCalUrl] = React.useState(VZ_CALENDLY);
   const [mounted, setMounted] = React.useState(false);
   const dialogRef = React.useRef(null);
@@ -760,7 +760,7 @@ const QuickBookModal = ({ open, onClose }) => {
         {!done ? (
           <React.Fragment>
             <h3 id="qb-title" style={{ fontFamily: LQ_FONT, fontWeight: 600, fontSize: 24, letterSpacing: "-0.015em", lineHeight: 1.15, margin: "0 40px 8px 0", color: "#fff" }}>
-              Essayez votre directeur financier
+              Votre équipe finance en 30 minutes
             </h3>
             <p style={{ fontSize: 14, color: muted, lineHeight: 1.55, margin: "0 0 20px" }}>
               30 minutes en visio : on connecte vos données ensemble et vous repartez avec votre premier tableau de bord.
@@ -773,7 +773,6 @@ const QuickBookModal = ({ open, onClose }) => {
               <LqText id="entreprise" label="Entreprise" value={d.entreprise} onChange={set("entreprise")} placeholder="ACME SAS" autoComplete="organization" />
               {error && <div role="alert" className="lq-error">{error}</div>}
               <button type="submit" className="lq-next" style={{ marginTop: 6, fontSize: 15 }}>Choisir mon créneau <span aria-hidden="true">→</span></button>
-              <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.7)", textAlign: "center" }}>Accès anticipé offert · sans engagement</div>
               <div style={{ fontSize: 11, color: muted, textAlign: "center", lineHeight: 1.55 }}>
                 Ces informations servent uniquement à organiser le rendez-vous (conservées 3 ans au plus). Accès ou suppression : admin@vyzor.fr. Voir notre{" "}
                 <a href="/confidentialite" target="_blank" rel="noopener" style={{ color: "#f0c949", textDecoration: "underline", textUnderlineOffset: 2 }}>politique de confidentialité</a>.
@@ -938,7 +937,7 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
             }}>{betaPlaces}</div>
             <div style={{
               fontSize: 15, color: muted, lineHeight: 1.4,
-            }}>places ouvertes.<br/>Une fois attribuées, l'accès anticipé ferme.</div>
+            }}>places ouvertes ce mois-ci.</div>
           </div>
         </BetaTiltCard>
 
@@ -978,7 +977,7 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
             display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12,
             paddingTop: 16, borderTop: `1px solid rgba(240,201,73,0.3)`,
           }}>
-            <span style={{ fontSize: 15, fontWeight: 600, color: "#fff" }}>Votre prix pendant l'accès anticipé</span>
+            <span style={{ fontSize: 15, fontWeight: 600, color: "#fff" }}>Votre prix pour commencer</span>
             <span style={{ fontSize: 34, fontWeight: 700, color: gold, letterSpacing: "-0.03em", lineHeight: 1 }}>0 €</span>
           </div>
         </BetaTiltCard>
@@ -994,7 +993,7 @@ const BetaFormGlass = ({ modalOnly = false, quick = false }) => {
           className="vz-beta-cta"
           onClick={() => setOpen(true)}
         >
-          Essayer mon directeur financier
+          Analyser mes données
           <span aria-hidden="true" style={{ fontSize: 16, marginLeft: 2 }}>→</span>
         </button>
         <p style={{ margin: 0, maxWidth: 560, fontSize: 14, lineHeight: 1.6, color: muted, textWrap: "pretty" }}>

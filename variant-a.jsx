@@ -363,6 +363,15 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
   const itemRefs = React.useRef({});
   const trackRef = React.useRef(null);
   const burgerRef = React.useRef(null);
+  const ddTimer = React.useRef(0);
+
+  // Menu mobile ouvert : la page derrière ne défile plus.
+  React.useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    return () => { document.documentElement.style.overflow = prev; };
+  }, [menuOpen]);
 
   // Échap : ferme le menu mobile et le sous-menu « Fonctionnalités », focus rendu au déclencheur.
   React.useEffect(() => {
@@ -389,6 +398,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
     const compute = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
       setScrolled(y > 24);
+      setDdOpen(false); setHovered(null);
       // active section detection (only for in-page anchors)
       const inPage = items.filter(it => !it.external);
       let current = inPage[0]?.id;
@@ -431,12 +441,12 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
   return (
     <nav className="vz-nav-wrap" style={{
       position: "fixed", top: 18, left: "50%", transform: "translateX(-50%)",
-      zIndex: 60, transition: "all 320ms cubic-bezier(0.22, 1, 0.36, 1)",
+      zIndex: 60,
     }}>
       <div style={{
         display: "flex", alignItems: "center",
-        gap: scrolled ? 10 : 18,
-        padding: scrolled ? "6px 6px 6px 14px" : "8px 8px 8px 18px",
+        gap: 18,
+        padding: "8px 8px 8px 18px",
         borderRadius: 999,
         background: scrolled ? "rgba(17,25,54,0.97)" : "rgba(17,25,54,0.88)",
         backdropFilter: "blur(18px) saturate(140%)",
@@ -445,7 +455,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
         boxShadow: scrolled
           ? "0 12px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06)"
           : "0 8px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05)",
-        transition: "all 320ms cubic-bezier(0.22, 1, 0.36, 1)",
+        transition: "background 240ms ease, border-color 240ms ease, box-shadow 240ms ease",
       }}>
         {/* Brand — mark seul (transparent) pour s'intégrer au verre de la navbar */}
         <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", paddingRight: 4, paddingLeft: 2 }}>
@@ -453,9 +463,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
           <div style={{
             fontSize: 11, letterSpacing: "0.32em", color: text, fontWeight: 700,
             overflow: "hidden",
-            maxWidth: scrolled ? 0 : 80,
-            opacity: scrolled ? 0 : 1,
-            transition: "max-width 280ms ease, opacity 200ms ease",
+            maxWidth: 80,
             whiteSpace: "nowrap",
           }}>VYZOR</div>
         </a>
@@ -463,7 +471,6 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
         {/* Divider */}
         <span className="vz-nav-divider" style={{
           width: 1, height: 18, background: "rgba(255,255,255,0.10)",
-          opacity: scrolled ? 0 : 1, transition: "opacity 200ms",
         }}/>
 
         {/* Links + animated indicator */}
@@ -514,8 +521,8 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
             if (!feats.length) return <React.Fragment key={it.id}>{link}</React.Fragment>;
             return (
               <div key={it.id} className="vz-nav-dd" data-open={ddOpen ? "true" : "false"}
-                onMouseEnter={() => { setHovered(it.id); setDdOpen(true); }}
-                onMouseLeave={() => { setHovered(null); setDdOpen(false); }}
+                onMouseEnter={() => { clearTimeout(ddTimer.current); setHovered(it.id); setDdOpen(true); }}
+                onMouseLeave={() => { setHovered(null); clearTimeout(ddTimer.current); ddTimer.current = setTimeout(() => setDdOpen(false), 140); }}
                 onFocus={() => setDdOpen(true)}
                 onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setDdOpen(false); }}
                 style={{ position: "relative" }}>
@@ -553,7 +560,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
           >{lang.short}</a>
           <a href="/?contact=1#beta" data-contact className="vz-nav-cta" style={{
             display: "inline-flex", alignItems: "center", gap: 6,
-            padding: scrolled ? "8px 14px" : "8px 16px",
+            padding: "8px 16px",
             borderRadius: 999,
             backgroundImage: goldGrad,
             color: "#111", fontWeight: 600, fontSize: 12.5,
@@ -620,9 +627,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
           display: "none",
           marginTop: 8,
           borderRadius: 22,
-          background: "rgba(17,25,54,0.92)",
-          backdropFilter: "blur(18px) saturate(140%)",
-          WebkitBackdropFilter: "blur(18px) saturate(140%)",
+          background: "#111936",
           border: "1px solid rgba(255,255,255,0.10)",
           boxShadow: "0 18px 50px rgba(0,0,0,0.5)",
           padding: 8,

@@ -110,7 +110,7 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
             <VyzorLogo size={30} color={gold} bg="transparent" />
           </a>
           <p style={{ fontSize: 13, lineHeight: 1.55, color: muted, maxWidth: 300, margin: "12px 0 0", textWrap: "pretty" }}>
-            Un directeur financier d'exception, sans en recruter un.
+            Une équipe finance, à portée de main.
           </p>
         </div>
 
@@ -167,7 +167,7 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
           fontSize: 12, color: faint,
         }}>
           <span>© 2026 Vyzor</span>
-          <span>Données hébergées dans l'UE</span>
+          <span>Données hébergées en France</span>
           {(() => { const l = vzLangSwitch(); return (
             <a href={l.href} hrefLang={l.code} lang={l.code} style={{ color: muted, textDecoration: "none" }}>{l.name}</a>
           ); })()}

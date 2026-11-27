@@ -9,16 +9,16 @@ const VYZOR_FAQ_GROUPS = [
       { q: "À qui s'adresse VYZOR ?", a: "Avant tout aux dirigeants de PME qui utilisent Pennylane et veulent piloter sans être financiers. Vyzor sert aussi les DAF — internes, externalisés ou à temps partagé — qui veulent gagner du temps sur le reporting, et les experts-comptables qui veulent offrir un vrai pilotage financier à leurs clients." },
       { q: "Faut-il être expert en finance pour l'utiliser ?", a: "Non. Le Vyzor Score résume la santé financière de l'entreprise en une note sur 100, les alertes sont classées par impact en euros pour savoir quoi traiter en premier, et l'assistant IA répond à vos questions en langage courant." },
       { q: "VYZOR remplace-t-il mon expert-comptable ?", a: "Non. VYZOR ne tient pas votre comptabilité : il s'appuie sur celle produite par votre cabinet pour la transformer en outil de pilotage. Il est d'ailleurs co-conçu avec des professionnels du chiffre pour enrichir la relation de conseil entre le cabinet et ses clients." },
-      { q: "Comment accéder à VYZOR ?", a: "Vyzor ouvre un accès anticipé à un nombre limité d'entreprises : vous l'essayez gratuitement, en visio avec nous, sur vos propres chiffres. Prenez rendez-vous avec le bouton en bas de page." },
+      { q: "Comment accéder à VYZOR ?", a: "Prenez rendez-vous avec le bouton en bas de page : en 30 minutes de visio, on connecte vos données ensemble et vous repartez avec votre premier tableau de bord." },
     ],
   },
   {
     id: "demarrer", title: "Mise en route", desc: "Brancher vos données et démarrer.",
     items: [
-      { q: "Comment VYZOR récupère-t-il mes données comptables ?", a: "Deux options, sans aucune re-saisie. Par connecteur, en lecture seule, avec Pennylane (MyUnisoft et Odoo en cours de finalisation). Ou par import de fichiers depuis votre espace Documents : FEC, Excel (.xlsx, .csv) ou PDF de liasse fiscale. Les données sont ensuite structurées automatiquement." },
-      { q: "Mon logiciel comptable n'a pas de connecteur, que faire ?", a: "L'import de fichiers prend le relais : tous les logiciels comptables utilisés en France savent exporter un FEC, format légal obligatoire. Les connexions bancaires sont en préparation." },
+      { q: "Comment VYZOR récupère-t-il mes données comptables ?", a: "Deux options, sans aucune re-saisie. Par connecteur, en lecture seule, avec Pennylane, et sur demande MyUnisoft, Odoo ou ACD. Ou par import de fichiers depuis votre espace Documents : FEC, Excel (.xlsx, .csv) ou PDF de liasse fiscale. Les données sont ensuite structurées automatiquement." },
+      { q: "Mon logiciel comptable n'a pas de connecteur, que faire ?", a: "L'import de fichiers prend le relais : tous les logiciels comptables utilisés en France savent exporter un FEC, format légal obligatoire. Vos comptes bancaires remontent via Pennylane." },
       { q: "Combien de temps pour être opérationnel ?", a: "Quelques minutes. Dès la première synchronisation, vos indicateurs et votre Vyzor Score sont calculés et prêts à être pilotés." },
-      { q: "À quelle fréquence mes données sont-elles mises à jour ?", a: "Vous synchronisez vos données d'un clic, quand vous le souhaitez. Une synchronisation automatique quotidienne arrive prochainement." },
+      { q: "À quelle fréquence mes données sont-elles mises à jour ?", a: "Vous synchronisez vos données d'un clic, quand vous le souhaitez." },
     ],
   },
   {

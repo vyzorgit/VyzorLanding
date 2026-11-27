@@ -146,7 +146,6 @@
   "Juin": "Jun",
   "Juriste": "Legal expert",
   "La part du chiffre d'affaires qui reste après les achats directs. C'est ce qui finance vos salaires, vos charges et votre résultat.": "The share of revenue left after direct purchases. It's what pays for your salaries, your overheads and your bottom line.",
-  "La prévision ne repose pas sur un tableur rempli à la main. Vyzor part de votre comptabilité (factures, échéances, emprunts) pour projeter chaque entrée et chaque sortie. La connexion directe à vos comptes bancaires arrive bientôt.": "The forecast doesn't rely on a hand-filled spreadsheet. Vyzor starts from your accounts (invoices, due dates, loans) to project every inflow and every outflow. Direct connection to your bank accounts is coming soon.",
   "Les autres fonctionnalités": "Other features",
   "Les indicateurs sont organisés autour des quatre questions qu'un dirigeant se pose. Chaque pilier regroupe les KPI qui y répondent.": "Indicators are organized around the four questions every business owner asks. Each pillar groups the KPIs that answer it.",
   "Liasse fiscale": "Tax return",
@@ -232,7 +231,6 @@
   "Sollicité": "Called in",
   "Sous-traitance · 604": "Subcontracting · 604",
   "Statuts, PV d'AG, baux et échéances légales centralisés et rappelés à temps.": "Articles of association, AGM minutes, leases and statutory deadlines, all in one place with timely reminders.",
-  "Synchronisation directe bientôt disponible": "Direct sync coming soon",
   "Synchronisé en temps réel": "Synced in real time",
   "Synthèse de l'activité": "Business summary",
   "TVA, IS, URSSAF": "VAT, corporate tax, URSSAF",
@@ -323,5 +321,7 @@
   "Vous choisissez, société par société, ce que votre expert-comptable voit.": "You choose, company by company, what your accountant sees.",
   "Vous passez d'une société à l'autre en un clic, et votre cabinet suit celles que vous partagez.": "You switch between companies in one click, and your accounting firm follows the ones you share.",
   "Vous prévient où vous voulez": "Alerts you wherever you want",
-  "Vyzor récupère les documents officiels de vos sociétés aux registres publics (INPI, BODACC, annuaire des entreprises), calcule votre calendrier fiscal et social, et nourrit vos agents juridique et fiscaliste.": "Vyzor retrieves your companies' official documents from public registers (INPI, BODACC, French business directory), calculates your tax and social calendar, and feeds your legal and tax agents."
+  "Vyzor récupère les documents officiels de vos sociétés aux registres publics (INPI, BODACC, annuaire des entreprises), calcule votre calendrier fiscal et social, et nourrit vos agents juridique et fiscaliste.": "Vyzor retrieves your companies' official documents from public registers (INPI, BODACC, French business directory), calculates your tax and social calendar, and feeds your legal and tax agents.",
+  "La prévision ne repose pas sur un tableur rempli à la main. Votre équipe finance part de votre comptabilité (factures, échéances, emprunts) et de vos comptes bancaires via Pennylane pour projeter chaque entrée et chaque sortie.": "The forecast doesn't rely on a hand-filled spreadsheet. Your finance team starts from your accounts (invoices, due dates, loans) and your bank accounts via Pennylane to project every inflow and outflow.",
+  "Via Pennylane, ou import Excel": "Via Pennylane, or Excel import"
 }

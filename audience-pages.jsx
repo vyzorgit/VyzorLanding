@@ -9,8 +9,8 @@ const VzPageHero = ({ title, accent, lede, cta, note }) => (
     <p className="pg-lede">{lede}</p>
     <div style={{ marginTop: 32, display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14 }}>
       <VzCtaLink size="lg">{cta}</VzCtaLink>
-      <a href="/agentic-twin" target="_blank" rel="noopener" style={{ display: "inline-flex", alignItems: "center", padding: "15px 22px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.16)", color: "rgba(255,255,255,0.92)", fontSize: 15.5, fontWeight: 500, textDecoration: "none" }}>Voir la démo</a>
-      <span style={{ fontSize: 13.5, color: "rgba(255,255,255,0.55)" }}>{note}</span>
+      <a href="/#produit" style={{ display: "inline-flex", alignItems: "center", padding: "15px 22px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.16)", color: "rgba(255,255,255,0.92)", fontSize: 15.5, fontWeight: 500, textDecoration: "none" }}>Voir la démo</a>
+      {note ? <span style={{ fontSize: 13.5, color: "rgba(255,255,255,0.55)" }}>{note}</span> : null}
     </div>
   </header>
 );
@@ -58,10 +58,9 @@ const PennylanePageBody = ({ gold, text, muted, subtle }) => (
   <React.Fragment>
     <VzPageHero
       title="Pennylane tient vos comptes."
-      accent="Vyzor vous dit quoi en faire."
+      accent="Votre équipe finance vous dit quoi en faire."
       lede="Avec Pennylane, vos données sont propres et à jour. Il manque la lecture. Vyzor s'y connecte en lecture seule et transforme vos écritures en réponses : où part votre argent, ce qu'il vous restera dans 12 mois, quoi faire en premier."
-      cta="Essayer mon directeur financier"
-      note="Rendez-vous de 30 min en visio · Accès anticipé offert"
+      cta="Analyser mes données"
     />
     <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
       <section className="vz-reveal" style={{ marginBottom: 120 }}>
@@ -104,7 +103,6 @@ const CabinetsPageBody = ({ gold, text, muted, subtle }) => {
         accent="Sans y passer vos soirées."
         lede="Vyzor lit la comptabilité de vos dossiers et en tire, pour chaque client, les indicateurs, la trésorerie prévisionnelle et les alertes qui comptent. Vous arrivez au rendez-vous avec l'analyse déjà faite."
         cta="Présenter un client"
-        note="Gratuit pour votre client · sans engagement pour le cabinet"
       />
       <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
         {persona ? (
@@ -135,7 +133,7 @@ const CabinetsPageBody = ({ gold, text, muted, subtle }) => {
             Un client qui veut enfin comprendre ses chiffres ? <span style={{ color: gold }}>Présentez-le-nous.</span>
           </h2>
           <p style={{ margin: "20px auto 0", maxWidth: 600, fontSize: 17, lineHeight: 1.6, color: muted }}>
-            Il bénéficie de l'accès anticipé offert, avec un diagnostic financier dès le premier rendez-vous. Vous restez son conseil : Vyzor lit votre travail, il ne le remplace pas.
+            Il repart du premier rendez-vous avec un diagnostic financier. Vous restez son conseil : Vyzor lit votre travail, il ne le remplace pas.
           </p>
           <div style={{ marginTop: 30 }}><VzCtaLink size="lg">Présenter un client</VzCtaLink></div>
         </section>

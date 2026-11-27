@@ -186,7 +186,7 @@ const MentionsLegales = () => (
       <P>
         Les informations contenues sur ce Site sont aussi précises que possible et le Site est périodiquement remis à jour.
         Toutefois, il peut contenir des inexactitudes, des omissions ou des lacunes. Les services de VYZOR (notamment en
-        phase d'accès anticipé) constituent des outils d'aide à la décision. L'Utilisateur, particulièrement s'il agit en tant que
+        phase de lancement) constituent des outils d'aide à la décision. L'Utilisateur, particulièrement s'il agit en tant que
         professionnel du chiffre, conserve l'entière responsabilité de l'exploitation des données et des conseils financiers
         prodigués à ses propres clients.
       </P>
@@ -247,7 +247,7 @@ const PolitiqueConfidentialite = () => (
 
     <LegalArticle n="03" id="donnees" title="Données collectées sur le Site">
       <Bullets items={[
-        <span><Strong>Demande de rendez-vous et d'accès anticipé</Strong> (questionnaire « Préparons votre rendez-vous ») : nom et prénom, adresse email professionnelle, téléphone (facultatif), nom de l'entreprise ou du cabinet, profil, puis des informations sur la structure et ses besoins (secteur, tranche de chiffre d'affaires, effectif, nombre de sociétés ou de dossiers, logiciel comptable, façon de suivre les chiffres, priorités, délai, texte libre facultatif, origine de la visite). Ces réponses servent à préparer le rendez-vous et à prioriser les demandes ; aucune décision automatique n'est prise à partir d'elles.</span>,
+        <span><Strong>Demande de rendez-vous</Strong> (questionnaire « Préparons votre rendez-vous ») : nom et prénom, adresse email professionnelle, téléphone (facultatif), nom de l'entreprise ou du cabinet, profil, puis des informations sur la structure et ses besoins (secteur, tranche de chiffre d'affaires, effectif, nombre de sociétés ou de dossiers, logiciel comptable, façon de suivre les chiffres, priorités, délai, texte libre facultatif, origine de la visite). Ces réponses servent à préparer le rendez-vous et à prioriser les demandes ; aucune décision automatique n'est prise à partir d'elles.</span>,
         <span><Strong>Demandes par courriel</Strong> adressées à admin@vyzor.fr : votre adresse email et le contenu de votre message.</span>,
         <span><Strong>Prise de rendez-vous</Strong> : après l'envoi du formulaire, le lien « Choisir mon créneau » renvoie vers Calendly, service tiers qui collecte vos données sur son propre site, selon sa propre politique.</span>,
         <span><Strong>Journaux techniques de l'hébergeur</Strong> : adresse IP, type de navigateur, page demandée et horodatage, conservés par Vercel à des fins de sécurité et de fonctionnement du service.</span>,
@@ -261,7 +261,7 @@ const PolitiqueConfidentialite = () => (
 
     <LegalArticle n="04" id="finalites" title="Finalités et bases légales">
       <Bullets items={[
-        <span><Strong>Traiter votre demande d'accès anticipé et vous recontacter</Strong> — base légale : mesures précontractuelles prises à votre demande (article 6.1.b du RGPD).</span>,
+        <span><Strong>Traiter votre demande de rendez-vous et vous recontacter</Strong> — base légale : mesures précontractuelles prises à votre demande (article 6.1.b du RGPD).</span>,
         <span><Strong>Répondre à vos demandes</Strong> envoyées par courriel — base légale : mesures précontractuelles ou intérêt légitime de VYZOR à répondre aux personnes qui la sollicitent (article 6.1.f).</span>,
         <span><Strong>Assurer la sécurité et le bon fonctionnement du Site</Strong> (journaux techniques) — base légale : intérêt légitime (article 6.1.f).</span>,
         <span><Strong>Afficher le Site</Strong> (chargement des polices) — base légale : intérêt légitime (article 6.1.f).</span>,

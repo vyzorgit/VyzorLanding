@@ -119,8 +119,8 @@ const VzDashPreview = ({ title, subtitle, shown = 3, menu = null, compact = fals
 
 // —— Visuel du hero : capture réelle de l'app (page « Rapport investisseur », données de démonstration) ——
 // —— Illustration du hero (19/11/2026) : le texte du hero, mis en image.
-// Au centre, votre directeur financier ; à gauche, vos données, branchées sur lui ; autour, ce
-// qu'il fait : il analyse en temps réel, automatise vos tâches, vous dit quel levier actionner.
+// Au centre, votre équipe finance (le conseiller Vyzor) ; à gauche, vos données, branchées ; autour,
+// ce qu'elle fait : analyse en temps réel, workflows optimisés, leviers stratégiques.
 const VzCfoIcon = ({ name }) => {
   const p = { width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "#f0c949", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true };
   if (name === "pulse") return <svg {...p}><path d="M2 12h4l3-8 4 16 3-8h6" /></svg>;
@@ -168,14 +168,14 @@ const HeroProductShot = () => {
           <radialGradient id="vzcHead" cx="40%" cy="35%" r="70%"><stop offset="0" stopColor="#e6c98a" /><stop offset="1" stopColor="#b98d3e" /></radialGradient>
           <clipPath id="vzcClip"><circle cx="250" cy="215" r="84" /></clipPath>
         </defs>
-        {/* Câble : vos données → votre directeur financier */}
+        {/* Câble : vos données → votre équipe finance */}
         <path d="M118 215 H166" stroke="rgba(140,160,255,0.3)" strokeWidth="2.5" />
         <path className="flow" d="M118 215 H166" stroke="#f0c949" strokeWidth="2.5" />
         {/* Liens vers ce qu'il fait */}
         {["M318 170 C350 120, 370 70, 392 62", "M334 215 C360 215, 372 220, 392 222", "M318 262 C350 300, 368 350, 392 360"].map((d, i) => (
           <g key={i}><path d={d} fill="none" stroke="rgba(240,201,73,0.35)" strokeWidth="2" /><path className="flow" d={d} fill="none" stroke="#f0c949" strokeWidth="2" style={{ animationDelay: `${i * 0.3}s` }} /></g>
         ))}
-        {/* Votre directeur financier */}
+        {/* Votre équipe finance */}
         <circle cx="250" cy="215" r="140" fill="url(#vzcHalo)" />
         <circle cx="250" cy="215" r="90" fill="#141d47" stroke="url(#vzcRing)" strokeWidth="4" />
         <g clipPath="url(#vzcClip)">
@@ -190,8 +190,8 @@ const HeroProductShot = () => {
       </svg>
       {card("c-data", "data", "Vos données", "Compta, banque")}
       {card("c-ana", "pulse", <>Analyse en temps réel<span className="vzc-live" /></>, null)}
-      {card("c-auto", "auto", "Tâches automatisées", null)}
-      {card("c-lev", "lever", "Le levier du jour", "Quoi faire, maintenant", true)}
+      {card("c-auto", "auto", "Workflows optimisés", null)}
+      {card("c-lev", "lever", "Leviers stratégiques", null, true)}
     </div>
   );
 };
@@ -234,7 +234,6 @@ const GenUiVideo = () => {
             : <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>}
         </button>
       </div>
-      <p style={{ margin: "12px 0 0", fontSize: 12.5, color: VZG.muted }}>Enregistrement de l'application, sur un dossier de test anonymisé.</p>
       <style>{`
         .vzg-toggle { position: absolute; right: 12px; bottom: 12px; width: 34px; height: 34px; border-radius: 999px; display: grid; place-items: center; background: rgba(10,16,38,0.72); border: 1px solid rgba(255,255,255,0.18); color: #fff; cursor: pointer; }
         .vzg-toggle:hover { border-color: rgba(240,201,73,0.6); color: #f0c949; }
