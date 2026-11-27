@@ -35,7 +35,7 @@ const ConseilFlow = () => {
     <section className="cf vz-reveal" style={{ marginTop: 112 }}>
       <h2 style={{ margin: 0, fontSize: 32, letterSpacing: "-0.02em", fontWeight: 600, color: "#fff" }}>Comment fonctionne le conseil</h2>
       <p style={{ margin: "14px 0 0", fontSize: 16.5, lineHeight: 1.6, color: "rgba(255,255,255,0.58)", maxWidth: 680, textWrap: "pretty" }}>
-        Chaque question passe d'abord par votre stratège, qui fait appel aux seuls experts utiles : trésorier, analyste, juriste, fiscaliste. Votre assistant prépare ensuite ce qui doit l'être, et rien ne part sans votre accord.
+        Chaque question passe d'abord par votre directeur financier, qui fait appel aux seuls experts utiles : trésorier, analyste, juriste, fiscaliste. Votre assistant prépare ensuite ce qui doit l'être, et rien ne part sans votre accord.
       </p>
 
       <div className="cf-qs" role="tablist" aria-label="Exemples de questions">
@@ -54,7 +54,7 @@ const ConseilFlow = () => {
         <div className="cf-node cf-orch on">
           <span className="cf-ic"><VzfIcon name="conseil" size={16} /></span>
           <span>
-            <span style={{ display: "block", fontSize: 15, fontWeight: 600, color: "#fff" }}>Votre stratège</span>
+            <span style={{ display: "block", fontSize: 15, fontWeight: 600, color: "#fff" }}>Votre directeur financier</span>
             <span style={{ display: "block", fontSize: 13, color: "rgba(255,255,255,0.58)" }}>Comprend la demande et mobilise {cur.agents.length} expert{cur.agents.length > 1 ? "s" : ""}</span>
           </span>
         </div>

@@ -528,19 +528,23 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
                 style={{ position: "relative" }}>
                 {link}
                 <div className="vz-nav-dd-panel" id={"vz-nav-dd-" + it.id}>
+                  {[["Votre équipe financière", feats.filter((f) => f.role)], ["Et aussi", feats.filter((f) => !f.role)]].filter(([, g]) => g.length).map(([label, group]) => (
+                  <React.Fragment key={label}>
+                  <p className="vz-nav-dd-label">{label}</p>
                   <ul className="vz-nav-dd-grid" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                    {feats.map((f) => (
+                    {group.map((f) => (
                       <li key={f.slug} style={{ display: "flex" }}>
                       <a {...(f.soon ? { "aria-disabled": true } : { href: vzFeatureHref(f.slug) })} className={"vz-nav-dd-item" + (f.soon ? " soon" : "")} style={{ flex: 1 }}>
                         <span className="vz-nav-dd-ic"><VzfIcon name={f.icon} size={16} /></span>
                         <span style={{ minWidth: 0 }}>
                           <span style={{ display: "block", fontSize: 13.5, fontWeight: 600, color: "#fff" }}>{f.name}{f.soon ? <span style={{ marginLeft: 8, fontSize: 11, fontWeight: 600, color: "#f0c949" }}>Bientôt</span> : null}</span>
-                          <span style={{ display: "block", fontSize: 12.5, lineHeight: 1.45, color: "rgba(255,255,255,0.55)", marginTop: 2 }}>{f.desc}</span>
                         </span>
                       </a>
                       </li>
                     ))}
                   </ul>
+                  </React.Fragment>
+                  ))}
                   <a href="/fonctionnalites" className="vz-nav-dd-all">Voir toutes les fonctionnalités <span aria-hidden="true">→</span></a>
                 </div>
               </div>
@@ -604,12 +608,14 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
       </div>
 
       <style>{`
-        .vz-nav-dd-panel { position: absolute; top: calc(100% + 14px); left: 50%; width: 620px; transform: translate(-50%, 6px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms; padding: 10px; border-radius: 18px; background: #111936; border: 1px solid rgba(140,160,255,0.18); box-shadow: 0 24px 60px rgba(0,0,0,0.55); }
+        .vz-nav-dd-panel { position: absolute; top: calc(100% + 14px); left: 50%; width: 520px; transform: translate(-50%, 6px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms; padding: 10px; border-radius: 18px; background: #111936; border: 1px solid rgba(140,160,255,0.18); box-shadow: 0 24px 60px rgba(0,0,0,0.55); }
         .vz-nav-dd-panel::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
         .vz-nav-dd[data-open="true"] .vz-nav-dd-panel { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; transition: opacity 160ms ease, transform 160ms ease, visibility 0s; }
         @media (prefers-reduced-motion: reduce) { .vz-nav-dd-panel { transition: none !important; } }
         .vz-nav-dd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-        .vz-nav-dd-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border-radius: 12px; text-decoration: none; transition: background-color 140ms ease; }
+        .vz-nav-dd-label { margin: 6px 12px 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+        .vz-nav-dd-grid + .vz-nav-dd-label { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .vz-nav-dd-item { display: flex; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; text-decoration: none; transition: background-color 140ms ease; }
         .vz-nav-dd-item:hover { background: rgba(140,160,255,0.10); }
         .vz-nav-dd-item.soon { cursor: default; opacity: 0.6; }
         .vz-nav-dd-item.soon:hover { background: transparent; }

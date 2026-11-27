@@ -54,7 +54,7 @@ const FeaturePage = () => {
 
           {f.slug === "conseil" && window.ConseilFlow ? <ConseilFlow /> : null}
 
-          {["alertes", "multi-societes", "juridique"].includes(f.slug) ? (
+          {["alertes", "multi-societes", "juridique", "fiscalite"].includes(f.slug) ? (
             <React.Fragment>
               <section className="vz-reveal vzp-split" style={{ marginTop: 64 }}>
                 <div className="vzp-visual" aria-hidden="true" style={{ height: "100%", minHeight: 360 }}><div className={"vzp-visual-in" + (f.DetailVisual ? " vzp-visual-auto" : "")}>{f.DetailVisual ? <f.DetailVisual /> : <V />}</div></div>
@@ -85,7 +85,7 @@ const FeaturePage = () => {
               ) : null}
             </React.Fragment>
           ) : null}
-          {["alertes", "multi-societes", "juridique"].includes(f.slug) ? null : f.slug === "tresorerie" && window.TresorerieExplainer ? <TresorerieExplainer /> : f.slug === "analyse-financiere" && window.AnalyseExplainer ? <AnalyseExplainer /> : f.slug === "conseil" && window.ConseilCapabilities ? <ConseilCapabilities /> : (
+          {["alertes", "multi-societes", "juridique", "fiscalite"].includes(f.slug) ? null : f.slug === "tresorerie" && window.TresorerieExplainer ? <TresorerieExplainer /> : f.slug === "analyse-financiere" && window.AnalyseExplainer ? <AnalyseExplainer /> : f.slug === "conseil" && window.ConseilCapabilities ? <ConseilCapabilities /> : (
           <section className="vz-reveal" style={{ marginTop: 112 }}>
             <h2 style={{ margin: 0, fontSize: 32, letterSpacing: "-0.02em", fontWeight: 600, color: "#fff" }}>Ce que Vyzor fait pour vous</h2>
             <div className="vzp-points">

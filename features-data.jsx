@@ -14,6 +14,7 @@ const VzfIcon = ({ name, size = 18 }) => {
     case "cabinet": return <svg {...p}><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="4" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>;
     case "connexions": return <svg {...p}><path d="M9 7H6a4 4 0 0 0 0 8h3M15 7h3a4 4 0 0 1 0 8h-3M8 11h8"/></svg>;
     case "alertes": return <svg {...p}><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10.3 20a1.9 1.9 0 0 0 3.4 0"/></svg>;
+    case "fiscal": return <svg {...p}><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2M16 11v4"/></svg>;
     case "budget": return <svg {...p}><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.4 6.4"/></svg>;
     default: return null;
   }
@@ -75,41 +76,34 @@ const VisJuridique = () => (
   </div>
 );
 
-const VisJuridiqueDetail = () => {
-  const lbl = { fontSize: 11.5, letterSpacing: "0.08em", textTransform: "uppercase", color: VZF_MUTED, marginBottom: 6, display: "flex", justifyContent: "space-between", gap: 8 };
-  const node = (n, s, main) => (
-    <div style={{ ...vzfCard, padding: "6px 8px", textAlign: "center", minWidth: 0, ...(main ? { borderColor: "rgba(240,201,73,0.45)" } : {}) }}>
-      <div style={{ fontSize: 12.5, fontWeight: 600, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{n}</div>
-      <div style={{ fontSize: 11, color: VZF_MUTED, whiteSpace: "nowrap" }}>{s}</div>
-    </div>
-  );
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: "18px 20px 0" }}>
-      <div>
-        <div style={lbl}><span>Documents publics centralisés</span><span style={{ color: VZF_GOLD, textTransform: "none", letterSpacing: 0 }}>→ juriste et fiscaliste</span></div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-          {["Statuts", "PV d'AG", "Comptes annuels", "Annonces BODACC", "Bénéficiaires effectifs"].map((t) => (
-            <span key={t} style={{ ...vzfCard, display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 9px", fontSize: 12, color: "#fff" }}>
-              <span style={{ color: VZF_GOLD, display: "grid", placeItems: "center" }}><VzfIcon name="juridique" size={13} /></span>{t}
-            </span>
-          ))}
-        </div>
+const vzfLbl = { fontSize: 11.5, letterSpacing: "0.08em", textTransform: "uppercase", color: VZF_MUTED, marginBottom: 6, display: "flex", justifyContent: "space-between", gap: 8 };
+const VisJuridiqueDetail = () => (
+  <div style={{ display: "flex", flexDirection: "column", gap: 8, padding: "18px 20px 0" }}>
+    <div style={vzfLbl}><span>Documents officiels de votre société</span></div>
+    {VZF_DOCS.map((f) => (
+      <div key={f.n} style={{ ...vzfCard, display: "flex", alignItems: "flex-start", gap: 10, padding: "9px 12px" }}>
+        <span style={{ color: VZF_GOLD, display: "grid", placeItems: "center", marginTop: 1 }}><VzfIcon name="juridique" size={14} /></span>
+        <span style={{ minWidth: 0 }}>
+          <span style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#fff" }}>{f.n}</span>
+          <span style={{ display: "block", fontSize: 12, lineHeight: 1.45, color: VZF_MUTED }}>{f.b}</span>
+        </span>
       </div>
-      <div>
-        <div style={lbl}><span>Calendrier des échéances</span></div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          {[["24/06", "Déclaration de TVA (CA3)", "J-6", "#f0905a"], ["30/06", "AG d'approbation des comptes", "J-12", VZF_GOLD], ["31/07", "Dépôt des comptes", "J-43", VZF_GOLD], ["15/09", "Acompte d'IS", "J-89", VZF_MUTED]].map(([dt, t, j, c]) => (
-            <div key={t} style={{ ...vzfCard, display: "flex", alignItems: "center", gap: 12, padding: "7px 12px" }}>
-              <span style={{ width: 42, fontSize: 12.5, fontWeight: 700, color: "#fff", fontVariantNumeric: "tabular-nums" }}>{dt}</span>
-              <span style={{ flex: 1, minWidth: 0, fontSize: 13, color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t}</span>
-              <span style={{ fontSize: 12, fontWeight: 600, color: c, whiteSpace: "nowrap" }}>{j}</span>
-            </div>
-          ))}
-        </div>
+    ))}
+  </div>
+);
+
+const VisFiscal = () => (
+  <div style={{ display: "flex", flexDirection: "column", gap: 6, padding: "18px 20px 0" }}>
+    <div style={vzfLbl}><span>Calendrier des échéances</span></div>
+    {[["24/06", "Déclaration de TVA (CA3)", "J-6", "#f0905a"], ["15/07", "Cotisations URSSAF", "J-27", VZF_GOLD], ["31/07", "Dépôt des comptes", "J-43", VZF_GOLD], ["15/09", "Acompte d'IS", "J-89", VZF_MUTED]].map(([dt, t, j, c]) => (
+      <div key={t} style={{ ...vzfCard, display: "flex", alignItems: "center", gap: 12, padding: "7px 12px" }}>
+        <span style={{ width: 42, fontSize: 12.5, fontWeight: 700, color: "#fff", fontVariantNumeric: "tabular-nums" }}>{dt}</span>
+        <span style={{ flex: 1, minWidth: 0, fontSize: 13, color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t}</span>
+        <span style={{ fontSize: 12, fontWeight: 600, color: c, whiteSpace: "nowrap" }}>{j}</span>
       </div>
-    </div>
-  );
-};
+    ))}
+  </div>
+);
 
 const VisAnalyse = () => (
   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, padding: "20px 20px 0" }}>
@@ -203,8 +197,8 @@ const VisBudget = () => (
 
 // —— Catalogue ——
 const VZ_FEATURES = [
-  { slug: "conseil", icon: "conseil", name: "Conseil", desc: "Répond à vos questions en français, chiffres et sources à l'appui.", Visual: VisConseil,
-    lead: "Votre équipe financière, disponible à tout moment : elle répond à vos questions à partir de vos données comptables réelles, avec les chiffres, la source et la recommandation.",
+  { slug: "conseil", icon: "conseil", role: true, name: "Le directeur financier", desc: "Répond à vos questions, chiffres et sources à l'appui, et mobilise toute l'équipe.", Visual: VisConseil,
+    lead: "Votre directeur financier, disponible à tout moment : il répond à vos questions à partir de vos données comptables réelles, avec les chiffres, la source et la recommandation.",
     points: [
       ["Analyse vos chiffres en détail", "Marges, rentabilité, évolution des coûts : une lecture complète, expliquée poste par poste."],
       ["Vous propose un plan d'action", "Priorités, effet attendu chiffré, et actions prêtes à lancer : rien ne part sans votre clic."],
@@ -212,7 +206,15 @@ const VZ_FEATURES = [
       ["Rédige vos e-mails", "Relances de factures et de devis, que vous relisez avant de les envoyer depuis votre Gmail."],
       ["Génère vos documents", "Dossier pour la banque, synthèse financière, courrier de relance, note juridique : en Word ou en PDF."],
     ] },
-  { slug: "tresorerie", icon: "tresorerie", name: "Trésorerie", desc: "Prévoit votre trésorerie à 12 mois et anticipe le point bas.", Visual: VisTresorerie,
+  { slug: "analyse-financiere", icon: "analyse", role: true, name: "L'analyste", desc: "Calcule et explique vos marges, votre EBITDA, votre BFR et votre rentabilité.", Visual: VisAnalyse,
+    lead: "Vos indicateurs clés calculés à partir de vos données comptables, organisés en quatre piliers, expliqués et comparés à votre secteur.",
+    points: [
+      ["Calcule vos indicateurs clés", "Marge brute, EBITDA, BFR, rentabilité par activité."],
+      ["Explique chaque écart", "Chaque variation est rattachée aux postes qui la provoquent."],
+      ["Produit vos états financiers", "Bilan, compte de résultat et flux de trésorerie, exportables en PDF ou en Word."],
+      ["Vous compare à votre secteur", "Vos ratios face à ceux des entreprises de votre secteur."],
+    ] },
+  { slug: "tresorerie", icon: "tresorerie", role: true, name: "Le trésorier", desc: "Prévoit votre trésorerie à 12 mois et anticipe le point bas.", Visual: VisTresorerie,
     lead: "Sachez ce que vous avez en banque, ce que vous aurez dans 13 semaines comme dans 12 mois, testez vos décisions avant de les prendre et récupérez plus vite ce qui vous est dû.",
     points: [
       ["Prévoit votre trésorerie en continu", "Projection mise à jour à chaque synchronisation comptable."],
@@ -220,23 +222,42 @@ const VZ_FEATURES = [
       ["Vous dit qui vous doit de l'argent", "Factures en retard par client, depuis combien de temps, et brouillon de relance prêt à relire."],
       ["Teste vos décisions", "Embauche, investissement, emprunt, retard client, baisse du chiffre d'affaires : votre trésorerie avec et sans."],
     ] },
-  { slug: "juridique", icon: "juridique", DetailVisual: VisJuridiqueDetail,
-    steps: [["Votre équipe financière rassemble", "Statuts, PV d'AG, comptes annuels et annonces légales récupérés aux registres publics."], ["Vos experts s'en servent", "Votre juriste et votre fiscaliste s'appuient sur ces documents pour répondre avec précision."], ["Vous gardez le cap", "Le calendrier des échéances vous prévient à temps."]],
-    name: "Juridique", desc: "Récupère vos documents officiels, calcule vos échéances fiscales et repère vos optimisations.", Visual: VisJuridique,
-    lead: "Votre équipe financière récupère les documents officiels de votre société aux registres publics (INPI, BODACC, annuaire des entreprises), calcule votre calendrier fiscal et social, et les met à disposition de votre juriste et de votre fiscaliste.",
+  { slug: "budget", icon: "budget", role: true, name: "Le contrôleur de gestion", desc: "Compare votre budget au réel et détecte les dérives poste par poste.", Visual: VisBudget,
+    lead: "Construisez votre budget, comparez-le au réel chaque mois et identifiez les postes qui dérivent avant qu'ils ne pèsent sur l'année.",
+    points: [
+      ["Construit votre budget prévisionnel", "À partir de votre historique, ajustable en quelques minutes."],
+      ["Compare budget et réel", "Poste par poste, avec les dépenses qui dérapent signalées en premier."],
+      ["Analyse vos coûts", "Vos plus gros postes de dépense et leur évolution."],
+      ["Calcule votre point mort", "Le chiffre d'affaires à atteindre pour couvrir vos coûts, et votre marge de sécurité."],
+    ] },
+  { slug: "juridique", icon: "juridique", role: true, DetailVisual: VisJuridiqueDetail,
+    steps: [["Votre juriste rassemble", "Statuts, PV d'AG, comptes annuels et annonces légales récupérés aux registres publics."], ["Il les lit pour vous", "Même scannés, résumés et rattachés à votre société."], ["Vous posez vos questions", "Réponses sourcées, avec les liens vers les textes officiels."]],
+    name: "Le juriste", desc: "Récupère vos documents officiels et répond à vos questions juridiques, textes à l'appui.", Visual: VisJuridique,
+    lead: "Votre juriste récupère les documents officiels de votre société aux registres publics (INPI, BODACC, annuaire des entreprises), les lit et répond à vos questions de droit des sociétés avec les textes officiels.",
     points: [
       ["Récupère vos documents officiels", "Statuts, actes, comptes déposés et annonces BODACC, lus et résumés, même scannés."],
-      ["Répond avec les textes officiels", "Vos questions juridiques et fiscales, réponses sourcées et liens vers les textes."],
-      ["Repère vos optimisations fiscales", "Opportunités et points de vigilance selon votre régime, à valider avec votre expert-comptable."],
-      ["Vous rappelle vos échéances", "TVA, URSSAF, IS, dépôt des comptes : un calendrier calculé pour votre société, et un rappel avant chaque échéance."],
+      ["Répond avec les textes officiels", "Vos questions juridiques, réponses sourcées et liens vers les textes."],
+      ["Suit la vie de votre société", "Approbation des comptes, dépôt au greffe : les dates calculées pour votre société."],
+      ["Travaille avec le reste de l'équipe", "Dividende, financement, cession : il croise vos documents avec vos chiffres."],
     ] },
-  { slug: "analyse-financiere", icon: "analyse", name: "Analyse financière", desc: "Calcule et explique vos marges, votre EBITDA, votre BFR et votre rentabilité.", Visual: VisAnalyse,
-    lead: "Vos indicateurs clés calculés à partir de vos données comptables, organisés en quatre piliers, expliqués et comparés à votre secteur.",
+  { slug: "fiscalite", icon: "fiscal", role: true, DetailVisual: VisFiscal,
+    steps: [["Votre fiscaliste lit votre profil", "Forme juridique, régime de TVA, date de clôture : récupérés aux registres, confirmés par vous."], ["Il calcule votre calendrier", "TVA, URSSAF, impôt sur les sociétés : les dates propres à votre société."], ["Vous êtes prévenu", "Un rappel avant chaque échéance, et vos questions fiscales à tout moment."]],
+    name: "Le fiscaliste", desc: "Calcule vos échéances fiscales et repère vos optimisations.", Visual: VisFiscal,
+    lead: "Votre fiscaliste calcule le calendrier fiscal et social de votre société, répond à vos questions fiscales avec les textes officiels et repère les optimisations à étudier avec votre expert-comptable.",
     points: [
-      ["Calcule vos indicateurs clés", "Marge brute, EBITDA, BFR, rentabilité par activité."],
-      ["Explique chaque écart", "Chaque variation est rattachée aux postes qui la provoquent."],
-      ["Produit vos états financiers", "Bilan, compte de résultat et flux de trésorerie, exportables en PDF ou en Word."],
-      ["Vous compare à votre secteur", "Vos ratios face à ceux des entreprises de votre secteur."],
+      ["Calcule vos échéances", "TVA, URSSAF, impôt sur les sociétés : un calendrier propre à votre forme juridique et à votre régime."],
+      ["Vous rappelle chaque échéance", "Un rappel avant chaque date, et le calendrier dans votre agenda."],
+      ["Répond avec les textes officiels", "Vos questions fiscales, réponses sourcées et liens vers les textes."],
+      ["Repère vos optimisations fiscales", "Opportunités et points de vigilance selon votre régime, à valider avec votre expert-comptable."],
+    ] },
+  { slug: "alertes", icon: "alertes",
+    steps: [["Votre assistant surveille", "Trésorerie, marges, retards clients et échéances suivis en continu."], ["Un signal apparaît", "Vous êtes prévenu avec la cause précise et les chiffres concernés."], ["Vous agissez", "Chaque alerte propose l'action à mener, prête à être lancée."]], role: true, name: "L'assistant administratif", desc: "Surveille vos chiffres et vous prévient des retards, tensions et échéances.", Visual: VisAlertes,
+    lead: "Votre assistant administratif surveille vos chiffres en continu et vous prévient dès qu'un signal mérite votre attention.",
+    points: [
+      ["Surveille vos chiffres en continu", "Trésorerie, marges, retards clients et échéances fiscales."],
+      ["S'adapte à vos seuils", "Vous définissez ce qui déclenche une alerte."],
+      ["Vous prévient où vous voulez", "Cloche, récapitulatif par e-mail, e-mail immédiat pour l'urgent, notification sur téléphone."],
+      ["Garde l'historique", "Toutes vos alertes, filtrées par type et gravité."],
     ] },
   { slug: "multi-societes", icon: "cabinet",
     steps: [["Ajoutez vos sociétés", "Holding, filiales : chacune avec sa comptabilité, connectée ou importée."], ["Votre équipe financière calcule", "Indicateurs, trésorerie et échéances pour chaque société, strictement séparés."], ["Vous pilotez", "Vous passez d'une société à l'autre en un clic, et votre cabinet suit celles que vous partagez."]], name: "Multi-sociétés", desc: "Toutes vos sociétés. Un seul écran.", Visual: VisCabinet,
@@ -246,23 +267,6 @@ const VZ_FEATURES = [
       ["La bonne information, à la bonne personne", "Vous choisissez, société par société, qui y a accès : votre expert-comptable, vos collaborateurs."],
       ["Un portefeuille pour les cabinets comptables", "Tous les dossiers clients, leur état et leurs chiffres, au même endroit."],
       ["Cloisonne chaque dossier", "Les chiffres d'une société ne se mélangent jamais avec ceux d'une autre."],
-    ] },
-  { slug: "alertes", icon: "alertes",
-    steps: [["Votre équipe financière surveille", "Trésorerie, marges, retards clients et échéances suivis en continu."], ["Un signal apparaît", "Vous êtes prévenu avec la cause précise et les chiffres concernés."], ["Vous agissez", "Chaque alerte propose l'action à mener, prête à être lancée."]], name: "Notifications & alertes", desc: "Vous prévient des retards, tensions et échéances avant qu'il soit trop tard.", Visual: VisAlertes,
-    lead: "Votre équipe financière surveille vos chiffres en continu et vous prévient dès qu'un signal mérite votre attention.",
-    points: [
-      ["Surveille vos chiffres en continu", "Trésorerie, marges, retards clients et échéances fiscales."],
-      ["S'adapte à vos seuils", "Vous définissez ce qui déclenche une alerte."],
-      ["Vous prévient où vous voulez", "Cloche, récapitulatif par e-mail, e-mail immédiat pour l'urgent, notification sur téléphone."],
-      ["Garde l'historique", "Toutes vos alertes, filtrées par type et gravité."],
-    ] },
-  { slug: "budget", icon: "budget", name: "Budget & analyse des coûts", desc: "Compare votre budget au réel et détecte les dérives poste par poste.", Visual: VisBudget,
-    lead: "Construisez votre budget, comparez-le au réel chaque mois et identifiez les postes qui dérivent avant qu'ils ne pèsent sur l'année.",
-    points: [
-      ["Construit votre budget prévisionnel", "À partir de votre historique, ajustable en quelques minutes."],
-      ["Compare budget et réel", "Poste par poste, avec les dépenses qui dérapent signalées en premier."],
-      ["Analyse vos coûts", "Vos plus gros postes de dépense et leur évolution."],
-      ["Calcule votre point mort", "Le chiffre d'affaires à atteindre pour couvrir vos coûts, et votre marge de sécurité."],
     ] },
 ];
 
