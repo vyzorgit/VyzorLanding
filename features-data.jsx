@@ -203,7 +203,7 @@ const VZ_FEATURES = [
       ["Analyse vos chiffres en détail", "Marges, rentabilité, évolution des coûts : une lecture complète, expliquée poste par poste."],
       ["Vous propose un plan d'action", "Priorités, effet attendu chiffré, et actions prêtes à lancer : rien ne part sans votre clic."],
       ["Simule vos scénarios", "Sur vos propres chiffres, pour vérifier qu'ils sont viables dans votre situation."],
-      ["Prépare vos e-mails et documents", "Relances, dossier pour la banque, synthèse financière : prêts à relire, en Word ou en PDF."],
+      ["Prépare vos e‑mails et documents", "Relances, dossier pour la banque, synthèse financière : prêts à relire, en Word ou en PDF."],
     ] },
   { slug: "analyse-financiere", icon: "analyse", role: true, name: "L'analyste", desc: "Calcule et explique vos marges, votre EBITDA, votre BFR et votre rentabilité.", Visual: VisAnalyse,
     lead: "Vos indicateurs clés calculés à partir de vos données comptables, organisés en quatre piliers, expliqués et comparés à votre secteur.",

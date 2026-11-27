@@ -107,7 +107,8 @@ const FeaturePage = () => {
         @media (prefers-reduced-motion: reduce) { .vzp-back, .vzp-hero h1, .vzp-hero > div > p, .vzp-hero > div > a, .vzp-hero::after { animation: none !important; } .vz-reveal, .vz-reveal .vz-st, .vz-reveal .vzp-visual { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; } }
         .vzp-back { display: inline-block; font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 28px; transition: color 160ms ease; }
         .vzp-back:hover { color: #fff; }
-        .vzp-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .vzp-hero { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .vzp-hero > * { max-width: 720px; }
         .vzp-hero + * { margin-top: 64px !important; }
         .vzp-visual { position: relative; height: 380px; border-radius: 20px; overflow: hidden; background: linear-gradient(180deg, #121a3a 0%, #0d1430 100%); border: 1px solid rgba(255,255,255,0.07); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 30px 80px -40px rgba(0,0,0,0.8); }
         .vzp-visual:has(.vzp-visual-auto) { height: auto !important; min-height: 0 !important; }

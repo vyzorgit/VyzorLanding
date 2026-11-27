@@ -29,12 +29,12 @@ const HomePain = ({ id = "constat" }) => (
       ))}
     </ul>
     <style>{`
-      .vz-hroles { display: grid; grid-template-columns: minmax(0, 1.15fr) repeat(3, minmax(0, 1fr)); gap: 14px; }
+      .vz-hroles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
       .vz-hroles li { display: flex; min-width: 0; }
       .vz-hroles li:first-child { grid-row: span 2; }
       .vz-hrole.lead { flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 28px; padding: 22px; border-color: rgba(240,201,73,0.32); background: linear-gradient(180deg, #19214a 0%, #0d1330 100%); }
       .vz-hrole.lead .vz-hrole-ic { width: 46px; height: 46px; border-radius: 13px; }
-      .vz-hrole.lead .vz-hrole-t { flex: 0; font-size: 20px; letter-spacing: -0.015em; }
+      .vz-hrole.lead .vz-hrole-t { flex: 0; font-size: 19px; line-height: 1.25; letter-spacing: -0.015em; max-width: 7.5em; }
       .vz-hrole.lead .vz-hrole-go { display: none; }
       .vz-hrole { flex: 1; display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 16px; text-decoration: none; background: linear-gradient(180deg, #121a3a 0%, #0b1026 100%); border: 1px solid rgba(140,160,255,0.14); transition: border-color 200ms ease, transform 200ms ease; }
       .vz-hrole:hover, .vz-hrole:focus-visible { border-color: rgba(240,201,73,0.45); transform: translateY(-2px); }
