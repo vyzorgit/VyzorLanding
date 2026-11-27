@@ -189,31 +189,13 @@ const IntegrationsPageBody = ({ gold, muted }) => (
   <React.Fragment>
     <VztStyles />
     <VzPageHero
-      title="Plus de 50 logiciels, branchés en un clic."
-      accent="Votre équipe financière fait le reste."
+      title="Plus de 50 logiciels."
+      accent="Branchés en un clic."
       lede="Comptabilité, banque, ventes, paiements : votre équipe financière lit les outils que vous utilisez déjà et les croise pour une seule lecture de vos chiffres. Rien n'est jamais modifié dans vos logiciels."
       cta="Analyser mes données"
     />
     <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
-      <section className="vzt-sec vz-reveal">
-        <VzSectionHead a="Trois façons de brancher vos données." b="Une seule lecture de vos chiffres." muted={muted} />
-        <ol className="vzt-3col" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-          {[
-            ["plug", "Connecteur direct", "Vous autorisez l'accès, une fois. Les données se mettent à jour d'un clic, sans export."],
-            ["file", "Dépôt de fichier", "FEC, liasse fiscale en PDF ou Excel : déposés en quelques secondes, quel que soit votre logiciel."],
-            ["layers", "Croisement", "Comptabilité, banque, ventes : votre équipe financière rapproche les sources pour une seule lecture de votre situation."],
-          ].map(([ic, t, d]) => (
-            <li key={t} className="vzt-lift" style={{ ...vztCard, padding: "28px 26px 30px" }}>
-              <VztIc name={ic} />
-              <h3 style={{ margin: "20px 0 10px", fontSize: 20, fontWeight: 600, color: "#fff", letterSpacing: "-0.015em" }}>{t}</h3>
-              <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: muted }}>{d}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
       <section className="vzt-sec vz-reveal" aria-label="Liste des intégrations">
-        <VzSectionHead a="Nos intégrations." b="Disponibles, ou activées sur demande." muted={muted} />
         <div style={{ display: "flex", flexDirection: "column", gap: 44 }}>
           {VZT_INTEGRATIONS.map((g) => (
             <div key={g.cat}>
@@ -326,8 +308,8 @@ const SecurityPageBody = ({ gold, muted }) => {
     <React.Fragment>
       <VztStyles />
       <VzPageHero
-        title="Vos données sont protégées."
-        accent="Elles restent en France. Et restent à vous."
+        title="Vos données, protégées."
+        accent="En France."
         lede="Hébergées en France, lues en lecture seule, jamais utilisées pour entraîner une IA. Voici le détail."
         cta="Analyser mes données"
       />

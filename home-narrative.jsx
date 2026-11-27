@@ -20,7 +20,7 @@ const HomePain = ({ id = "constat" }) => (
     <ul className="vz-hroles" style={{ listStyle: "none", margin: "32px 0 0", padding: 0 }}>
       {(window.VZ_FEATURES || []).filter((f) => f.role).map((f) => (
         <li key={f.slug}>
-          <a href={vzFeatureHref(f.slug)} className="vz-hrole">
+          <a href={vzFeatureHref(f.slug)} className={"vz-hrole" + (f.slug === "conseil" ? " lead" : "")}>
             <span className="vz-hrole-ic"><VzfIcon name={f.icon} size={18} /></span>
             <span className="vz-hrole-t">{f.name}</span>
             <span className="vz-hrole-go" aria-hidden="true">→</span>
@@ -29,8 +29,13 @@ const HomePain = ({ id = "constat" }) => (
       ))}
     </ul>
     <style>{`
-      .vz-hroles { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
-      .vz-hroles li { flex: 0 0 calc((100% - 42px) / 4); display: flex; }
+      .vz-hroles { display: grid; grid-template-columns: minmax(0, 1.15fr) repeat(3, minmax(0, 1fr)); gap: 14px; }
+      .vz-hroles li { display: flex; min-width: 0; }
+      .vz-hroles li:first-child { grid-row: span 2; }
+      .vz-hrole.lead { flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 28px; padding: 22px; border-color: rgba(240,201,73,0.32); background: linear-gradient(180deg, #19214a 0%, #0d1330 100%); }
+      .vz-hrole.lead .vz-hrole-ic { width: 46px; height: 46px; border-radius: 13px; }
+      .vz-hrole.lead .vz-hrole-t { flex: 0; font-size: 20px; letter-spacing: -0.015em; }
+      .vz-hrole.lead .vz-hrole-go { display: none; }
       .vz-hrole { flex: 1; display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 16px; text-decoration: none; background: linear-gradient(180deg, #121a3a 0%, #0b1026 100%); border: 1px solid rgba(140,160,255,0.14); transition: border-color 200ms ease, transform 200ms ease; }
       .vz-hrole:hover, .vz-hrole:focus-visible { border-color: rgba(240,201,73,0.45); transform: translateY(-2px); }
       .vz-hrole-ic { flex-shrink: 0; width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; color: #f0c949; background: rgba(240,201,73,0.08); border: 1px solid rgba(240,201,73,0.24); }
@@ -38,8 +43,8 @@ const HomePain = ({ id = "constat" }) => (
       .vz-hrole-go { color: rgba(255,255,255,0.35); transition: color 200ms ease, transform 200ms ease; }
       .vz-hrole:hover .vz-hrole-go { color: #f0c949; transform: translateX(3px); }
       @media (prefers-reduced-motion: reduce) { .vz-hrole, .vz-hrole-go { transition: none; } .vz-hrole:hover { transform: none; } }
-      @media (max-width: 920px) { .vz-hpain h2 { font-size: 32px !important; } .vz-hroles li { flex-basis: calc((100% - 14px) / 2); } }
-      @media (max-width: 560px) { .vz-hpain h2 { font-size: 25px !important; } .vz-hpain p { font-size: 16px !important; } .vz-hroles { gap: 10px; } .vz-hroles li { flex-basis: 100%; } .vz-hrole { padding: 12px 14px; } }
+      @media (max-width: 920px) { .vz-hpain h2 { font-size: 32px !important; } .vz-hroles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vz-hroles li:first-child { grid-row: auto; grid-column: 1 / -1; } .vz-hrole.lead { flex-direction: row; align-items: center; gap: 12px; } }
+      @media (max-width: 560px) { .vz-hpain h2 { font-size: 25px !important; } .vz-hpain p { font-size: 16px !important; } .vz-hroles { gap: 10px; grid-template-columns: 1fr; } .vz-hrole { padding: 12px 14px; } }
     `}</style>
   </section>
 );
