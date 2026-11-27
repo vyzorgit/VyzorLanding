@@ -460,7 +460,7 @@ const VyzorNav = ({ gold, text, muted, subtle }) => {
         {/* Brand — mark seul (transparent) pour s'intégrer au verre de la navbar */}
         <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", paddingRight: 4, paddingLeft: 2 }}>
           <VyzorLogo size={28} color={gold} bg="transparent" />
-          <div style={{
+          <div className="vz-nav-word" style={{
             fontSize: 11, letterSpacing: "0.32em", color: text, fontWeight: 700,
             overflow: "hidden",
             maxWidth: 80,
