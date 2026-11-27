@@ -807,5 +807,17 @@
   "Vos ventes et votre marge, produit par produit.": "Your sales and margin, product by product.",
   "Votre trafic, rapproché de vos ventes.": "Your traffic, matched with your sales.",
   "Intégrations Vyzor : Pennylane et plus de 50 logiciels": "Vyzor integrations: Pennylane and more than 50 tools",
-  "Vyzor lit votre comptabilité (Pennylane, MyUnisoft, Odoo, ACD, FEC, liasse fiscale PDF, Excel) et la croise avec plus de 50 logiciels : banque, facturation, CRM, paiements, caisse, vente en ligne.": "Vyzor reads your accounting (Pennylane, MyUnisoft, Odoo, ACD, FEC, tax return PDF, Excel) and cross-checks it with more than 50 tools: banking, invoicing, CRM, payments, POS, e-commerce."
+  "Vyzor lit votre comptabilité (Pennylane, MyUnisoft, Odoo, ACD, FEC, liasse fiscale PDF, Excel) et la croise avec plus de 50 logiciels : banque, facturation, CRM, paiements, caisse, vente en ligne.": "Vyzor reads your accounting (Pennylane, MyUnisoft, Odoo, ACD, FEC, tax return PDF, Excel) and cross-checks it with more than 50 tools: banking, invoicing, CRM, payments, POS, e-commerce.",
+  "Branchés en un clic.": "Connected in one click.",
+  "Ce que fait l'analyste": "What the analyst does",
+  "Ce que fait l'assistant administratif": "What the admin assistant does",
+  "Ce que fait le contrôleur de gestion": "What the financial controller does",
+  "Ce que fait le directeur financier": "What the finance director does",
+  "Ce que fait le fiscaliste": "What the tax advisor does",
+  "Ce que fait le juriste": "What legal counsel does",
+  "Ce que fait le trésorier": "What the treasurer does",
+  "Ce que vous obtenez": "What you get",
+  "En France.": "In France.",
+  "Plus de 50 logiciels.": "More than 50 tools.",
+  "Vos données, protégées.": "Your data, protected."
 }

@@ -52,44 +52,10 @@ const FeaturePage = () => {
             </div>
           </header>
 
-          {f.slug === "conseil" && window.ConseilFlow ? <ConseilFlow /> : null}
-
-          {["alertes", "multi-societes", "juridique", "fiscalite"].includes(f.slug) ? (
-            <React.Fragment>
-              <section className="vz-reveal vzp-split" style={{ marginTop: 64 }}>
-                <div className="vzp-visual" aria-hidden="true" style={{ height: "100%", minHeight: 360 }}><div className={"vzp-visual-in" + (f.DetailVisual ? " vzp-visual-auto" : "")}>{f.DetailVisual ? <f.DetailVisual /> : <V />}</div></div>
-                <div>
-                  <h2 style={{ margin: 0, fontSize: 28, letterSpacing: "-0.02em", fontWeight: 600, color: "#fff" }}>Ce que Vyzor fait pour vous</h2>
-                  <div style={{ marginTop: 20 }}>
-                    {f.points.map(([t, d]) => (
-                      <div key={t} style={{ padding: "16px 0", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-                        <div style={{ fontSize: 16, fontWeight: 600, color: "#fff" }}>{t}</div>
-                        <div style={{ fontSize: 14.5, lineHeight: 1.6, color: muted, marginTop: 4 }}>{d}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </section>
-              {f.steps ? (
-                <section className="vz-reveal" style={{ marginTop: 96 }}>
-                  <h2 style={{ margin: 0, fontSize: 28, letterSpacing: "-0.02em", fontWeight: 600, color: "#fff" }}>Comment ça marche</h2>
-                  <div className="vzp-steps">
-                    {f.steps.map(([t, d]) => (
-                      <div key={t} className="vzp-step">
-                        <div style={{ fontSize: 16, fontWeight: 600, color: "#fff" }}>{t}</div>
-                        <div style={{ fontSize: 14.5, lineHeight: 1.6, color: muted, marginTop: 6 }}>{d}</div>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              ) : null}
-            </React.Fragment>
-          ) : null}
-          {["alertes", "multi-societes", "juridique", "fiscalite"].includes(f.slug) ? null : f.slug === "tresorerie" && window.TresorerieExplainer ? <TresorerieExplainer /> : f.slug === "analyse-financiere" && window.AnalyseExplainer ? <AnalyseExplainer /> : f.slug === "conseil" && window.ConseilCapabilities ? <ConseilCapabilities /> : (
           <section className="vz-reveal" style={{ marginTop: 112 }}>
-            <h2 style={{ margin: 0, fontSize: 32, letterSpacing: "-0.02em", fontWeight: 600, color: "#fff" }}>Ce que Vyzor fait pour vous</h2>
+            <h2 style={{ margin: 0, fontSize: 32, letterSpacing: "-0.02em", fontWeight: 600, color: "#fff" }}>{f.role ? "Ce que fait " + f.name.charAt(0).toLowerCase() + f.name.slice(1) : "Ce que vous obtenez"}</h2>
             <div className="vzp-points">
-              {f.points.map(([t, d], i) => (
+              {f.points.map(([t, d]) => (
                 <div key={t} className="vzp-point">
                   <h3 style={{ margin: 0, fontSize: 17, fontWeight: 600, color: "#fff", letterSpacing: "-0.01em" }}>{t}</h3>
                   <p style={{ margin: "8px 0 0", fontSize: 14.5, lineHeight: 1.6, color: muted, textWrap: "pretty" }}>{d}</p>
@@ -97,7 +63,6 @@ const FeaturePage = () => {
               ))}
             </div>
           </section>
-          )}
 
           <section className="vz-reveal" style={{ marginTop: 112 }}>
             <h2 style={{ margin: 0, fontSize: 24, letterSpacing: "-0.02em", fontWeight: 600, color: "#fff" }}>Les autres fonctionnalités</h2>
@@ -142,7 +107,8 @@ const FeaturePage = () => {
         @media (prefers-reduced-motion: reduce) { .vzp-back, .vzp-hero h1, .vzp-hero > div > p, .vzp-hero > div > a, .vzp-hero::after { animation: none !important; } .vz-reveal, .vz-reveal .vz-st, .vz-reveal .vzp-visual { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; } }
         .vzp-back { display: inline-block; font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 28px; transition: color 160ms ease; }
         .vzp-back:hover { color: #fff; }
-        .vzp-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .vzp-hero { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .vzp-hero > * { max-width: 720px; }
         .vzp-hero + * { margin-top: 64px !important; }
         .vzp-visual { position: relative; height: 380px; border-radius: 20px; overflow: hidden; background: linear-gradient(180deg, #121a3a 0%, #0d1430 100%); border: 1px solid rgba(255,255,255,0.07); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 30px 80px -40px rgba(0,0,0,0.8); }
         .vzp-visual:has(.vzp-visual-auto) { height: auto !important; min-height: 0 !important; }
