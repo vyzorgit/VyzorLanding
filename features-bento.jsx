@@ -2,9 +2,9 @@
 // Chaque case mène à la sous-page de la fonctionnalité.
 
 const VZ_BENTO_LAYOUT = {
-  "conseil": 2, "tresorerie": 1,
-  "analyse-financiere": 1, "alertes": 1, "budget": 1,
-  "juridique": 2, "multi-societes": 1,
+  "conseil": 2, "analyse-financiere": 1,
+  "tresorerie": 1, "budget": 1, "juridique": 1,
+  "fiscalite": 1, "alertes": 1, "multi-societes": 1,
 };
 
 const BentoCard = ({ f, span }) => {
@@ -25,7 +25,7 @@ const BentoCard = ({ f, span }) => {
 };
 
 const FeaturesBento = () => {
-  const order = ["conseil", "tresorerie", "analyse-financiere", "alertes", "budget", "juridique", "multi-societes"];
+  const order = ["conseil", "analyse-financiere", "tresorerie", "budget", "juridique", "fiscalite", "alertes", "multi-societes"];
   const list = order.map((s) => VZ_FEATURES.find((f) => f.slug === s));
   return (
     <section className="vzb" aria-label="Fonctionnalités">

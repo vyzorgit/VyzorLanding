@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Vyzor — Logiciel de pilotage financier pour PME</title>
-  <meta name="description" content="Vyzor, logiciel de pilotage financier pour PME : un directeur financier d'exception, sans en recruter un. Analyse de vos données en temps réel et le bon levier à actionner." />
+  <meta name="description" content="Vyzor, votre équipe financière à portée de main : elle se branche sur vos données, les analyse en temps réel, automatise vos tâches et identifie les leviers stratégiques à activer." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Favicons + Open Graph (Vyzor ribbon) -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -23,10 +23,10 @@
   <meta property="og:image:alt" content="VYZOR" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:title" content="Vyzor — Logiciel de pilotage financier pour PME" />
-  <meta property="og:description" content="Vyzor, logiciel de pilotage financier pour PME : un directeur financier d'exception, sans en recruter un. Analyse de vos données en temps réel et le bon levier à actionner." />
+  <meta property="og:description" content="Vyzor, votre équipe financière à portée de main : elle se branche sur vos données, les analyse en temps réel, automatise vos tâches et identifie les leviers stratégiques à activer." />
   <meta property="og:url" content="https://www.vyzor.fr/" />
   <meta name="twitter:title" content="Vyzor — Logiciel de pilotage financier pour PME" />
-  <meta name="twitter:description" content="Vyzor, logiciel de pilotage financier pour PME : un directeur financier d'exception, sans en recruter un. Analyse de vos données en temps réel et le bon levier à actionner." />
+  <meta name="twitter:description" content="Vyzor, votre équipe financière à portée de main : elle se branche sur vos données, les analyse en temps réel, automatise vos tâches et identifie les leviers stratégiques à activer." />
   <link rel="canonical" href="https://www.vyzor.fr/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -168,12 +168,6 @@
       "inLanguage": "fr-FR",
       "url": "https://www.vyzor.fr/",
       "description": "Logiciel de pilotage et de reporting financier pour dirigeants de PME, DAF et experts-comptables : plus de 35 indicateurs, prévision de trésorerie, alertes et assistant IA, depuis le connecteur Pennylane ou un import FEC.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "EUR",
-        "description": "Accès anticipé"
-      },
       "publisher": {
         "@id": "https://www.vyzor.fr/#organization"
       }
@@ -193,8 +187,8 @@
   <div id="root"></div>
   <noscript>
     <div style="max-width:760px;margin:0 auto;padding:64px 24px;font-family:system-ui,-apple-system,sans-serif;color:#e7e9f0;line-height:1.6;">
-      <h1 style="font-size:32px;margin:0 0 16px;">Un directeur financier d'exception, sans en recruter un.</h1>
-      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Votre directeur financier se branche sur vos données : il les analyse en temps réel, automatise vos tâches financières et vous dit quel levier actionner aujourd'hui.</p>
+      <h1 style="font-size:32px;margin:0 0 16px;">Votre équipe financière, à portée de main.</h1>
+      <p style="font-size:17px;color:#aab;margin:0 0 24px;">Votre équipe financière se branche sur vos données : elle les analyse en temps réel, automatise vos tâches et identifie les leviers stratégiques à activer.</p>
       <nav style="font-size:15px;font-weight:600;"><a href="/fonctionnalites" style="color:#f0c949;margin-right:18px;">Fonctionnalités</a><a href="/securite" style="color:#f0c949;margin-right:18px;">Sécurité</a></nav>
     </div>
   </noscript>
@@ -309,7 +303,7 @@
       return (
         <React.Fragment>
           <VyzorNav gold={gold} text={text} muted={muted} subtle={subtle} />
-          <StickyBetaCta label="Essayer gratuitement" />
+          <StickyBetaCta />
           <main id="contenu" tabIndex={-1} style={{ outline: "none" }}>
             <CinematicHero />
             {/* Reste de la page : on réutilise les sections de la variante A après le hero cinématique */}

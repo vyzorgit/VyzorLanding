@@ -7,6 +7,7 @@ const FEATURES = [
   ["conseil", "council"],
   ["alertes", "alerts"],
   ["juridique", "legal"],
+  ["fiscalite", "tax"],
   ["multi-societes", "multi-entity"],
   ["budget", "budget"],
 ];

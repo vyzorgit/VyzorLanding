@@ -268,7 +268,7 @@ const VzVelocityWords = ({ words, color, accent }) => (
 
 // —— Hero v4 (refonte proposition de valeur, 17/11/2026, brain « Vyzor Pitches ») ——
 // Une cible (dirigeants de PME sous Pennylane), une promesse (la tagline : un directeur
-// financier d'exception, sans en recruter un), une action (prendre rendez-vous pour essayer son directeur financier).
+// (une équipe financière, à portée de main), une action (analyser ses données en rendez-vous).
 const CinematicHero = () => {
   const gold = "#f0c949";
   const text = "rgba(255,255,255,0.94)";
@@ -309,12 +309,12 @@ const CinematicHero = () => {
       <div className="vz-hero-grid">
         <div className="vz-hero-copy">
           <h1 className="vz-hero-h1 vz-hero-in" style={{ animationDelay: "80ms" }}>
-            Un directeur financier d'exception,{" "}
-            <span style={{ color: gold, display: "block" }}>sans en recruter un.</span>
+            Votre équipe financière,{" "}
+            <span style={{ color: gold, display: "block" }}>à portée de main.</span>
           </h1>
           <p className="vz-hero-sub vz-hero-in" style={{ animationDelay: "180ms" }}>
-            Votre directeur financier se branche sur vos données : il les analyse en temps réel, automatise vos tâches financières{" "}
-            <span style={{ color: text }}>et vous dit quel levier actionner aujourd'hui</span>.
+            Votre équipe financière se branche sur vos données : elle les analyse en temps réel, automatise vos tâches{" "}
+            <span style={{ color: text }}>et identifie les leviers stratégiques à activer</span>.
           </p>
           <div className="vz-hero-cta-row vz-hero-in" style={{ animationDelay: "260ms" }}>
             <a className="vz-hero-cta-primary vz-btn-primary" href="/?contact=1#beta" data-contact style={{
@@ -323,12 +323,9 @@ const CinematicHero = () => {
               backgroundColor: gold, color: "#0d1430",
               fontWeight: 600, fontSize: 15.5, textDecoration: "none",
             }}>
-              Essayer mon directeur financier <span aria-hidden="true">→</span>
+              Analyser mes données <span aria-hidden="true">→</span>
             </a>
           </div>
-          <p className="vz-hero-micro vz-hero-in" style={{ animationDelay: "320ms" }}>
-            Pour les dirigeants de PME sous Pennylane · Rendez-vous de 30 min en visio · Accès anticipé offert
-          </p>
         </div>
         <div className="vz-hero-visual vz-hero-in" style={{ animationDelay: "380ms" }}>
           <HeroProductShot />

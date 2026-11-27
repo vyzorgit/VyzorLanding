@@ -76,9 +76,9 @@ const OutcomesSection = ({ id = "resultats", gold, muted, items: customItems, ti
 // —— 2. Objections : les cinq questions qui bloquent le clic ——
 const VZ_OBJECTIONS = [
   { q: "Est-ce que ça remplace mon expert-comptable ?", a: "Non. Vyzor ne tient pas votre comptabilité : il lit le travail de votre cabinet et le transforme en décisions. Votre comptable garde son rôle, vous gagnez la lecture." },
-  { q: "Mes données sont-elles en sécurité ?", a: "Vyzor accède à votre comptabilité en lecture seule : il ne modifie, n'écrit ni ne supprime rien. Les données sont chiffrées, hébergées dans l'Union européenne, et ne servent jamais à entraîner une IA. Vous coupez l'accès en un clic." },
+  { q: "Mes données sont-elles en sécurité ?", a: "Vyzor accède à votre comptabilité en lecture seule : il ne modifie, n'écrit ni ne supprime rien. Les données sont chiffrées, hébergées en France, et ne servent jamais à entraîner une IA. Vous coupez l'accès en un clic." },
   { q: "Combien de temps ça me prend ?", a: "Quelques minutes pour connecter Pennylane, et on le fait avec vous au premier rendez-vous. Ensuite, Vyzor travaille seul : vous n'avez rien à saisir." },
-  { q: "Et après l'accès anticipé, combien ça coûte ?", a: "L'accès anticipé est offert. Le tarif sera annoncé avant sa fin, et nos premiers clients gardent un tarif préférentiel à vie. Aucun engagement : vous partez quand vous voulez." },
+  { q: "Combien ça coûte ?", a: "Le tarif dépend du nombre de sociétés suivies : on vous le présente au premier rendez-vous. Aucun engagement : vous partez quand vous voulez." },
 ];
 
 const ObjectionsSection = ({ id = "questions", gold, muted, items = VZ_OBJECTIONS }) => {
@@ -144,13 +144,13 @@ const FinalCtaSection = ({ gold, muted }) => (
       Vyzor ouvre {VZ_BETA.places} places de bêta : gratuit, avec vos vrais chiffres et une ligne directe avec les fondateurs.
     </p>
     <div style={{ position: "relative", marginTop: 32 }}>
-      <VzCtaLink size="lg">Essayer mon directeur financier</VzCtaLink>
+      <VzCtaLink size="lg">Analyser mes données</VzCtaLink>
     </div>
   </section>
 );
 
 // —— 4. CTA collant : apparaît une fois le hero passé, disparaît sur l'offre ——
-const StickyBetaCta = ({ label = "Essayer gratuitement" }) => {
+const StickyBetaCta = ({ label = "Analyser mes données" }) => {
   const [show, setShow] = React.useState(false);
   React.useEffect(() => {
     let raf = 0;
@@ -159,7 +159,11 @@ const StickyBetaCta = ({ label = "Essayer gratuitement" }) => {
       const y = window.scrollY, h = window.innerHeight;
       const beta = document.getElementById("beta");
       const betaTop = beta ? beta.getBoundingClientRect().top : Infinity;
-      setShow(y > h * 0.9 && betaTop > h * 0.6 && !document.querySelector(".beta-modal-overlay"));
+      // Masqué dès que le dernier appel ou le pied de page arrive à l'écran : la barre ne
+      // recouvre jamais le bas de page, et ne clignote plus quand on remonte depuis le bas.
+      const end = document.querySelector(".vz-final") || document.querySelector("footer");
+      const endTop = end ? end.getBoundingClientRect().top : Infinity;
+      setShow(y > h * 0.9 && betaTop > h * 0.6 && endTop > h * 0.85 && !document.querySelector(".beta-modal-overlay"));
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(check); };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -169,7 +173,7 @@ const StickyBetaCta = ({ label = "Essayer gratuitement" }) => {
   }, []);
   return (
     <div className="vz-sticky" data-show={show ? "true" : "false"} aria-hidden={!show}>
-      <span className="vz-sticky-txt">Accès anticipé · {VZ_BETA.places} places</span>
+      <span className="vz-sticky-txt">Votre équipe financière, à portée de main</span>
       <a href="/?contact=1#beta" data-contact tabIndex={show ? 0 : -1}>{label} <span aria-hidden="true">→</span></a>
       <style>{`
         .vz-sticky { position: fixed; left: 50%; bottom: 18px; z-index: 900; display: flex; align-items: center; gap: 14px;
@@ -212,9 +216,9 @@ const FoundersSection = ({ id = "fondateurs", gold, muted }) => (
           Avec nous, <span style={{ color: gold }}>ce sont les fondateurs que vous avez au téléphone.</span>
         </h2>
         <p style={{ margin: "20px 0 0", fontSize: 16, lineHeight: 1.65, color: muted, maxWidth: 480, textWrap: "pretty" }}>
-          Les grands groupes ont des équipes entières pour lire leurs chiffres. Les PME ont un bilan par an.
-          Nous avons créé Vyzor pour donner au dirigeant de PME la même lecture, sans l'équipe.
-          Accompagnés par l'incubateur Prodiges.
+          Les grands groupes ont des équipes financières entières pour lire leurs chiffres. Les PME, souvent, un bilan par an.
+          Nous avons créé Vyzor pour donner au dirigeant de PME la même équipe financière, à portée de main.
+          Incubé, et testé avec un panel de conseillers financiers.
         </p>
       </div>
       <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
@@ -274,9 +278,9 @@ const TeamPageBody = ({ gold, muted }) => (
           D'où vient Vyzor.
         </h2>
         <p style={{ margin: "18px 0 0", fontSize: 17, lineHeight: 1.7, color: muted }}>
-          Vyzor est né d'un hackathon avec Google. Depuis, il est accompagné par l'incubateur Prodiges
-          et construit avec un panel de DAF qui le testent sur leurs propres chiffres.
-          Nos premiers clients parlent directement aux fondateurs.
+          Vyzor est né d'un hackathon avec Google. Depuis, il est incubé et construit avec un panel
+          de conseillers financiers qui le testent sur leurs propres chiffres.
+          Nos clients parlent directement aux fondateurs.
         </p>
       </section>
 

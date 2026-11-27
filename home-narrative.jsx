@@ -1,24 +1,45 @@
 // home-narrative.jsx — Sections de l'accueil (refonte du 17/11/2026, validée par Antoine).
 // Phrases reprises du document « Vyzor Pitches » (brain/) : douleur,
 // fonctionnalité clé, script du rendez-vous, ligne rouge « l'IA ne fait jamais les calculs ».
-// Cinq blocs, une seule action : essayer son directeur financier.
+// Cinq blocs, une seule action : analyser ses données avec son équipe financière.
 
 const VZH = { gold: "#f0c949", muted: "rgba(255,255,255,0.58)", line: "rgba(255,255,255,0.08)" };
 
-// —— 2. La douleur, et la métaphore ——
+// —— 2. Le constat, et ce que vous obtenez : une équipe, des spécialistes ——
 const HomePain = ({ id = "constat" }) => (
   <section id={id} className="vz-hpain" style={{ position: "relative", marginBottom: 96 }}>
-    <div style={{ maxWidth: 760 }}>
+    <div style={{ maxWidth: 780 }}>
       <h2 style={{ fontSize: 40, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.12, textWrap: "balance" }}>
-        Les PME n'ont pas les moyens d'un directeur financier d'exception.
+        Les grands groupes ont une équipe financière.{" "}
+        <span style={{ color: VZH.gold }}>Votre PME aussi, désormais.</span>
       </h2>
       <p style={{ fontSize: 18, lineHeight: 1.6, color: VZH.muted, margin: "18px 0 0", textWrap: "pretty" }}>
-        Résultat : elles ne savent jamais vraiment quel levier actionner pour améliorer leur activité.
+        Un directeur financier et ses spécialistes : chacun dans son domaine, tous sur vos chiffres.
       </p>
     </div>
+    <ul className="vz-hroles" style={{ listStyle: "none", margin: "32px 0 0", padding: 0 }}>
+      {(window.VZ_FEATURES || []).filter((f) => f.role).map((f) => (
+        <li key={f.slug}>
+          <a href={vzFeatureHref(f.slug)} className="vz-hrole">
+            <span className="vz-hrole-ic"><VzfIcon name={f.icon} size={18} /></span>
+            <span className="vz-hrole-t">{f.name}</span>
+            <span className="vz-hrole-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
     <style>{`
-      @media (max-width: 920px) { .vz-hpain h2 { font-size: 32px !important; } }
-      @media (max-width: 560px) { .vz-hpain h2 { font-size: 25px !important; } .vz-hpain p { font-size: 16px !important; } }
+      .vz-hroles { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+      .vz-hroles li { flex: 0 0 calc((100% - 42px) / 4); display: flex; }
+      .vz-hrole { flex: 1; display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 16px; text-decoration: none; background: linear-gradient(180deg, #121a3a 0%, #0b1026 100%); border: 1px solid rgba(140,160,255,0.14); transition: border-color 200ms ease, transform 200ms ease; }
+      .vz-hrole:hover, .vz-hrole:focus-visible { border-color: rgba(240,201,73,0.45); transform: translateY(-2px); }
+      .vz-hrole-ic { flex-shrink: 0; width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; color: #f0c949; background: rgba(240,201,73,0.08); border: 1px solid rgba(240,201,73,0.24); }
+      .vz-hrole-t { flex: 1; min-width: 0; font-size: 16px; font-weight: 600; color: #fff; }
+      .vz-hrole-go { color: rgba(255,255,255,0.35); transition: color 200ms ease, transform 200ms ease; }
+      .vz-hrole:hover .vz-hrole-go { color: #f0c949; transform: translateX(3px); }
+      @media (prefers-reduced-motion: reduce) { .vz-hrole, .vz-hrole-go { transition: none; } .vz-hrole:hover { transform: none; } }
+      @media (max-width: 920px) { .vz-hpain h2 { font-size: 32px !important; } .vz-hroles li { flex-basis: calc((100% - 14px) / 2); } }
+      @media (max-width: 560px) { .vz-hpain h2 { font-size: 25px !important; } .vz-hpain p { font-size: 16px !important; } .vz-hroles { gap: 10px; } .vz-hroles li { flex-basis: 100%; } .vz-hrole { padding: 12px 14px; } }
     `}</style>
   </section>
 );
@@ -32,7 +53,7 @@ const HomeDemo = ({ id = "produit" }) => (
         <span style={{ display: "block", color: VZH.gold }}>Un tableau de bord sur mesure.</span>
       </h2>
       <p style={{ fontSize: 18, lineHeight: 1.65, color: VZH.muted, margin: "22px 0 0", maxWidth: 680, textWrap: "pretty" }}>
-        Demandez à votre directeur financier les indicateurs dont vous avez besoin. Votre tableau de bord se construit en temps réel, avec les actions à mener, et arrive dans votre boîte mail chaque matin.
+        Demandez à votre équipe financière les indicateurs dont vous avez besoin : votre tableau de bord se construit en temps réel, avec les actions à mener, dans votre boîte mail chaque matin.
       </p>
     </div>
     <div style={{ maxWidth: 920, margin: "0 auto" }}><GenUiVideo /></div>
@@ -82,15 +103,14 @@ const HomeProof = () => {
 // —— 4. Comment tester : trois étapes sur une ligne ——
 const HomeSteps = ({ id = "comment" }) => {
   const steps = [
-    { t: "Vous créez votre compte", d: "En deux minutes, pendant le rendez-vous." },
-    { t: "On connecte vos données", d: "Pennylane en lecture seule, ou un export FEC." },
-    { t: "Votre tableau de bord, en direct", d: "Construit devant vous, selon vos besoins." },
+    { t: "Créer votre compte", d: "En quelques secondes, pendant le rendez-vous." },
+    { t: "Connecter vos données", d: "Pennylane en lecture seule, ou un export FEC." },
+    { t: "Construire votre tableau de bord", d: "Vos indicateurs, selon vos besoins." },
   ];
   return (
     <section id={id} className="vz-hsteps" style={{ position: "relative", marginBottom: 56 }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 18 }}>
-        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Essayez votre directeur financier en 30 minutes, avec nous.</h2>
-        <span className="vz-hsteps-sub" style={{ fontSize: 13.5, color: VZH.muted }}>En visio · accès anticipé offert · l'IA ne fait jamais les calculs</span>
+        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Obtenez votre équipe financière en quelques secondes.</h2>
       </div>
       <ol className="vz-hsteps-row" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 14 }}>
         {steps.map((s, i) => (
@@ -124,14 +144,14 @@ const HomeFinalCta = () => (
     border: "1px solid rgba(140,160,255,0.18)",
   }}>
     <h2 style={{ position: "relative", margin: "0 auto", maxWidth: 820, fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, letterSpacing: "-0.025em", lineHeight: 1.15, color: "#fff", textWrap: "balance" }}>
-      Quel levier actionner ce mois-ci ?{" "}
-      <span style={{ color: VZH.gold }}>Posez la question à votre directeur financier, sur vos propres chiffres.</span>
+      Vos chiffres ont des réponses.{" "}
+      <span style={{ color: VZH.gold }}>Votre équipe financière les trouve.</span>
     </h2>
     <p style={{ position: "relative", margin: "22px auto 0", maxWidth: 560, fontSize: 17, lineHeight: 1.6, color: VZH.muted }}>
-      En 30 minutes, vous repartez avec votre premier tableau de bord. L'accès anticipé vous est offert.
+      Votre premier tableau de bord, prêt en quelques secondes.
     </p>
     <div style={{ position: "relative", marginTop: 32 }}>
-      <VzCtaLink>Essayer mon directeur financier</VzCtaLink>
+      <VzCtaLink>Construisez votre tableau de bord sur mesure</VzCtaLink>
     </div>
   </section>
 );

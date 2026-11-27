@@ -1,7 +1,7 @@
 // conseil-flow.jsx — Schéma interactif : orchestrateur → agents spécialisés → agent d'actions
 
 const CF_AGENTS = [
-  { id: "juridique", name: "Juriste", role: "Droit des sociétés, contrats", data: ["Statuts", "PV d'AG", "Contrats", "Baux"] },
+  { id: "juridique", name: "Juriste", role: "Droit des sociétés, contrats", data: ["Statuts", "PV d'AG", "Comptes déposés", "Annonces BODACC"] },
   { id: "fiscal", name: "Fiscaliste", role: "Impôts, TVA, optimisation", data: ["Liasse fiscale", "Déclarations TVA", "Barèmes 2026"] },
   { id: "treso", name: "Trésorier", role: "Flux, prévisions, encaissements", data: ["Relevés bancaires", "Échéanciers", "Balance âgée"] },
   { id: "analyste", name: "Analyste", role: "Marges, rentabilité, budget", data: ["FEC", "Grand livre", "Budget"] },
@@ -35,7 +35,7 @@ const ConseilFlow = () => {
     <section className="cf vz-reveal" style={{ marginTop: 112 }}>
       <h2 style={{ margin: 0, fontSize: 32, letterSpacing: "-0.02em", fontWeight: 600, color: "#fff" }}>Comment fonctionne le conseil</h2>
       <p style={{ margin: "14px 0 0", fontSize: 16.5, lineHeight: 1.6, color: "rgba(255,255,255,0.58)", maxWidth: 680, textWrap: "pretty" }}>
-        Chaque question est analysée par un orchestrateur, qui fait appel aux seuls agents spécialisés utiles. Chacun travaille sur ses propres données. L'agent d'actions exécute ensuite ce qui doit l'être.
+        Chaque question passe d'abord par votre directeur financier, qui fait appel aux seuls experts utiles : trésorier, analyste, juriste, fiscaliste. Votre assistant prépare ensuite ce qui doit l'être, et rien ne part sans votre accord.
       </p>
 
       <div className="cf-qs" role="tablist" aria-label="Exemples de questions">
@@ -54,8 +54,8 @@ const ConseilFlow = () => {
         <div className="cf-node cf-orch on">
           <span className="cf-ic"><VzfIcon name="conseil" size={16} /></span>
           <span>
-            <span style={{ display: "block", fontSize: 15, fontWeight: 600, color: "#fff" }}>Orchestrateur</span>
-            <span style={{ display: "block", fontSize: 13, color: "rgba(255,255,255,0.58)" }}>Comprend la demande et mobilise {cur.agents.length} agent{cur.agents.length > 1 ? "s" : ""}</span>
+            <span style={{ display: "block", fontSize: 15, fontWeight: 600, color: "#fff" }}>Votre directeur financier</span>
+            <span style={{ display: "block", fontSize: 13, color: "rgba(255,255,255,0.58)" }}>Comprend la demande et mobilise {cur.agents.length} expert{cur.agents.length > 1 ? "s" : ""}</span>
           </span>
         </div>
         <span className="cf-v on" aria-hidden="true" />
@@ -83,7 +83,7 @@ const ConseilFlow = () => {
         <div className={"cf-node cf-action" + (cur.action ? " on" : "")}>
           <span className="cf-ic"><VzfIcon name="connexions" size={16} /></span>
           <span>
-            <span style={{ display: "block", fontSize: 15, fontWeight: 600, color: "#fff" }}>Agent d'actions</span>
+            <span style={{ display: "block", fontSize: 15, fontWeight: 600, color: "#fff" }}>Votre assistant</span>
             <span key={"a" + i} className="cf-fade" style={{ display: "block", fontSize: 13, color: "rgba(255,255,255,0.58)" }}>{cur.action || "Aucune action requise pour cette question"}</span>
           </span>
         </div>

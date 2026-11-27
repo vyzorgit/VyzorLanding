@@ -23,7 +23,6 @@
   "Depuis un tableau de bord, Vyzor rédige un compte-rendu chiffré que vous relisez et envoyez, rapport PDF joint.": "From a dashboard, Vyzor drafts a report with the figures, which you review and send, with the PDF report attached.",
   "Des alertes classées par impact en euros, avec l'action à mener": "Alerts ranked by impact in euros, with the action to take",
   "Des comptes-rendus déjà rédigés": "Reports already written",
-  "Deux options, sans aucune re-saisie. Par connecteur, en lecture seule, avec Pennylane (MyUnisoft et Odoo en cours de finalisation). Ou par import de fichiers depuis votre espace Documents : FEC, Excel (.xlsx, .csv) ou PDF de liasse fiscale. Les données sont ensuite structurées automatiquement.": "Two options, with no re-entry at all. Through a read-only connector with Pennylane (MyUnisoft and Odoo are being finalized). Or by importing files from your Documents area: FEC (French standard ledger export), Excel (.xlsx, .csv) or a tax return (liasse fiscale) PDF. The data is then structured automatically.",
   "Effacer la recherche": "Clear search",
   "Elles reposent sur des règles métier précises, sans approximation, et sont triées par impact en euros : vous traitez d'abord ce qui pèse vraiment sur vos résultats.": "They rely on precise business rules, with no approximation, and are ranked by impact in euros: you deal first with what really weighs on your results.",
   "Elles sont chiffrées et hébergées dans l'Union européenne, sur une infrastructure conforme SOC 2 et ISO 27001.": "It is encrypted and hosted in the European Union, on SOC 2 and ISO 27001 compliant infrastructure.",
@@ -35,7 +34,6 @@
   "Il entre dans la bêta gratuitement, avec un diagnostic financier dès le premier rendez-vous. Vous restez son conseil : Vyzor lit votre travail, il ne le remplace pas.": "They join the beta for free, with a financial diagnosis from the very first meeting. You remain their advisor: Vyzor reads your work, it doesn't replace it.",
   "Il répond à vos questions sur vos KPI, votre trésorerie et votre fiscalité (TVA, IS). Pour les sujets complexes, il réunit un « Conseil » de plusieurs expertises — analyste, trésorier, juriste et stratège — qui croisent leurs regards sur votre situation.": "It answers your questions about your KPIs, your cash and your taxes (VAT, corporate tax). For complex topics, it convenes a “Council” of several areas of expertise (analyst, treasurer, legal counsel and strategist) who cross-check their views on your situation.",
   "L'essentiel": "The essentials",
-  "L'import de fichiers prend le relais : tous les logiciels comptables utilisés en France savent exporter un FEC, format légal obligatoire. Les connexions bancaires sont en préparation.": "File import takes over: all accounting software used in France can export a FEC, a mandatory legal format. Bank connections are in the works.",
   "L'équipe Vyzor : fondateurs et recrutement": "The Vyzor team: founders and hiring",
   "Le conseil, tout le monde le veut.": "Everyone wants advisory.",
   "Le travail de votre cabinet, au même endroit": "Your accounting firm's work, in the same place",
@@ -99,7 +97,6 @@
   "Votre comptabilité est prête.": "Your books are ready.",
   "Votre comptabilité tenue et à jour": "Your books kept and up to date",
   "Votre trésorerie projetée à 12 mois, point bas daté": "Your cash projected 12 months out, with the date of the low point",
-  "Vous synchronisez vos données d'un clic, quand vous le souhaitez. Une synchronisation automatique quotidienne arrive prochainement.": "You sync your data in one click, whenever you want. Automatic daily sync is coming soon.",
   "Vous utilisez Pennylane ? Vyzor s'y connecte en lecture seule : marges, trésorerie à 12 mois et alertes, depuis votre comptabilité. Bêta gratuite.": "Using Pennylane? Vyzor connects to it in read-only mode: margins, 12-month cash forecast and alerts, from your bookkeeping. Free beta.",
   "Vyzor lit la comptabilité de vos dossiers et en tire, pour chaque client, les indicateurs, la trésorerie prévisionnelle et les alertes qui comptent. Vous arrivez au rendez-vous avec l'analyse déjà faite.": "Vyzor reads your clients' bookkeeping and pulls out, for each client, the indicators, cash forecast and alerts that matter. You walk into the meeting with the analysis already done.",
   "Vyzor pour Pennylane : pilotage financier et trésorerie des PME": "Vyzor for Pennylane: financial management and cash for SMEs",
@@ -113,5 +110,8 @@
   "À quelle fréquence mes données sont-elles mises à jour ?": "How often is my data updated?",
   "À qui s'adresse VYZOR ?": "Who is VYZOR for?",
   "À tout moment : le bouton « Déconnecter » de votre espace Documents, ou la révocation depuis votre logiciel comptable, coupe l'accès immédiatement. L'historique déjà calculé reste disponible.": "At any time: the “Disconnect” button in your Documents area, or revoking access from your accounting software, cuts off access immediately. History that has already been calculated remains available.",
-  "Écrivez-nous à": "Email us at"
+  "Écrivez-nous à": "Email us at",
+  "Deux options, sans aucune re-saisie. Par connecteur, en lecture seule, avec Pennylane, et sur demande MyUnisoft, Odoo ou ACD. Ou par import de fichiers depuis votre espace Documents : FEC, Excel (.xlsx, .csv) ou PDF de liasse fiscale. Les données sont ensuite structurées automatiquement.": "Two options, with no re-entry at all. Through a read-only connector with Pennylane (MyUnisoft and Odoo are being finalized). Or by importing files from your Documents area: FEC (French standard ledger export), Excel (.xlsx, .csv) or a tax return (liasse fiscale) PDF. The data is then structured automatically.",
+  "L'import de fichiers prend le relais : tous les logiciels comptables utilisés en France savent exporter un FEC, format légal obligatoire. Vos comptes bancaires remontent via Pennylane.": "File import takes over: all accounting software used in France can export a FEC, a mandatory legal format. Bank connections are in the works.",
+  "Vous synchronisez vos données d'un clic, quand vous le souhaitez.": "You sync your data in one click, whenever you want."
 }

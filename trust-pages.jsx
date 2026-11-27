@@ -67,6 +67,8 @@ const VztStyles = () => (
     .vzt-gen-bar { transform-origin: bottom; animation: vztGrow 900ms cubic-bezier(0.22,1,0.36,1) both; }
     @keyframes vztGrow { from { transform: scaleY(0.2); opacity: 0.3; } to { transform: scaleY(1); opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .vzt-lift, .vzt-lift:hover { transition: none; transform: none; } .vzt-gen-bar { animation: none; } .vzt-pm::before, .vzt-pm::after { transition: none; } }
+    .vzt-tools { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    @media (max-width: 980px) { .vzt-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 980px) {
       .vzt-2col, .vzt-gen { grid-template-columns: 1fr !important; }
       .vzt-4col { grid-template-columns: 1fr 1fr !important; }
@@ -100,7 +102,7 @@ const GenerativeUiSection = ({ muted = VZT_MUTED }) => {
             L'écran se compose <span style={{ color: muted }}>autour de votre question.</span>
           </h2>
           <p style={{ fontSize: 17, lineHeight: 1.65, color: muted, margin: "20px 0 0", maxWidth: 520 }}>
-            Un logiciel classique vous impose ses tableaux. Avec Vyzor, vous posez une question au Conseil et la réponse s'affiche sous la forme qui l'explique le mieux : indicateurs, cascade, simulation, comparaison d'options. Chaque chiffre vient du moteur de calcul, jamais de l'IA : l'IA choisit la présentation, pas les nombres.
+            Un logiciel classique vous impose ses tableaux. Ici, vous posez une question à votre équipe financière et la réponse s'affiche sous la forme qui l'explique le mieux : indicateurs, cascade, simulation, comparaison d'options. Chaque chiffre vient du moteur de calcul, jamais de l'IA : l'IA choisit la présentation, pas les nombres.
           </p>
           <ul style={{ listStyle: "none", margin: "26px 0 0", padding: 0, display: "flex", flexWrap: "wrap", gap: 8 }}>
             {VZT_BLOCKS.map((b) => (
@@ -160,53 +162,46 @@ const GenerativeUiSection = ({ muted = VZT_MUTED }) => {
 
 // —— Badge de statut d'une intégration ——
 const VztStatus = ({ s }) => {
-  const m = { on: ["on", "Disponible"], ask: ["soon", "Sur demande"], soon: ["soon", "Bientôt"] }[s];
-  return <span className={"vzt-badge " + m[0]} style={s === "soon" ? { color: "rgba(255,255,255,0.6)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.14)" } : null}><span className="dot" aria-hidden="true" />{m[1]}</span>;
+  const m = { on: ["on", "Disponible"], ask: ["soon", "Sur demande"] }[s];
+  return <span className={"vzt-badge " + m[0]}><span className="dot" aria-hidden="true" />{m[1]}</span>;
 };
 
-// Statuts relevés dans le code de l'application le 05/11/2026 (catalogue des connecteurs et
-// drapeaux de visibilité). « Sur demande » = activé société par société pendant la bêta.
+// Liste relevée dans le code de l'application (branche main, 27/11/2026 : connecteurs et
+// drapeaux de visibilité). Deux statuts seulement : « Disponible » (ouvert à tous) ou « Sur demande »
+// (activé société par société).
 const VZT_INTEGRATIONS = [
-  { cat: "Comptabilité", icon: "doc", lead: "La source principale : vos écritures, lues sans ressaisie.", tools: [
-    { n: "Pennylane", d: "Comptabilité et comptes bancaires synchronisés dans Pennylane, en lecture seule.", s: "on", href: "/pennylane" },
-    { n: "MyUnisoft", d: "Connexion par jeton, avec l'accord de votre cabinet.", s: "ask" },
-    { n: "Odoo", d: "Connexion par clé d'accès, selon votre abonnement Odoo.", s: "ask" },
-    { n: "ACD", d: "Pour les cabinets équipés d'ACD : les dossiers de vos clients, sans export.", s: "ask" },
-    { n: "Tiime", d: "Connecteur en préparation.", s: "soon" },
-  ] },
-  { cat: "Fichiers, tous logiciels", icon: "file", lead: "Votre logiciel n'a pas de connecteur ? Un export suffit.", tools: [
-    { n: "FEC", d: "Le fichier légal que tout logiciel comptable français sait exporter.", s: "on" },
-    { n: "Liasse fiscale PDF", d: "Lue automatiquement, sans ressaisie.", s: "on" },
-    { n: "Excel et CSV", d: "Balance, grand livre ou budget prévisionnel.", s: "on" },
-  ] },
-  { cat: "Ventes et paiements", icon: "card", lead: "Ce qui va rentrer, avant que ce soit en comptabilité.", tools: [
-    { n: "Stripe", d: "Encaissements, abonnements et revenus récurrents.", s: "ask" },
-    { n: "HubSpot", d: "Affaires en cours et chiffre d'affaires à venir.", s: "ask" },
-    { n: "Pipedrive", d: "Affaires en cours et chiffre d'affaires à venir.", s: "ask" },
-  ] },
-  { cat: "Messagerie", icon: "mail", lead: "Pour envoyer vos comptes-rendus depuis votre propre adresse.", tools: [
-    { n: "Gmail", d: "Envoi seulement, révocable à tout moment.", s: "on" },
-  ] },
+  { cat: "Comptabilité", icon: "doc", lead: "La source principale : vos écritures, lues sans ressaisie.", tools: [{ n: "Pennylane", s: "on", href: "/pennylane" }, { n: "MyUnisoft", s: "ask" }, { n: "Odoo", s: "ask" }, { n: "ACD", s: "ask" }, { n: "Cegid Loop", s: "ask" }] },
+  { cat: "Fichiers, tous logiciels", icon: "file", lead: "Pas de connecteur ? Un export suffit.", tools: [{ n: "FEC", s: "on" }, { n: "Liasse fiscale PDF", s: "on" }, { n: "Excel et CSV", s: "on" }] },
+  { cat: "Banque", icon: "card", lead: "Vos soldes et vos mouvements, au jour le jour.", tools: [{ n: "Qonto", s: "ask" }, { n: "Bridge, toutes vos banques", s: "ask" }] },
+  { cat: "Facturation", icon: "doc", lead: "Ce qu'on vous doit, avant même la comptabilité.", tools: [{ n: "Axonaut", s: "ask" }, { n: "Sellsy", s: "ask" }, { n: "Abby", s: "ask" }, { n: "Evoliz", s: "ask" }, { n: "Henrri", s: "ask" }, { n: "VosFactures", s: "ask" }] },
+  { cat: "Suivi commercial", icon: "layers", lead: "Vos affaires en cours, votre chiffre d'affaires à venir.", tools: [{ n: "HubSpot", s: "ask" }, { n: "Pipedrive", s: "ask" }, { n: "Salesforce", s: "ask" }, { n: "Zoho CRM", s: "ask" }, { n: "GoHighLevel", s: "ask" }, { n: "noCRM.io", s: "ask" }, { n: "folk", s: "ask" }] },
+  { cat: "Paiements", icon: "card", lead: "Vos encaissements, dès qu'ils tombent.", tools: [{ n: "Stripe", s: "ask" }, { n: "GoCardless", s: "ask" }, { n: "Mollie", s: "ask" }, { n: "SumUp", s: "ask" }, { n: "PayPal", s: "ask" }, { n: "Stancer", s: "ask" }] },
+  { cat: "Caisse et vente en ligne", icon: "card", lead: "Vos ventes et votre marge, produit par produit.", tools: [{ n: "Shopify", s: "ask" }, { n: "WooCommerce", s: "ask" }, { n: "PrestaShop", s: "ask" }, { n: "Wix", s: "ask" }, { n: "Square", s: "ask" }, { n: "Zettle", s: "ask" }, { n: "Hiboutik", s: "ask" }] },
+  { cat: "Temps passé", icon: "layers", lead: "Le temps de vos équipes, pour la marge de chaque projet.", tools: [{ n: "Lucca", s: "ask" }, { n: "Toggl", s: "ask" }, { n: "Harvest", s: "ask" }, { n: "ClickUp", s: "ask" }] },
+  { cat: "Marketing", icon: "mail", lead: "Ce que rapportent vos campagnes.", tools: [{ n: "Brevo", s: "ask" }, { n: "Mailchimp", s: "ask" }, { n: "Klaviyo", s: "ask" }, { n: "ActiveCampaign", s: "ask" }, { n: "Sarbacane", s: "ask" }, { n: "Mailjet", s: "ask" }] },
+  { cat: "Site et visibilité", icon: "layers", lead: "Votre trafic, rapproché de vos ventes.", tools: [{ n: "Google Analytics", s: "ask" }, { n: "Google Search Console", s: "ask" }, { n: "Google Business Profile", s: "ask" }, { n: "Plausible", s: "ask" }, { n: "Matomo", s: "ask" }] },
+  { cat: "Relation client", icon: "mail", lead: "Ce que vos clients vous disent.", tools: [{ n: "Intercom", s: "ask" }, { n: "Crisp", s: "ask" }, { n: "Freshdesk", s: "ask" }, { n: "Ringover", s: "ask" }] },
+  { cat: "Messagerie et documents", icon: "mail", lead: "Vos e-mails envoyés depuis votre adresse, vos documents au même endroit.", tools: [{ n: "Gmail", s: "on" }, { n: "Outlook", s: "ask" }, { n: "Notion", s: "ask" }, { n: "Yousign", s: "ask" }] },
 ];
+const VZT_INTEGRATIONS_COUNT = VZT_INTEGRATIONS.reduce((n, g) => n + g.tools.length, 0);
 
 const IntegrationsPageBody = ({ gold, muted }) => (
   <React.Fragment>
     <VztStyles />
     <VzPageHero
-      title="Branché sur vos outils."
-      accent="Sans rien ressaisir."
-      lede="Vyzor lit la comptabilité que votre cabinet tient déjà, avec vos comptes bancaires via Pennylane, puis la croise avec vos ventes et vos encaissements. Toujours en lecture seule : Vyzor n'écrit jamais dans vos logiciels."
-      cta="Essayer mon directeur financier"
-      note="Connexion en quelques minutes"
+      title="Plus de 50 logiciels, branchés en un clic."
+      accent="Votre équipe financière fait le reste."
+      lede="Comptabilité, banque, ventes, paiements : votre équipe financière lit les outils que vous utilisez déjà et les croise pour une seule lecture de vos chiffres. Rien n'est jamais modifié dans vos logiciels."
+      cta="Analyser mes données"
     />
     <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
       <section className="vzt-sec vz-reveal">
-        <VzSectionHead a="Trois façons de brancher Vyzor." b="Une seule lecture de vos chiffres." muted={muted} />
+        <VzSectionHead a="Trois façons de brancher vos données." b="Une seule lecture de vos chiffres." muted={muted} />
         <ol className="vzt-3col" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
           {[
-            ["plug", "Connecteur direct", "Vous autorisez l'accès depuis Vyzor. Les données se mettent à jour d'un clic, sans export."],
+            ["plug", "Connecteur direct", "Vous autorisez l'accès, une fois. Les données se mettent à jour d'un clic, sans export."],
             ["file", "Dépôt de fichier", "FEC, liasse fiscale en PDF ou Excel : déposés en quelques secondes, quel que soit votre logiciel."],
-            ["layers", "Croisement", "Comptabilité, banque, ventes : Vyzor rapproche les sources pour une seule lecture de votre situation."],
+            ["layers", "Croisement", "Comptabilité, banque, ventes : votre équipe financière rapproche les sources pour une seule lecture de votre situation."],
           ].map(([ic, t, d]) => (
             <li key={t} className="vzt-lift" style={{ ...vztCard, padding: "28px 26px 30px" }}>
               <VztIc name={ic} />
@@ -218,10 +213,7 @@ const IntegrationsPageBody = ({ gold, muted }) => (
       </section>
 
       <section className="vzt-sec vz-reveal" aria-label="Liste des intégrations">
-        <VzSectionHead a="Toutes nos intégrations," b="et où elles en sont." muted={muted} />
-        <p style={{ margin: "-16px 0 36px", fontSize: 15, lineHeight: 1.6, color: muted, maxWidth: 760 }}>
-          <strong style={{ color: "#fff", fontWeight: 600 }}>Disponible</strong> : ouvert à tous. <strong style={{ color: "#fff", fontWeight: 600 }}>Sur demande</strong> : activé pour votre société sur simple demande. <strong style={{ color: "#fff", fontWeight: 600 }}>Bientôt</strong> : en préparation.
-        </p>
+        <VzSectionHead a="Nos intégrations." b="Disponibles, ou activées sur demande." muted={muted} />
         <div style={{ display: "flex", flexDirection: "column", gap: 44 }}>
           {VZT_INTEGRATIONS.map((g) => (
             <div key={g.cat}>
@@ -232,19 +224,18 @@ const IntegrationsPageBody = ({ gold, muted }) => (
                   <p style={{ margin: "2px 0 0", fontSize: 14, color: muted }}>{g.lead}</p>
                 </div>
               </div>
-              <ul className="vzt-3col" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
+              <ul className="vzt-tools" style={{ listStyle: "none", margin: 0, padding: 0 }}>
                 {g.tools.map((t) => {
                   const inner = (
                     <React.Fragment>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 10 }}>
-                        <span style={{ fontSize: 17, fontWeight: 600, color: "#fff" }}>{t.n}</span>
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 8 }}>
+                        <span style={{ fontSize: 15.5, fontWeight: 600, color: "#fff", minWidth: 0 }}>{t.n}</span>
                         <VztStatus s={t.s} />
                       </div>
-                      <p style={{ margin: 0, fontSize: 14, lineHeight: 1.55, color: muted }}>{t.d}</p>
                       {t.href ? <span className="vzt-link" style={{ marginTop: 12, fontSize: 13.5 }}>En savoir plus <span aria-hidden="true">→</span></span> : null}
                     </React.Fragment>
                   );
-                  const st = { ...vztCard, borderRadius: 16, padding: "18px 18px 20px", display: "block", height: "100%", boxSizing: "border-box", textDecoration: "none", opacity: t.s === "soon" ? 0.78 : 1 };
+                  const st = { ...vztCard, borderRadius: 14, padding: "14px 16px", display: "block", height: "100%", boxSizing: "border-box", textDecoration: "none", };
                   return (
                     <li key={t.n}>
                       {t.href ? <a href={t.href} className="vzt-lift" style={st}>{inner}</a> : <div style={st}>{inner}</div>}
@@ -261,7 +252,7 @@ const IntegrationsPageBody = ({ gold, muted }) => (
         <div className="vzt-2col" style={{ ...vztCard, padding: "36px 36px", display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 32, alignItems: "center", border: "1px solid rgba(240,201,73,0.22)" }}>
           <div>
             <h2 style={{ margin: 0, fontSize: 32, fontWeight: 600, letterSpacing: "-0.025em", lineHeight: 1.15, color: "#fff" }}>Votre logiciel n'est pas dans la liste ?</h2>
-            <p style={{ margin: "14px 0 0", fontSize: 16, lineHeight: 1.6, color: muted }}>Le FEC fonctionne avec tous les logiciels comptables. Pour le reste, dites-nous ce que vous utilisez : les prochains connecteurs suivent les demandes de nos clients.</p>
+            <p style={{ margin: "14px 0 0", fontSize: 16, lineHeight: 1.6, color: muted }}>Le FEC fonctionne avec tous les logiciels comptables. Pour le reste, dites-nous ce que vous utilisez.</p>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "flex-end" }}>
             <a href="/?contact=1#beta" data-contact style={{ display: "inline-flex", alignItems: "center", padding: "14px 20px", borderRadius: 10, background: gold, color: "#111", fontSize: 15, fontWeight: 600, textDecoration: "none" }}>Prendre rendez-vous</a>
@@ -289,7 +280,7 @@ const VZT_SEC_FAQ = [
 
 const SecurityPageBody = ({ gold, muted }) => {
   const badges = [
-    ["globe", "Hébergé à Paris", "Application et base de données en France."],
+    ["globe", "Hébergé en France", "Application, base de données et fichiers, à Paris."],
     ["eye", "Lecture seule", "Aucune écriture, aucun virement possible."],
     ["key", "Chiffrement AES-256", "Vos accès aux logiciels connectés, chiffrés."],
     ["layers", "Isolation par société", "Imposée par la base de données elle-même."],
@@ -297,8 +288,8 @@ const SecurityPageBody = ({ gold, muted }) => {
   const where = [
     ["Application", "Vercel", "Paris (France)"],
     ["Base de données et comptes", "Supabase, sur AWS", "Paris (France)"],
-    ["Fichiers importés", "Supabase", "Stockage du projet Vyzor"],
-    ["Assistant IA", "Anthropic (Claude)", "Données pseudonymisées avant envoi"],
+    ["Fichiers importés", "Supabase, sur AWS", "Paris (France)"],
+    ["Assistant IA", "Agnostique du modèle (LLM)", "Données pseudonymisées avant envoi"],
   ];
   const blocks = [
     { icon: "lock", t: "Chiffrement", pts: [
@@ -335,11 +326,10 @@ const SecurityPageBody = ({ gold, muted }) => {
     <React.Fragment>
       <VztStyles />
       <VzPageHero
-        title="Vos chiffres restent les vôtres."
-        accent="Et vous savez où ils sont."
-        lede="Vyzor lit des données sensibles : votre comptabilité, votre trésorerie, vos clients. Voici précisément où elles sont, comment elles sont protégées et ce que l'IA en voit."
-        cta="Essayer mon directeur financier"
-        note="Une question ? admin@vyzor.fr"
+        title="Vos données sont protégées."
+        accent="Elles restent en France. Et restent à vous."
+        lede="Hébergées en France, lues en lecture seule, jamais utilisées pour entraîner une IA. Voici le détail."
+        cta="Analyser mes données"
       />
       <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
         <section className="vzt-sec vz-reveal" style={{ marginTop: -40 }}>
