@@ -67,6 +67,8 @@ const VztStyles = () => (
     .vzt-gen-bar { transform-origin: bottom; animation: vztGrow 900ms cubic-bezier(0.22,1,0.36,1) both; }
     @keyframes vztGrow { from { transform: scaleY(0.2); opacity: 0.3; } to { transform: scaleY(1); opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .vzt-lift, .vzt-lift:hover { transition: none; transform: none; } .vzt-gen-bar { animation: none; } .vzt-pm::before, .vzt-pm::after { transition: none; } }
+    .vzt-tools { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    @media (max-width: 980px) { .vzt-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 980px) {
       .vzt-2col, .vzt-gen { grid-template-columns: 1fr !important; }
       .vzt-4col { grid-template-columns: 1fr 1fr !important; }
@@ -164,37 +166,32 @@ const VztStatus = ({ s }) => {
   return <span className={"vzt-badge " + m[0]}><span className="dot" aria-hidden="true" />{m[1]}</span>;
 };
 
-// Statuts relevés dans le code de l'application le 05/11/2026 (catalogue des connecteurs et
-// drapeaux de visibilité). Deux statuts seulement : « Disponible » ou « Sur demande ».
+// Liste relevée dans le code de l'application (branche main, 27/11/2026 : connecteurs et
+// drapeaux de visibilité). Deux statuts seulement : « Disponible » (ouvert à tous) ou « Sur demande »
+// (activé société par société).
 const VZT_INTEGRATIONS = [
-  { cat: "Comptabilité", icon: "doc", lead: "La source principale : vos écritures, lues sans ressaisie.", tools: [
-    { n: "Pennylane", d: "Comptabilité et comptes bancaires synchronisés dans Pennylane, en lecture seule.", s: "on", href: "/pennylane" },
-    { n: "MyUnisoft", d: "Connexion par jeton, avec l'accord de votre cabinet.", s: "ask" },
-    { n: "Odoo", d: "Connexion par clé d'accès, selon votre abonnement Odoo.", s: "ask" },
-    { n: "ACD", d: "Pour les cabinets équipés d'ACD : les dossiers de vos clients, sans export.", s: "ask" },
-  ] },
-  { cat: "Fichiers, tous logiciels", icon: "file", lead: "Votre logiciel n'a pas de connecteur ? Un export suffit.", tools: [
-    { n: "FEC", d: "Le fichier légal que tout logiciel comptable français sait exporter.", s: "on" },
-    { n: "Liasse fiscale PDF", d: "Lue automatiquement, sans ressaisie.", s: "on" },
-    { n: "Excel et CSV", d: "Balance, grand livre ou budget prévisionnel.", s: "on" },
-  ] },
-  { cat: "Ventes et paiements", icon: "card", lead: "Ce qui va rentrer, avant que ce soit en comptabilité.", tools: [
-    { n: "Stripe", d: "Encaissements, abonnements et revenus récurrents.", s: "ask" },
-    { n: "HubSpot", d: "Affaires en cours et chiffre d'affaires à venir.", s: "ask" },
-    { n: "Pipedrive", d: "Affaires en cours et chiffre d'affaires à venir.", s: "ask" },
-  ] },
-  { cat: "Messagerie", icon: "mail", lead: "Pour envoyer vos comptes-rendus depuis votre propre adresse.", tools: [
-    { n: "Gmail", d: "Envoi seulement, révocable à tout moment.", s: "on" },
-  ] },
+  { cat: "Comptabilité", icon: "doc", lead: "La source principale : vos écritures, lues sans ressaisie.", tools: [{ n: "Pennylane", s: "on", href: "/pennylane" }, { n: "MyUnisoft", s: "ask" }, { n: "Odoo", s: "ask" }, { n: "ACD", s: "ask" }, { n: "Cegid Loop", s: "ask" }] },
+  { cat: "Fichiers, tous logiciels", icon: "file", lead: "Pas de connecteur ? Un export suffit.", tools: [{ n: "FEC", s: "on" }, { n: "Liasse fiscale PDF", s: "on" }, { n: "Excel et CSV", s: "on" }] },
+  { cat: "Banque", icon: "card", lead: "Vos soldes et vos mouvements, au jour le jour.", tools: [{ n: "Qonto", s: "ask" }, { n: "Bridge, toutes vos banques", s: "ask" }] },
+  { cat: "Facturation", icon: "doc", lead: "Ce qu'on vous doit, avant même la comptabilité.", tools: [{ n: "Axonaut", s: "ask" }, { n: "Sellsy", s: "ask" }, { n: "Abby", s: "ask" }, { n: "Evoliz", s: "ask" }, { n: "Henrri", s: "ask" }, { n: "VosFactures", s: "ask" }] },
+  { cat: "Suivi commercial", icon: "layers", lead: "Vos affaires en cours, votre chiffre d'affaires à venir.", tools: [{ n: "HubSpot", s: "ask" }, { n: "Pipedrive", s: "ask" }, { n: "Salesforce", s: "ask" }, { n: "Zoho CRM", s: "ask" }, { n: "GoHighLevel", s: "ask" }, { n: "noCRM.io", s: "ask" }, { n: "folk", s: "ask" }] },
+  { cat: "Paiements", icon: "card", lead: "Vos encaissements, dès qu'ils tombent.", tools: [{ n: "Stripe", s: "ask" }, { n: "GoCardless", s: "ask" }, { n: "Mollie", s: "ask" }, { n: "SumUp", s: "ask" }, { n: "PayPal", s: "ask" }, { n: "Stancer", s: "ask" }] },
+  { cat: "Caisse et vente en ligne", icon: "card", lead: "Vos ventes et votre marge, produit par produit.", tools: [{ n: "Shopify", s: "ask" }, { n: "WooCommerce", s: "ask" }, { n: "PrestaShop", s: "ask" }, { n: "Wix", s: "ask" }, { n: "Square", s: "ask" }, { n: "Zettle", s: "ask" }, { n: "Hiboutik", s: "ask" }] },
+  { cat: "Temps passé", icon: "layers", lead: "Le temps de vos équipes, pour la marge de chaque projet.", tools: [{ n: "Lucca", s: "ask" }, { n: "Toggl", s: "ask" }, { n: "Harvest", s: "ask" }, { n: "ClickUp", s: "ask" }] },
+  { cat: "Marketing", icon: "mail", lead: "Ce que rapportent vos campagnes.", tools: [{ n: "Brevo", s: "ask" }, { n: "Mailchimp", s: "ask" }, { n: "Klaviyo", s: "ask" }, { n: "ActiveCampaign", s: "ask" }, { n: "Sarbacane", s: "ask" }, { n: "Mailjet", s: "ask" }] },
+  { cat: "Site et visibilité", icon: "layers", lead: "Votre trafic, rapproché de vos ventes.", tools: [{ n: "Google Analytics", s: "ask" }, { n: "Google Search Console", s: "ask" }, { n: "Google Business Profile", s: "ask" }, { n: "Plausible", s: "ask" }, { n: "Matomo", s: "ask" }] },
+  { cat: "Relation client", icon: "mail", lead: "Ce que vos clients vous disent.", tools: [{ n: "Intercom", s: "ask" }, { n: "Crisp", s: "ask" }, { n: "Freshdesk", s: "ask" }, { n: "Ringover", s: "ask" }] },
+  { cat: "Messagerie et documents", icon: "mail", lead: "Vos e-mails envoyés depuis votre adresse, vos documents au même endroit.", tools: [{ n: "Gmail", s: "on" }, { n: "Outlook", s: "ask" }, { n: "Notion", s: "ask" }, { n: "Yousign", s: "ask" }] },
 ];
+const VZT_INTEGRATIONS_COUNT = VZT_INTEGRATIONS.reduce((n, g) => n + g.tools.length, 0);
 
 const IntegrationsPageBody = ({ gold, muted }) => (
   <React.Fragment>
     <VztStyles />
     <VzPageHero
-      title="Vos outils, branchés en un clic."
+      title="Plus de 50 logiciels, branchés en un clic."
       accent="Votre équipe financière fait le reste."
-      lede="Votre équipe financière lit la comptabilité que vous tenez déjà, puis la croise avec votre banque et vos ventes. Toujours en lecture seule : rien n'est jamais modifié dans vos logiciels."
+      lede="Comptabilité, banque, ventes, paiements : votre équipe financière lit les outils que vous utilisez déjà et les croise pour une seule lecture de vos chiffres. Rien n'est jamais modifié dans vos logiciels."
       cta="Analyser mes données"
     />
     <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
@@ -227,18 +224,18 @@ const IntegrationsPageBody = ({ gold, muted }) => (
                   <p style={{ margin: "2px 0 0", fontSize: 14, color: muted }}>{g.lead}</p>
                 </div>
               </div>
-              <ul className="vzt-3col" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
+              <ul className="vzt-tools" style={{ listStyle: "none", margin: 0, padding: 0 }}>
                 {g.tools.map((t) => {
                   const inner = (
                     <React.Fragment>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
-                        <span style={{ fontSize: 17, fontWeight: 600, color: "#fff" }}>{t.n}</span>
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 8 }}>
+                        <span style={{ fontSize: 15.5, fontWeight: 600, color: "#fff", minWidth: 0 }}>{t.n}</span>
                         <VztStatus s={t.s} />
                       </div>
                       {t.href ? <span className="vzt-link" style={{ marginTop: 12, fontSize: 13.5 }}>En savoir plus <span aria-hidden="true">→</span></span> : null}
                     </React.Fragment>
                   );
-                  const st = { ...vztCard, borderRadius: 16, padding: "18px 18px 20px", display: "block", height: "100%", boxSizing: "border-box", textDecoration: "none", };
+                  const st = { ...vztCard, borderRadius: 14, padding: "14px 16px", display: "block", height: "100%", boxSizing: "border-box", textDecoration: "none", };
                   return (
                     <li key={t.n}>
                       {t.href ? <a href={t.href} className="vzt-lift" style={st}>{inner}</a> : <div style={st}>{inner}</div>}

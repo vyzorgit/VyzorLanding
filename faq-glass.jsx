@@ -15,7 +15,7 @@ const VYZOR_FAQ_GROUPS = [
   {
     id: "demarrer", title: "Mise en route", desc: "Brancher vos données et démarrer.",
     items: [
-      { q: "Comment VYZOR récupère-t-il mes données comptables ?", a: "Deux options, sans aucune re-saisie. Par connecteur, en lecture seule, avec Pennylane, et sur demande MyUnisoft, Odoo ou ACD. Ou par import de fichiers depuis votre espace Documents : FEC, Excel (.xlsx, .csv) ou PDF de liasse fiscale. Les données sont ensuite structurées automatiquement." },
+      { q: "Comment VYZOR récupère-t-il mes données comptables ?", a: "Deux options, sans aucune re-saisie. Par connecteur, avec Pennylane, et sur demande plus de 50 autres logiciels : MyUnisoft, Odoo, ACD, Qonto, Stripe, HubSpot, Shopify… Ou par import de fichiers depuis votre espace Documents : FEC, Excel (.xlsx, .csv) ou PDF de liasse fiscale. Les données sont ensuite structurées automatiquement." },
       { q: "Mon logiciel comptable n'a pas de connecteur, que faire ?", a: "L'import de fichiers prend le relais : tous les logiciels comptables utilisés en France savent exporter un FEC, format légal obligatoire. Vos comptes bancaires remontent via Pennylane." },
       { q: "Combien de temps pour être opérationnel ?", a: "Quelques minutes. Dès la première synchronisation, vos indicateurs et votre Vyzor Score sont calculés et prêts à être pilotés." },
       { q: "À quelle fréquence mes données sont-elles mises à jour ?", a: "Vous synchronisez vos données d'un clic, quand vous le souhaitez." },
