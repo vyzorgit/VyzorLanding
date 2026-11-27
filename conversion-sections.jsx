@@ -173,7 +173,7 @@ const StickyBetaCta = ({ label = "Analyser mes données" }) => {
   }, []);
   return (
     <div className="vz-sticky" data-show={show ? "true" : "false"} aria-hidden={!show}>
-      <span className="vz-sticky-txt">Votre équipe finance en 30 minutes</span>
+      <span className="vz-sticky-txt">Votre équipe financière, à portée de main</span>
       <a href="/?contact=1#beta" data-contact tabIndex={show ? 0 : -1}>{label} <span aria-hidden="true">→</span></a>
       <style>{`
         .vz-sticky { position: fixed; left: 50%; bottom: 18px; z-index: 900; display: flex; align-items: center; gap: 14px;
@@ -216,8 +216,8 @@ const FoundersSection = ({ id = "fondateurs", gold, muted }) => (
           Avec nous, <span style={{ color: gold }}>ce sont les fondateurs que vous avez au téléphone.</span>
         </h2>
         <p style={{ margin: "20px 0 0", fontSize: 16, lineHeight: 1.65, color: muted, maxWidth: 480, textWrap: "pretty" }}>
-          Les grands groupes ont des équipes finance entières pour lire leurs chiffres. Les PME, souvent, un bilan par an.
-          Nous avons créé Vyzor pour donner au dirigeant de PME la même équipe finance, à portée de main.
+          Les grands groupes ont des équipes financières entières pour lire leurs chiffres. Les PME, souvent, un bilan par an.
+          Nous avons créé Vyzor pour donner au dirigeant de PME la même équipe financière, à portée de main.
           Incubé, et testé avec un panel de conseillers financiers.
         </p>
       </div>

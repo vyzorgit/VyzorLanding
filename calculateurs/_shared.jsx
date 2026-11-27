@@ -532,7 +532,7 @@ function CtaFooter() {
           Pilotez votre rentabilité en temps réel
         </h2>
         <p style={{ color: T.textSecondary, fontSize: 16, maxWidth: 540, margin: "0 auto 32px", lineHeight: 1.7, position: "relative", zIndex: 1 }}>
-          Ce calcul, votre équipe finance le fait chaque semaine avec vos vrais chiffres Pennylane.
+          Ce calcul, votre équipe financière le fait chaque semaine avec vos vrais chiffres Pennylane.
         </p>
         <a href="/?contact=1#beta" data-contact style={{
           display: "inline-block", position: "relative", zIndex: 1,

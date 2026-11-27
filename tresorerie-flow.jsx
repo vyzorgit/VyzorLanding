@@ -27,7 +27,7 @@ const TrSeg = ({ items, value, onChange, label }) => (
 // —— Sources ——
 const TrSources = () => (
   <section className="vz-reveal" style={{ marginTop: 112 }}>
-    <TrHead t="Construite à partir de vos flux réels" d="La prévision ne repose pas sur un tableur rempli à la main. Votre équipe finance part de votre comptabilité (factures, échéances, emprunts) et de vos comptes bancaires via Pennylane pour projeter chaque entrée et chaque sortie." />
+    <TrHead t="Construite à partir de vos flux réels" d="La prévision ne repose pas sur un tableur rempli à la main. Votre équipe financière part de votre comptabilité (factures, échéances, emprunts) et de vos comptes bancaires via Pennylane pour projeter chaque entrée et chaque sortie." />
     <div className="tr-flow" style={{ ...trPanel, padding: "32px clamp(16px, 3vw, 32px)", marginTop: 32 }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {[["Comptes bancaires", "Via Pennylane, ou import Excel"], ["Factures clients", "Encaissements attendus et retards"], ["Factures fournisseurs", "Décaissements à venir"], ["Échéances fiscales et sociales", "TVA, IS, URSSAF"], ["Emprunts", "Remboursements planifiés"]].map(([t, d]) => (

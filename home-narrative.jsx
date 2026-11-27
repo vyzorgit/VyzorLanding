@@ -1,7 +1,7 @@
 // home-narrative.jsx — Sections de l'accueil (refonte du 17/11/2026, validée par Antoine).
 // Phrases reprises du document « Vyzor Pitches » (brain/) : douleur,
 // fonctionnalité clé, script du rendez-vous, ligne rouge « l'IA ne fait jamais les calculs ».
-// Cinq blocs, une seule action : analyser ses données avec son équipe finance.
+// Cinq blocs, une seule action : analyser ses données avec son équipe financière.
 
 const VZH = { gold: "#f0c949", muted: "rgba(255,255,255,0.58)", line: "rgba(255,255,255,0.08)" };
 
@@ -10,10 +10,10 @@ const HomePain = ({ id = "constat" }) => (
   <section id={id} className="vz-hpain" style={{ position: "relative", marginBottom: 96 }}>
     <div style={{ maxWidth: 760 }}>
       <h2 style={{ fontSize: 40, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.12, textWrap: "balance" }}>
-        Les PME n'ont pas toujours les moyens de la meilleure équipe finance.
+        Les PME n'ont pas toujours les moyens d'une équipe financière d'exception.
       </h2>
       <p style={{ fontSize: 18, lineHeight: 1.6, color: VZH.muted, margin: "18px 0 0", textWrap: "pretty" }}>
-        Résultat : elles sont souvent moins efficaces qu'elles pourraient l'être, et décident sans les bons chiffres.
+        Résultat : elles ne savent jamais vraiment quels leviers stratégiques activer pour améliorer leur activité.
       </p>
     </div>
     <style>{`
@@ -32,7 +32,7 @@ const HomeDemo = ({ id = "produit" }) => (
         <span style={{ display: "block", color: VZH.gold }}>Un tableau de bord sur mesure.</span>
       </h2>
       <p style={{ fontSize: 18, lineHeight: 1.65, color: VZH.muted, margin: "22px 0 0", maxWidth: 680, textWrap: "pretty" }}>
-        Demandez à votre équipe finance les indicateurs dont vous avez besoin : votre tableau de bord se construit en temps réel, et vos actions à mener arrivent dans votre boîte mail chaque matin. Un cas d'usage parfait de l'IA agentique.
+        Demandez à votre équipe financière les indicateurs dont vous avez besoin : votre tableau de bord se construit en temps réel, avec les actions à mener, dans votre boîte mail chaque matin.
       </p>
     </div>
     <div style={{ maxWidth: 920, margin: "0 auto" }}><GenUiVideo /></div>
@@ -89,7 +89,7 @@ const HomeSteps = ({ id = "comment" }) => {
   return (
     <section id={id} className="vz-hsteps" style={{ position: "relative", marginBottom: 56 }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 18 }}>
-        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Votre nouvelle équipe finance en 30 minutes.</h2>
+        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Obtenez votre équipe financière en moins de 5 minutes.</h2>
       </div>
       <ol className="vz-hsteps-row" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 14 }}>
         {steps.map((s, i) => (
@@ -123,14 +123,14 @@ const HomeFinalCta = () => (
     border: "1px solid rgba(140,160,255,0.18)",
   }}>
     <h2 style={{ position: "relative", margin: "0 auto", maxWidth: 820, fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 600, letterSpacing: "-0.025em", lineHeight: 1.15, color: "#fff", textWrap: "balance" }}>
-      Vos données parlent.{" "}
-      <span style={{ color: VZH.gold }}>Votre équipe finance vous dit quoi en faire.</span>
+      Vos chiffres ont des réponses.{" "}
+      <span style={{ color: VZH.gold }}>Votre équipe financière les trouve.</span>
     </h2>
     <p style={{ position: "relative", margin: "22px auto 0", maxWidth: 560, fontSize: 17, lineHeight: 1.6, color: VZH.muted }}>
-      En 30 minutes, vous repartez avec votre premier tableau de bord.
+      Votre premier tableau de bord, prêt en moins de 5 minutes.
     </p>
     <div style={{ position: "relative", marginTop: 32 }}>
-      <VzCtaLink>Construire mon tableau de bord</VzCtaLink>
+      <VzCtaLink>Construisez votre tableau de bord sur mesure</VzCtaLink>
     </div>
   </section>
 );

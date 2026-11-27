@@ -100,7 +100,7 @@ const GenerativeUiSection = ({ muted = VZT_MUTED }) => {
             L'écran se compose <span style={{ color: muted }}>autour de votre question.</span>
           </h2>
           <p style={{ fontSize: 17, lineHeight: 1.65, color: muted, margin: "20px 0 0", maxWidth: 520 }}>
-            Un logiciel classique vous impose ses tableaux. Ici, vous posez une question à votre équipe finance et la réponse s'affiche sous la forme qui l'explique le mieux : indicateurs, cascade, simulation, comparaison d'options. Chaque chiffre vient du moteur de calcul, jamais de l'IA : l'IA choisit la présentation, pas les nombres.
+            Un logiciel classique vous impose ses tableaux. Ici, vous posez une question à votre équipe financière et la réponse s'affiche sous la forme qui l'explique le mieux : indicateurs, cascade, simulation, comparaison d'options. Chaque chiffre vient du moteur de calcul, jamais de l'IA : l'IA choisit la présentation, pas les nombres.
           </p>
           <ul style={{ listStyle: "none", margin: "26px 0 0", padding: 0, display: "flex", flexWrap: "wrap", gap: 8 }}>
             {VZT_BLOCKS.map((b) => (
@@ -193,8 +193,8 @@ const IntegrationsPageBody = ({ gold, muted }) => (
     <VztStyles />
     <VzPageHero
       title="Vos outils, branchés en un clic."
-      accent="Votre équipe finance fait le reste."
-      lede="Votre équipe finance lit la comptabilité que vous tenez déjà, puis la croise avec votre banque et vos ventes. Toujours en lecture seule : rien n'est jamais modifié dans vos logiciels."
+      accent="Votre équipe financière fait le reste."
+      lede="Votre équipe financière lit la comptabilité que vous tenez déjà, puis la croise avec votre banque et vos ventes. Toujours en lecture seule : rien n'est jamais modifié dans vos logiciels."
       cta="Analyser mes données"
     />
     <div className="vz-page-pad" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(24px, 6vw, 96px)" }}>
@@ -204,7 +204,7 @@ const IntegrationsPageBody = ({ gold, muted }) => (
           {[
             ["plug", "Connecteur direct", "Vous autorisez l'accès, une fois. Les données se mettent à jour d'un clic, sans export."],
             ["file", "Dépôt de fichier", "FEC, liasse fiscale en PDF ou Excel : déposés en quelques secondes, quel que soit votre logiciel."],
-            ["layers", "Croisement", "Comptabilité, banque, ventes : votre équipe finance rapproche les sources pour une seule lecture de votre situation."],
+            ["layers", "Croisement", "Comptabilité, banque, ventes : votre équipe financière rapproche les sources pour une seule lecture de votre situation."],
           ].map(([ic, t, d]) => (
             <li key={t} className="vzt-lift" style={{ ...vztCard, padding: "28px 26px 30px" }}>
               <VztIc name={ic} />
@@ -330,7 +330,7 @@ const SecurityPageBody = ({ gold, muted }) => {
       <VztStyles />
       <VzPageHero
         title="Vos données sont protégées."
-        accent="Et vous savez où elles sont."
+        accent="Elles restent en France. Et restent à vous."
         lede="Hébergées en France, lues en lecture seule, jamais utilisées pour entraîner une IA. Voici le détail."
         cta="Analyser mes données"
       />

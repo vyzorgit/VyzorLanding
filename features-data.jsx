@@ -86,7 +86,7 @@ const VisJuridiqueDetail = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: "18px 20px 0" }}>
       <div>
-        <div style={lbl}><span>Documents publics centralisés</span><span style={{ color: VZF_GOLD, textTransform: "none", letterSpacing: 0 }}>→ agents juridique & fiscal</span></div>
+        <div style={lbl}><span>Documents publics centralisés</span><span style={{ color: VZF_GOLD, textTransform: "none", letterSpacing: 0 }}>→ juriste et fiscaliste</span></div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
           {["Statuts", "PV d'AG", "Comptes annuels", "Annonces BODACC", "Bénéficiaires effectifs"].map((t) => (
             <span key={t} style={{ ...vzfCard, display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 9px", fontSize: 12, color: "#fff" }}>
@@ -204,7 +204,7 @@ const VisBudget = () => (
 // —— Catalogue ——
 const VZ_FEATURES = [
   { slug: "conseil", icon: "conseil", name: "Conseil", desc: "Répond à vos questions en français, chiffres et sources à l'appui.", Visual: VisConseil,
-    lead: "Votre équipe finance, disponible à tout moment : elle répond à vos questions à partir de vos données comptables réelles, avec les chiffres, la source et la recommandation.",
+    lead: "Votre équipe financière, disponible à tout moment : elle répond à vos questions à partir de vos données comptables réelles, avec les chiffres, la source et la recommandation.",
     points: [
       ["Analyse vos chiffres en détail", "Marges, rentabilité, évolution des coûts : une lecture complète, expliquée poste par poste."],
       ["Vous propose un plan d'action", "Priorités, effet attendu chiffré, et actions prêtes à lancer : rien ne part sans votre clic."],
@@ -221,9 +221,9 @@ const VZ_FEATURES = [
       ["Teste vos décisions", "Embauche, investissement, emprunt, retard client, baisse du chiffre d'affaires : votre trésorerie avec et sans."],
     ] },
   { slug: "juridique", icon: "juridique", DetailVisual: VisJuridiqueDetail,
-    steps: [["Votre équipe finance rassemble", "Statuts, PV d'AG, comptes annuels et annonces légales récupérés aux registres publics."], ["Les agents s'en nourrissent", "Vos agents juridique et fiscaliste s'appuient sur ces documents pour répondre avec précision."], ["Vous gardez le cap", "Le calendrier des échéances vous prévient à temps, société par société."]],
+    steps: [["Votre équipe financière rassemble", "Statuts, PV d'AG, comptes annuels et annonces légales récupérés aux registres publics."], ["Vos experts s'en servent", "Votre juriste et votre fiscaliste s'appuient sur ces documents pour répondre avec précision."], ["Vous gardez le cap", "Le calendrier des échéances vous prévient à temps."]],
     name: "Juridique", desc: "Récupère vos documents officiels, calcule vos échéances fiscales et repère vos optimisations.", Visual: VisJuridique,
-    lead: "Votre équipe finance récupère les documents officiels de votre société aux registres publics (INPI, BODACC, annuaire des entreprises), calcule votre calendrier fiscal et social, et nourrit vos agents juridique et fiscaliste.",
+    lead: "Votre équipe financière récupère les documents officiels de votre société aux registres publics (INPI, BODACC, annuaire des entreprises), calcule votre calendrier fiscal et social, et les met à disposition de votre juriste et de votre fiscaliste.",
     points: [
       ["Récupère vos documents officiels", "Statuts, actes, comptes déposés et annonces BODACC, lus et résumés, même scannés."],
       ["Répond avec les textes officiels", "Vos questions juridiques et fiscales, réponses sourcées et liens vers les textes."],
@@ -239,7 +239,7 @@ const VZ_FEATURES = [
       ["Vous compare à votre secteur", "Vos ratios face à ceux des entreprises de votre secteur."],
     ] },
   { slug: "multi-societes", icon: "cabinet",
-    steps: [["Ajoutez vos sociétés", "Holding, filiales : chacune avec sa comptabilité, connectée ou importée."], ["Votre équipe finance calcule", "Indicateurs, trésorerie et échéances pour chaque société, strictement séparés."], ["Vous pilotez", "Vous passez d'une société à l'autre en un clic, et votre cabinet suit celles que vous partagez."]], name: "Multi-sociétés", desc: "Suit toutes vos sociétés, et passe de l'une à l'autre en un clic.", Visual: VisCabinet,
+    steps: [["Ajoutez vos sociétés", "Holding, filiales : chacune avec sa comptabilité, connectée ou importée."], ["Votre équipe financière calcule", "Indicateurs, trésorerie et échéances pour chaque société, strictement séparés."], ["Vous pilotez", "Vous passez d'une société à l'autre en un clic, et votre cabinet suit celles que vous partagez."]], name: "Multi-sociétés", desc: "Toutes vos sociétés. Un seul écran.", Visual: VisCabinet,
     lead: "Holding, filiales, participations : chaque société garde ses propres chiffres, et vous passez de l'une à l'autre en un clic. Groupes, fonds d'investissement et cabinets comptables suivent toutes leurs sociétés au même endroit.",
     points: [
       ["Sélecteur de société", "En haut de l'écran, pour passer d'une société à l'autre."],
@@ -248,8 +248,8 @@ const VZ_FEATURES = [
       ["Cloisonne chaque dossier", "Les chiffres d'une société ne se mélangent jamais avec ceux d'une autre."],
     ] },
   { slug: "alertes", icon: "alertes",
-    steps: [["Votre équipe finance surveille", "Trésorerie, marges, retards clients et échéances suivis en continu."], ["Un signal apparaît", "Vous êtes prévenu avec la cause précise et les chiffres concernés."], ["Vous agissez", "Chaque alerte propose l'action à mener, prête à être lancée."]], name: "Notifications & alertes", desc: "Vous prévient des retards, tensions et échéances avant qu'il soit trop tard.", Visual: VisAlertes,
-    lead: "Votre équipe finance surveille vos chiffres en continu et vous prévient dès qu'un signal mérite votre attention.",
+    steps: [["Votre équipe financière surveille", "Trésorerie, marges, retards clients et échéances suivis en continu."], ["Un signal apparaît", "Vous êtes prévenu avec la cause précise et les chiffres concernés."], ["Vous agissez", "Chaque alerte propose l'action à mener, prête à être lancée."]], name: "Notifications & alertes", desc: "Vous prévient des retards, tensions et échéances avant qu'il soit trop tard.", Visual: VisAlertes,
+    lead: "Votre équipe financière surveille vos chiffres en continu et vous prévient dès qu'un signal mérite votre attention.",
     points: [
       ["Surveille vos chiffres en continu", "Trésorerie, marges, retards clients et échéances fiscales."],
       ["S'adapte à vos seuils", "Vous définissez ce qui déclenche une alerte."],

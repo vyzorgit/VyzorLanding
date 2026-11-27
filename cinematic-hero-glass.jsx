@@ -268,7 +268,7 @@ const VzVelocityWords = ({ words, color, accent }) => (
 
 // —— Hero v4 (refonte proposition de valeur, 17/11/2026, brain « Vyzor Pitches ») ——
 // Une cible (dirigeants de PME sous Pennylane), une promesse (la tagline : un directeur
-// (une équipe finance, à portée de main), une action (analyser ses données en rendez-vous).
+// (une équipe financière, à portée de main), une action (analyser ses données en rendez-vous).
 const CinematicHero = () => {
   const gold = "#f0c949";
   const text = "rgba(255,255,255,0.94)";
@@ -309,12 +309,12 @@ const CinematicHero = () => {
       <div className="vz-hero-grid">
         <div className="vz-hero-copy">
           <h1 className="vz-hero-h1 vz-hero-in" style={{ animationDelay: "80ms" }}>
-            Une équipe finance,{" "}
+            Votre équipe financière,{" "}
             <span style={{ color: gold, display: "block" }}>à portée de main.</span>
           </h1>
           <p className="vz-hero-sub vz-hero-in" style={{ animationDelay: "180ms" }}>
-            Branchez vos données : votre équipe finance les analyse en temps réel, optimise vos workflows financiers{" "}
-            <span style={{ color: text }}>et vous donne les leviers stratégiques à actionner maintenant</span>.
+            Votre équipe financière se branche sur vos données : elle les analyse en temps réel, automatise vos tâches{" "}
+            <span style={{ color: text }}>et identifie les leviers stratégiques à activer</span>.
           </p>
           <div className="vz-hero-cta-row vz-hero-in" style={{ animationDelay: "260ms" }}>
             <a className="vz-hero-cta-primary vz-btn-primary" href="/?contact=1#beta" data-contact style={{

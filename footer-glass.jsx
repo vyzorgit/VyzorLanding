@@ -110,7 +110,7 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
             <VyzorLogo size={30} color={gold} bg="transparent" />
           </a>
           <p style={{ fontSize: 13, lineHeight: 1.55, color: muted, maxWidth: 300, margin: "12px 0 0", textWrap: "pretty" }}>
-            Une équipe finance, à portée de main.
+            Votre équipe financière, à portée de main.
           </p>
         </div>
 

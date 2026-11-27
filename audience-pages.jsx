@@ -58,7 +58,7 @@ const PennylanePageBody = ({ gold, text, muted, subtle }) => (
   <React.Fragment>
     <VzPageHero
       title="Pennylane tient vos comptes."
-      accent="Votre équipe finance vous dit quoi en faire."
+      accent="Votre équipe financière vous dit quoi en faire."
       lede="Avec Pennylane, vos données sont propres et à jour. Il manque la lecture. Vyzor s'y connecte en lecture seule et transforme vos écritures en réponses : où part votre argent, ce qu'il vous restera dans 12 mois, quoi faire en premier."
       cta="Analyser mes données"
     />
