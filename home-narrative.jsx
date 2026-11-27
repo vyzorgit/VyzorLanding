@@ -43,7 +43,7 @@ const HomePain = ({ id = "constat" }) => (
       .vz-hrole-go { color: rgba(255,255,255,0.35); transition: color 200ms ease, transform 200ms ease; }
       .vz-hrole:hover .vz-hrole-go { color: #f0c949; transform: translateX(3px); }
       @media (prefers-reduced-motion: reduce) { .vz-hrole, .vz-hrole-go { transition: none; } .vz-hrole:hover { transform: none; } }
-      @media (max-width: 920px) { .vz-hpain h2 { font-size: 32px !important; } .vz-hroles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vz-hroles li:first-child { grid-row: auto; grid-column: 1 / -1; } .vz-hrole.lead { flex-direction: row; align-items: center; gap: 12px; } }
+      @media (max-width: 920px) { .vz-hpain h2 { font-size: 32px !important; } .vz-hroles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vz-hroles li:first-child { grid-row: auto; grid-column: 1 / -1; } .vz-hrole.lead { flex-direction: row; align-items: center; justify-content: flex-start; gap: 12px; padding: 16px 18px; } .vz-hrole.lead .vz-hrole-t { flex: 1; max-width: none; font-size: 16px; } .vz-hrole.lead .vz-hrole-ic { width: 38px; height: 38px; } .vz-hrole.lead .vz-hrole-go { display: inline; } }
       @media (max-width: 560px) { .vz-hpain h2 { font-size: 25px !important; } .vz-hpain p { font-size: 16px !important; } .vz-hroles { gap: 10px; grid-template-columns: 1fr; } .vz-hrole { padding: 12px 14px; } }
     `}</style>
   </section>

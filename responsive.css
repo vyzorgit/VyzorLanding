@@ -184,8 +184,10 @@ html, body { -webkit-text-size-adjust: 100%; }
 
   /* —— Container global de la page (RestOfPage) —— */
   .vz-page-pad {
-    padding: 0 18px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
   }
+  .vz-nav-lang { display: none !important; }
 
   /* —— NAV : compresser, masquer "Calculateurs" pour ne garder que CTA —— */
   .vz-nav-wrap {
