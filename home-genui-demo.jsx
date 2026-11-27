@@ -188,7 +188,7 @@ const HeroProductShot = () => {
         <circle cx="166" cy="215" r="9" fill="#0d1430" stroke="#f0c949" strokeWidth="2.5" />
         <path d="M162 212 V218 M170 212 V218" stroke="#f0c949" strokeWidth="2" strokeLinecap="round" />
       </svg>
-      {card("c-data", "data", "Vos données", "Compta, banque")}
+      {card("c-data", "data", "Vos données", null)}
       {card("c-ana", "pulse", <>Analyse en temps réel<span className="vzc-live" /></>, null)}
       {card("c-auto", "auto", "Tâches automatisées", null)}
       {card("c-lev", "lever", "Leviers stratégiques", null, true)}

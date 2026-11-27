@@ -5,20 +5,38 @@
 
 const VZH = { gold: "#f0c949", muted: "rgba(255,255,255,0.58)", line: "rgba(255,255,255,0.08)" };
 
-// —— 2. La douleur, et la métaphore ——
+// —— 2. Le constat, et ce que vous obtenez : une équipe, des spécialistes ——
+const VZH_ROLES = [
+  { t: "L'analyste", d: "Marges, rentabilité, budget.", ic: <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /> },
+  { t: "Le trésorier", d: "Encaissements, prévisions, relances.", ic: <g><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3 10h18M16 14h2" /></g> },
+  { t: "Le juriste", d: "Documents officiels, droit des sociétés.", ic: <g><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5M9 13h6M9 17h4" /></g> },
+  { t: "Le fiscaliste", d: "TVA, impôts, échéances.", ic: <g><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 19h0" /></g> },
+];
 const HomePain = ({ id = "constat" }) => (
   <section id={id} className="vz-hpain" style={{ position: "relative", marginBottom: 96 }}>
-    <div style={{ maxWidth: 760 }}>
+    <div style={{ maxWidth: 780 }}>
       <h2 style={{ fontSize: 40, margin: 0, letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.12, textWrap: "balance" }}>
-        Les PME n'ont pas toujours les moyens d'une équipe financière d'exception.
+        Les grands groupes ont une équipe financière.{" "}
+        <span style={{ color: VZH.gold }}>Votre PME aussi, désormais.</span>
       </h2>
       <p style={{ fontSize: 18, lineHeight: 1.6, color: VZH.muted, margin: "18px 0 0", textWrap: "pretty" }}>
-        Résultat : elles ne savent jamais vraiment quels leviers stratégiques activer pour améliorer leur activité.
+        Un analyste, un trésorier, un juriste, un fiscaliste : chacun spécialiste, tous sur vos chiffres.
       </p>
     </div>
+    <ul className="vz-hroles" style={{ listStyle: "none", margin: "32px 0 0", padding: 0, display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: 14 }}>
+      {VZH_ROLES.map((r) => (
+        <li key={r.t} style={{ padding: "18px 18px 20px", borderRadius: 16, background: "linear-gradient(180deg, #121a3a 0%, #0b1026 100%)", border: "1px solid rgba(140,160,255,0.14)" }}>
+          <span style={{ width: 38, height: 38, borderRadius: 11, display: "grid", placeItems: "center", background: "rgba(240,201,73,0.08)", border: "1px solid rgba(240,201,73,0.24)" }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0c949" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{r.ic}</svg>
+          </span>
+          <span style={{ display: "block", marginTop: 14, fontSize: 16, fontWeight: 600, color: "#fff" }}>{r.t}</span>
+          <span style={{ display: "block", marginTop: 4, fontSize: 14, lineHeight: 1.5, color: VZH.muted }}>{r.d}</span>
+        </li>
+      ))}
+    </ul>
     <style>{`
-      @media (max-width: 920px) { .vz-hpain h2 { font-size: 32px !important; } }
-      @media (max-width: 560px) { .vz-hpain h2 { font-size: 25px !important; } .vz-hpain p { font-size: 16px !important; } }
+      @media (max-width: 920px) { .vz-hpain h2 { font-size: 32px !important; } .vz-hroles { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+      @media (max-width: 560px) { .vz-hpain h2 { font-size: 25px !important; } .vz-hpain p { font-size: 16px !important; } .vz-hroles { gap: 10px !important; } .vz-hroles li { padding: 14px !important; } }
     `}</style>
   </section>
 );
@@ -82,14 +100,14 @@ const HomeProof = () => {
 // —— 4. Comment tester : trois étapes sur une ligne ——
 const HomeSteps = ({ id = "comment" }) => {
   const steps = [
-    { t: "Créer votre compte", d: "En deux minutes, pendant le rendez-vous." },
+    { t: "Créer votre compte", d: "En quelques secondes, pendant le rendez-vous." },
     { t: "Connecter vos données", d: "Pennylane en lecture seule, ou un export FEC." },
     { t: "Construire votre tableau de bord", d: "Vos indicateurs, selon vos besoins." },
   ];
   return (
     <section id={id} className="vz-hsteps" style={{ position: "relative", marginBottom: 56 }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 18 }}>
-        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Obtenez votre équipe financière en moins de 5 minutes.</h2>
+        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff" }}>Obtenez votre équipe financière en quelques secondes.</h2>
       </div>
       <ol className="vz-hsteps-row" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 14 }}>
         {steps.map((s, i) => (
@@ -127,7 +145,7 @@ const HomeFinalCta = () => (
       <span style={{ color: VZH.gold }}>Votre équipe financière les trouve.</span>
     </h2>
     <p style={{ position: "relative", margin: "22px auto 0", maxWidth: 560, fontSize: 17, lineHeight: 1.6, color: VZH.muted }}>
-      Votre premier tableau de bord, prêt en moins de 5 minutes.
+      Votre premier tableau de bord, prêt en quelques secondes.
     </p>
     <div style={{ position: "relative", marginTop: 32 }}>
       <VzCtaLink>Construisez votre tableau de bord sur mesure</VzCtaLink>
