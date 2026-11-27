@@ -198,11 +198,13 @@ const VyzorFooterGlass = ({ fullWidth = false, onSubscribe }) => {
           to   { opacity: 1; transform: scale(1); }
         }
         .vz-footer-main input::placeholder { color: rgba(255,255,255,0.40); }
+        .vz-footer-bottom a { display: inline-flex; align-items: center; }
         .vz-footer-soc:hover { color: #f0c949 !important; border-color: rgba(240,201,73,0.45) !important; background: rgba(240,201,73,0.08) !important; }
         @media (max-width: 900px) {
           .vz-footer-main { grid-template-columns: 1fr !important; gap: 22px !important; padding: 26px 24px 20px !important; }
           .vz-footer-links { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
           .vz-footer-bottom { padding: 14px 24px !important; }
+          .vz-footer-bottom > div { flex-wrap: wrap; row-gap: 10px; column-gap: 18px !important; }
         }
       `}</style>
     </footer>

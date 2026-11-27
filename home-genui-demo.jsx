@@ -157,7 +157,9 @@ const HeroProductShot = () => {
         .vzc .c-ana { animation-delay: 700ms, 1.4s; } .vzc .c-auto { animation-delay: 950ms, 2.2s; } .vzc .c-lev { animation-delay: 1200ms, 3s; }
         .vzc-live { animation: vzcLive 1.8s ease-out infinite; }
         .vzc .flow { stroke-dasharray: 4 12; animation: vzcFlow 1.4s linear infinite; }
-        @media (max-width: 560px) { .vzc-t { font-size: 11.5px; } .vzc-s { display: none; } .vzc-ic { width: 28px; height: 28px; } .vzc-card { padding: 7px 10px 7px 7px; gap: 7px; } }
+        @media (max-width: 560px) { .vzc { width: 520px; max-width: none; zoom: 0.7; } .vzc-s { display: none; } }
+        @media (max-width: 420px) { .vzc { zoom: 0.66; } }
+        @media (max-width: 380px) { .vzc { zoom: 0.6; } }
         @media (prefers-reduced-motion: reduce) { .vzc * { animation: none !important; } }
       `}</style>
       <svg viewBox="0 0 520 430" preserveAspectRatio="xMidYMid meet">
